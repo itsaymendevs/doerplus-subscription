@@ -1,0 +1,38 @@
+:root {
+    /* fonts */
+    --font-body: "Poppins";
+    --font-heading: "Courgette";
+
+    /* colors */
+    --color-theme: #c0c0c7;
+    --color-body: #111;
+    --color-swiper-bullets: var(--bs-orange);
+    --color-swiper-line: var(--bs-orange);
+    --color-cursor: rgba(255, 255, 255, 0.25);
+    --color-cursor-hover: rgba(255, 255, 255, 0.5);
+    --color-plan-title: #fff;
+    --color-plan-subtitle: #fff;
+    --color-plan-caption: #fff;
+    --color-plan-button: #fff;
+    --color-plan-button-hover: var(--bs-orange);
+
+    --color-plan-hr: var(--bs-orange);
+
+    --color-preloader-line: var(--bs-orange);
+    --color-navbar-menu: #fff;
+    --color-navbar-menu-active: #fff;
+    --color-navbar-menu-links: #c0c0c7;
+    --color-navbar-menu-links-hover: var(--bs-orange);
+    --color-navbar-menu-social-links: #fff;
+
+    /* background */
+    --background-plan-card: #111;
+    --background-plan-button: #fff;
+    --background-navbar: #01010b;
+
+    /* radius */
+    --radius-plan: 0px;
+
+    /* align */
+    --align-plan-content: center;
+}

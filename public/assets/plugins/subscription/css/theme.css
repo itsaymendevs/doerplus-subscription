@@ -1,0 +1,154 @@
+/* preloader */
+.preloader .spinner.spinner-line {
+    background: var(--color-preloader-line);
+}
+
+/* swiper */
+
+.plans--swiper
+    .swiper-pagination
+    .swiper-pagination-bullet.swiper-pagination-bullet-active,
+.plans--swiper
+    .swiper-pagination
+    .swiper-pagination-bullet.swiper-pagination-bullet-active,
+.plans--swiper
+    .swiper-pagination
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: var(--color-swiper-bullets) !important;
+}
+
+/* home */
+.plan--slide .plan--slide-title {
+    color: var(--color-plan-title) !important;
+}
+
+.plan--slide .plan--slide-subtitle {
+    color: var(--color-plan-subtitle) !important;
+}
+
+.plan--slide .plan--slide-caption {
+    color: var(--color-plan-caption) !important;
+}
+
+.plan--slide .plan--slide-title:before {
+    content: none !important;
+}
+
+.plan--slide .plan--slide-hr hr {
+    border-color: var(--color-plan-hr);
+    width: 50px;
+    opacity: 1;
+    border-radius: 2px;
+    border-width: 2px;
+    display: inline-block;
+    margin: 0px;
+}
+
+.plan--slide .slide-titles .title::after {
+    background: var(--color-plan-hr) !important;
+}
+
+.plan--slide .plan--slide-button {
+    color: var(--color-plan-button) !important;
+}
+
+.plan--slide .plan--slide-button::before,
+.plan--slide .plan--slide-button.btn-link::before,
+.plan--slide .plan--slide-button.btn-link::before,
+.plan--slide .plan--slide-button::before {
+    background: var(--background-plan-button) !important;
+}
+
+.plan--slide .plan--slide-button:hover,
+.plan--slide .plan--slide-button:focus {
+    color: var(--color-plan-button-hover) !important;
+}
+
+.plan--slide .slide-titles .title.hr--center::after {
+    background: var(--color-plan-hr) !important;
+    left: 0px !important;
+    right: 0px !important;
+    margin: auto;
+}
+
+.plan--slide .slide,
+.plan--slide .slide:before {
+    border-radius: var(--radius-plan);
+}
+
+.plan--slide .desc {
+    text-align: var(--align-plan-content) !important;
+}
+
+.section.m-works-carousel .works-slide .image .img:before,
+.section.m-works-carousel .works-slide .image .img:after {
+    background: var(--background-plan-card);
+}
+.section.m-works-carousel .works-slide .image:before,
+.section.m-works-carousel .works-slide .image:after {
+    background: var(--background-plan-card);
+}
+
+/* --------------------------------- */
+/* --------------------------------- */
+
+/* navbar */
+.menu-btn span:before,
+.menu-btn span:after {
+    background: var(--color-navbar-menu);
+}
+
+.menu-btn.active span:before,
+.menu-btn.active span:after {
+    background: var(--color-navbar-menu-active);
+}
+
+.menu-full-overlay:before {
+    background: var(--background-navbar);
+}
+
+.menu-full ul li a {
+    color: var(--color-navbar-menu-links);
+}
+
+.menu-full ul li a:hover .char,
+.menu-full ul li a:hover .word {
+    color: var(--color-navbar-menu-links-hover);
+}
+
+.menu-social-links a {
+    color: var(--color-navbar-menu-social-links);
+}
+
+/* --------------------------------- */
+/* --------------------------------- */
+
+/* swiper */
+body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+    background: var(--color-swiper-line);
+}
+
+.swiper-pagination-progressbar {
+    height: 2px !important;
+}
+
+/* --------------------------------- */
+/* --------------------------------- */
+
+/* third swiper */
+.plan--slide .view-btn a::before,
+.plan--slide .view-btn a::before,
+.plan--slide .view-btn a::before {
+    background: var(--color-plan-hr) !important;
+}
+
+/* general */
+.left-0 {
+    left: 0px !important;
+}
+.right-0 {
+    right: 0px !important;
+}
+.fw-500 {
+    font-weight: 500 !important;
+}
