@@ -3228,7 +3228,7 @@ body .hero-main-slider .swiper-pagination {
     font-family: var(--font-body);
     font-size: 132px;
     line-height: 1;
-    color: #fff !important;
+    color: var(--color-theme) !important;
     font-weight: 700;
     margin: 0;
 }
@@ -3736,7 +3736,7 @@ body .hero-main-slider .swiper-pagination {
     display: inline-block;
     vertical-align: top;
     color: #c0c0c7;
-    font-weight: 700;
+    font-weight: 600;
     text-decoration: none;
 }
 
@@ -4514,11 +4514,10 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 
 .description-list-items .description-list-item .name {
     font-size: 20px;
-    color: #fff;
+    color: var(--color-theme);
 }
 
 .description-list-items .description-list-item .name .number {
-    opacity: 0.45;
 }
 
 .description-list-items .description-list-item .text {
@@ -4832,7 +4831,7 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
     margin-top: 0;
     margin-bottom: 10px;
     font-size: 20px;
-    color: #fff;
+    color: var(--color-theme);
     font-weight: 700;
 }
 
@@ -6442,7 +6441,7 @@ a.wp-block-button__link {
     }
     .description-list-items .description-list-item .name {
         font-size: 18px;
-        color: #fff;
+        color: var(--color-theme);
     }
     .section.section-inner h1,
     .section.section-inner h2 {

@@ -1,0 +1,208 @@
+.plan--section {
+    margin-top: 150px !important;
+}
+
+/* progressBar */
+.progress--floating {
+    position: absolute;
+    top: 75px;
+    left: 0px;
+    right: 0px;
+    width: 300px;
+    margin: auto;
+    height: 6px;
+    border-radius: 50px;
+    background-color: #2d2d2d;
+}
+
+@media (max-width: 1199px) {
+    .progress--floating {
+        display: none;
+    }
+}
+
+.progress--floating .progress-bar {
+    background-color: var(--bs-warning);
+    border-radius: 50px;
+    background-image: linear-gradient(
+        213deg,
+        rgb(39 25 25 / 15%) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgb(5 5 5 / 15%) 50%,
+        rgb(44 44 44 / 15%) 75%,
+        transparent 75%,
+        transparent
+    );
+}
+
+/* collapse */
+.collapse--title.collapsed .collapse--icon {
+    transform: rotate(0deg);
+}
+
+.collapse--title .collapse--icon {
+    transform: rotate(180deg);
+}
+
+/* hr */
+.h--hr hr {
+    border: 1px solid var(--color-theme);
+    border-radius: 1px;
+    animation: hrAnimation 1.5s ease-out 0s 1 normal;
+    width: 65%;
+}
+
+/* otherPlans */
+.plans--other-col img {
+    height: 170px !important;
+    object-fit: cover;
+}
+
+.plans--other-col:nth-child(even) img {
+    height: 230px !important;
+    object-fit: cover;
+}
+
+@media (max-width: 575px) {
+    /* otherPlans */
+    .plans--other-col img {
+        height: 250px !important;
+    }
+
+    .plans--other-col:nth-child(even) img {
+        height: 250px !important;
+    }
+}
+
+/* customization */
+.customization--plan-image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    height: 100%;
+}
+
+@keyframes hrAnimation {
+    0% {
+        width: 0%;
+        visibility: hidden;
+    }
+
+    30% {
+        visibility: visible;
+    }
+    100% {
+        width: 65%;
+    }
+}
+
+/* -------------------------------------------- */
+/* -------------------------------------------- */
+
+.bundle--card {
+    background-color: #191919;
+    padding: 10px 10px;
+    border-radius: 8px;
+    position: relative;
+    display: block;
+    text-decoration: none;
+}
+
+.bundle--select {
+    position: absolute;
+    top: 18px;
+    font-weight: bold;
+    left: 20px;
+    border-radius: 50%;
+    color: black;
+    font-size: 11px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    z-index: 1;
+    background-color: whitesmoke;
+    box-shadow: 4px 4px 1px var(--color-theme);
+    letter-spacing: 0.3px;
+}
+
+.bundle--card:hover .bundle--select,
+.bundle--card:focus .bundle--select {
+    box-shadow: 0px 4px 1px var(--bs-warning);
+}
+
+.bundle--card img {
+    height: 200px;
+    width: 100%;
+}
+
+.bundle--title-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 55px;
+    position: relative;
+    border-radius: 2px;
+    padding: 0px 10px;
+    background-color: #323232;
+}
+.bundle--title {
+    font-size: 14px;
+    color: white;
+    margin: 0px;
+    text-align: center;
+    font-weight: 600 !important;
+}
+
+.bundle--title * {
+    color: white;
+}
+
+/* ---------------------------------------- */
+/* ---------------------------------------- */
+
+/* swiper */
+.plans--overview-swiper .swiper-wrapper,
+.plans--overview-swiper .swiper-slide {
+    height: 360px;
+}
+
+.plans--overview-swiper .swiper-pagination-bullet {
+    width: 4px;
+    border-radius: 10px;
+    height: 20px;
+}
+
+.plans--overview-swiper .swiper-pagination-bullet-active {
+    background: var(--color-theme);
+}
+
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+
+/* otherPlans */
+
+.other--item.active .desc {
+    opacity: 1 !important;
+    bottom: 0px !important;
+}
+
+.other--item.active a:after {
+    opacity: 1;
+}
+
+.other--item.active .image:before,
+.other--item.active .image:after {
+    width: 20px;
+}
+
+.other--item.active .image .img:before,
+.other--item.active .image .img:after {
+    height: 20px;
+}
+
+.other--item.active a:after {
+    opacity: 1 !important;
+}

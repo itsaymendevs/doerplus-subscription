@@ -4,10 +4,10 @@ namespace App\Livewire\Layouts;
 
 use Livewire\Component;
 
-class Subscription extends Component
+class Plans extends Component
 {
     public function render()
     {
-        return view('livewire.layouts.subscription');
+        return view('livewire.layouts.plans');
     }
 }

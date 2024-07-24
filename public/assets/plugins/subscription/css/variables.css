@@ -25,13 +25,38 @@
     --color-navbar-menu-links-hover: var(--bs-orange);
     --color-navbar-menu-social-links: #fff;
 
+    /* forPlan */
+    --color-plan-side-title: white;
+    --color-plan-filter-links: #c0c0c7;
+    --color-plan-filter-links-hover-border: var(--bs-orange);
+    --color-plan-list-numbers: #fff;
+    --color-plan-meal-diet: var(--bs-warning);
+    --color-plan-testimonial-title: #fff;
+    --color-plan-meals-border: #222;
+    --color-plan-meals-hover-border: var(--bs-orange);
+
+    /* ----------------------------- */
+    /* ----------------------------- */
+    /* ----------------------------- */
+    /* ----------------------------- */
+
     /* background */
     --background-plan-card: #111;
     --background-plan-button: #fff;
     --background-navbar: #01010b;
 
+    /* ----------------------------- */
+    /* ----------------------------- */
+    /* ----------------------------- */
+    /* ----------------------------- */
+
     /* radius */
     --radius-plan: 0px;
+
+    /* ----------------------------- */
+    /* ----------------------------- */
+    /* ----------------------------- */
+    /* ----------------------------- */
 
     /* align */
     --align-plan-content: center;

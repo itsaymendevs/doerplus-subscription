@@ -64,10 +64,9 @@
 
 
     {{-- swiper --}}
-    <div class="section m-works-carousel fully">
+    <div class="section m-works-carousel default" wire:ignore>
         <div class="swiper-container">
             <div class="swiper-wrapper">
-
 
 
                 {{-- loop - plans --}}
@@ -82,16 +81,13 @@
                             <span class="image">
                                 <span class="img">
                                     <span class="slide"
-                                        style='background-image: url({{ url("{$storagePath}/menu/plans/{$plan->fourthImageFile}") }});'>
-                                    </span>
+                                        style='background-image: url({{ url("{$storagePath}/menu/plans/{$plan->thirdImageFile}") }});'></span>
                                 </span>
                             </span>
 
 
 
 
-
-
                             {{-- ---------------------------------- --}}
                             {{-- ---------------------------------- --}}
 
@@ -99,14 +95,14 @@
 
 
 
-
-
-                            {{-- content --}}
+                            {{-- information --}}
                             <span class="desc">
 
+
                                 {{-- title --}}
-                                <span class="subname splitting-text-anim-1 plan--slide-subtitle"
-                                    data-splitting="chars">{{ $plan->desc }}</span>
+                                <span class="name splitting-text-anim-1 plan--slide-title pb-1"
+                                    data-splitting="chars">{{
+                                    $plan->name }}</span>
 
 
                                 {{-- hr --}}
@@ -116,8 +112,8 @@
 
 
                                 {{-- subtitle --}}
-                                <span class="name splitting-text-anim-1 plan--slide-title" data-splitting="chars">{{
-                                    $plan->name }}</span>
+                                <span class="subname splitting-text-anim-1 mt-3 plan--slide-subtitle"
+                                    data-splitting="chars">{{ $plan->desc }}</span>
                             </span>
 
 
@@ -129,17 +125,16 @@
                 {{-- end loop --}}
 
 
-
             </div>
             {{-- endWrapper --}}
 
 
 
 
+            {{-- --------------------------------- --}}
+            {{-- --------------------------------- --}}
+            {{-- --------------------------------- --}}
 
-            {{-- --------------------------------- --}}
-            {{-- --------------------------------- --}}
-            {{-- --------------------------------- --}}
 
 
 

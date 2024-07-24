@@ -110,7 +110,8 @@
                                     {{-- caption --}}
                                     @if ($plan?->caption)
 
-                                    <div class="label scrolla-element-anim-1 plan--slide-caption">{{ $plan->caption }}
+                                    <div class="label scrolla-element-anim-1 plan--slide-caption fw-500">{{
+                                        $plan->caption }}
                                     </div>
 
                                     @endif
@@ -125,7 +126,7 @@
 
                                     {{-- name --}}
                                     <div class="title @if ($settings->planCardAlignment == 'center') hr--center @endif">
-                                        <span class="title-inner splitting-text-anim-2 plan--slide-title"
+                                        <span class="title-inner splitting-text-anim-2 plan--slide-title fw-bold"
                                             data-splitting>{{ $plan->name }}</span>
                                     </div>
 
@@ -150,8 +151,8 @@
 
                                 {{-- viewButton --}}
                                 <div class="more-bts @if ($settings->planCardAlignment == 'center') text-center @endif">
-                                    <a href="javascript:void(0);" data-splitting
-                                        class="btn more-btn scrolla-element-anim-1 plan--slide-button fw-semibold">View
+                                    <a href="{{ route('website.singlePlan', [$plan->nameURL]) }}" data-splitting
+                                        class="btn more-btn scrolla-element-anim-1 plan--slide-button fw-500">View
                                         Plan</a>
                                 </div>
 

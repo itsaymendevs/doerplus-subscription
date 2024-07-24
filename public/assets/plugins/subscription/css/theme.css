@@ -3,6 +3,11 @@
     background: var(--color-preloader-line);
 }
 
+/* general */
+.of-contain {
+    object-fit: contain !important;
+}
+
 /* swiper */
 
 .plans--swiper
@@ -20,6 +25,18 @@
 /* home */
 .plan--slide .plan--slide-title {
     color: var(--color-plan-title) !important;
+}
+
+.plan--custom-title {
+    color: var(--color-plan-title) !important;
+}
+
+.plan--custom-subtitle {
+    color: var(--color-plan-subtitle) !important;
+}
+
+.plan--custom-caption {
+    color: var(--color-plan-caption) !important;
 }
 
 .plan--slide .plan--slide-subtitle {
@@ -151,4 +168,108 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 }
 .fw-500 {
     font-weight: 500 !important;
+}
+
+/* --------------------------------------- */
+
+/* single plan */
+
+.plan--single-title {
+    color: var(--color-plan-side-title) !important;
+}
+
+.plan--filter-links a {
+    color: var(--color-plan-filter-links) !important;
+}
+
+.plan--filter-links a::before {
+    background: var(--color-plan-filter-links-hover-border) !important;
+}
+
+.plan--list .description-list-item .number {
+    color: var(--color-plan-list-numbers) !important;
+}
+
+.plan--meal-diet {
+    color: var(--color-plan-meal-diet) !important;
+}
+
+/* slider */
+.plan--testimonials .title {
+    color: var(--color-plan-testimonial-title) !important;
+}
+
+.plan--testimonials
+    .swiper-pagination
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: var(--color-swiper-line) !important;
+}
+
+/* spacing */
+@media screen and (min-width: 1101px) {
+    .section--spacing {
+        margin: 100px 0px 40px !important;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .section--spacing {
+        margin: 80px 0px 40px !important;
+    }
+}
+
+/* meals */
+.meals--item.v1 .image .img {
+    padding: 20px 15px;
+}
+.meals--item.v1 .image .img::after {
+    background: var(--color-plan-meals-border) !important;
+    height: 4px;
+    border-radius: 12px;
+}
+
+.meals--item.v1 .image .img::before {
+    background: var(--color-plan-meals-border) !important;
+    height: 0px;
+    border-radius: 12px;
+}
+
+.meals--item.v1 .image::before,
+.meals--item.v1 .image::after {
+    background: var(--color-plan-meals-border) !important;
+    width: 0px;
+    border-radius: 12px;
+}
+
+/* hover */
+.meals--item.v1:hover .image .img::after {
+    background: var(--color-plan-meals-hover-border) !important;
+    height: 7px;
+}
+
+.meals--item.v1:hover .image .img::before {
+    background: var(--color-plan-meals-hover-border) !important;
+    height: 0px;
+}
+
+.meals--item.v1:hover .image::before,
+.meals--item.v1:hover .image::after {
+    background: var(--color-plan-meals-hover-border) !important;
+    width: 0px;
+}
+
+/* ----------------------------- */
+/* ----------------------------- */
+
+.meals--item.v2 .image .img::after {
+    background: var(--color-plan-meals-border) !important;
+}
+
+.meals--item.v2 .image .img::before {
+    background: var(--color-plan-meals-border) !important;
+}
+
+.meals--item.v2 .image::before,
+.meals--item.v2 .image::after {
+    background: var(--color-plan-meals-border) !important;
 }

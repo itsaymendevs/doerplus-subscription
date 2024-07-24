@@ -40,14 +40,62 @@
             --color-navbar-menu-social-links: <?php echo "$settings->navbarSocialLinksColor" ?>;
 
 
+
+            /* forPlan */
+            --color-plan-side-title: <?php echo "$settings->planSideTitleColor" ?>;
+            --color-plan-filter-links: <?php echo "$settings->planFilterLinksColor" ?>;
+            --color-plan-filter-links-hover-border: <?php echo "$settings->planFilterLinksHoverBorderColor" ?>;
+            --color-plan-list-numbers: <?php echo "$settings->planListNumbersColor" ?>;
+            --color-plan-meal-diet: <?php echo "$settings->planMealDietColor" ?>;
+            --color-plan-testimonial-title: <?php echo "$settings->planReviewsTitleColor" ?>;
+            --color-plan-meals-border: <?php echo "$settings->planMealsBorderColor" ?>;
+
+
+
+
+
+
+
+            /* -------------------------------------------------- */
+            /* -------------------------------------------------- */
+            /* -------------------------------------------------- */
+
+
+
+
+
+
             /* background */
             --background-plan-card: <?php echo "$settings->planCardBackgroundColor" ?>;
             --background-plan-button: <?php echo "$settings->planCardButtonBackgroundColor" ?>;
 
             --background-navbar: <?php echo "$settings->navbarBackgroundColor" ?>;
 
+
+
+
+
+
+            /* -------------------------------------------------- */
+            /* -------------------------------------------------- */
+            /* -------------------------------------------------- */
+
+
+
+
+
+
             /* radius */
             --radius-plan: <?php echo "$settings->planCardRadius" ?>px;
+
+
+
+
+
+            /* -------------------------------------------------- */
+            /* -------------------------------------------------- */
+            /* -------------------------------------------------- */
+
 
             /* align */
             --align-plan-content: <?php echo "$settings->planCardAlignment" ?>;
@@ -57,11 +105,8 @@
     </style>
 
 
-
-
     @endsection
     {{-- endSection --}}
-
 
 
 

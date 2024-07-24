@@ -5,7 +5,7 @@
 
         {{-- logo --}}
         <div class="logo-image">
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" class='logo--wrap'>
                 <img src='{{ url("{$storagePath}/profile/{$profile->imageFileDark}") }}' alt="logo" />
             </a>
         </div>
