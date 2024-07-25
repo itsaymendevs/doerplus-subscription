@@ -41,6 +41,46 @@
     font-size: 13px !important;
 }
 
+/* price */
+.span--price {
+    font-size: 10px;
+    color: var(--bs-warning);
+}
+
+/* input */
+
+.form--input-wrapper label {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0px;
+    margin-bottom: 5px;
+    color: white;
+    position: relative;
+    padding-left: 2px;
+}
+
+.form--input-wrapper label i.icon--right {
+    position: absolute;
+    right: 5px;
+    bottom: 0px;
+    top: 0px;
+}
+
+.form--input {
+    border-radius: 6px !important;
+    height: 48px !important;
+    padding: 0px 20px !important;
+    font-size: 15px !important;
+    width: 100% !important;
+    color: white !important;
+    border: 1px solid #323232 !important;
+}
+
+.form--input:focus,
+.form--input:hover {
+    border: 1px solid var(--color-theme) !important;
+}
+
 /* cursor */
 .pointer {
     cursor: pointer;
@@ -129,7 +169,7 @@
 .title--with-hr hr {
     width: 40px;
     border-color: white;
-    animation: titleHrAnimation 2s ease-out 0s 1 normal;
+    animation: titleHrAnimation 1s ease-out 0s 1 normal;
 }
 
 /* zoom */
@@ -142,6 +182,21 @@
     animation-name: floatingAnimation;
     animation-duration: 5s;
     animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.animation--shaking {
+    animation-name: shakingAnimation;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.animation--scale {
+    animation-name: scaleAnimation;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
     animation-timing-function: ease-in-out;
 }
 
@@ -168,5 +223,35 @@
     }
     100% {
         transform: translate(0, 0px);
+    }
+}
+
+@keyframes shakingAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: transform(-12deg);
+    }
+    50% {
+        transform: rotate(0eg);
+    }
+    75% {
+        transform: rotate(-12deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes scaleAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1.2);
     }
 }

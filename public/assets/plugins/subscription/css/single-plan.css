@@ -148,6 +148,12 @@
     padding: 0px 10px;
     background-color: #323232;
 }
+
+.bundle--card:hover .bundle--title-wrap,
+.bundle--card:focus .bundle--title-wrap {
+    background-color: #6b6b6b;
+}
+
 .bundle--title {
     font-size: 14px;
     color: white;
@@ -205,4 +211,130 @@
 
 .other--item.active a:after {
     opacity: 1 !important;
+}
+
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+
+/* ranges */
+
+.ranges--wrapper {
+    flex-wrap: wrap;
+    display: flex;
+    /* border: 2px solid #fff; */
+    position: relative;
+    padding: 20px 10px;
+}
+
+.ranges--wrapper .ranges--btn {
+    width: 130px;
+    max-width: 130px;
+    border-radius: 0px;
+    margin-bottom: 8px;
+}
+
+@media (max-width: 767px) {
+    .ranges--wrapper .ranges--btn {
+        width: 33%;
+        max-width: 33%;
+    }
+}
+
+@media (max-width: 575px) {
+    .ranges--wrapper .ranges--btn {
+        width: 50%;
+        max-width: 50%;
+    }
+}
+
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+
+/* ranges */
+
+.plan--days {
+    border: 1px dashed #323232;
+    border-radius: 6px;
+    display: inline-flex;
+    height: 50px;
+    font-size: 17px;
+    width: 50px;
+    font-weight: 500;
+    justify-content: center;
+    color: white;
+    margin-right: 12px;
+    align-items: center;
+}
+
+.plan--days:hover,
+.plan--days:focus,
+.plan--days.active {
+    border: 1px solid var(--color-theme);
+    background-color: var(--color-theme);
+}
+
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+
+/* invoice */
+
+.invoice--tr {
+    border-bottom: 1px dashed #191919;
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+}
+
+.invoice--tr.different {
+    border-bottom: 2px solid var(--color-theme);
+    padding-bottom: 12px;
+    margin-bottom: 21px;
+}
+
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+
+/* switch */
+
+.bag--switch {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: flex;
+    height: 90%;
+    align-items: center;
+    justify-content: center;
+    bottom: 0px;
+    background-color: #2323233d;
+    padding: 0px;
+    border-radius: 6px;
+}
+
+.bag--switch input {
+    margin: 0px !important;
+    box-shadow: none !important;
+}
+
+.bag--switch input:checked {
+    background-color: var(--bs-warning) !important;
+    border-color: var(--bs-warning) !important;
+}
+
+.bag--switch label {
+    padding: 0px;
+    font-size: 16px;
+    padding: 0px;
+    color: white;
+    font-weight: 600;
+}
+
+.bag--switch.vertical {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.bag--switch.vertical input {
+    transform: rotate(90deg);
+    margin-bottom: 28px !important;
+    width: 42px;
+    height: 13px;
 }

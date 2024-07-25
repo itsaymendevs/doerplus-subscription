@@ -2,7 +2,12 @@
 
 namespace App\Livewire\Website\Plans;
 
+use App\Livewire\Forms\SubscriptionForm;
+use App\Models\Bag;
 use App\Models\Plan;
+use App\Models\PlanBundle;
+use App\Models\PlanBundleRange;
+use App\Models\PlanBundleRangePrice;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -18,6 +23,10 @@ class PlansCustomization extends Component
 
     // :: variables
     public $plan;
+    public SubscriptionForm $instance;
+    public $pickedBundle, $pickedBundleRange;
+
+
 
 
 
@@ -39,6 +48,156 @@ class PlansCustomization extends Component
 
 
 
+    // ----------------------------------------------------------------
+
+
+
+
+
+
+    public function pickBundle($id)
+    {
+
+
+        // 1: getBundle
+        $this->instance->planBundleId = $id;
+
+
+
+
+        // 1.2: updateVars
+        $this->pickedBundle = PlanBundle::find($this->instance?->planBundleId);
+
+
+
+
+
+        // ----------------------------------------
+        // ----------------------------------------
+
+
+
+
+
+        // 2: reset
+        $this->instance->planBundleRangeId = null;
+        $this->instance->planDays = null;
+        $this->instance->planPrice = null;
+
+
+        // 2.1: resetVars
+        $this->pickedBundleRange = null;
+
+
+
+    } // end function
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------
+
+
+
+
+
+
+    public function pickBundleRange($id)
+    {
+
+
+        // 1: getBundleRange
+        $this->instance->planBundleRangeId = $id;
+
+
+
+        // 1.2: getVars
+        $this->pickedBundleRange = PlanBundleRange::find($this->instance?->planBundleRangeId);
+
+
+
+
+        // ----------------------------------------
+        // ----------------------------------------
+
+
+
+
+        // 2: reset
+        $this->instance->planDays = null;
+        $this->instance->planPrice = null;
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------
+
+
+
+
+
+
+
+    public function pickPlanDays($days)
+    {
+
+
+
+        // 1: getBundle
+        $this->instance->planDays = $days;
+
+
+
+        // 1.2: pricePerDay
+        $pricePerDay = PlanBundleRangePrice::where('planRangeId', $this->pickedBundleRange?->range?->id)
+            ->where('planBundleId', $this->pickedBundle->id)?->first()?->pricePerDay ?? 0;
+
+
+
+
+
+
+
+        // ---------------------------------------
+        // ---------------------------------------
+
+
+
+
+
+
+        // 2: getPlanPrice
+        $this->instance->planPrice = $days * $pricePerDay;
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
 
 
     // ----------------------------------------------------------------
@@ -53,12 +212,21 @@ class PlansCustomization extends Component
 
         // 1: dependencies
         $plans = Plan::where('id', '!=', $this->plan->id)->get();
+        $bag = Bag::first();
 
 
-        return view('livewire.website.plans.plans-customization', compact('plans'));
+
+
+
+        return view('livewire.website.plans.plans-customization', compact('plans', 'bag'));
 
 
     } // end function
+
+
+
+
+
 
 
 

@@ -62,8 +62,9 @@
 
 
 
-        {{-- resetTemplate --}}
+        {{-- extra --}}
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/reset-default.css')}}" />
+        <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/extras.css')}}" />
 
 
 
@@ -77,6 +78,9 @@
 
 
 
+
+
+
         {{-- head --}}
         @yield('head')
 
@@ -86,6 +90,9 @@
 
         {{-- styles --}}
         @yield('styles')
+        @yield('styles-1')
+        @yield('styles-2')
+        @yield('styles-3')
 
 
 

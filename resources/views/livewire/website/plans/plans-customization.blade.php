@@ -63,7 +63,7 @@
 
 
                     {{-- topRow --}}
-                    <div class="row justify-content-center mb-5">
+                    <div class="row justify-content-center mb-5" wire:ignore>
                         <div class="col-12 col-lg-5 text-center">
 
 
@@ -106,7 +106,7 @@
 
 
                     {{-- planInformation --}}
-                    <div class="row justify-content-center justify-content-sm-start">
+                    <div class="row justify-content-center justify-content-sm-start" wire:ignore>
 
 
                         {{-- wrapper --}}
@@ -253,27 +253,37 @@
 
 
 
-                    {{-- bundles --}}
+                    {{-- bundles and Ranges --}}
                     <div class="row mt-5 justify-content-center justify-content-md-start">
 
 
-
-
-                        {{-- title --}}
-                        <div class="col-12">
+                        {{-- mainTitle --}}
+                        <div class="col-10 col-sm-12" wire:ignore>
                             <div class="m-titles mb-0">
-                                <div class="m-title plan--single-title fs-4 mb-3 fw-semibold ">
+                                <div class="m-title plan--single-title fs-4 mb-0 fw-semibold  pointer">
                                     <div
                                         class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
+
+
+                                        {{-- hr --}}
                                         <hr>
-                                        <div class='ms-2 splitting-text-anim-1 scroll-animate' data-splitting="chars"
-                                            data-animate="active">
-                                            Customize Your Meal Plan
+
+                                        {{-- collapseToggler --}}
+                                        <div class="ps-2 splitting-text-anim-1 scroll-animate collapse--title motion--slow w-100"
+                                            data-splitting="chars" data-animate="active" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse--bundles" aria-expanded="false"
+                                            aria-controls="collapse--bundles" data-splitting="chars">
+                                            <div class="d-flex justify-content-between">
+                                                <span>Customize Your Meal Plan</span>
+                                                <i class="bi bi-chevron-compact-down collapse--icon"></i>
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {{-- endMainTitle --}}
 
 
 
@@ -287,51 +297,511 @@
 
 
 
-
-                        {{-- bundles --}}
-                        @foreach ($plan?->bundles ?? [] as $bundle)
-
-                        <div class="col-10 col-sm-6 col-lg-4 mb-4 scrolla-element-anim-1 scroll-animate"
-                            key='single-bundle-{{ $bundle->id }}' data-animate="active">
-                            <a href='javascript:void(0);' class="bundle--card zoom--wrapper">
+                        {{-- collapseContent --}}
+                        <div class="col-12">
+                            <div class="collapse show mt-4" id="collapse--bundles" wire:ignore.self>
 
 
-
-                                {{-- select --}}
-                                <span class='bundle--select motion--slow animation--floating'>Pick</span>
+                                {{-- 1: bundles --}}
+                                <div class="row justify-content-center justify-content-md-start">
 
 
 
+                                    {{-- bundles --}}
+                                    @foreach ($plan?->bundles ?? [] as $bundle)
 
 
-                                {{-- imageFile --}}
-                                <div class="motion--slow overflow-hidden">
-                                    <img src='{{ url("{$storagePath}/menu/plans/bundles/{$bundle->imageFile}") }}'
-                                        class='of-cover zoom--target'>
+                                    <div class="col-10 col-sm-6 col-lg-4 mb-4 scrolla-element-anim-1 scroll-animate"
+                                        key='single-bundle-{{ $bundle->id }}' data-animate="active" wire:ignore.self>
+                                        <a href='javascript:void(0);' class="bundle--card zoom--wrapper"
+                                            wire:click="pickBundle('{{ $bundle->id }}')">
+
+
+
+                                            {{-- select --}}
+                                            <span class='bundle--select motion--slow animation--floating'>Pick</span>
+
+
+
+
+
+                                            {{-- imageFile --}}
+                                            <div class="motion--slow overflow-hidden">
+                                                <img src='{{ url("{$storagePath}/menu/plans/bundles/{$bundle->imageFile}") }}'
+                                                    class='of-cover zoom--target'>
+                                            </div>
+
+
+
+
+                                            {{-- title --}}
+                                            <div class="bundle--title-wrap scrolla-element-anim-1 scroll-animate motion--slow"
+                                                data-animate="active" wire:ignore.self>
+                                                <h5 class='bundle--title '>{{
+                                                    $bundle->name }}</h5>
+                                            </div>
+
+
+
+                                        </a>
+                                    </div>
+
+
+                                    @endforeach
+                                    {{-- end loop --}}
+
+
                                 </div>
+                                {{-- endRow --}}
 
 
 
 
-                                {{-- title --}}
-                                <div class="bundle--title-wrap scrolla-element-anim-1 scroll-animate"
-                                    data-animate="active">
-                                    <h5 class='bundle--title '>{{
-                                        $bundle->name }}</h5>
+
+
+
+                                {{-- -------------------------------- --}}
+                                {{-- -------------------------------- --}}
+                                {{-- -------------------------------- --}}
+                                {{-- -------------------------------- --}}
+                                {{-- -------------------------------- --}}
+                                {{-- -------------------------------- --}}
+
+
+
+
+
+                                {{-- 2: bundleRanges --}}
+                                @if ($pickedBundle)
+
+
+                                {{-- row --}}
+                                <div class="row mt-4 justify-content-center justify-content-md-start">
+                                    <div class="col-10 col-sm-12">
+
+
+                                        {{-- title --}}
+                                        <div class="m-title plan--single-title fs-6 mb-0 fw-semibold  pointer">
+                                            <div
+                                                class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
+                                                <hr>
+
+                                                <div class="ps-2 splitting-text-anim-1 scroll-animate motion--slow w-100"
+                                                    data-splitting="chars" data-animate="active" data-splitting="chars">
+                                                    <span>How many calories per day?</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        {{-- --------------------------- --}}
+                                        {{-- --------------------------- --}}
+
+
+
+
+
+
+                                        {{-- groupButtons --}}
+                                        <div class="btn-group mx-auto ranges--wrapper" role="group">
+
+
+
+                                            {{-- loop - ranges --}}
+                                            @foreach ($pickedBundle?->ranges ?? [] as $bundleRange)
+
+
+                                            <button type="button" key='single-bundle-range-{{ $bundleRange->id }}'
+                                                class="btn btn--regular sm fw-500 fs-14 ranges--btn @if ($instance?->planBundleRangeId == $bundleRange->id) btn--collapse @endif"
+                                                wire:click="pickBundleRange('{{ $bundleRange?->id }}')"
+                                                data-bs-toggle="collapse" data-bs-target="#collapse--regular-plan"
+                                                aria-expanded="false" aria-controls="collapse--regular-plan">{{
+                                                $bundleRange?->range?->name }}</button>
+
+
+
+                                            @endforeach
+                                            {{-- end loop --}}
+
+
+
+                                        </div>
+                                    </div>
                                 </div>
+                                {{-- endRow --}}
+
+
+                                @endif
+                                {{-- end if --}}
 
 
 
-                            </a>
+
+
+
+
+
+
+
+
+
+                                {{-- --------------------------------- --}}
+                                {{-- --------------------------------- --}}
+                                {{-- --------------------------------- --}}
+                                {{-- --------------------------------- --}}
+                                {{-- --------------------------------- --}}
+                                {{-- --------------------------------- --}}
+
+
+
+
+
+
+
+
+
+                                {{-- 2: perferences --}}
+                                @if ($pickedBundle && $instance?->planBundleRangeId)
+
+
+                                {{-- row --}}
+                                <div class="row mt-4 justify-content-center justify-content-sm-start">
+
+
+
+                                    {{-- 1: planDays --}}
+                                    <div class="col-10 col-sm-7 mb-5">
+
+
+
+                                        {{-- title --}}
+                                        <div class="m-title plan--single-title fs-6 mb-3 fw-semibold  pointer">
+                                            <div
+                                                class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
+                                                <hr>
+
+                                                <div class="ps-2 splitting-text-anim-1 scroll-animate motion--slow w-100"
+                                                    data-splitting="chars" data-animate="active" data-splitting="chars">
+                                                    <span>Plan days</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        {{-- --------------------------- --}}
+                                        {{-- --------------------------- --}}
+
+
+
+
+                                        {{-- options --}}
+                                        <div class="d-inline-flex flex-wrap plan--days-wrapper">
+
+
+
+                                            {{-- loop - days --}}
+                                            @foreach ($pickedBundle?->days ?? [] as $bundleDay)
+
+                                            <span class='pointer plan--days motion--slow
+                                                @if ($instance->planDays == $bundleDay->days) active @endif'
+                                                wire:click="pickPlanDays('{{ $bundleDay->days }}')"
+                                                key='plan-bundle-days-{{ $bundleDay->id }}'>{{
+                                                $bundleDay?->days }}</span>
+
+                                            @endforeach
+                                            {{-- end loop --}}
+
+
+                                        </div>
+                                        {{-- endOptions --}}
+
+
+
+                                    </div>
+                                    {{-- endCol --}}
+
+
+
+
+
+
+
+                                    {{-- ------------------------------------ --}}
+                                    {{-- ------------------------------------ --}}
+                                    {{-- ------------------------------------ --}}
+                                    {{-- ------------------------------------ --}}
+
+
+
+
+
+
+
+                                    {{-- 2: startDate --}}
+                                    <div class="col-10 col-sm-5 mb-5">
+
+
+
+
+                                        {{-- title --}}
+                                        <div class="m-title plan--single-title fs-6 mb-3 fw-semibold  pointer">
+                                            <div
+                                                class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
+                                                <hr>
+
+                                                <div class="ps-2 splitting-text-anim-1 scroll-animate motion--slow w-100"
+                                                    data-splitting="chars" data-animate="active" data-splitting="chars">
+                                                    <span>Start date</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        {{-- --------------------------- --}}
+                                        {{-- --------------------------- --}}
+
+
+
+
+                                        {{-- input --}}
+                                        <div class="d-flex form--input-wrapper">
+                                            <input type="text" class='form--input' wire:model.live='instance.startDate'>
+                                        </div>
+
+
+
+                                    </div>
+                                    {{-- endCol --}}
+
+
+
+
+                                </div>
+                                {{-- endRow --}}
+
+
+
+                                @endif
+                                {{-- end if --}}
+
+
+
+
+
+                            </div>
                         </div>
-
-
-                        @endforeach
-                        {{-- end loop --}}
-
-
                     </div>
                     {{-- endRow --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    {{-- -------------------------------------- --}}
+                    {{-- -------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+                    {{-- 2: preferences --}}
+                    @if ($pickedBundleRange)
+
+
+
+                    <div class="row mt-5 justify-content-center justify-content-md-start">
+
+
+                        {{-- mainTitle --}}
+                        <div class="col-10 col-sm-12" wire:ignore>
+                            <div class="m-titles mb-0">
+                                <div class="m-title plan--single-title fs-4 mb-0 fw-semibold  pointer">
+                                    <div
+                                        class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
+
+
+                                        {{-- hr --}}
+                                        <hr>
+
+                                        {{-- collapseToggler --}}
+                                        <div class="ps-2 splitting-text-anim-1 scroll-animate collapse--title motion--slow w-100"
+                                            data-splitting="chars" data-animate="active" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse--preferences" aria-expanded="false"
+                                            aria-controls="collapse--preferences" data-splitting="chars">
+                                            <div class="d-flex justify-content-between">
+                                                <span>Manage Preferences</span>
+                                                <i class="bi bi-chevron-compact-down collapse--icon"></i>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- endMainTitle --}}
+
+
+
+
+
+
+
+
+                        {{-- ---------------------------------- --}}
+                        {{-- ---------------------------------- --}}
+
+
+
+
+
+
+
+                        {{-- collapseContent --}}
+                        <div class="col-10 col-sm-12">
+                            <div class="collapse show mt-4 pt-2" id="collapse--preferences" wire:ignore.self>
+
+
+
+
+                                {{-- row --}}
+                                <div class="row">
+                                    <div class="col-12 col-md-7">
+
+
+                                        {{-- 1: allergy --}}
+                                        <div class="d-flex form--input-wrapper flex-column mb-4">
+
+                                            <label class='w-100 d-flex align-items-center' data-splitting="chars"
+                                                data-animate="active">
+                                                <span>Allergies</span>
+                                            </label>
+
+                                            <input type="text" class='form--input'>
+                                        </div>
+
+
+
+
+
+
+                                        {{-- 2: allergy --}}
+                                        <div class="d-flex form--input-wrapper flex-column mb-4">
+
+                                            <label class='w-100 d-flex align-items-center' data-splitting="chars"
+                                                data-animate="active">
+                                                <span>Excludes</span>
+                                            </label>
+
+                                            <input type="text" class='form--input'>
+                                        </div>
+
+
+
+
+                                    </div>
+                                    {{-- endCol --}}
+
+
+
+
+
+
+                                    {{-- ---------------------------------- --}}
+                                    {{-- ---------------------------------- --}}
+
+
+
+
+
+
+                                    {{-- bagCol --}}
+                                    <div class="col-12 col-md-5">
+
+
+                                        {{-- imageFile --}}
+                                        <div class="d-flex position-relative bag--wrapper">
+                                            <img src='{{ url("{$storagePath}/bags/{$bag->imageFile}") }}'
+                                                class='w-100 of-contain' style="height: 200px">
+
+
+
+                                            {{-- switch --}}
+                                            <div class="form-check form-switch bag--switch vertical">
+                                                <input class="form-check-input" type="checkbox" role="switch"
+                                                    id="coolbag--checkbox" wire:model.live='instance.coolBag'>
+                                                <label class="form-check-label" for="coolbag--checkbox">{{
+                                                    $bag->name }}</label>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                                    </div>
+                                    {{-- endCol --}}
+
+
+
+
+
+
+
+                                    {{-- ---------------------------------- --}}
+                                    {{-- ---------------------------------- --}}
+
+
+
+
+                                    {{-- continueButton --}}
+                                    <div class="col-12 col-md-7">
+                                        <div class="d-flex form--input-wrapper justify-content-center mt-3">
+
+                                            <livewire:website.components.items.button-blob title='Next Step' />
+
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                {{-- endRow --}}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    @endif
+                    {{-- endRow --}}
+
+
+
 
 
 
@@ -358,6 +828,14 @@
                 {{-- ------------------------------------ --}}
                 {{-- ------------------------------------ --}}
                 {{-- ------------------------------------ --}}
+                {{-- ------------------------------------ --}}
+                {{-- ------------------------------------ --}}
+                {{-- ------------------------------------ --}}
+                {{-- ------------------------------------ --}}
+                {{-- ------------------------------------ --}}
+                {{-- ------------------------------------ --}}
+                {{-- ------------------------------------ --}}
+                {{-- ------------------------------------ --}}
 
 
 
@@ -375,10 +853,12 @@
 
 
 
+                    {{-- 1: otherPlans --}}
 
 
-                    {{-- section --}}
-                    <div class="section section-inner started-heading mb-5 mt-0" style="z-index: 1000">
+
+                    {{-- collapseToggler --}}
+                    <div class="section section-inner started-heading mb-5 mt-0" style="z-index: 1000" wire:ignore>
                         <div class="container">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -420,7 +900,13 @@
 
 
 
-                    <div class="collapse show mt-4" id="collapse--other-plans">
+
+
+
+
+
+                    {{-- collapseContent --}}
+                    <div class="collapse show mt-4" id="collapse--other-plans" wire:ignore>
                         <div class="section section-inner m-works">
                             <div class="container">
                                 <div
@@ -479,6 +965,301 @@
                         </div>
                     </div>
                     {{-- endWrapper --}}
+
+
+
+
+
+
+
+
+
+                    {{-- ------------------------------------ --}}
+                    {{-- ------------------------------------ --}}
+                    {{-- ------------------------------------ --}}
+                    {{-- ------------------------------------ --}}
+
+
+
+
+
+
+
+
+
+                    {{-- 2: bundleInformation --}}
+
+
+
+                    @if ($pickedBundle)
+
+
+                    {{-- collapseToggler --}}
+                    <div class="section section-inner started-heading mb-5"
+                        style="z-index: 1000; margin-top: 80px !important;" wire:ignore>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="h-titles">
+
+                                        {{-- title --}}
+                                        <div class="h-title  fs-5 fw-bold pointer collapse--title motion--slow"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse--bundle-information"
+                                            aria-expanded="false" aria-controls="collapse--bundle-information"
+                                            data-splitting="chars">
+                                            <div class="d-flex justify-content-between">
+                                                <span>Your Plan Details</span>
+                                                <i class="bi bi-chevron-compact-down collapse--icon"></i>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- endRow --}}
+
+                        </div>
+                    </div>
+                    {{-- endSection --}}
+
+
+
+
+
+
+
+
+
+
+                    {{-- ------------------------------------ --}}
+                    {{-- ------------------------------------ --}}
+
+
+
+
+
+
+
+
+
+
+
+                    {{-- collapseContent --}}
+                    <div class="collapse show mt-4" id="collapse--bundle-information">
+                        <div class="section section-inner m-works">
+                            <div class="container">
+
+
+
+                                {{-- topRow --}}
+                                <div class="row zoom--wrapper align-items-end">
+
+
+                                    {{-- imageFile --}}
+                                    <div class="col-6">
+                                        <div class="d-flex overflow-hidden">
+                                            <img src='{{ url("{$storagePath}/menu/plans/bundles/{$pickedBundle?->imageFile}") }}'
+                                                class='of-cover zoom--target motion--slow rounded-1 w-100'
+                                                style="height: 150px;">
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    {{-- information --}}
+                                    <div class="col-6">
+
+
+
+                                        {{-- name --}}
+                                        <div class="m-titles mb-1 text-center">
+                                            <div class="m-title plan--single-title fw-semibold fs-6 mb-0"
+                                                style="color: var(--bs-warning) !important;">
+                                                {{ $pickedBundle->name }}
+                                            </div>
+                                        </div>
+
+
+
+
+                                        {{-- bundleDescription --}}
+                                        <span class="desc d-block text-center">
+                                            <span
+                                                class="category text-center splitting-text-anim-1 scroll-animate plan--custom-subtitle fw-500 fs-15"
+                                                data-splitting="chars" data-animate="active">{{
+                                                $pickedBundle->remarks
+                                                }}</span>
+                                        </span>
+
+
+
+
+
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
+
+
+
+
+                                        {{-- range --}}
+                                        @if ($pickedBundleRange)
+
+                                        <div class="m-titles mb-1 mt-1">
+                                            <div class="m-title plan--single-title fw-semibold fs-15 mb-0 text-center">
+                                                {{
+                                                $pickedBundleRange->range->name }}<span
+                                                    class='span--price ms-1'>(Calories)</span>
+                                            </div>
+                                        </div>
+
+                                        @endif
+                                        {{-- end if --}}
+
+
+
+
+
+
+
+                                    </div>
+                                </div>
+                                {{-- endRow --}}
+
+
+
+
+
+
+
+                                {{-- --------------------------------- --}}
+                                {{-- --------------------------------- --}}
+                                {{-- --------------------------------- --}}
+                                {{-- --------------------------------- --}}
+                                {{-- --------------------------------- --}}
+
+
+
+
+
+
+                                {{-- invoiceRow --}}
+                                <div class="row align-items-end mt-5">
+                                    <div class="col-12">
+
+
+                                        {{-- 1: Plan Days --}}
+                                        <div class="d-flex invoice--tr justify-content-between align-items-center">
+
+                                            <h6 class="fw-500 my-0 fs-14">Duration</h6>
+                                            <h6 class='my-0 fw-500 fs-14'>{{ $instance?->planDays ?? 0 }}<span
+                                                    class='span--price ms-1'>(days)</span></h6>
+
+                                        </div>
+
+
+
+
+
+                                        {{-- 2: Start Date --}}
+                                        <div
+                                            class="d-flex invoice--tr different justify-content-between align-items-center">
+
+                                            <h6 class="fw-500 my-0 fs-14">Start Date</h6>
+                                            <h6 class='my-0 fw-500 fs-14'>{{ $instance?->startDate }}</h6>
+
+                                        </div>
+
+
+
+
+
+
+
+                                        {{-- 3: bagPrice --}}
+                                        <div class="d-flex invoice--tr justify-content-between align-items-center">
+
+                                            <h6 class="fw-500 my-0 fs-14">Cool Bag</h6>
+                                            <h6 class='my-0 fw-500 fs-14'>
+                                                {{ $instance->coolBag ? number_format($bag?->price) : 0 }}<span
+                                                    class='span--price ms-1'>(AED)</span>
+                                            </h6>
+
+                                        </div>
+
+
+
+
+
+
+
+                                        {{-- 4: PlanPrice --}}
+                                        <div class="d-flex invoice--tr justify-content-between align-items-center">
+
+                                            <h6 class="fw-500 my-0 fs-14">Plan Price</h6>
+                                            <h6 class='my-0 fw-500 fs-14'>
+                                                {{ number_format($instance?->planPrice ?? 0) }}<span
+                                                    class='span--price ms-1'>(AED)</span>
+                                            </h6>
+
+                                        </div>
+
+
+
+
+
+
+                                        {{-- 5: totalPrice --}}
+                                        <div class="d-flex invoice--tr justify-content-between align-items-center">
+
+                                            <h6 class="fw-500 my-0 fs-14">Total Payout</h6>
+                                            <h6 class='my-0 fw-500 fs-14'>
+                                                {{ number_format(($instance?->planPrice ?? 0) + ($instance->coolBag ?
+                                                $bag?->price : 0)) }}<span class='span--price ms-1'>(AED)</span>
+                                            </h6>
+
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                                {{-- endRow --}}
+
+
+
+
+
+
+
+
+
+                                {{-- --------------------------------- --}}
+                                {{-- --------------------------------- --}}
+                                {{-- --------------------------------- --}}
+                                {{-- --------------------------------- --}}
+                                {{-- --------------------------------- --}}
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    {{-- endWrapper --}}
+
+
+
+
+                    @endif
+                    {{-- end if - pickedBundle --}}
+
+
+
 
 
 
@@ -544,36 +1325,61 @@
 
 
 
+    {{-- toggler --}}
     <script>
-        if (window.matchMedia("(max-width: 992px)").matches)
-        {
+        if (window.matchMedia("(max-width: 992px)").matches) {
 
 
+            $('.plans--other-toggler').removeClass('no-events');
 
 
-
-
-        // 2: desktop
         } else {
-
-
             $(document).ready(function() {
                 setTimeout(() => {
                     $('.plans--other-toggler').trigger('click');
                     $('.plans--other-toggler').removeClass('no-events');
-                }, 2500);
+                }, 2000);
             });
-
-
-        } // end if
-
-
-
+        }
     </script>
+
+
+
+
+
+    {{-- hideLogo --}}
+    <script>
+        $(document).ready(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 0) {
+                $('.logo--wrap').fadeOut();
+            } else {
+                $('.logo--wrap').fadeIn();
+            }
+        });
+    });
+    </script>
+
+
 
 
     @endsection
     {{-- endSection --}}
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
 
 
 
