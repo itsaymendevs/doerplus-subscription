@@ -3,13 +3,17 @@
 namespace App\Livewire\Website\Plans;
 
 use App\Livewire\Forms\SubscriptionForm;
+use App\Models\Allergy;
 use App\Models\Bag;
+use App\Models\Exclude;
 use App\Models\Plan;
 use App\Models\PlanBundle;
 use App\Models\PlanBundleRange;
 use App\Models\PlanBundleRangePrice;
 use App\Traits\HelperTrait;
+use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 
@@ -120,8 +124,18 @@ class PlansCustomization extends Component
 
 
 
+        // 1.3: initDatePicker
+        $this->dispatch('initDatePicker');
+        $this->dispatch('initSelect');
+
+
+
+
+
+
         // ----------------------------------------
         // ----------------------------------------
+
 
 
 
@@ -197,9 +211,6 @@ class PlansCustomization extends Component
 
 
 
-
-
-
     // ----------------------------------------------------------------
 
 
@@ -211,14 +222,23 @@ class PlansCustomization extends Component
 
 
         // 1: dependencies
-        $plans = Plan::where('id', '!=', $this->plan->id)->get();
         $bag = Bag::first();
+        $excludes = Exclude::all();
+        $allergies = Allergy::all();
+
+
+
+
+        // 1.2: otherPlans
+        $plans = Plan::where('id', '!=', $this->plan->id)->get();
 
 
 
 
 
-        return view('livewire.website.plans.plans-customization', compact('plans', 'bag'));
+
+
+        return view('livewire.website.plans.plans-customization', compact('plans', 'bag', 'allergies', 'excludes'));
 
 
     } // end function

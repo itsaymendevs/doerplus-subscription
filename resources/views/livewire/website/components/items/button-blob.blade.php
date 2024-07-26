@@ -2,7 +2,10 @@
 <div class='btn--blob-wrapper'>
 
     {{-- blob --}}
-    <a class="btn--blob reset--button">{{ $title }}<span class="btn--blob__inner">
+    <a class="btn--blob reset--button" @if ($event) wire:click="triggerEvent" @endif href="{{ $url }}" @if ($modal)
+        data-izimodal-open="{{ $modal }}" data-izimodal-transitionin="fadeInDown" @endif>
+        {{ $title }}
+        <span class="btn--blob__inner">
             <span class="btn--blob__blobs">
                 <span class="btn--blob__blob"></span>
                 <span class="btn--blob__blob"></span>

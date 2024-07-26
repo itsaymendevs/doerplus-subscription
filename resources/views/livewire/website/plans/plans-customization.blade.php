@@ -49,7 +49,7 @@
 
 
     {{-- section --}}
-    <div class="section section-inner m-description plan--section">
+    <div class="section section-inner m-description plan--section section--bg mb-0 pb-5">
         <div class="container">
             <div class="row">
 
@@ -59,6 +59,7 @@
 
                 {{-- leftCol --}}
                 <div class="col-12 col-lg-8">
+
 
 
 
@@ -217,16 +218,82 @@
                             {{-- description --}}
                             <span class="desc me-4" style='max-width: 100px !important;'>
                                 <span
-                                    class="category splitting-text-anim-1 scroll-animate plan--custom-subtitle fw-500 fs-6"
+                                    class="category splitting-text-anim-3 scroll-animate plan--custom-subtitle fw-500 fs-6"
                                     data-splitting="chars" data-animate="active">{{ $plan->desc }}</span>
                             </span>
 
 
 
 
+
+                            {{-- --------------------------- --}}
+                            {{-- --------------------------- --}}
+
+
+
+
+                            {{-- macros --}}
+                            <div class="row mt-4 justify-content-center">
+
+
+
+                                {{-- percentages --}}
+                                <div class="col-auto scrolla-element-anim-1 scroll-animate motion--slow"
+                                    data-animate="active" wire:ignore.self>
+                                    <div class="d-flex flex-column plan--macros for--proteins">
+                                        <span class='fw-bold percentage'>30%</span>
+                                        <span class='fw-bold text-uppercase caption'>Protein</span>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                {{-- percentages --}}
+                                <div class="col-auto scrolla-element-anim-1 scroll-animate motion--slow"
+                                    data-animate="active" wire:ignore.self>
+                                    <div class="d-flex flex-column plan--macros for--carbs">
+                                        <span class='fw-bold percentage'>50%</span>
+                                        <span class='fw-bold text-uppercase caption'>Carb</span>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                {{-- percentages --}}
+                                <div class="col-auto scrolla-element-anim-1 scroll-animate motion--slow"
+                                    data-animate="active" wire:ignore.self>
+                                    <div class="d-flex flex-column plan--macros for--fats">
+                                        <span class='fw-bold percentage'>20%</span>
+                                        <span class='fw-bold text-uppercase caption'>Fat</span>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                            {{-- endRow --}}
+
+
+
+
+
+
+
+                            {{-- --------------------------- --}}
+                            {{-- --------------------------- --}}
+
+
+
+
+
                             {{-- viewButton --}}
                             <div class='d-flex justify-content-end mt-3'>
-                                <a href='javascript:void(0);' class='btn--with-hr'>
+                                <a href='javascript:void(0);' class='btn--with-hr active'>
                                     <hr>
                                     <span class='ms-2 '>See More</span>
                                 </a>
@@ -311,7 +378,10 @@
                                     @foreach ($plan?->bundles ?? [] as $bundle)
 
 
-                                    <div class="col-10 col-sm-6 col-lg-4 mb-4 scrolla-element-anim-1 scroll-animate"
+
+
+                                    {{-- 1: version --}}
+                                    <div class="col-10 col-sm-6 col-lg-4 mb-4 scrolla-element-anim-1 scroll-animate d-none"
                                         key='single-bundle-{{ $bundle->id }}' data-animate="active" wire:ignore.self>
                                         <a href='javascript:void(0);' class="bundle--card zoom--wrapper"
                                             wire:click="pickBundle('{{ $bundle->id }}')">
@@ -345,6 +415,69 @@
 
                                         </a>
                                     </div>
+
+
+
+
+
+                                    {{-- -------------------------------- --}}
+                                    {{-- -------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
+                                    {{-- 2: version --}}
+                                    <div class="col-10 col-sm-6 col-lg-4 mb-4 scrolla-element-anim-1 scroll-animate"
+                                        key='single-bundle-{{ $bundle->id }}' data-animate="active" wire:ignore.self>
+                                        <a href='javascript:void(0);'
+                                            class="bundle--card sm zoom--wrapper @if ($pickedBundle?->id == $bundle->id) active @endif"
+                                            wire:click="pickBundle('{{ $bundle->id }}')">
+
+
+
+
+
+
+
+
+
+
+                                            {{-- imageFile --}}
+                                            <div class="motion--slow overflow-hidden bundle--image position-relative">
+
+
+                                                {{-- select --}}
+                                                <span
+                                                    class='bundle--select motion--slow animation--floating'>Pick</span>
+
+
+                                                <img src='{{ url("{$storagePath}/menu/plans/bundles/{$bundle->imageFile}") }}'
+                                                    class='of-cover zoom--target '>
+                                            </div>
+
+
+
+
+                                            {{-- title --}}
+                                            <div class="bundle--title-wrap scrolla-element-anim-1 scroll-animate motion--slow"
+                                                data-animate="active" wire:ignore.self>
+                                                <h5 class='bundle--title '>{{
+                                                    $bundle->name }}</h5>
+                                            </div>
+
+
+
+                                        </a>
+                                    </div>
+
+
 
 
                                     @endforeach
@@ -406,7 +539,8 @@
 
 
                                         {{-- groupButtons --}}
-                                        <div class="btn-group mx-auto ranges--wrapper" role="group">
+                                        <div class="btn-group mx-auto ranges--wrapper" data-animate="active"
+                                            role="group">
 
 
 
@@ -574,7 +708,8 @@
 
                                         {{-- input --}}
                                         <div class="d-flex form--input-wrapper">
-                                            <input type="text" class='form--input' wire:model.live='instance.startDate'>
+                                            <input id='date--picker' type="text" name="text"
+                                                class='form--input form--datepicker'>
                                         </div>
 
 
@@ -632,7 +767,8 @@
 
 
 
-                    <div class="row mt-5 justify-content-center justify-content-md-start">
+                    <div class="row mt-5 justify-content-center justify-content-md-start section--colorful animation--floating"
+                        style="background-color: #191919;">
 
 
                         {{-- mainTitle --}}
@@ -699,9 +835,21 @@
                                                 <span>Allergies</span>
                                             </label>
 
-                                            <input type="text" class='form--input'>
-                                        </div>
 
+                                            {{-- select --}}
+                                            <div class="form--select-wrapper" wire:ignore>
+                                                <select class='init--select form--select'
+                                                    data-instance='instance.allergies' multiple>
+
+                                                    @foreach ($allergies as $allergy)
+                                                    <option value="{{ $allergy->id }}">
+                                                        {{ $allergy->name }}
+                                                    </option>
+                                                    @endforeach
+
+                                                </select>
+                                            </div>
+                                        </div>
 
 
 
@@ -715,7 +863,19 @@
                                                 <span>Excludes</span>
                                             </label>
 
-                                            <input type="text" class='form--input'>
+                                            {{-- select --}}
+                                            <div class="form--select-wrapper" wire:ignore>
+                                                <select class='init--select form--select'
+                                                    data-instance='instance.excludes' multiple>
+
+                                                    @foreach ($excludes as $exclude)
+                                                    <option value="{{ $exclude->id }}">
+                                                        {{ $exclude->name }}
+                                                    </option>
+                                                    @endforeach
+
+                                                </select>
+                                            </div>
                                         </div>
 
 
@@ -783,7 +943,8 @@
                                     <div class="col-12 col-md-7">
                                         <div class="d-flex form--input-wrapper justify-content-center mt-3">
 
-                                            <livewire:website.components.items.button-blob title='Next Step' />
+                                            <livewire:website.components.items.button-blob title='Next Step'
+                                                modal='#infromation--modal' />
 
                                         </div>
                                     </div>
@@ -1216,7 +1377,8 @@
 
                                             <h6 class="fw-500 my-0 fs-14">Total Payout</h6>
                                             <h6 class='my-0 fw-500 fs-14'>
-                                                {{ number_format(($instance?->planPrice ?? 0) + ($instance->coolBag ?
+                                                {{ number_format(($instance?->planPrice ?? 0) + ($instance->coolBag
+                                                ?
                                                 $bag?->price : 0)) }}<span class='span--price ms-1'>(AED)</span>
                                             </h6>
 
@@ -1325,6 +1487,41 @@
 
 
 
+
+
+    {{-- 1: datepicker --}}
+    <script src="{{ url('assets/plugins/subscription/js/air-datepicker.js') }}"></script>
+
+
+
+
+
+    {{-- hrLinks --}}
+    <script>
+        $(document).ready(function() {
+            setTimeout(() => {
+                $('.btn--with-hr').removeClass('active');
+            }, 1000);
+        });
+
+    </script>
+
+
+
+
+
+
+
+
+    {{-- ------------------------------------ --}}
+    {{-- ------------------------------------ --}}
+
+
+
+
+
+
+
     {{-- toggler --}}
     <script>
         if (window.matchMedia("(max-width: 992px)").matches) {
@@ -1338,7 +1535,7 @@
                 setTimeout(() => {
                     $('.plans--other-toggler').trigger('click');
                     $('.plans--other-toggler').removeClass('no-events');
-                }, 2000);
+                }, 1800);
             });
         }
     </script>
@@ -1350,16 +1547,98 @@
     {{-- hideLogo --}}
     <script>
         $(document).ready(function() {
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 0) {
-                $('.logo--wrap').fadeOut();
-            } else {
-                $('.logo--wrap').fadeIn();
-            }
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 0) {
+                    $('.logo--wrap').fadeOut();
+                } else {
+                    $('.logo--wrap').fadeIn();
+                }
+            });
         });
-    });
     </script>
 
+
+
+
+
+
+
+
+    {{-- ----------------------------------------------- --}}
+    {{-- ----------------------------------------------- --}}
+
+
+
+
+
+
+
+    {{-- 1.2: handleDatePicker --}}
+    <script>
+        $(document).on('initDatePicker', function() {
+
+
+
+        initStartDate = @json(strtotime($instance->initStartDate ?? date('Y-m-d', strtotime('+48 hours'))));
+
+        startDate = new Date(initStartDate * 1000);
+        startDate.setDate(startDate.getDate());
+
+
+
+
+
+
+
+
+        var localeEn = {
+            days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            daysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            daysMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            today: 'Today',
+            clear: 'Clear',
+            dateFormat: 'dd/MM/yyyy',
+            timeFormat: 'hh:mm aa',
+            firstDay: 0
+        };
+
+
+
+
+
+
+        // 3.5: Initialize
+        setTimeout(() => {
+            $('body #date--picker').each(function() {
+
+                datepicker = new AirDatepicker(this, {
+                    locale: localeEn,
+                    minDate: startDate,
+                    position: 'bottom center',
+                    onSelect: ({date, formattedDate, datepicker}) => {
+                        @this.set('instance.startDate', formattedDate);
+                    } // end function
+                });
+            });
+        }, 500);
+
+
+
+
+
+
+        console.log(datepicker);
+
+
+
+
+
+    }); // end function
+
+
+    </script>
 
 
 
@@ -1374,7 +1653,6 @@
 
 
 
-
     {{-- -------------------------------------------------- --}}
     {{-- -------------------------------------------------- --}}
     {{-- -------------------------------------------------- --}}
@@ -1384,6 +1662,27 @@
 
 
 
+
+
+
+
+
+
+
+    {{-- modals --}}
+    @section('modals')
+
+
+
+
+    {{-- information --}}
+    <livewire:website.plans.plans-customization.components.plans-customization-information
+        name='{{ $plan->nameURL }}' />
+
+
+
+    @endsection
+    {{-- endSection --}}
 
 
 

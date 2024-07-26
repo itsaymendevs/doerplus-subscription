@@ -50,21 +50,31 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/variables.css')}}">
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/bootstrap/css/bootstrap.min.css')}}" />
-        <link rel="stylesheet" href="{{url('assets/plugins/subscription/fonts/font-awesome/css/font-awesome.css')}}" />
+        <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/select2.css') }}">
+        <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/scrollbar.css') }}">
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/vendors/magnific-popup.css')}}" />
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/vendors/splitting.css')}}" />
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/vendors/swiper.css')}}" />
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/vendors/animate.css')}}" />
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/main.css')}}" />
-        <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/theme.css')}}" />
+        <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/air-datepicker.css') }}">
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/globals.css')}}" />
+        <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/theme.css')}}" />
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/single-plan.css')}}" />
-
+        <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/select-custom.css')}}" />
 
 
         {{-- extra --}}
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/reset-default.css')}}" />
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/extras.css')}}" />
+
+
+
+
+        {{-- iziModal --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.6.1/css/iziModal.css"
+            integrity="sha512-uZ+G0SzK4GMUDUzxzbIeLGLjYgAhQ2KrIV4bWIP5o6URt5XVcn8S02eW6C1DH35bqq/XX1jYwlhhNPPIE1+q1A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
@@ -80,7 +90,6 @@
 
 
 
-
         {{-- head --}}
         @yield('head')
 
@@ -90,10 +99,6 @@
 
         {{-- styles --}}
         @yield('styles')
-        @yield('styles-1')
-        @yield('styles-2')
-        @yield('styles-3')
-
 
 
 
@@ -124,7 +129,8 @@
 
 
     {{-- body --}}
-    <body class="home page">
+    <body class="home page section--bg"
+        style="background-image: url({{ url('assets/plugins/subscription/images/blob-2.svg') }});">
         <div class="container-page">
 
 
@@ -202,6 +208,7 @@
 
         {{-- scripts --}}
         <script src="{{url('assets/plugins/subscription/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{url('assets/plugins/subscription/js/select2.min.js') }}"></script>
         <script src="{{url('assets/plugins/subscription/js/swiper.js')}}"></script>
         <script src="{{url('assets/plugins/subscription/js/splitting.min.js')}}"></script>
         <script src="{{url('assets/plugins/subscription/js/TweenMax.min.js')}}"></script>
@@ -218,11 +225,23 @@
         <script src="{{url('assets/plugins/subscription/js/ex-slider.js')}}"></script>
         <script src="{{url('assets/plugins/subscription/js/hero-started.js')}}"></script>
         <script src="{{url('assets/plugins/subscription/js/common.js')}}"></script>
+        <script src="{{url('assets/plugins/subscription/js/init-select.js')}}"></script>
 
 
 
-        <!-- Swiper JS -->
+        {{-- swiper --}}
         <script src="{{url('assets/plugins/subscription/js/init-swiper.js')}}"></script>
+
+
+
+
+
+        {{-- iziModal --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.6.1/js/iziModal.min.js"
+            integrity="sha512-lR/2z/m/AunQdfBTSR8gp9bwkrjwMq1cP0BYRIZu8zd4ycLcpRYJopB+WsBGPDjlkJUwC6VHCmuAXwwPHlacww=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 
 
 
@@ -234,6 +253,27 @@
 
 
 
+
+
+        <script>
+            $(document).ready(function() {
+
+                $('.izi--modal').each(function() {
+
+                    width = $(this).attr('data-width');
+
+                    if (width) {
+
+                        $(this).iziModal({width: width});
+
+                    } else {
+
+                        $(this).iziModal();
+
+                    } // end if
+                });
+            })
+        </script>
         @yield('scripts')
 
 

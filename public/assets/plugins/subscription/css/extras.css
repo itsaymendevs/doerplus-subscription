@@ -21,7 +21,7 @@
     z-index: 1;
     position: relative;
     text-align: center;
-    color: white;
+    color: white !important;
     font-size: 15px;
     font-weight: 500;
     background-color: transparent;

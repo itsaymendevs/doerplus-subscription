@@ -166,6 +166,25 @@
     color: white;
 }
 
+/* --------------------------------------- */
+/* --------------------------------------- */
+
+/* bundleCard Small */
+
+.bundle--card.sm .bundle--image {
+    height: 0px;
+    transition: height 0.5s ease-out;
+}
+
+.bundle--card.sm:hover .bundle--image {
+    height: 200px;
+    transition: height 0.5s ease-out;
+}
+
+.bundle--card.active .bundle--title-wrap {
+    background-color: var(--color-theme);
+}
+
 /* ---------------------------------------- */
 /* ---------------------------------------- */
 
@@ -304,7 +323,7 @@
     align-items: center;
     justify-content: center;
     bottom: 0px;
-    background-color: #2323233d;
+    background-color: #111111;
     padding: 0px;
     border-radius: 6px;
 }
@@ -337,4 +356,115 @@
     margin-bottom: 28px !important;
     width: 42px;
     height: 13px;
+}
+
+/* ------------------------------------------ */
+/* ------------------------------------------ */
+
+/* inputWithSelect */
+
+.form--input-with-select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* for input */
+.form--input-with-select .side--left {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.form--input-with-select .side--right {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+/* for select */
+.form--input-with-select
+    .form--select-wrapper.side--left
+    .select2-container
+    .select2-selection--single {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.form--input-with-select
+    .form--select-wrapper.side--right
+    .select2-container
+    .select2-selection--single {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+/* ------------------------------------------ */
+/* ------------------------------------------ */
+
+/* bg */
+
+.section--bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.section--colorful {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    border-radius: 10px;
+}
+
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+
+/* macros */
+
+.plan--macros {
+    background-color: #191919;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    height: 90px;
+    max-width: 90px;
+    width: 90px;
+    margin: auto;
+}
+
+.plan--macros:hover {
+    transform: translate(0, -8px);
+}
+
+.plan--macros .caption {
+    font-size: 14px;
+}
+
+.plan--macros .percentage {
+    font-size: 20px;
+    color: #fff;
+}
+
+/* carbs */
+.plan--macros.for--carbs {
+    border: 1px solid var(--color-carbs);
+}
+
+.plan--macros.for--carbs .caption {
+    color: var(--color-carbs);
+}
+
+/* proteins */
+.plan--macros.for--proteins {
+    border: 1px solid var(--color-proteins);
+}
+
+.plan--macros.for--proteins .caption {
+    color: var(--color-proteins);
+}
+
+/* fats */
+.plan--macros.for--fats {
+    border: 1px solid var(--color-fats);
+}
+
+.plan--macros.for--fats .caption {
+    color: var(--color-fats);
 }

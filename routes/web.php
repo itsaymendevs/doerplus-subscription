@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Website\Plans;
+use App\Livewire\Website\Plans\PlansCheckout;
 use App\Livewire\Website\Plans\PlansCustomization;
 use App\Livewire\Website\Plans\SinglePlan;
 use App\Livewire\Website\PlansEighth;
@@ -133,3 +134,4 @@ Route::get('/plans/{name}', SinglePlan::class)->name('website.singlePlan');
 // 3: plans - customization
 Route::get('/plans/{name}/customization', PlansCustomization::class)->name('website.plans.customization');
 
+Route::get('/plans/{name}/checkout', PlansCheckout::class)->name('website.plans.checkout');
