@@ -35,6 +35,13 @@ body {
 .color--theme {
     color: var(--color-theme);
 }
+
+/* processing */
+.processing--card {
+    opacity: 0.7 !important;
+    cursor: wait !important;
+}
+
 .form--input {
     border-radius: 6px !important;
     height: 48px !important;

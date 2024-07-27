@@ -375,16 +375,28 @@
 
 
                                     {{-- bundles --}}
-                                    @foreach ($plan?->bundles ?? [] as $bundle)
+                                    @foreach ($planBundles ?? [] as $bundle)
 
 
 
 
                                     {{-- 1: version --}}
+
+                                    @if (false)
+
                                     <div class="col-10 col-sm-6 col-lg-4 mb-4 scrolla-element-anim-1 scroll-animate d-none"
                                         key='single-bundle-{{ $bundle->id }}' data-animate="active" wire:ignore.self>
-                                        <a href='javascript:void(0);' class="bundle--card zoom--wrapper"
-                                            wire:click="pickBundle('{{ $bundle->id }}')">
+                                        <label class="bundle--card zoom--wrapper pointer"
+                                            for='bundle--checkbox-{{ $bundle->id }}'>
+
+
+
+
+                                            {{-- radioButton --}}
+                                            <input type="radio" id="bundle--checkbox-{{ $bundle->id }}"
+                                                wire:model='instance.planBundleId'>
+
+
 
 
 
@@ -413,10 +425,11 @@
 
 
 
-                                        </a>
+                                        </label>
                                     </div>
 
-
+                                    @endif
+                                    {{-- end if --}}
 
 
 
@@ -436,13 +449,20 @@
                                     {{-- 2: version --}}
                                     <div class="col-10 col-sm-6 col-lg-4 mb-4 scrolla-element-anim-1 scroll-animate"
                                         key='single-bundle-{{ $bundle->id }}' data-animate="active" wire:ignore.self>
-                                        <a href='javascript:void(0);'
-                                            class="bundle--card sm zoom--wrapper @if ($pickedBundle?->id == $bundle->id) active @endif"
-                                            wire:click="pickBundle('{{ $bundle->id }}')">
+
+
+                                        <label wire:loading.class='processing--card' wire:target='changePlanBundle'
+                                            class="bundle--card sm zoom--wrapper motion--slow pointer @if ($instance?->planBundleId == $bundle->id) active @endif"
+                                            for='bundle--checkbox-{{ $bundle->id }}'>
 
 
 
 
+                                            {{-- radioButton --}}
+                                            <input type="radio" id="bundle--checkbox-{{ $bundle->id }}"
+                                                class='bundle--indicator d-none' wire:model='instance.planBundleId'
+                                                name='bundle--checkbox' value='{{ $bundle->id }}'
+                                                wire:change='changePlanBundle'>
 
 
 
@@ -454,8 +474,8 @@
 
 
                                                 {{-- select --}}
-                                                <span
-                                                    class='bundle--select motion--slow animation--floating'>Pick</span>
+                                                <span class='bundle--select motion--slow animation--floating'>
+                                                    Pick</span>
 
 
                                                 <img src='{{ url("{$storagePath}/menu/plans/bundles/{$bundle->imageFile}") }}'
@@ -472,11 +492,8 @@
                                                     $bundle->name }}</h5>
                                             </div>
 
-
-
-                                        </a>
+                                        </label>
                                     </div>
-
 
 
 
@@ -504,8 +521,10 @@
 
 
 
+
+
                                 {{-- 2: bundleRanges --}}
-                                @if ($pickedBundle)
+                                @if ($pickedPlanBundle)
 
 
                                 {{-- row --}}
@@ -545,15 +564,18 @@
 
 
                                             {{-- loop - ranges --}}
-                                            @foreach ($pickedBundle?->ranges ?? [] as $bundleRange)
+                                            @foreach ($planBundleRanges ?? [] as $bundleRange)
 
 
-                                            <button type="button" key='single-bundle-range-{{ $bundleRange->id }}'
+                                            <button type="button" wire:loading.class='processing--button'
+                                                wire:target='pickBundleRange'
+                                                key='single-bundle-range-{{ $bundleRange->id }}'
                                                 class="btn btn--regular sm fw-500 fs-14 ranges--btn @if ($instance?->planBundleRangeId == $bundleRange->id) btn--collapse @endif"
-                                                wire:click="pickBundleRange('{{ $bundleRange?->id }}')"
+                                                wire:click="changePlanBundleRange('{{ $bundleRange?->id }}')"
                                                 data-bs-toggle="collapse" data-bs-target="#collapse--regular-plan"
-                                                aria-expanded="false" aria-controls="collapse--regular-plan">{{
-                                                $bundleRange?->range?->name }}</button>
+                                                aria-expanded="false" aria-controls="collapse--regular-plan">
+                                                {{ $bundleRange?->range?->name }}
+                                            </button>
 
 
 
@@ -598,7 +620,7 @@
 
 
                                 {{-- 2: perferences --}}
-                                @if ($pickedBundle && $instance?->planBundleRangeId)
+                                @if ($pickedPlanBundle && $instance?->planBundleRangeId)
 
 
                                 {{-- row --}}
@@ -640,7 +662,7 @@
 
 
                                             {{-- loop - days --}}
-                                            @foreach ($pickedBundle?->days ?? [] as $bundleDay)
+                                            @foreach ($pickedPlanBundle?->days ?? [] as $bundleDay)
 
                                             <span class='pointer plan--days motion--slow
                                                 @if ($instance->planDays == $bundleDay->days) active @endif'
@@ -763,7 +785,7 @@
 
 
                     {{-- 2: preferences --}}
-                    @if ($pickedBundleRange)
+                    @if ($pickedPlanBundleRange)
 
 
 
@@ -1152,7 +1174,7 @@
 
 
 
-                    @if ($pickedBundle)
+                    @if ($pickedPlanBundle)
 
 
                     {{-- collapseToggler --}}
@@ -1220,7 +1242,7 @@
                                     {{-- imageFile --}}
                                     <div class="col-6">
                                         <div class="d-flex overflow-hidden">
-                                            <img src='{{ url("{$storagePath}/menu/plans/bundles/{$pickedBundle?->imageFile}") }}'
+                                            <img src='{{ url("{$storagePath}/menu/plans/bundles/{$pickedPlanBundle?->imageFile}") }}'
                                                 class='of-cover zoom--target motion--slow rounded-1 w-100'
                                                 style="height: 150px;">
                                         </div>
@@ -1239,7 +1261,7 @@
                                         <div class="m-titles mb-1 text-center">
                                             <div class="m-title plan--single-title fw-semibold fs-6 mb-0"
                                                 style="color: var(--bs-warning) !important;">
-                                                {{ $pickedBundle->name }}
+                                                {{ $pickedPlanBundle->name }}
                                             </div>
                                         </div>
 
@@ -1251,7 +1273,7 @@
                                             <span
                                                 class="category text-center splitting-text-anim-1 scroll-animate plan--custom-subtitle fw-500 fs-15"
                                                 data-splitting="chars" data-animate="active">{{
-                                                $pickedBundle->remarks
+                                                $pickedPlanBundle->remarks
                                                 }}</span>
                                         </span>
 
@@ -1266,12 +1288,12 @@
 
 
                                         {{-- range --}}
-                                        @if ($pickedBundleRange)
+                                        @if ($pickedPlanBundleRange)
 
                                         <div class="m-titles mb-1 mt-1">
                                             <div class="m-title plan--single-title fw-semibold fs-15 mb-0 text-center">
                                                 {{
-                                                $pickedBundleRange->range->name }}<span
+                                                $pickedPlanBundleRange->range->name }}<span
                                                     class='span--price ms-1'>(Calories)</span>
                                             </div>
                                         </div>
@@ -1344,7 +1366,7 @@
 
                                             <h6 class="fw-500 my-0 fs-14">Cool Bag</h6>
                                             <h6 class='my-0 fw-500 fs-14'>
-                                                {{ $instance->coolBag ? number_format($bag?->price) : 0 }}<span
+                                                {{ $instance->bag ? number_format($bag?->price) : 0 }}<span
                                                     class='span--price ms-1'>(AED)</span>
                                             </h6>
 
@@ -1377,7 +1399,7 @@
 
                                             <h6 class="fw-500 my-0 fs-14">Total Payout</h6>
                                             <h6 class='my-0 fw-500 fs-14'>
-                                                {{ number_format(($instance?->planPrice ?? 0) + ($instance->coolBag
+                                                {{ number_format(($instance?->planPrice ?? 0) + ($instance->bag
                                                 ?
                                                 $bag?->price : 0)) }}<span class='span--price ms-1'>(AED)</span>
                                             </h6>
@@ -1418,7 +1440,7 @@
 
 
                     @endif
-                    {{-- end if - pickedBundle --}}
+                    {{-- end if - pickedPlanBundle --}}
 
 
 

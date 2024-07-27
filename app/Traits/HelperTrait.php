@@ -7,6 +7,7 @@ use App\Models\CityDistrict;
 use App\Models\Container;
 use App\Models\Item;
 use App\Models\Label;
+use App\Models\PlanBundleDay;
 use App\Models\VendorContainer;
 use App\Models\VendorItem;
 use App\Models\VendorLabel;
@@ -277,12 +278,39 @@ trait HelperTrait
             $isEmpty ? array_unshift($cityDeliveryTimes, ['id' => '', 'text' => '']) : null;
 
 
-
-
             $this->dispatch('refreshSelect', id: $childSelectId, data: $cityDeliveryTimes);
 
 
         } // end if
+
+
+
+
+
+
+
+
+
+
+        // 3: bundle - days
+        if ($parentModel == 'bundle' && $childModel == 'days') {
+
+            $bundleDays = $parentValue ?
+                PlanBundleDay::where('planBundleId', $parentValue)
+                    ->get(['days as id', 'days as text'])->toArray() : [];
+
+
+
+            // :: makeEmpty
+            $isEmpty ? array_unshift($bundleDays, ['id' => '', 'text' => '']) : null;
+
+
+            $this->dispatch('refreshSelect', id: $childSelectId, data: $bundleDays);
+
+
+        } // end if
+
+
 
 
 
