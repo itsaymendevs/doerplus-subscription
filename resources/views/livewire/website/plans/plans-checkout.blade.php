@@ -78,7 +78,7 @@
                                         <hr>
 
                                         {{-- collapseToggler --}}
-                                        <div class="ps-2 splitting-text-anim-1 scroll-animate motion--slow w-100"
+                                        <div class="ps-2 splitting-text-anim-1 scroll-animate motion--slow collapse--title w-100"
                                             data-splitting="chars" data-animate="active">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <span>Delivery Information</span>

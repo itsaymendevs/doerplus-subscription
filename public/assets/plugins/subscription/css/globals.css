@@ -1,7 +1,7 @@
 :root {
     --color-theme: #87b2a9;
     --color-theme-active: #7eaaa1;
-
+    --color-icons: var(--bs-warning);
     /* button */
     --btn-height: 42px;
     --btn-height-sm: 38px;
@@ -227,8 +227,17 @@ body {
     background-color: var(--color-body) !important;
     padding: 35px 20px;
 }
+
+.iziModal {
+    box-shadow: 0 0 8px rgb(24 24 24 / 30%) !important;
+}
+
+.iziModal-overlay {
+    background-color: #0e0e0ef5 !important;
+}
 .modal--close {
     display: flex;
+    margin: auto;
     align-items: center;
     justify-content: center;
     color: var(--bs-danger);
@@ -275,6 +284,14 @@ body {
     animation-delay: 1s;
     animation-direction: alternate-reverse;
     animation-timing-function: ease-in-out;
+}
+
+.animation--icon-color {
+    animation-name: iconColorAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: ease-in;
 }
 
 @keyframes titleHrAnimation {
@@ -339,5 +356,14 @@ body {
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes iconColorAnimation {
+    0% {
+        color: var(--color-icons);
+    }
+    100% {
+        color: white;
     }
 }

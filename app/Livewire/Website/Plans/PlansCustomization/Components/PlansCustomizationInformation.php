@@ -50,7 +50,7 @@ class PlansCustomizationInformation extends Component
 
         // 1: dependencies
         $providers = ['@gmail.com', '@outlook.com', '@hotmail.com', '@yahoo.com'];
-        $countryCodes = ['+971', '+974'];
+        $countryCodes = ['+971'];
 
 
 

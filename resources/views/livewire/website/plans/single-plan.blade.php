@@ -112,6 +112,16 @@
                     <div class="description-text scrolla-element-anim-1 scroll-animate" data-animate="active">{{
                         $plan->longDesc }}</p>
                     </div>
+
+
+                    <div class="d-flex mt-4 justify-content-md-start scrolla-element-anim-1 scroll-animate"
+                        data-animate="active">
+                        <div class="readmore">
+                            <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}" class="btn-link"
+                                style="height: 40px; line-height: 37px;">Start
+                                Your Journey</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

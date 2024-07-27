@@ -6,12 +6,12 @@
 
         {{-- header --}}
         <div class="row mb-5">
-            <div class="col-11">
-                <h4 class='my-0'>Personal Information</h4>
+            <div class="col-10">
+                <h5 class='my-0 fw-bold fs-4'>Personal Information</h5>
             </div>
 
             {{-- close --}}
-            <div class="col-1">
+            <div class="col-2">
                 <a data-izimodal-close="" data-izimodal-transitionout="bounceOutDown" class='modal--close'>
                     <i class="bi bi-x"></i>
                 </a>
@@ -266,7 +266,7 @@
             <div class="col-12">
                 <div class="d-flex form--input-wrapper justify-content-center mb-4 mt-1">
 
-                    <livewire:website.components.items.button-blob title='Continue'
+                    <livewire:website.components.items.button-blob title='Proceed'
                         url="{{ route('website.plans.checkout', [$plan->nameURL]) }}" />
 
                 </div>

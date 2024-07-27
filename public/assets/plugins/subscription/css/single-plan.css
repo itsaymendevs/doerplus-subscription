@@ -41,6 +41,12 @@
     transform: rotate(0deg);
 }
 
+@media (max-width: 575px) {
+    .collapse--title {
+        font-size: 16px !important;
+    }
+}
+
 .collapse--title .collapse--icon {
     transform: rotate(180deg);
 }
@@ -56,12 +62,14 @@
 /* otherPlans */
 .plans--other-col img {
     height: 170px !important;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: #18181b;
 }
 
 .plans--other-col:nth-child(even) img {
     height: 230px !important;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: #18181b;
 }
 
 @media (max-width: 575px) {
@@ -128,14 +136,32 @@
     letter-spacing: 0.3px;
 }
 
-.bundle--card:hover .bundle--select,
-.bundle--card:focus .bundle--select {
+@media (max-width: 575px) {
+    .bundle--select {
+        top: 8px;
+        left: 7px;
+        font-size: 8px;
+        height: 30px;
+        width: 30px;
+    }
+}
+
+.bundle--card.active .bundle--select {
     box-shadow: 0px 4px 1px var(--bs-warning);
 }
 
 .bundle--card img {
-    height: 200px;
+    height: 160px;
+    padding: 0px 12px;
     width: 100%;
+    object-fit: contain;
+    background-color: white;
+}
+
+@media (max-width: 575px) {
+    .bundle--card img {
+        height: 130px;
+    }
 }
 
 .bundle--title-wrap {
@@ -162,6 +188,12 @@
     font-weight: 600 !important;
 }
 
+@media (max-width: 575px) {
+    .bundle--title {
+        font-size: 14px;
+    }
+}
+
 .bundle--title * {
     color: white;
 }
@@ -177,8 +209,14 @@
 }
 
 .bundle--card.sm:hover .bundle--image {
-    height: 200px;
+    height: 160px;
     transition: height 0.5s ease-out;
+}
+
+@media (max-width: 575px) {
+    .bundle--card.sm:hover .bundle--image {
+        height: 130px;
+    }
 }
 
 .bundle--card.active .bundle--title-wrap {
@@ -358,6 +396,17 @@
     height: 13px;
 }
 
+.bag--wrapper .bag--info {
+    position: absolute;
+    bottom: 0px;
+    font-size: 24px;
+    left: 0px;
+    color: #ffc107;
+    right: 0px;
+    margin: auto;
+    text-align: center;
+}
+
 /* ------------------------------------------ */
 /* ------------------------------------------ */
 
@@ -467,4 +516,17 @@
 
 .plan--macros.for--fats .caption {
     color: var(--color-fats);
+}
+
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+
+/* rightCol */
+
+@media (max-width: 991px) {
+    .preference--col {
+        border-top: 2px dashed #323232;
+        padding-top: 55px;
+        margin-top: 60px !important;
+    }
 }
