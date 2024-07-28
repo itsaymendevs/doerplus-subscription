@@ -9,21 +9,22 @@ class ButtonBlob extends Component
 
 
     // :: variables
-    public $title, $modal, $url, $event;
+    public $title, $modal, $url, $type;
 
 
-    public function mount($title, $url = '#', $modal = null, $event = null)
+    public function mount($title, $url = '#', $modal = null, $type = 'button')
     {
 
 
         // 1: params
         $this->url = $url;
+        $this->type = $type;
         $this->title = $title;
         $this->modal = $modal;
-        $this->event = $event;
 
 
     } // end function
+
 
 
 

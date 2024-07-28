@@ -110,7 +110,7 @@
 
 .bundle--card {
     background-color: #191919;
-    padding: 10px 10px;
+    padding: 8px 8px;
     border-radius: 8px;
     position: relative;
     display: block;
@@ -321,6 +321,7 @@
     color: white;
     margin-right: 12px;
     align-items: center;
+    padding: 0px;
 }
 
 .plan--days:hover,
@@ -407,6 +408,15 @@
     text-align: center;
 }
 
+/* bagTerms */
+.bag--terms {
+    margin-bottom: 10px;
+}
+.bag--terms span:first-of-type {
+    color: var(--color-theme);
+    width: 28px;
+}
+
 /* ------------------------------------------ */
 /* ------------------------------------------ */
 
@@ -476,6 +486,9 @@
     max-width: 90px;
     width: 90px;
     margin: auto;
+    background-size: 2px 100%;
+    background-position: 0 0, 100% 0;
+    background-repeat: no-repeat;
 }
 
 .plan--macros:hover {
@@ -493,7 +506,10 @@
 
 /* carbs */
 .plan--macros.for--carbs {
-    border: 1px solid var(--color-carbs);
+    border-top: 2px solid var(--color-carbs);
+    border-bottom: 2px solid var(--color-theme);
+    background-image: linear-gradient(var(--color-carbs), var(--color-theme)),
+        linear-gradient(var(--color-carbs), var(--color-theme));
 }
 
 .plan--macros.for--carbs .caption {
@@ -502,7 +518,10 @@
 
 /* proteins */
 .plan--macros.for--proteins {
-    border: 1px solid var(--color-proteins);
+    border-top: 2px solid var(--color-proteins);
+    border-bottom: 2px solid var(--color-theme);
+    background-image: linear-gradient(var(--color-proteins), var(--color-theme)),
+        linear-gradient(var(--color-proteins), var(--color-theme));
 }
 
 .plan--macros.for--proteins .caption {
@@ -511,7 +530,10 @@
 
 /* fats */
 .plan--macros.for--fats {
-    border: 1px solid var(--color-fats);
+    border-top: 2px solid var(--color-fats);
+    border-bottom: 2px solid var(--color-theme);
+    background-image: linear-gradient(var(--color-fats), var(--color-theme)),
+        linear-gradient(var(--color-fats), var(--color-theme));
 }
 
 .plan--macros.for--fats .caption {
@@ -530,3 +552,6 @@
         margin-top: 60px !important;
     }
 }
+
+/* ------------------------------------------- */
+/* ------------------------------------------- */

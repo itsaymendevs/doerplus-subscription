@@ -7,6 +7,15 @@
 
 
 
+    {{-- blobBG --}}
+    <livewire:website.components.items.background-blob />
+
+
+
+
+
+
+
     {{-- ----------------------------------------------------------------- --}}
     {{-- ----------------------------------------------------------------- --}}
     {{-- ----------------------------------------------------------------- --}}
@@ -49,7 +58,7 @@
 
 
     {{-- section --}}
-    <div class="section section-inner m-description plan--section section--bg mb-0 pb-5">
+    <div class="section section-inner m-description plan--section section--bg mb-0 pb-5" id='customization--section'>
         <div class="container">
             <div class="row">
 
@@ -64,7 +73,7 @@
 
 
                     {{-- topRow --}}
-                    <div class="row justify-content-center mb-5" wire:ignore>
+                    <div class="row justify-content-center mb-5 u--slideUp" wire:ignore>
                         <div class="col-12 col-lg-5 text-center">
 
 
@@ -117,7 +126,7 @@
 
 
                             {{-- swiper --}}
-                            <div class="swiper plans--overview-swiper">
+                            <div class="swiper plans--overview-swiper ">
                                 <div class="swiper-wrapper">
 
 
@@ -172,6 +181,7 @@
 
 
 
+
                                 {{-- ------------------------- --}}
                                 {{-- ------------------------- --}}
 
@@ -218,7 +228,7 @@
                             {{-- description --}}
                             <span class="desc me-4" style='max-width: 100px !important;'>
                                 <span
-                                    class="category   text-center splitting-text-anim-3 scroll-animate plan--custom-subtitle fw-500 fs-6"
+                                    class="category text-center splitting-text-anim-3 scroll-animate plan--custom-subtitle fw-500 fs-6"
                                     data-splitting="chars" data-animate="active">{{ $plan->desc }}</span>
                             </span>
 
@@ -375,16 +385,33 @@
 
 
                                     {{-- bundles --}}
-                                    @foreach ($plan?->bundles ?? [] as $bundle)
+                                    @foreach ($planBundles ?? [] as $bundle)
 
 
 
 
                                     {{-- 1: version --}}
+                                    @if (false)
+
+
                                     <div class="col-6 col-sm-6 col-lg-4 mb-4 scrolla-element-anim-1 scroll-animate d-none"
                                         key='single-bundle-{{ $bundle->id }}' data-animate="active" wire:ignore.self>
-                                        <a href='javascript:void(0);' class="bundle--card zoom--wrapper"
+
+                                        <label href='javascript:void(0);' class="bundle--card zoom--wrapper pointer"
                                             wire:click="pickBundle('{{ $bundle->id }}')">
+
+
+
+
+                                            {{-- radioButton --}}
+                                            <input type="radio" id="bundle--checkbox-{{ $bundle->id }}"
+                                                class='bundle--indicator d-none' wire:model='instance.planBundleId'
+                                                name='bundle--checkbox' value='{{ $bundle->id }}'
+                                                wire:change='changePlanBundle'>
+
+
+
+
 
 
 
@@ -413,8 +440,12 @@
 
 
 
-                                        </a>
+                                        </label>
                                     </div>
+
+
+                                    @endif
+                                    {{-- end if --}}
 
 
 
@@ -436,11 +467,22 @@
                                     {{-- 2: version --}}
                                     <div class="col-6 col-sm-6 col-lg-4 mb-4 scrolla-element-anim-1 scroll-animate"
                                         key='single-bundle-{{ $bundle->id }}' data-animate="active" wire:ignore.self>
-                                        <a href='javascript:void(0);'
-                                            class="bundle--card sm zoom--wrapper @if ($pickedBundle?->id == $bundle->id) active @endif"
-                                            wire:click="pickBundle('{{ $bundle->id }}')">
 
 
+                                        <label wire:loading.class='processing--card' wire:target='changePlanBundle'
+                                            class="bundle--card bundle--motion  sm zoom--wrapper motion--slow pointer @if ($instance?->planBundleId == $bundle->id) active @endif"
+                                            for='bundle--checkbox-{{ $bundle->id }}'>
+
+
+
+
+
+
+                                            {{-- radioButton --}}
+                                            <input type="radio" id="bundle--checkbox-{{ $bundle->id }}"
+                                                class='bundle--indicator d-none' wire:model='instance.planBundleId'
+                                                name='bundle--checkbox' value='{{ $bundle->id }}'
+                                                wire:change='changePlanBundle'>
 
 
 
@@ -474,7 +516,7 @@
 
 
 
-                                        </a>
+                                        </label>
                                     </div>
 
 
@@ -504,8 +546,10 @@
 
 
 
+
+
                                 {{-- 2: bundleRanges --}}
-                                @if ($pickedBundle)
+                                @if ($pickedPlanBundle)
 
 
                                 {{-- row --}}
@@ -545,15 +589,18 @@
 
 
                                             {{-- loop - ranges --}}
-                                            @foreach ($pickedBundle?->ranges ?? [] as $bundleRange)
+                                            @foreach ($planBundleRanges ?? [] as $bundleRange)
 
 
-                                            <button type="button" key='single-bundle-range-{{ $bundleRange->id }}'
+                                            <button type="button" wire:loading.class='processing--button'
+                                                wire:target='changePlanBundleRange'
+                                                key='single-bundle-range-{{ $bundleRange->id }}'
                                                 class="btn btn--regular sm fw-500 fs-14 ranges--btn @if ($instance?->planBundleRangeId == $bundleRange->id) btn--collapse @endif"
-                                                wire:click="pickBundleRange('{{ $bundleRange?->id }}')"
+                                                wire:click="changePlanBundleRange('{{ $bundleRange?->id }}')"
                                                 data-bs-toggle="collapse" data-bs-target="#collapse--regular-plan"
-                                                aria-expanded="false" aria-controls="collapse--regular-plan">{{
-                                                $bundleRange?->range?->name }}</button>
+                                                aria-expanded="false" aria-controls="collapse--regular-plan">
+                                                {{ $bundleRange?->range?->name }}
+                                            </button>
 
 
 
@@ -598,7 +645,8 @@
 
 
                                 {{-- 2: perferences --}}
-                                @if ($pickedBundle && $instance?->planBundleRangeId)
+                                @if ($pickedPlanBundle && $instance?->planBundleRangeId)
+
 
 
                                 {{-- row --}}
@@ -640,13 +688,30 @@
 
 
                                             {{-- loop - days --}}
-                                            @foreach ($pickedBundle?->days ?? [] as $bundleDay)
+                                            @foreach ($pickedPlanBundle?->days ?? [] as $bundleDay)
 
-                                            <span class='pointer plan--days motion--slow
+
+
+                                            <label class='pointer plan--days motion--slow
                                                 @if ($instance->planDays == $bundleDay->days) active @endif'
-                                                wire:click="pickPlanDays('{{ $bundleDay->days }}')"
-                                                key='plan-bundle-days-{{ $bundleDay->id }}'>{{
-                                                $bundleDay?->days }}</span>
+                                                key='plan-bundle-days-{{ $bundleDay->id }}'
+                                                wire:loading.class='processing--button'
+                                                wire:target='recalculate, instance.planDays'
+                                                for='bundle--days-radio-{{ $bundleDay->id }}'>{{
+                                                $bundleDay?->days }}</label>
+
+
+
+
+
+                                            {{-- radioButton --}}
+                                            <input type="radio" id="bundle--days-radio-{{ $bundleDay->id }}"
+                                                class='d-none' wire:model.live='instance.planDays'
+                                                wire:change='recalculate' name='bundle--days-radio'
+                                                value='{{ $bundleDay?->days }}'>
+
+
+
 
                                             @endforeach
                                             {{-- end loop --}}
@@ -763,7 +828,7 @@
 
 
                     {{-- 2: preferences --}}
-                    @if ($pickedBundleRange)
+                    @if ($pickedPlanBundleRange)
 
 
 
@@ -773,7 +838,7 @@
 
                         {{-- mainTitle --}}
                         <div class="col-12 col-sm-12" wire:ignore>
-                            <div class="m-titles mb-0">
+                            <div class="m-titles mb-0" style="padding: 0px 25px">
                                 <div class="m-title plan--single-title fs-4 mb-0 fw-semibold  pointer">
                                     <div
                                         class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
@@ -817,39 +882,64 @@
 
                         {{-- collapseContent --}}
                         <div class="col-12 col-sm-12">
-                            <div class="collapse show mt-4 pt-2" id="collapse--preferences" wire:ignore.self>
+                            <div class="collapse show mt-4 pt-2 preference--line" id="collapse--preferences"
+                                wire:ignore.self>
+
+
+
+                                <div class="copy-box">
+                                    <div class="inner">
+                                        <div class="line right">
+                                            <div class="scanner"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
 
 
 
                                 {{-- row --}}
-                                <div class="row">
+                                <div class="row ">
+
+
+
+
+
                                     <div class="col-12 col-md-7">
+
+
+
 
 
                                         {{-- 1: allergy --}}
                                         <div class="d-flex form--input-wrapper flex-column mb-4">
 
-                                            <label class='w-100 d-flex align-items-center' data-splitting="chars"
+                                            <label class='w-100 d-flex align-items-center md' data-splitting="chars"
                                                 data-animate="active">
-                                                <span>Allergies</span>
+                                                <span>Allergy</span>
                                             </label>
 
 
                                             {{-- select --}}
                                             <div class="form--select-wrapper" wire:ignore>
                                                 <select class='init--select form--select'
-                                                    data-instance='instance.allergies' multiple>
+                                                    data-instance='instance.allergyLists' multiple>
 
-                                                    @foreach ($allergies as $allergy)
-                                                    <option value="{{ $allergy->id }}">
-                                                        {{ $allergy->name }}
+                                                    @foreach ($allergyLists as $allergyList)
+                                                    <option value="{{ $allergyList->id }}">
+                                                        {{ $allergyList->name }}
                                                     </option>
                                                     @endforeach
 
                                                 </select>
                                             </div>
                                         </div>
+
+
+
+
 
 
 
@@ -858,7 +948,7 @@
                                         {{-- 2: allergy --}}
                                         <div class="d-flex form--input-wrapper flex-column mb-4">
 
-                                            <label class='w-100 d-flex align-items-center' data-splitting="chars"
+                                            <label class='w-100 d-flex align-items-center md' data-splitting="chars"
                                                 data-animate="active">
                                                 <span>Excludes</span>
                                             </label>
@@ -866,19 +956,17 @@
                                             {{-- select --}}
                                             <div class="form--select-wrapper" wire:ignore>
                                                 <select class='init--select form--select'
-                                                    data-instance='instance.excludes' multiple>
+                                                    data-instance='instance.excludeLists' multiple>
 
-                                                    @foreach ($excludes as $exclude)
-                                                    <option value="{{ $exclude->id }}">
-                                                        {{ $exclude->name }}
+                                                    @foreach ($excludeLists as $excludeList)
+                                                    <option value="{{ $excludeList->id }}">
+                                                        {{ $excludeList->name }}
                                                     </option>
                                                     @endforeach
 
                                                 </select>
                                             </div>
                                         </div>
-
-
 
 
                                     </div>
@@ -889,8 +977,12 @@
 
 
 
+
+
                                     {{-- ---------------------------------- --}}
                                     {{-- ---------------------------------- --}}
+
+
 
 
 
@@ -924,7 +1016,7 @@
                                             {{-- switch --}}
                                             <div class="form-check form-switch bag--switch vertical">
                                                 <input class="form-check-input" type="checkbox" role="switch"
-                                                    id="coolbag--checkbox" wire:model.live='instance.coolBag'>
+                                                    id="coolbag--checkbox" wire:model.live='instance.bag'>
                                                 <label class="form-check-label" for="coolbag--checkbox">{{
                                                     $bag->name }}</label>
                                             </div>
@@ -952,20 +1044,28 @@
 
 
 
+
                                     {{-- continueButton --}}
+                                    @if ($instance->planDays && $instance->startDate && $instance->planBundleId)
+
                                     <div class="col-12 col-md-7">
                                         <div class="d-flex form--input-wrapper justify-content-center mt-3">
 
-                                            <livewire:website.components.items.button-blob title='Next Step'
-                                                modal='#infromation--modal' />
+                                            <livewire:website.components.items.button-blob title='Proceed'
+                                                modal='#information--modal' />
 
                                         </div>
                                     </div>
 
+                                    @endif
+                                    {{-- end if --}}
 
 
                                 </div>
                                 {{-- endRow --}}
+
+
+
 
                             </div>
                         </div>
@@ -1155,8 +1255,6 @@
                                                 </div>
                                             </div>
 
-
-
                                             @endforeach
                                             {{-- end loop --}}
 
@@ -1198,7 +1296,7 @@
 
 
 
-                        @if ($pickedBundle)
+                        @if ($pickedPlanBundle)
 
 
 
@@ -1285,7 +1383,7 @@
                                             {{-- imageFile --}}
                                             <div class="col-6">
                                                 <div class="d-flex overflow-hidden">
-                                                    <img src='{{ url("{$storagePath}/menu/plans/bundles/{$pickedBundle?->imageFile}") }}'
+                                                    <img src='{{ url("{$storagePath}/menu/plans/bundles/{$pickedPlanBundle?->imageFile}") }}'
                                                         class='of-contain bg-white zoom--target motion--slow rounded-1 w-100'
                                                         style="height: 150px;">
                                                 </div>
@@ -1304,7 +1402,7 @@
                                                 <div class="m-titles mb-1 text-center">
                                                     <div class="m-title plan--single-title fw-semibold fs-6 mb-0"
                                                         style="color: var(--bs-warning) !important;">
-                                                        {{ $pickedBundle->name }}
+                                                        {{ $pickedPlanBundle->name }}
                                                     </div>
                                                 </div>
 
@@ -1316,7 +1414,7 @@
                                                     <span
                                                         class="category text-center splitting-text-anim-1 scroll-animate plan--custom-subtitle fw-500 fs-15"
                                                         data-splitting="chars" data-animate="active">{{
-                                                        $pickedBundle->remarks
+                                                        $pickedPlanBundle->remarks
                                                         }}</span>
                                                 </span>
 
@@ -1331,13 +1429,13 @@
 
 
                                                 {{-- range --}}
-                                                @if ($pickedBundleRange)
+                                                @if ($pickedPlanBundleRange)
 
                                                 <div class="m-titles mb-1 mt-1">
                                                     <div
                                                         class="m-title plan--single-title fw-semibold fs-15 mb-0 text-center">
                                                         {{
-                                                        $pickedBundleRange->range->name }}<span
+                                                        $pickedPlanBundleRange->range->name }}<span
                                                             class='span--price ms-1'>(Calories)</span>
                                                     </div>
                                                 </div>
@@ -1421,25 +1519,12 @@
 
                                                     <h6 class="fw-500 my-0 fs-14">Plan Price</h6>
                                                     <h6 class='my-0 fw-500 fs-14'>
-                                                        {{ $instance->planPrice ?
-                                                        number_format($instance?->planPrice) :
-                                                        ''
-                                                        }}
+                                                        {{ $instance->totalPlanBundleRangePrice ?
+                                                        number_format($instance?->totalPlanBundleRangePrice) : '' }}
                                                     </h6>
 
                                                 </div>
 
-
-
-
-                                                {{-- 2: deliveryCharge --}}
-                                                <div
-                                                    class="d-flex invoice--tr justify-content-between align-items-center">
-
-                                                    <h6 class="fw-500 my-0 fs-14">Delivery Charge</h6>
-                                                    <h6 class='my-0 fw-500 fs-14'></h6>
-
-                                                </div>
 
 
 
@@ -1450,7 +1535,7 @@
 
                                                     <h6 class="fw-500 my-0 fs-14">Cool Bag</h6>
                                                     <h6 class='my-0 fw-500 fs-14'>
-                                                        {{ ($instance->coolBag && $instance->planPrice) ?
+                                                        {{ ($instance->bag && $instance->planPrice) ?
                                                         number_format($bag?->price) : '' }}
                                                     </h6>
 
@@ -1466,38 +1551,15 @@
                                                     class="d-flex invoice--tr justify-content-between align-items-center">
 
                                                     <h6 class="fw-500 my-0 fs-14">Discount</h6>
-                                                    <h6 class='my-0 fw-500 fs-14'></h6>
-
+                                                    <h6 class='my-0 fw-500 fs-14'>
+                                                        {{ $instance->planBundleRangeDiscountPrice ?
+                                                        number_format($instance?->planBundleRangeDiscountPrice) : '' }}
+                                                    </h6>
                                                 </div>
 
 
 
 
-
-
-
-                                                {{-- 5: promo --}}
-                                                <div
-                                                    class="d-flex invoice--tr justify-content-between align-items-center">
-
-                                                    <h6 class="fw-500 my-0 fs-14">Promo</h6>
-                                                    <h6 class='my-0 fw-500 fs-14'></h6>
-
-                                                </div>
-
-
-
-
-
-
-                                                {{-- 6: referral --}}
-                                                <div
-                                                    class="d-flex invoice--tr justify-content-between align-items-center">
-
-                                                    <h6 class="fw-500 my-0 fs-14">Referral</h6>
-                                                    <h6 class='my-0 fw-500 fs-14'></h6>
-
-                                                </div>
 
 
 
@@ -1513,10 +1575,10 @@
                                                     @if ($instance->planPrice)
 
                                                     <h6 class='my-0 fw-500 fs-14'>
-                                                        {{ number_format(($instance?->planPrice ?? 0) +
-                                                        ($instance->coolBag
-                                                        ?
-                                                        $bag?->price : 0)) }}<span class='span--price ms-1'>(AED)</span>
+                                                        {{
+                                                        number_format(($instance?->planPrice ?? 0) + ($instance->bag ?
+                                                        $bag?->price : 0)) }}
+                                                        <span class='span--price ms-1'>(AED)</span>
                                                     </h6>
 
                                                     @endif
@@ -1564,7 +1626,7 @@
 
 
                         @endif
-                        {{-- end if - pickedBundle --}}
+                        {{-- end if - pickedPlanBundle --}}
 
 
 
@@ -1664,8 +1726,49 @@
 
 
 
-    {{-- ------------------------------------ --}}
-    {{-- ------------------------------------ --}}
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+    {{-- selectHandle --}}
+    <script>
+        $(document).on('change', "#customization--section .form--select", function(event) {
+
+
+
+         // 1.1: getValue - instance
+         selectValue = $(this).select2('val');
+         instance = $(this).attr('data-instance');
+
+
+         @this.set(instance, selectValue);
+
+
+      }); //end function
+    </script>
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
 
 
 
@@ -1695,6 +1798,21 @@
 
 
 
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
     {{-- hideLogo --}}
     <script>
         $(document).ready(function() {
@@ -1717,6 +1835,8 @@
 
     {{-- ----------------------------------------------- --}}
     {{-- ----------------------------------------------- --}}
+
+
 
 
 
@@ -1763,7 +1883,6 @@
         // 3.5: Initialize
         setTimeout(() => {
             $('body #date--picker').each(function() {
-
                 datepicker = new AirDatepicker(this, {
                     locale: localeEn,
                     minDate: startDate,
@@ -1779,13 +1898,6 @@
 
 
 
-
-        console.log(datepicker);
-
-
-
-
-
     }); // end function
 
 
@@ -1795,6 +1907,10 @@
 
     @endsection
     {{-- endSection --}}
+
+
+
+
 
 
 
@@ -1844,6 +1960,26 @@
 
     @endsection
     {{-- endSection --}}
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
 
 
 

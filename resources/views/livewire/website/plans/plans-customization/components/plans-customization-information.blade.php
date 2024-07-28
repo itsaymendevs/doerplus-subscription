@@ -1,4 +1,4 @@
-<div id='infromation--modal' class="izi--modal" wire:ignore.self>
+<div id='information--modal' class="izi--modal" data-width='800px' wire:ignore>
     <div class="container">
 
 
@@ -37,19 +37,19 @@
 
 
         {{-- content --}}
-        <div class="row mb-5 justify-content-center justify-content-md-start">
+        <form wire:submit='continue' class="row mb-5 justify-content-center justify-content-md-start">
 
 
 
             {{-- firstName --}}
-            <div class="col-12 col-sm-6">
+            <div class="col-6 col-sm-6">
                 <div class="d-flex form--input-wrapper flex-column mb-4">
 
                     <label class='w-100 d-flex align-items-center sm '>
                         <span>First Name</span>
                     </label>
 
-                    <input type="text" class='form--input text-center'>
+                    <input type="text" class='form--input text-center' wire:model='instance.firstName' required>
                 </div>
             </div>
 
@@ -59,14 +59,14 @@
 
 
             {{-- lastName --}}
-            <div class="col-12 col-sm-6">
+            <div class="col-6 col-sm-6">
                 <div class="d-flex form--input-wrapper flex-column mb-4">
 
                     <label class='w-100 d-flex align-items-center sm'>
                         <span>Last Name</span>
                     </label>
 
-                    <input type="text" class='form--input text-center'>
+                    <input type="text" class='form--input text-center' wire:model='instance.lastName' required>
                 </div>
             </div>
 
@@ -105,14 +105,12 @@
 
 
                         {{-- select --}}
-                        <div class="form--select-wrapper side--left text-center" style="width: 30% !important"
-                            wire:ignore>
-                            <select class='form--select init--select' data-instance='instance'>
+                        <div class="form--select-wrapper side--left text-center" style="width: 30% !important">
+                            <select class='form--select init--select' data-instance='instance.phoneKey' value='+971'
+                                required>
 
                                 @foreach ($countryCodes as $countryCode)
-                                <option value="{{ $countryCode }}">
-                                    {{ $countryCode }}
-                                </option>
+                                <option value="{{ $countryCode->code }}">{{ $countryCode->code }}</option>
                                 @endforeach
 
                             </select>
@@ -122,7 +120,8 @@
 
                         {{-- input --}}
                         <input type="text" pattern="[0-9]+" class='form--input side--right text-center'
-                            style="width: 70% !important">
+                            style="width: 70% !important" wire:model='instance.phone' minlength="9" maxlength="9"
+                            required>
 
 
 
@@ -165,14 +164,12 @@
 
 
                         {{-- select --}}
-                        <div class="form--select-wrapper side--left text-center" style="width: 30% !important"
-                            wire:ignore>
-                            <select class='form--select init--select' data-instance='instance'>
+                        <div class="form--select-wrapper side--left text-center" style="width: 30% !important">
+                            <select class='form--select init--select' data-instance='instance.whatsappKey' value='+971'
+                                required>
 
                                 @foreach ($countryCodes as $countryCode)
-                                <option value="{{ $countryCode }}">
-                                    {{ $countryCode }}
-                                </option>
+                                <option value="{{ $countryCode->code }}">{{ $countryCode->code }}</option>
                                 @endforeach
 
                             </select>
@@ -182,7 +179,8 @@
 
                         {{-- input --}}
                         <input type="text" pattern="[0-9]+" class='form--input side--right text-center'
-                            style="width: 70% !important">
+                            style="width: 70% !important" wire:model='instance.whatsapp' minlength="9" maxlength="9"
+                            required>
 
 
 
@@ -224,13 +222,14 @@
                     <div class="form--input-with-select">
 
                         {{-- input --}}
-                        <input type="email" class='form--input side--left text-center' style="width: 50% !important">
+                        <input type="text" class='form--input side--left text-center' style="width: 60% !important"
+                            wire:model='instance.email' required>
 
 
                         {{-- select --}}
-                        <div class="form--select-wrapper side--right text-center" style="width: 50% !important"
-                            wire:ignore>
-                            <select class='init--select form--select' data-instance='instance.emailProvider'>
+                        <div class="form--select-wrapper side--right text-center" style="width: 40% !important">
+                            <select class='init--select form--select' value="@gmail.com"
+                                data-instance='instance.emailProvider' required>
 
                                 @foreach ($providers as $provier)
                                 <option value="{{ $provier }}">
@@ -264,10 +263,10 @@
 
             {{-- submitButton --}}
             <div class="col-12">
-                <div class="d-flex form--input-wrapper justify-content-center mb-4 mt-1">
+                <div class="d-flex form--input-wrapper justify-content-center mb-4 mt-1"
+                    wire:loading.class='processing--button-wrap' wire:target='continue'>
 
-                    <livewire:website.components.items.button-blob title='Proceed'
-                        url="{{ route('website.plans.checkout', [$plan->nameURL]) }}" />
+                    <livewire:website.components.items.button-blob title='Continue' type="submit" />
 
                 </div>
             </div>
@@ -275,15 +274,72 @@
 
 
 
-
-
-
-
-        </div>
-        {{-- endContent --}}
-
-
-
+        </form>
     </div>
+    {{-- endWrapper --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+    {{-- selectHandle --}}
+    <script>
+        $(document).on('change', "#information--modal .form--select", function(event) {
+
+
+
+         // 1.1: getValue - instance
+         selectValue = $(this).select2('val');
+         instance = $(this).attr('data-instance');
+
+         @this.set(instance, selectValue);
+
+
+      }); //end function
+    </script>
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
 </div>
 {{-- endModal --}}

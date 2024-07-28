@@ -64,6 +64,13 @@
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/select-custom.css')}}" />
 
 
+
+        {{-- animation --}}
+
+
+
+
+
         {{-- extra --}}
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/reset-default.css')}}" />
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/extras.css')}}" />
@@ -129,9 +136,10 @@
 
 
     {{-- body --}}
-    <body class="home page section--bg"
-        style="background-image: url({{ url('assets/plugins/subscription/images/blob-2.svg') }});">
+    <body class="home page section--bg">
         <div class="container-page">
+
+
 
 
 
@@ -226,6 +234,7 @@
         <script src="{{url('assets/plugins/subscription/js/hero-started.js')}}"></script>
         <script src="{{url('assets/plugins/subscription/js/common.js')}}"></script>
         <script src="{{url('assets/plugins/subscription/js/init-select.js')}}"></script>
+        <script src="{{url('assets/plugins/subscription/js/bubbles--bg.js')}}"></script>
 
 
 

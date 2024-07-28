@@ -8,18 +8,132 @@ use Livewire\Form;
 class SubscriptionForm extends Form
 {
 
-    // :: variables
-    #[Validate('required')]
-    public $planId, $planBundleId, $planBundleRangeId, $planDays, $startDate;
+
+    // :: FLAGS
+    public $isExistingCustomer = false;
 
 
 
-    public $coolBag = true;
+
+
+    // --------------------------------------------------
 
 
 
-    // 1: prices
-    public $planPrice;
+
+
+
+    // :: STEP 1
+    public $phone, $email, $name, $firstName, $lastName, $whatsapp, $gender, $planId, $password;
+    public $phoneKey, $emailProvider, $whatsappKey;
+
+    public $id;
+
+
+
+
+    // --------------------------------------------------
+
+
+
+
+
+    // :: STEP 2
+    public $planBundleId, $planBundleRangeId, $planDays, $startDate, $initStartDate;
+
+
+    public $planBundleTypes = [];
+
+
+    // :: helpers
+    public $planBundleRangePricePerDay, $totalPlanBundleRangePrice, $planBundleRangeDiscountPrice, $planPrice;
+
+    public $planBundleTypesInArray;
+
+
+
+
+
+
+
+    // --------------------------------------------------
+
+
+
+
+
+
+    // :: STEP 3
+    public $bag, $bagPrice;
+
+
+    public $allergyLists = [], $excludeLists = [];
+
+
+
+    // :: helpers
+    public $bagImageFile;
+
+
+
+
+    // --------------------------------------------------
+
+
+
+
+
+
+    // :: STEP 4
+    public $cityId, $cityDistrictId, $cityDeliveryTimeId, $locationAddress, $apartment, $floor;
+
+
+    public $deliveryDays = [];
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------
+
+
+
+
+
+
+    // :: STEP 5
+    public $promoCode, $promoCodeDiscountPrice;
+
+    public $totalPrice;
+    public $totalCheckoutPrice;
+
+    public $paymentMethodId, $isPaymentDone = false;
+
+
+
+
+
+
+
+
+    // ---------------------------
+    // ---------------------------
+    // ---------------------------
+
+
+
+
+    // :: STEP 5 - Existing
+    public $useWallet = false, $walletDiscountPrice;
+
+
+
+
 
 
 

@@ -7,7 +7,7 @@
         {{-- header --}}
         <div class="row mb-5">
             <div class="col-10">
-                <h5 class='my-0 fw-bold fs-4'>Bag Details</h5>
+                <h5 class='my-0 fw-bold fs-4'>Bag Terms</h5>
             </div>
 
             {{-- close --}}
@@ -41,11 +41,41 @@
 
 
             <div class="col-12">
-                <p class='my-0 pb-4 text-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa iusto
-                    nostrum alias
-                    praesentium
-                    dolores in, magnam eligendi nihil optio ab!</p>
+                <p class='mt-0 text-white d-flex align-items-end bag--terms'>
+                    <span class='fw-bold'>
+                        <i class="bi bi-dash-lg"></i>
+                    </span>
+                    <span>Exchange your bag with each daily meal</span>
+                </p>
+
+
+                <p class='mt-0 text-white d-flex align-items-end bag--terms'>
+                    <span class='fw-bold'>
+                        <i class="bi bi-dash-lg"></i>
+                    </span>
+                    <span>Receive your meals in a new bag daily</span>
+                </p>
+
+
+
+                <p class='mt-0 text-white d-flex align-items-end bag--terms'>
+                    <span class='fw-bold'>
+                        <i class="bi bi-dash-lg"></i>
+                    </span>
+                    <span>We collect empty bags daily</span>
+                </p>
+
+
+
+                <p class='mt-0 text-white d-flex align-items-end bag--terms'>
+                    <span class='fw-bold'>
+                        <i class="bi bi-dash-lg"></i>
+                    </span>
+                    <span>Refundable Deposit</span>
+                </p>
             </div>
+
+
 
         </div>
         {{-- endContent --}}

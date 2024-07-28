@@ -1,3 +1,5 @@
+/* blob button */
+
 .btn--blob-wrapper {
     display: flex;
     justify-content: center;
@@ -35,6 +37,7 @@
     z-index: 1;
     position: absolute;
     left: 0;
+    background: none;
     top: 0;
     width: 100%;
     height: 100%;
@@ -120,4 +123,190 @@
     .btn--blob:focus .btn--blob__blob {
         transform: translateZ(0) scale(1.4);
     }
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+/* border motion */
+
+.border--motion-1 {
+    background-color: #ddfff7;
+    position: relative;
+    box-shadow: 10px 10px 42px 0 rgba(0, 0, 0, 0.75);
+}
+.border--motion-1:after,
+.border--motion-1:before {
+    mix-blend-mode: multiply;
+    filter: none;
+    z-index: -1;
+    content: "";
+    width: calc(100% + (50px * 2));
+    height: calc(100% + (50px * 2));
+    position: absolute;
+    display: block;
+    animation: border--motion-1 10s ease-in-out infinite;
+    transform: translateX(-50px) translateY(-50px);
+}
+@keyframes border--motion-1 {
+    0%,
+    100% {
+        -webkit-clip-path: polygon(
+            0 0,
+            calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)),
+            100% 100%,
+            calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px))
+        );
+        clip-path: polygon(
+            0 0,
+            calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)),
+            100% 100%,
+            calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px))
+        );
+    }
+    50% {
+        -webkit-clip-path: polygon(
+            calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)),
+            100% 0,
+            calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)),
+            0 100%
+        );
+        clip-path: polygon(
+            calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)),
+            100% 0,
+            calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)),
+            0 100%
+        );
+    }
+}
+
+.border--motion-1:after {
+    animation-delay: -5s;
+    background-color: #93e1d8;
+    clip-path: polygon(
+        0 0,
+        calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)),
+        100% 100%,
+        calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px))
+    );
+}
+.border--motion-1:before {
+    background-color: #aa4465;
+    clip-path: polygon(
+        calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)),
+        100% 0,
+        calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)),
+        0 100%
+    );
+}
+
+.border--motion-1:hover:after {
+    animation-delay: -0.1s;
+}
+.border--motion-1:hover:before,
+.border--motion-1:hover:after {
+    animation-duration: 0.2s;
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+/* border motion */
+
+.bundle--motion {
+    --border-angle: 0turn;
+    --main-bg: conic-gradient(
+        from var(--border-angle),
+        #191919,
+        #191919 5%,
+        #191919 60%,
+        #191919 95%
+    );
+    border: solid 2px transparent;
+    --gradient-border: conic-gradient(
+        from var(--border-angle),
+        transparent 25%,
+        #6a6a6a,
+        #282828 99%,
+        transparent
+    );
+    background: var(--main-bg) padding-box, var(--gradient-border) border-box,
+        var(--main-bg) border-box;
+    background-position: center center;
+    -webkit-animation: bundle--motion 4s ease-in-out infinite;
+    animation: bundle--motion 4s ease-in-out infinite;
+}
+@-webkit-keyframes bundle--motion {
+    to {
+        --border-angle: 1turn;
+    }
+}
+@keyframes bundle--motion {
+    to {
+        --border-angle: 1turn;
+    }
+}
+.bundle--motion:hover {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+}
+
+@property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+/* glow */
+.preference--line {
+    position: relative;
+    padding: 0px 25px;
+}
+.preference--line .line {
+    position: absolute;
+    background-color: var(--color-theme);
+    box-shadow: 0px 0px 12px var(--color-theme);
+    width: 2px;
+    height: calc(100% - 20px);
+    top: 0px;
+    left: 3px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.preference--line .line .scanner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgb(229, 229, 229);
+    width: 100%;
+    height: 20px;
+    border-radius: 50%;
+    animation: preference--line 3s ease-in-out infinite;
+}
+
+@keyframes preference--line {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: 100%;
+    }
+    100% {
+        top: 0;
+    }
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+/* blobBG */
+.bg--blob {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    height: 100%;
+    z-index: 0;
 }
