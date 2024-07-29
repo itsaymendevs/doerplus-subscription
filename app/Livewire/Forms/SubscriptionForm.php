@@ -108,6 +108,7 @@ class SubscriptionForm extends Form
 
     // :: STEP 5
     public $promoCode, $promoCodeDiscountPrice;
+    public $referral, $referralDiscountPrice;
 
     public $totalPrice;
     public $totalCheckoutPrice;

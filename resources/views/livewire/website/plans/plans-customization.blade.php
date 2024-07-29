@@ -1370,8 +1370,8 @@
 
 
                             {{-- collapseContent --}}
-                            <div class="collapse show" id="collapse--bundle-information">
-                                <div class="section section-inner m-works mb-5">
+                            <div class="collapse show invoice--sidebar" id="collapse--bundle-information">
+                                <div class="section section-inner m-works mb-0">
                                     <div class="container">
 
 
@@ -1480,7 +1480,7 @@
                                                     class="d-flex invoice--tr justify-content-between align-items-center">
 
                                                     <h6 class="fw-500 my-0 fs-14">Duration</h6>
-                                                    <h6 class='my-0 fw-500 fs-14'>{{ $instance?->planDays ?? 0
+                                                    <h6 class='my-0 fw-500 fs-16'>{{ $instance?->planDays ?? 0
                                                         }}<span class='span--price ms-1'>(days)</span></h6>
 
                                                 </div>
@@ -1494,7 +1494,7 @@
                                                     class="d-flex invoice--tr different justify-content-between align-items-center">
 
                                                     <h6 class="fw-500 my-0 fs-14">Start Date</h6>
-                                                    <h6 class='my-0 fw-500 fs-14'>{{ $instance?->startDate }}</h6>
+                                                    <h6 class='my-0 fw-500 fs-13'>{{ $instance?->startDate }}</h6>
 
                                                 </div>
 
@@ -1518,7 +1518,7 @@
                                                     class="d-flex invoice--tr justify-content-between align-items-center">
 
                                                     <h6 class="fw-500 my-0 fs-14">Plan Price</h6>
-                                                    <h6 class='my-0 fw-500 fs-14'>
+                                                    <h6 class='my-0 fw-500 fs-16'>
                                                         {{ $instance->totalPlanBundleRangePrice ?
                                                         number_format($instance?->totalPlanBundleRangePrice) : '' }}
                                                     </h6>
@@ -1534,7 +1534,7 @@
                                                     class="d-flex invoice--tr justify-content-between align-items-center">
 
                                                     <h6 class="fw-500 my-0 fs-14">Cool Bag</h6>
-                                                    <h6 class='my-0 fw-500 fs-14'>
+                                                    <h6 class='my-0 fw-500 fs-16'>
                                                         {{ ($instance->bag && $instance->planPrice) ?
                                                         number_format($bag?->price) : '' }}
                                                     </h6>
@@ -1551,7 +1551,7 @@
                                                     class="d-flex invoice--tr justify-content-between align-items-center">
 
                                                     <h6 class="fw-500 my-0 fs-14">Discount</h6>
-                                                    <h6 class='my-0 fw-500 fs-14'>
+                                                    <h6 class='my-0 fw-500 fs-16'>
                                                         {{ $instance->planBundleRangeDiscountPrice ?
                                                         number_format($instance?->planBundleRangeDiscountPrice) : '' }}
                                                     </h6>
@@ -1574,11 +1574,10 @@
 
                                                     @if ($instance->planPrice)
 
-                                                    <h6 class='my-0 fw-500 fs-14'>
+                                                    <h6 class='my-0 fw-500 fs-16'>
                                                         {{
                                                         number_format(($instance?->planPrice ?? 0) + ($instance->bag ?
-                                                        $bag?->price : 0)) }}
-                                                        <span class='span--price ms-1'>(AED)</span>
+                                                        $bag?->price : 0)) }}<span class='span--price ms-1'>(AED)</span>
                                                     </h6>
 
                                                     @endif

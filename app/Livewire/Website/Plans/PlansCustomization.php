@@ -338,8 +338,14 @@ class PlansCustomization extends Component
 
 
 
-        // 1.3: planPrice
+        // 1.3: planPrice - totalPrice
         $this->instance->planPrice = $this->instance->totalPlanBundleRangePrice - $this->instance->planBundleRangeDiscountPrice;
+
+
+
+
+
+
 
 
 
@@ -431,12 +437,56 @@ class PlansCustomization extends Component
 
 
 
+        // 3: fillData
+
+
+
+
+        // 3.1: bag
+        if ($this->instance->bag) {
+
+
+            $bag = Bag::first();
+            $this->instance->bagPrice = $bag->price;
+
+        } else {
+
+            $this->instance->bagPrice = 0;
+
+        } // end if
+
+
+
+
+
+
+
+
+
+        // 3.2: totalPrice
+        $this->instance->totalPrice = $this->instance->planPrice + $this->instance->bagPrice;
+        $this->instance->totalCheckoutPrice = $this->instance->planPrice + $this->instance->bagPrice;
+
+
+
+
+
+
+
+
+
+        // ----------------------------------------------------
+        // ----------------------------------------------------
+
+
+
+
 
 
         // :: continue
 
 
-        // 2: makeSession
+        // 4: makeSession
         Session::put('customer', $this->instance);
 
 
@@ -603,39 +653,8 @@ class PlansCustomization extends Component
 
 
 
-        // ------------------------------------------
-        // ------------------------------------------
 
-
-
-
-
-
-
-        // 2: getHolidays
-        $holidayWeekDays = CityHoliday::where('cityId', 1)->where('isActive', 1)
-                ?->get()?->pluck('weekday')?->toArray() ?? [];
-
-
-
-
-
-
-        // 2.1: loop - removeHolidays
-        foreach ($holidayWeekDays as $holidayWeekDay) {
-
-            if (($key = array_search($holidayWeekDay, $weekDays)) !== false)
-                unset($weekDays[$key]);
-
-        } // end loop
-
-
-
-
-
-
-
-        return view('livewire.website.plans.plans-customization', compact('weekDays', 'plans', 'bag'));
+        return view('livewire.website.plans.plans-customization', compact('plans', 'bag'));
 
 
 

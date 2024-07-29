@@ -1,18 +1,20 @@
-<div id='address--modal' class="izi--modal" data-width='800px' wire:ignore.self>
+<div id='address--modal' class="izi--modal" data-width='920px' wire:ignore>
     <div class="container">
+
+
 
 
 
 
         {{-- header --}}
         <div class="row mb-5">
-            <div class="col-11">
-                <h5 class='my-0 '>Address Details</h5>
+            <div class="col-10">
+                <h5 class='my-0 fw-bold fs-4'>Address Information</h5>
             </div>
 
             {{-- close --}}
-            <div class="col-1">
-                <a data-izimodal-close="" data-izimodal-transitionout="bounceOutDown" class='modal--close'>
+            <div class="col-2">
+                <a data-izimodal-close="" data-izimodal-transitionout="bounceOutDown" class='modal--close btn--close'>
                     <i class="bi bi-x"></i>
                 </a>
             </div>
@@ -37,7 +39,7 @@
 
 
         {{-- content --}}
-        <div class="row mb-5 justify-content-center justify-content-md-start">
+        <form wire:submit='confirm' class="row mb-5 justify-content-center justify-content-md-start">
 
 
 
@@ -53,8 +55,9 @@
 
 
                     {{-- select --}}
-                    <div class="form--select-wrapper" wire:ignore>
-                        <select class='init--select form--select' data-instance='instance.allergies'>
+                    <div class="form--select-wrapper">
+                        <select class='init--select form--select level--select level--one' data-level='city' data-id='1'
+                            data-instance='instance.cityId' required>
 
                             <option value=""></option>
 
@@ -77,7 +80,7 @@
 
 
             {{-- district --}}
-            <div class="col-12 col-md-5">
+            <div class="col-12 col-md-5" wire:ignore>
                 <div class="d-flex form--input-wrapper flex-column mb-4">
 
                     <label class='w-100 d-flex align-items-center sm'>
@@ -87,7 +90,8 @@
 
                     {{-- select --}}
                     <div class="form--select-wrapper" wire:ignore>
-                        <select class='init--select form--select' data-instance='instance.allergies'>
+                        <select class='init--select form--select level--select level--two' data-id='1' required
+                            data-instance='instance.cityDistrictId'>
                         </select>
                     </div>
                 </div>
@@ -120,10 +124,10 @@
                 <div class="d-flex form--input-wrapper flex-column mb-4">
 
                     <label class='w-100 d-flex align-items-center sm '>
-                        <span>Rough Location</span>
+                        <span>Location Address</span>
                     </label>
 
-                    <input type="text" class='form--input'>
+                    <input type="text" class='form--input' wire:model='instance.locationAddress' required>
                 </div>
             </div>
 
@@ -139,7 +143,7 @@
 
 
             {{-- deliveryTime --}}
-            <div class="col-12 col-md-5">
+            <div class="col-12 col-md-5" wire:ignore>
                 <div class="d-flex form--input-wrapper flex-column mb-4">
 
                     <label class='w-100 d-flex align-items-center sm'>
@@ -149,12 +153,14 @@
 
                     {{-- select --}}
                     <div class="form--select-wrapper" wire:ignore>
-                        <select class='init--select form--select' data-instance='instance.allergies'>
+                        <select class='init--select form--select level--select level--two-second' data-id='1'
+                            data-instance='instance.cityDeliveryTimeId' required>
                         </select>
                     </div>
                 </div>
             </div>
             {{-- endCol --}}
+
 
 
 
@@ -179,7 +185,7 @@
                         <span>Apartment <span class='span--price'>/</span> Villa</span>
                     </label>
 
-                    <input type="text" class='form--input'>
+                    <input type="text" class='form--input' wire:model='instance.apartment' required>
                 </div>
             </div>
 
@@ -195,7 +201,7 @@
                         <span>Floor Number</span>
                     </label>
 
-                    <input type="text" class='form--input'>
+                    <input type="text" class='form--input' wire:model='instance.floor' required>
                 </div>
             </div>
 
@@ -209,6 +215,53 @@
 
             {{-- ------------------------------------ --}}
             {{-- ------------------------------------ --}}
+
+
+
+
+
+
+            {{-- weekdays --}}
+            <div class="col-12 col-md-12">
+                <div class="d-flex align-items-center weekdays--wrapper flex-wrap mb-4">
+
+
+
+                    {{-- loop - weekDays --}}
+                    @foreach ($weekDays ?? [] as $key => $weekDay)
+
+
+                    {{-- checkWeekDay --}}
+
+                    <input type="checkbox" id="plan-weekdays-checkbox-{{ $key }}" class='d-none plan--weekdays-checkbox'
+                        name='weekdays--checkbox' value='{{ $weekDay }}'
+                        wire:model='instance.deliveryDays.{{ $weekDay }}'>
+
+
+                    <label class='pointer plan--weekdays motion--slow mb-3' key='plan-weekdays-{{ $key }}'
+                        wire:loading.class='processing--button' wire:target='instance.deliveryDays'
+                        for='plan-weekdays-checkbox-{{ $key }}'>
+                        {{ $weekDay }}</label>
+
+
+
+                    @endforeach
+                    {{-- end loop --}}
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            {{-- ------------------------------------ --}}
+            {{-- ------------------------------------ --}}
+
 
 
 
@@ -218,9 +271,10 @@
 
             {{-- submitButton --}}
             <div class="col-12">
-                <div class="d-flex form--input-wrapper justify-content-center mb-4 mt-1">
+                <div class="d-flex form--input-wrapper justify-content-center mb-4 mt-1"
+                    wire:loading.class='processing--button-wrap' wire:target='confirm'>
 
-                    <livewire:website.components.items.button-blob title='Confirm' url="#" />
+                    <livewire:website.components.items.button-blob title='Confirm' type="submit" />
 
                 </div>
             </div>
@@ -232,11 +286,113 @@
 
 
 
-        </div>
+        </form>
         {{-- endContent --}}
 
 
 
     </div>
+    {{-- endWrapper --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+    {{-- select-handle --}}
+    <script>
+        $("#address--modal .level--select").on("change", function(event) {
+
+
+
+         // 1.1: getValue - instance
+         selectValue = $(this).select2('val');
+         instance = $(this).attr('data-instance');
+
+
+         @this.set(instance, selectValue);
+
+
+      }); //end function
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- levelSelectHandle --}}
+    <script>
+        $("#address--modal .level--select").on("change", function(event) {
+
+
+
+         // 1.1: getValue - instance
+         selectValue = $(this).select2('val');
+         levelType = $(this).attr('data-level');
+         levelId = $(this).attr('data-id');
+
+
+         @this.levelSelect(levelType, null, selectValue, levelId);
+
+
+      }); //end function
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
 </div>
 {{-- endModal --}}

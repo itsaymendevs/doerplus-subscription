@@ -381,7 +381,7 @@ trait HelperTrait
 
 
 
-        // 1: vendorItems
+        // 2: vendorItems
         if ($levelType == 'vendorItems') {
 
 
@@ -447,6 +447,75 @@ trait HelperTrait
 
 
         } // end if
+
+
+
+
+
+
+
+
+
+
+
+        // -----------------------------------------------------------------
+        // -----------------------------------------------------------------
+        // -----------------------------------------------------------------
+        // -----------------------------------------------------------------
+        // -----------------------------------------------------------------
+
+
+
+
+
+
+
+        // 32: city
+        if ($levelType == 'city') {
+
+
+            if ($value) {
+
+                $districts = CityDistrict::where('cityId', $value)?->get(['id', 'name as text'])?->toArray() ?? [];
+
+                $deliveryTimes = CityDeliveryTime::where('isActive', true)?->where('cityId', $value)
+                        ?->get(['id', 'title as text'])?->toArray() ?? [];
+
+            } // end if
+
+
+
+
+
+
+            // B: validateEmpty
+            count($districts ?? []) ? array_unshift($districts, ['id' => '', 'text' => '']) : null;
+            count($deliveryTimes ?? []) ? array_unshift($deliveryTimes, ['id' => '', 'text' => '']) : null;
+
+
+
+
+            // C: refreshSelect
+            if ($levelId) {
+
+                $this->dispatch('refreshSelect', id: ".level--two[data-id='{$levelId}']", data: $districts ?? ['id' => '', 'text' => '']);
+
+                $this->dispatch('refreshSelect', id: ".level--two-second[data-id='{$levelId}']", data: $deliveryTimes ?? ['id' => '', 'text' => '']);
+
+
+            } else {
+
+                $this->dispatch('refreshSelect', id: '.level--two', data: $districts ?? ['id' => '', 'text' => '']);
+                $this->dispatch('refreshSelect', id: '.level--two-second', data: $deliveryTimes ?? ['id' => '', 'text' => '']);
+
+            } // end if
+
+
+
+
+        } // end if
+
+
 
 
 

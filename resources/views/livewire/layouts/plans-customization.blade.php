@@ -234,6 +234,7 @@
         <script src="{{url('assets/plugins/subscription/js/hero-started.js')}}"></script>
         <script src="{{url('assets/plugins/subscription/js/common.js')}}"></script>
         <script src="{{url('assets/plugins/subscription/js/init-select.js')}}"></script>
+        <script src="{{url('assets/plugins/subscription/js/init-general.js')}}"></script>
         <script src="{{url('assets/plugins/subscription/js/bubbles--bg.js')}}"></script>
 
 

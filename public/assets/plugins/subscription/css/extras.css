@@ -310,3 +310,52 @@
     height: 100%;
     z-index: 0;
 }
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+/* address motion */
+
+.address--motion {
+    --border-angle: 0turn;
+    --main-bg: conic-gradient(
+        from var(--border-angle),
+        #191919,
+        #191919 5%,
+        #191919 60%,
+        #191919 95%
+    );
+    border: solid 2px transparent;
+    --gradient-border: conic-gradient(
+        from var(--border-angle),
+        transparent 70%,
+        #61c5b1,
+        rgb(85, 85, 85) 99%,
+        transparent
+    );
+    background: var(--main-bg) padding-box, var(--gradient-border) border-box,
+        var(--main-bg) border-box;
+    background-position: center center;
+    -webkit-animation: address--motion 2s linear infinite;
+    animation: address--motion 2s linear infinite;
+}
+@-webkit-keyframes address--motion {
+    to {
+        --border-angle: 1turn;
+    }
+}
+@keyframes address--motion {
+    to {
+        --border-angle: 1turn;
+    }
+}
+.address--motion:hover {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+}
+
+@property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+}

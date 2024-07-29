@@ -45,6 +45,11 @@ body {
     border: 1px solid #323232 !important;
 }
 
+.form--input.disabled {
+    cursor: not-allowed !important;
+    background-color: #181818 !important;
+}
+
 /* processing */
 .processing--card {
     opacity: 0.6 !important;
@@ -160,8 +165,13 @@ body {
 }
 
 .form--input:focus,
-.form--input:hover {
+.form--input:hover,
+.form--input.active {
     border: 1px solid var(--color-theme) !important;
+}
+
+.form--promo.active {
+    border: 1px solid var(--bs-warning) !important;
 }
 
 .form--datepicker {
