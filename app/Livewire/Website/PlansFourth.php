@@ -14,7 +14,12 @@ class PlansFourth extends Component
     {
 
         // 1: dependencies
-        $plans = Plan::all();
+        $plans = Plan::whereHas('ranges')
+            ->whereHas('bundles')
+            ->whereHas('defaultCalendarRelation')
+            ->where('isForWebsite', true)
+            ->get();
+
         $settings = SubscriptionSetting::first();
 
 

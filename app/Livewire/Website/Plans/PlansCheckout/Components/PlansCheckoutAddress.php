@@ -5,6 +5,8 @@ namespace App\Livewire\Website\Plans\PlansCheckout\Components;
 use App\Livewire\Forms\SubscriptionForm;
 use App\Models\City;
 use App\Models\CityHoliday;
+use App\Models\CustomerSubscriptionSetting;
+use App\Models\SubscriptionFormSetting;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 
@@ -16,7 +18,36 @@ class PlansCheckoutAddress extends Component
 
 
     // :: variables
+    public $minimumDeliveryDays;
     public SubscriptionForm $instance;
+
+
+
+
+
+    public function mount()
+    {
+
+        // 1: minimumDays
+        $this->minimumDeliveryDays = CustomerSubscriptionSetting::first()?->minimumDeliveryDays ?? 1;
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------
+
+
+
 
 
 
@@ -38,16 +69,12 @@ class PlansCheckoutAddress extends Component
 
 
 
-        $this->instance->deliveryDays = array_keys($deliveryDays ?? []);
-
-
-
 
 
 
 
         // 1.2: validate
-        if (count($this->instance->deliveryDays) == 0) {
+        if (count($deliveryDays) < $this->minimumDeliveryDays) {
 
 
             $this->makeAlert('info', 'Please select your delivery days');
@@ -56,6 +83,15 @@ class PlansCheckoutAddress extends Component
 
 
         } // end if
+
+
+
+
+
+
+
+        // 1.3: confirm
+        $this->instance->deliveryDays = array_keys($deliveryDays ?? []);
 
 
 
@@ -105,6 +141,7 @@ class PlansCheckoutAddress extends Component
 
         // 1: dependencies
         $cities = City::all();
+        $settings = SubscriptionFormSetting::first();
 
 
 
@@ -151,7 +188,7 @@ class PlansCheckoutAddress extends Component
 
 
 
-        return view('livewire.website.plans.plans-checkout.components.plans-checkout-address', compact('cities', 'weekDays'));
+        return view('livewire.website.plans.plans-checkout.components.plans-checkout-address', compact('cities', 'weekDays', 'settings'));
 
 
 

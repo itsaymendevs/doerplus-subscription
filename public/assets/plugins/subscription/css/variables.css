@@ -1,64 +1,78 @@
 :root {
-    /* fonts */
-    --font-body: "Poppins";
-    --font-heading: "Courgette";
+    --textFont: "Poppins";
+    --headingFont: "Courgette";
 
-    /* colors */
-    --color-theme: #c0c0c7;
-    --color-body: #111;
-    --color-swiper-bullets: var(--bs-orange);
-    --color-swiper-line: var(--bs-orange);
-    --color-cursor: rgba(255, 255, 255, 0.25);
-    --color-cursor-hover: rgba(255, 255, 255, 0.5);
-    --color-plan-title: #fff;
-    --color-plan-subtitle: #fff;
-    --color-plan-caption: #fff;
-    --color-plan-button: #fff;
-    --color-plan-button-hover: var(--bs-orange);
+    --textColor: #c0c0c7;
+    --preloaderLineColor: var(--bs-orange);
 
-    --color-plan-hr: var(--bs-orange);
+    --cursorColor: rgba(255, 255, 255, 0.25);
+    --cursorHoverColor: rgba(255, 255, 255, 0.5);
 
-    --color-preloader-line: var(--bs-orange);
-    --color-navbar-menu: #fff;
-    --color-navbar-menu-active: #fff;
-    --color-navbar-menu-links: #c0c0c7;
-    --color-navbar-menu-links-hover: var(--bs-orange);
-    --color-navbar-menu-social-links: #fff;
+    --planCardTitleColor: #fff;
+    --planCardSubtitleColor: #fff;
+    --planCardCaptionColor: #fff;
+    --planCardHrColor: var(--bs-orange);
+    --planCardButtonColor: #fff;
+    --planCardButtonHoverColor: var(--bs-orange);
+
+    --navbarMenuColor: #fff;
+    --navbarMenuActiveColor: #fff;
+    --navbarLinksColor: #c0c0c7;
+    --navbarLinksHoverColor: var(--bs-orange);
+    --navbarSocialLinksColor: #fff;
+
+    --sliderLineColor: var(--bs-orange);
+    --sliderBulletsColor: var(--bs-orange);
 
     /* forPlan */
-    --color-plan-side-title: white;
-    --color-plan-filter-links: #c0c0c7;
-    --color-plan-filter-links-hover-border: var(--bs-orange);
-    --color-plan-list-numbers: #fff;
-    --color-plan-meal-diet: var(--bs-warning);
-    --color-plan-testimonial-title: #fff;
-    --color-plan-meals-border: #222;
-    --color-plan-meals-hover-border: var(--bs-orange);
+    --planSideTitleColor: #fff;
+    --planFilterLinksColor: #c0c0c7;
+    --planFilterLinksHoverBorderColor: var(--bs-orange);
 
-    /* ----------------------------- */
-    /* ----------------------------- */
-    /* ----------------------------- */
-    /* ----------------------------- */
+    --planListNumbersColor: #fff;
+    --planMealDietColor: var(--bs-orange);
 
-    /* background */
-    --background-plan-card: #111;
-    --background-plan-button: #fff;
-    --background-navbar: #01010b;
+    --planMealsBorderColor: #222;
+    --planMealsHoverBorderColor: var(--bs-orange);
 
-    /* ----------------------------- */
-    /* ----------------------------- */
-    /* ----------------------------- */
-    /* ----------------------------- */
+    --planReviewsTitleColor: #fff;
 
-    /* radius */
-    --radius-plan: 0px;
-    --radius-btn: 6px;
+    --planActionButtonColor: #fff;
+    --planActionButtonHoverColor: #fff;
 
-    /* ----------------------------- */
-    /* ----------------------------- */
-    /* ----------------------------- */
-    /* ----------------------------- */
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
 
-    /* align */
-    --align-plan-content: center;
+    /* 2: backgrounds */
+    --bodyBackgroundColor: #111;
+    --navbarBackgroundColor: #01010b;
+
+    --planCardBackgroundColor: #111;
+    --planCardButtonBackgroundColor: #fff;
+
+    /* forPlan */
+    --planActionButtonBackgroundColor: var(--bs-orange);
+
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+
+    /* 3: radius */
+
+    --planCardRadius: 0px;
+    --planCardButtonRadius: 6px; /* notInDB */
+
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+
+    /* 4: alignment */
+    --planCardAlignment: center;
+
+    --planSliderArrows: #fff;
+    --planSideTitleDisplay: #fff;
 }

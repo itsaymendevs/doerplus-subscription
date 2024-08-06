@@ -1,6 +1,6 @@
 /* preloader */
 .preloader .spinner.spinner-line {
-    background: var(--color-preloader-line);
+    background: var(--preloaderLineColor);
 }
 
 /* general */
@@ -19,32 +19,32 @@
 .plans--swiper
     .swiper-pagination
     .swiper-pagination-bullet.swiper-pagination-bullet-active {
-    background: var(--color-swiper-bullets) !important;
+    background: var(--sliderBulletsColor) !important;
 }
 
 /* home */
 .plan--slide .plan--slide-title {
-    color: var(--color-plan-title) !important;
+    color: var(--planCardTitleColor) !important;
 }
 
 .plan--custom-title {
-    color: var(--color-plan-title) !important;
+    color: var(--planCardTitleColor) !important;
 }
 
 .plan--custom-subtitle {
-    color: var(--color-plan-subtitle) !important;
+    color: var(--planCardSubtitleColor) !important;
 }
 
 .plan--custom-caption {
-    color: var(--color-plan-caption) !important;
+    color: var(--planCardCaptionColor) !important;
 }
 
 .plan--slide .plan--slide-subtitle {
-    color: var(--color-plan-subtitle) !important;
+    color: var(--planCardSubtitleColor) !important;
 }
 
 .plan--slide .plan--slide-caption {
-    color: var(--color-plan-caption) !important;
+    color: var(--planCardCaptionColor) !important;
 }
 
 .plan--slide .plan--slide-title:before {
@@ -52,7 +52,7 @@
 }
 
 .plan--slide .plan--slide-hr hr {
-    border-color: var(--color-plan-hr);
+    border-color: var(--planCardHrColor);
     width: 50px;
     opacity: 1;
     border-radius: 2px;
@@ -62,27 +62,27 @@
 }
 
 .plan--slide .slide-titles .title::after {
-    background: var(--color-plan-hr) !important;
+    background: var(--planCardHrColor) !important;
 }
 
 .plan--slide .plan--slide-button {
-    color: var(--color-plan-button) !important;
+    color: var(--planCardButtonColor) !important;
 }
 
 .plan--slide .plan--slide-button::before,
 .plan--slide .plan--slide-button.btn-link::before,
 .plan--slide .plan--slide-button.btn-link::before,
 .plan--slide .plan--slide-button::before {
-    background: var(--background-plan-button) !important;
+    background: var(--planCardButtonBackgroundColor) !important;
 }
 
 .plan--slide .plan--slide-button:hover,
 .plan--slide .plan--slide-button:focus {
-    color: var(--color-plan-button-hover) !important;
+    color: var(--planCardButtonHoverColor) !important;
 }
 
 .plan--slide .slide-titles .title.hr--center::after {
-    background: var(--color-plan-hr) !important;
+    background: var(--planCardHrColor) !important;
     left: 0px !important;
     right: 0px !important;
     margin: auto;
@@ -90,20 +90,20 @@
 
 .plan--slide .slide,
 .plan--slide .slide:before {
-    border-radius: var(--radius-plan);
+    border-radius: var(--planCardRadius);
 }
 
 .plan--slide .desc {
-    text-align: var(--align-plan-content) !important;
+    text-align: var(--planCardAlignment) !important;
 }
 
 .section.m-works-carousel .works-slide .image .img:before,
 .section.m-works-carousel .works-slide .image .img:after {
-    background: var(--background-plan-card);
+    background: var(--planCardBackgroundColor);
 }
 .section.m-works-carousel .works-slide .image:before,
 .section.m-works-carousel .works-slide .image:after {
-    background: var(--background-plan-card);
+    background: var(--planCardBackgroundColor);
 }
 
 /* --------------------------------- */
@@ -112,29 +112,29 @@
 /* navbar */
 .menu-btn span:before,
 .menu-btn span:after {
-    background: var(--color-navbar-menu);
+    background: var(--navbarMenuColor);
 }
 
 .menu-btn.active span:before,
 .menu-btn.active span:after {
-    background: var(--color-navbar-menu-active);
+    background: var(--navbarMenuActiveColor);
 }
 
 .menu-full-overlay:before {
-    background: var(--background-navbar);
+    background: #111;
 }
 
 .menu-full ul li a {
-    color: var(--color-navbar-menu-links);
+    color: var(--navbarLinksColor);
 }
 
 .menu-full ul li a:hover .char,
 .menu-full ul li a:hover .word {
-    color: var(--color-navbar-menu-links-hover);
+    color: var(--navbarLinksHoverColor);
 }
 
 .menu-social-links a {
-    color: var(--color-navbar-menu-social-links);
+    color: var(--navbarSocialLinksColor);
 }
 
 /* --------------------------------- */
@@ -142,7 +142,7 @@
 
 /* swiper */
 body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
-    background: var(--color-swiper-line);
+    background: var(--sliderLineColor);
 }
 
 .swiper-pagination-progressbar {
@@ -156,7 +156,7 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 .plan--slide .view-btn a::before,
 .plan--slide .view-btn a::before,
 .plan--slide .view-btn a::before {
-    background: var(--color-plan-hr) !important;
+    background: var(--planCardHrColor) !important;
 }
 
 /* general */
@@ -175,34 +175,34 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 /* single plan */
 
 .plan--single-title {
-    color: var(--color-plan-side-title) !important;
+    color: var(--planSideTitleColor) !important;
 }
 
 .plan--filter-links a {
-    color: var(--color-plan-filter-links) !important;
+    color: var(--planFilterLinksColor) !important;
 }
 
 .plan--filter-links a::before {
-    background: var(--color-plan-filter-links-hover-border) !important;
+    background: var(--planFilterLinksHoverBorderColor) !important;
 }
 
 .plan--list .description-list-item .number {
-    color: var(--color-plan-list-numbers) !important;
+    color: var(--planListNumbersColor) !important;
 }
 
 .plan--meal-diet {
-    color: var(--color-plan-meal-diet) !important;
+    color: var(--planMealDietColor) !important;
 }
 
 /* slider */
 .plan--testimonials .title {
-    color: var(--color-plan-testimonial-title) !important;
+    color: var(--planReviewsTitleColor) !important;
 }
 
 .plan--testimonials
     .swiper-pagination
     .swiper-pagination-bullet.swiper-pagination-bullet-active {
-    background: var(--color-swiper-line) !important;
+    background: var(--sliderLineColor) !important;
 }
 
 /* spacing */
@@ -223,38 +223,43 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
     padding: 20px 15px;
 }
 .meals--item.v1 .image .img::after {
-    background: var(--color-plan-meals-border) !important;
-    height: 4px;
+    background: var(--planMealsBorderColor) !important;
+    height: 3px;
     border-radius: 12px;
 }
 
 .meals--item.v1 .image .img::before {
-    background: var(--color-plan-meals-border) !important;
+    background: var(--planMealsBorderColor) !important;
     height: 0px;
     border-radius: 12px;
 }
 
 .meals--item.v1 .image::before,
 .meals--item.v1 .image::after {
-    background: var(--color-plan-meals-border) !important;
+    background: var(--planMealsBorderColor) !important;
     width: 0px;
     border-radius: 12px;
 }
 
+.meals--item .image img {
+    height: 160px;
+    object-fit: contain;
+}
+
 /* hover */
 .meals--item.v1:hover .image .img::after {
-    background: var(--color-plan-meals-hover-border) !important;
-    height: 7px;
+    background: var(--planMealsHoverBorderColor) !important;
+    height: 4px;
 }
 
 .meals--item.v1:hover .image .img::before {
-    background: var(--color-plan-meals-hover-border) !important;
+    background: var(--planMealsHoverBorderColor) !important;
     height: 0px;
 }
 
 .meals--item.v1:hover .image::before,
 .meals--item.v1:hover .image::after {
-    background: var(--color-plan-meals-hover-border) !important;
+    background: var(--planMealsHoverBorderColor) !important;
     width: 0px;
 }
 
@@ -262,14 +267,33 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 /* ----------------------------- */
 
 .meals--item.v2 .image .img::after {
-    background: var(--color-plan-meals-border) !important;
+    background: var(--planMealsBorderColor) !important;
 }
 
 .meals--item.v2 .image .img::before {
-    background: var(--color-plan-meals-border) !important;
+    background: var(--planMealsBorderColor) !important;
 }
 
 .meals--item.v2 .image::before,
 .meals--item.v2 .image::after {
-    background: var(--color-plan-meals-border) !important;
+    background: var(--planMealsBorderColor) !important;
+}
+
+/* ----------------------------- */
+/* ----------------------------- */
+
+.plan--action-button {
+    height: 40px !important;
+    line-height: 37px !important;
+    border: 2px solid var(--planActionButtonBackgroundColor) !important;
+    color: var(--planActionButtonColor) !important;
+}
+
+.plan--action-button::before,
+.plan--action-button::before,
+.plan--action-button::before,
+.plan--action-button::before,
+.plan--action-button::before {
+    background: var(--planActionButtonBackgroundColor) !important;
+    background: var(--planActionButtonBackgroundColor) !important;
 }

@@ -1,5 +1,6 @@
 html {
     scroll-behavior: smooth;
+    scrollbar-width: thin;
 }
 
 body {
@@ -7,9 +8,9 @@ body {
 }
 
 ::-webkit-scrollbar {
-    height: 3px;
+    height: 3px !important;
     background: inherit;
-    width: 6px;
+    width: 6px !important;
 }
 
 ::-webkit-scrollbar-thumb {

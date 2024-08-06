@@ -151,7 +151,7 @@
 
                                 {{-- viewButton --}}
                                 <div class="more-bts @if ($settings->planCardAlignment == 'center') text-center @endif">
-                                    <a href="{{ route('website.singlePlan', [$plan->nameURL]) }}" data-splitting
+                                    <a href="{{ route('website.plans.details', [$plan->nameURL]) }}" data-splitting
                                         class="btn more-btn scrolla-element-anim-1 plan--slide-button fw-500">View
                                         Plan</a>
                                 </div>

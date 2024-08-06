@@ -111,7 +111,7 @@
 
                             {{-- title --}}
                             <div class="title">
-                                <a href="{{ route('website.singlePlan', [$plan->nameURL]) }}">
+                                <a href="{{ route('website.plans.details', [$plan->nameURL]) }}">
                                     <span class="title-inner splitting-text-anim-2 plan--slide-title" data-splitting>{{
                                         $plan->name }}</span>
                                 </a>
@@ -123,7 +123,7 @@
 
                     {{-- viewButton --}}
                     <div class="view-btn @if ($settings->planCardAlignment == 'center') left-0 right-0 mx-auto @endif">
-                        <a href="{{ route('website.singlePlan', [$plan->nameURL]) }}" data-splitting
+                        <a href="{{ route('website.plans.details', [$plan->nameURL]) }}" data-splitting
                             class="fw-500 splitting-text-anim-1 plan--slide-button fw-semibold">View
                             Plan</a>
                     </div>

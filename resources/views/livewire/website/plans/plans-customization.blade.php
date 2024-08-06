@@ -7,37 +7,62 @@
 
 
 
+    {{-- head --}}
+    @section('head')
+
+
+
+    {{-- title - description - keywords meta --}}
+    <title>{{ $plan->name }} - Customization</title>
+
+    <meta name="description" content="{{ $plan->name }} - {{ $plan->desc }}">
+
+    <meta name="keywords"
+        content="Healthy Meal Plans Provider in Dubai, Best Healthy Meal Plans Provider in Dubai, Healthy Meal Plans Provider">
+
+
+    @endsection
+    {{-- endHead --}}
+
+
+
+
+
+
+
+
+
+    {{-- ----------------------------------------------------------------- --}}
+    {{-- ----------------------------------------------------------------- --}}
+    {{-- ----------------------------------------------------------------- --}}
+    {{-- ----------------------------------------------------------------- --}}
+
+
+
+
+
+
+    {{-- colors --}}
+    <livewire:website.components.colors.colors-plans-customization />
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------------- --}}
+    {{-- -------------------------------------------------------- --}}
+
+
+
+
+
+
+
+
     {{-- blobBG --}}
     <livewire:website.components.items.background-blob />
-
-
-
-
-
-
-
-    {{-- ----------------------------------------------------------------- --}}
-    {{-- ----------------------------------------------------------------- --}}
-    {{-- ----------------------------------------------------------------- --}}
-    {{-- ----------------------------------------------------------------- --}}
-
-
-
-
-
-
-
-
-
-    {{-- progress --}}
-    @section('progress')
-
-    {{--
-    <livewire:website.plans.plans-customization.components.plans-customization-progress key='progress-bar-1'
-        value='{{ 45 }}' /> --}}
-    @endsection
-
-
 
 
 
@@ -73,7 +98,7 @@
 
 
                     {{-- topRow --}}
-                    <div class="row justify-content-center mb-5 u--slideUp" wire:ignore>
+                    <div class="row justify-content-center mb-5 u--slideUp d-none" wire:ignore>
                         <div class="col-12 col-lg-5 text-center">
 
 
@@ -218,7 +243,7 @@
 
                             {{-- name --}}
                             <div class="m-titles mb-4">
-                                <div class="m-title plan--single-title  text-center">{{ $plan->name }}
+                                <div class="m-title plan--single-title plan--name  text-center">{{ $plan->name }}
                                 </div>
                             </div>
 
@@ -243,6 +268,9 @@
 
 
                             {{-- macros --}}
+
+                            @if ($settings?->showPlanMacros)
+
                             <div class="row mt-4 justify-content-center">
 
 
@@ -286,6 +314,8 @@
 
 
                             </div>
+
+                            @endif
                             {{-- endRow --}}
 
 
@@ -390,88 +420,20 @@
 
 
 
+
+
                                     {{-- 1: version --}}
-                                    @if (false)
-
-
-                                    <div class="col-6 col-sm-6 col-lg-4 mb-4 scrolla-element-anim-1 scroll-animate d-none"
-                                        key='single-bundle-{{ $bundle->id }}' data-animate="active" wire:ignore.self>
-
-                                        <label href='javascript:void(0);' class="bundle--card zoom--wrapper pointer"
-                                            wire:click="pickBundle('{{ $bundle->id }}')">
-
-
-
-
-                                            {{-- radioButton --}}
-                                            <input type="radio" id="bundle--checkbox-{{ $bundle->id }}"
-                                                class='bundle--indicator d-none' wire:model='instance.planBundleId'
-                                                name='bundle--checkbox' value='{{ $bundle->id }}'
-                                                wire:change='changePlanBundle'>
-
-
-
-
-
-
-
-                                            {{-- select --}}
-                                            <span class='bundle--select motion--slow animation--floating'>Pick</span>
-
-
-
-
-
-                                            {{-- imageFile --}}
-                                            <div class="motion--slow overflow-hidden">
-                                                <img src='{{ url("{$storagePath}/menu/plans/bundles/{$bundle->imageFile}") }}'
-                                                    class='of-contain zoom--target'>
-                                            </div>
-
-
-
-
-                                            {{-- title --}}
-                                            <div class="bundle--title-wrap scrolla-element-anim-1 scroll-animate motion--slow"
-                                                data-animate="active" wire:ignore.self>
-                                                <h5 class='bundle--title '>{{
-                                                    $bundle->name }}</h5>
-                                            </div>
-
-
-
-                                        </label>
-                                    </div>
-
-
-                                    @endif
-                                    {{-- end if --}}
-
-
-
-
-
-                                    {{-- -------------------------------- --}}
-                                    {{-- -------------------------------- --}}
-
-
-
-
-
-
-
-
-
-
-
-                                    {{-- 2: version --}}
                                     <div class="col-6 col-sm-6 col-lg-4 mb-4 scrolla-element-anim-1 scroll-animate"
                                         key='single-bundle-{{ $bundle->id }}' data-animate="active" wire:ignore.self>
 
 
                                         <label wire:loading.class='processing--card' wire:target='changePlanBundle'
-                                            class="bundle--card bundle--motion  sm zoom--wrapper motion--slow pointer @if ($instance?->planBundleId == $bundle->id) active @endif"
+                                            class="bundle--card sm zoom--wrapper motion--slow pointer
+                                            @if ($settings?->showBundlePicture) with--picture @endif
+                                            @if ($settings?->showBundleMotion) bundle--motion @endif
+                                            @if ($instance?->planBundleId == $bundle->id) active @endif"
                                             for='bundle--checkbox-{{ $bundle->id }}'>
+
 
 
 
@@ -592,6 +554,12 @@
                                             @foreach ($planBundleRanges ?? [] as $bundleRange)
 
 
+                                            {{-- checkRange --}}
+                                            @if ($bundleRange->isForWebsite == true && $bundleRange->range->isForWebsite
+                                            == true)
+
+
+
                                             <button type="button" wire:loading.class='processing--button'
                                                 wire:target='changePlanBundleRange'
                                                 key='single-bundle-range-{{ $bundleRange->id }}'
@@ -601,6 +569,13 @@
                                                 aria-expanded="false" aria-controls="collapse--regular-plan">
                                                 {{ $bundleRange?->range?->name }}
                                             </button>
+
+
+
+
+                                            @endif
+                                            {{-- end if --}}
+
 
 
 
@@ -774,7 +749,7 @@
                                         {{-- input --}}
                                         <div class="d-flex form--input-wrapper">
                                             <input id='date--picker' type="text" name="text"
-                                                class='form--input form--datepicker'>
+                                                class='form--input form--datepicker' autocomplete="off">
                                         </div>
 
 
@@ -833,7 +808,7 @@
 
 
                     <div class="row mt-5 justify-content-center justify-content-md-start section--colorful animation--floating"
-                        style="background-color: #191919;">
+                        style="background-color: var(--preferenceBackgroundColor);">
 
 
                         {{-- mainTitle --}}
@@ -901,13 +876,14 @@
 
 
                                 {{-- row --}}
-                                <div class="row ">
+                                <div class="row align-items-end">
 
 
 
 
 
-                                    <div class="col-12 col-md-7">
+                                    <div class="col-12
+                                        @if ($settings?->showPreferenceBag) col-md-6 @else col-md-7 @endif">
 
 
 
@@ -946,7 +922,7 @@
 
 
                                         {{-- 2: allergy --}}
-                                        <div class="d-flex form--input-wrapper flex-column mb-4">
+                                        <div class="d-flex form--input-wrapper flex-column">
 
                                             <label class='w-100 d-flex align-items-center md' data-splitting="chars"
                                                 data-animate="active">
@@ -990,16 +966,23 @@
 
 
                                     {{-- bagCol --}}
-                                    <div class="col-12 col-md-5">
+
+
+
+                                    {{-- 1: withPicture --}}
+                                    @if ($settings?->showPreferenceBag)
+
+                                    <div class="col-12 col-md-6">
 
 
                                         {{-- imageFile --}}
-                                        <div class="d-flex position-relative bag--wrapper">
+                                        <div class="d-flex position-relative bag--wrapper mt-5 mt-md-0 mb-4 mb-md-0">
+
 
 
 
                                             {{-- info --}}
-                                            <a href="javascript:void(0);" class='bag--info animation--icon-color'
+                                            <a href="javascript:void(0);" class='bag--info '
                                                 data-izimodal-open="#bag--modal"
                                                 data-izimodal-transitionin="fadeInDown">
                                                 <i class="bi bi-info-circle"></i>
@@ -1030,6 +1013,55 @@
 
 
                                     </div>
+
+
+
+
+
+
+
+
+
+                                    {{-- 2: withoutPicture --}}
+                                    @else
+
+
+
+                                    <div class="col-12 col-md-5">
+
+
+                                        {{-- wrapper --}}
+                                        <div class="d-flex position-relative bag--wrapper without--picture">
+
+
+                                            {{-- switch --}}
+                                            <div class="form-check form-switch bag--switch vertical">
+
+
+                                                {{-- info --}}
+                                                <a href="javascript:void(0);" class='bag--info'
+                                                    data-izimodal-open="#bag--modal"
+                                                    data-izimodal-transitionin="fadeInDown">
+                                                    <i class="bi bi-info-circle"></i>
+                                                </a>
+
+
+
+                                                <input class="form-check-input" type="checkbox" role="switch"
+                                                    id="coolbag--checkbox" wire:model.live='instance.bag'>
+                                                <label class="form-check-label" for="coolbag--checkbox">{{
+                                                    $bag->name }}</label>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+                                    @endif
                                     {{-- endCol --}}
 
 
@@ -1049,7 +1081,8 @@
                                     @if ($instance->planDays && $instance->startDate && $instance->planBundleId)
 
                                     <div class="col-12 col-md-7">
-                                        <div class="d-flex form--input-wrapper justify-content-center mt-3">
+                                        <div class="d-flex form--input-wrapper justify-content-center mt-3
+                                        @if (!$settings?->showButtonMotion) no--button-motion @endif">
 
                                             <livewire:website.components.items.button-blob title='Proceed'
                                                 modal='#information--modal' />
@@ -1136,6 +1169,10 @@
 
 
                         {{-- 1: otherPlans --}}
+
+
+                        @if ($settings?->showPickPreference)
+
 
 
                         {{-- 1st --}}
@@ -1274,7 +1311,8 @@
 
 
 
-
+                        @endif
+                        {{-- end if --}}
 
 
 
@@ -1381,7 +1419,10 @@
 
 
                                             {{-- imageFile --}}
-                                            <div class="col-6">
+                                            @if ($settings?->showSummaryBundlePicture)
+
+                                            <div
+                                                class="col-12 mb-3 mb-md-0 mb-lg-3 mb-xl-0 col-md-6 col-lg-12 col-xl-6">
                                                 <div class="d-flex overflow-hidden">
                                                     <img src='{{ url("{$storagePath}/menu/plans/bundles/{$pickedPlanBundle?->imageFile}") }}'
                                                         class='of-contain bg-white zoom--target motion--slow rounded-1 w-100'
@@ -1389,19 +1430,26 @@
                                                 </div>
                                             </div>
 
+                                            @endif
+                                            {{-- end if --}}
+
+
+
+
 
 
 
 
                                             {{-- information --}}
-                                            <div class="col-6">
+                                            <div
+                                                class="col-12 @if ($settings?->showSummaryBundlePicture) col-md-6 col-lg-12 col-xl-6 @endif">
 
 
 
                                                 {{-- name --}}
                                                 <div class="m-titles mb-1 text-center">
                                                     <div class="m-title plan--single-title fw-semibold fs-6 mb-0"
-                                                        style="color: var(--bs-warning) !important;">
+                                                        style="color: var(--summaryBundleColor) !important;">
                                                         {{ $pickedPlanBundle->name }}
                                                     </div>
                                                 </div>

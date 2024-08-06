@@ -1,53 +1,35 @@
-:root {
-    --color-theme: #87b2a9;
-    --color-theme-active: #7eaaa1;
-    --color-icons: var(--color-theme);
-    /* button */
-    --btn-height: 42px;
-    --btn-height-sm: 38px;
-    --btn-radius: 6px;
-
-    /* input */
-    --input-border: 1px solid #323232;
-    --input-border-color: #323232;
-    --input-border-color-hover: #87b2a9;
-    --input-bg: #111111;
-    --input-radius: 6px;
-    --input-padding: 0px 20px;
-    --select-padding: 20px;
-    --select-padding-extra: 35px;
-    --select-option-padding: 10px 20px;
-    --input-font: 14px;
-    --input-sm-font: 13px;
-    --input-height: 48px;
-    --input-min-height: 48px;
-    --input-color: #fff;
-
-    /* carbs */
-    --color-carbs: #ff7065;
-    --color-proteins: #e8bdfff2;
-    --color-fats: #ffcacd;
-}
-
 body {
     min-height: 100vh;
 }
 .color--theme {
-    color: var(--color-theme);
+    color: var(--textColor);
 }
+
+.color--carbs {
+    color: var(--planCarbsBoxColor);
+}
+
+.color--proteins {
+    color: var(--planProteinsBoxColor);
+}
+
+.color--fats {
+    color: var(--planFatsBoxColor);
+}
+
 .form--input {
     border-radius: 6px !important;
     height: 48px !important;
     padding: 0px 20px !important;
     font-size: 15px !important;
     width: 100% !important;
-    color: white !important;
-    border: 1px solid #323232 !important;
+    color: var(--textColor) !important;
+    border: 1px solid var(--inputBorderColor) !important;
 }
 
 .form--input.disabled {
     cursor: not-allowed !important;
-    background-color: #181818 !important;
+    background-color: var(--inputBackgroundColor) !important;
 }
 
 /* processing */
@@ -79,6 +61,15 @@ body {
 .motion--slow:focus,
 .motion--slow:focus * {
     transition: 0.4s all ease-in-out;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--textColor);
 }
 
 /* font sizes */
@@ -120,7 +111,7 @@ body {
 /* price */
 .span--price {
     font-size: 10px;
-    color: rgb(214, 214, 214);
+    color: whitesmoke;
 }
 
 /* input */
@@ -130,20 +121,20 @@ body {
     font-weight: 500;
     padding: 0px;
     margin-bottom: 5px;
-    color: white;
+    color: var(--textColor);
     position: relative;
     padding-left: 2px;
 }
 
 .form--input-wrapper label.sm {
     font-size: 12px;
-    color: white;
+    color: var(--textColor);
     opacity: 0.8;
 }
 
 .form--input-wrapper label.md {
     font-size: 13px;
-    color: white;
+    color: var(--textColor);
     opacity: 0.8;
 }
 
@@ -160,18 +151,19 @@ body {
     padding: 0px 20px !important;
     font-size: 14px !important;
     width: 100% !important;
-    color: white !important;
-    border: 1px solid #323232 !important;
+    color: var(--textColor) !important;
+    border: var(--inputBorder) !important;
+    /* background-color: var(--inputBackgroundColor) !important; */
 }
 
 .form--input:focus,
 .form--input:hover,
 .form--input.active {
-    border: 1px solid var(--color-theme) !important;
+    border: 1px solid var(--inputBorderHoverColor) !important;
 }
 
 .form--promo.active {
-    border: 1px solid var(--bs-warning) !important;
+    border: 1px solid var(--planFatsBoxColor) !important;
 }
 
 .form--datepicker {
@@ -185,29 +177,30 @@ body {
 
 /* btn */
 .btn--regular {
-    height: var(--btn-height);
+    height: var(--buttonHeight);
     display: inline-flex;
     justify-content: center;
     padding: 0px;
+    color: var(--textColor);
     width: 150px;
     line-height: unset;
     align-items: center;
-    border-radius: var(--btn-radius);
-    border: 1px solid var(--color-theme);
+    border-radius: var(--buttonRadius);
+    border: 1px solid var(--brandColor);
 }
 
 .btn--regular.sm {
-    height: var(--btn-height-sm);
+    height: var(--buttonHeightSM);
 }
 
 .btn--regular:before {
-    background: var(--color-theme);
+    background: var(--brandColor);
 }
 
 .btn--regular.border--bottom {
     border: none;
     border-radius: 0px;
-    border-bottom: 1px solid var(--color-theme);
+    border-bottom: 1px solid var(--brandColor);
 }
 
 .btn--with-hr {
@@ -222,13 +215,13 @@ body {
     font-size: 14px;
     font-weight: 500;
     transition: 0.5s all ease-out;
-    color: white;
+    color: var(--textColor);
 }
 
 .btn--with-hr hr {
     width: 80px;
     opacity: 1;
-    border-color: var(--bs-warning);
+    border-color: var(--planHrColor);
     transition: 0.5s all ease-out;
 }
 
@@ -242,12 +235,12 @@ body {
 .btn--with-hr:hover span,
 .btn--with-hr:focus span {
     transition: 0.5s all ease-out;
-    color: whitesmoke;
+    color: var(--textColor);
 }
 
 /* collapseButton */
 .btn--collapse {
-    background: var(--color-theme-active) !important;
+    background: var(--brandActiveColor) !important;
 }
 
 .btn--collapse.collapsed {
@@ -266,14 +259,20 @@ body {
 /* title with hr */
 .title--with-hr hr {
     width: 40px;
-    border-color: white;
+    border-color: var(--headingHrColor);
     animation: titleHrAnimation 1s ease-out 0s 1 normal;
 }
 
 /* modal */
 .izi--modal {
-    background-color: var(--color-body) !important;
-    padding: 35px 20px;
+    background-color: var(--modalBackgroundColor) !important;
+    padding: 35px 10px;
+}
+
+@media (max-width: 767px) {
+    .iziModal {
+        height: 100% !important;
+    }
 }
 
 .iziModal {
@@ -295,6 +294,11 @@ body {
     padding: 0px;
     border: none;
     border-bottom: 2px solid var(--bs-danger);
+}
+
+/* preloader */
+.preloader::before {
+    background: var(--bodyBackgroundColor) !important;
 }
 
 /* zoom */
@@ -409,9 +413,9 @@ body {
 
 @keyframes iconColorAnimation {
     0% {
-        color: var(--color-icons);
+        color: var(--iconsColor);
     }
     100% {
-        color: white;
+        color: var(--textColor);
     }
 }

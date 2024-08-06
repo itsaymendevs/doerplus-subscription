@@ -5,7 +5,7 @@
 
 
         {{-- header --}}
-        <div class="row mb-5">
+        <div class="row  align-items-center mb-4 pb-2">
             <div class="col-10">
                 <h5 class='my-0 fw-bold fs-4'>Bag Terms</h5>
             </div>
@@ -41,7 +41,7 @@
 
 
             <div class="col-12">
-                <p class='mt-0 text-white d-flex align-items-end bag--terms'>
+                <p class='mt-0 d-flex align-items-end bag--terms'>
                     <span class='fw-bold'>
                         <i class="bi bi-dash-lg"></i>
                     </span>
@@ -49,7 +49,7 @@
                 </p>
 
 
-                <p class='mt-0 text-white d-flex align-items-end bag--terms'>
+                <p class='mt-0 d-flex align-items-end bag--terms'>
                     <span class='fw-bold'>
                         <i class="bi bi-dash-lg"></i>
                     </span>
@@ -58,7 +58,7 @@
 
 
 
-                <p class='mt-0 text-white d-flex align-items-end bag--terms'>
+                <p class='mt-0 d-flex align-items-end bag--terms'>
                     <span class='fw-bold'>
                         <i class="bi bi-dash-lg"></i>
                     </span>
@@ -67,7 +67,7 @@
 
 
 
-                <p class='mt-0 text-white d-flex align-items-end bag--terms'>
+                <p class='mt-0 d-flex align-items-end bag--terms'>
                     <span class='fw-bold'>
                         <i class="bi bi-dash-lg"></i>
                     </span>

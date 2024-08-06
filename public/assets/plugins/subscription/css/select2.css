@@ -82,8 +82,8 @@
 
 .select2-dropdown {
     background-color: transparent !important;
-    border: 1px solid var(--input-border-color);
-    border-radius: var(--input-radius);
+    border: 1px solid var(--inputBorderColor);
+    border-radius: var(--inputRadius);
     box-sizing: border-box;
     display: block;
     position: absolute;
@@ -104,7 +104,7 @@
 
 .select2-results__option {
     padding: 6px;
-    color: var(--input-color);
+    color: var(--inputColor);
     user-select: none;
     -webkit-user-select: none;
 }
@@ -183,7 +183,7 @@
 .select2-container--default .select2-selection--single {
     background-color: #fff;
     border: 1px solid #aaa;
-    border-radius: var(--input-radius);
+    border-radius: var(--inputRadius);
 }
 
 .select2-container--default
@@ -273,7 +273,7 @@
 .select2-container--default .select2-selection--multiple {
     background-color: white;
     border: 1px solid #aaa;
-    border-radius: var(--input-radius);
+    border-radius: var(--inputRadius);
     cursor: text;
     padding-bottom: 5px;
     padding-right: 5px;
@@ -303,7 +303,7 @@
     .select2-selection__choice {
     background-color: #e4e4e4;
     border: 1px solid #aaa;
-    border-radius: var(--input-radius);
+    border-radius: var(--inputRadius);
     box-sizing: border-box;
     display: inline-block;
     margin-right: 5px;
@@ -438,7 +438,7 @@
 .select2-container--default .select2-results > .select2-results__options {
     max-height: 140px;
     overflow-y: auto;
-    border: 1px solid var(--input-border-color);
+    border: 1px solid var(--inputBorderColor);
 }
 
 .select2-container--default .select2-results__option .select2-results__option {
@@ -517,7 +517,7 @@
 .select2-container--default
     .select2-results__option--highlighted.select2-results__option--selectable {
     background-color: #5897fb;
-    color: white;
+    color: var(--textColor);
 }
 
 .select2-container--default .select2-results__group {
@@ -529,7 +529,7 @@
 .select2-container--classic .select2-selection--single {
     background-color: #f7f7f7;
     border: 1px solid #aaa;
-    border-radius: var(--input-radius);
+    border-radius: var(--inputRadius);
     outline: 0;
     background-image: -webkit-linear-gradient(top, white 50%, #eeeeee 100%);
     background-image: -o-linear-gradient(top, white 50%, #eeeeee 100%);
@@ -665,7 +665,7 @@
 .select2-container--classic .select2-selection--multiple {
     background-color: white;
     border: 1px solid #aaa;
-    border-radius: var(--input-radius);
+    border-radius: var(--inputRadius);
     cursor: text;
     outline: 0;
     padding-bottom: 5px;
@@ -687,7 +687,7 @@
     .select2-selection__choice {
     background-color: #e4e4e4;
     border: 1px solid #aaa;
-    border-radius: var(--input-radius);
+    border-radius: var(--inputRadius);
     display: inline-block;
     margin-left: 5px;
     margin-top: 5px;

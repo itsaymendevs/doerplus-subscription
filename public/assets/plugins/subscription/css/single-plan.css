@@ -43,7 +43,7 @@
 
 @media (max-width: 575px) {
     .collapse--title {
-        font-size: 17px !important;
+        font-size: 19px !important;
     }
 }
 
@@ -53,7 +53,7 @@
 
 /* hr */
 .h--hr hr {
-    border: 1px solid var(--color-theme);
+    border: 1px solid var(--brandColor);
     border-radius: 1px;
     animation: hrAnimation 1.5s ease-out 0s 1 normal;
     width: 65%;
@@ -63,13 +63,35 @@
 .plans--other-col img {
     height: 170px !important;
     object-fit: contain;
-    background-color: #18181b;
+    background-color: var(--pickPreferenceBackgroundColor);
+}
+
+.plans--other-col .image::before,
+.plans--other-col .image::after {
+    background: var(--pickPreferenceBackgroundColor);
+}
+
+.plans--other-col .image .img::before,
+.plans--other-col .image .img::after {
+    background: var(--pickPreferenceBackgroundColor);
+}
+
+.plans--other-col a::after {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        var(--pickPreferenceHoverBackgroundColor) 100%
+    ) !important;
+}
+
+.plans--other-col .desc .category {
+    color: var(--pickPreferenceTextColor) !important;
 }
 
 .plans--other-col:nth-child(even) img {
     height: 230px !important;
     object-fit: contain;
-    background-color: #18181b;
+    background-color: var(--pickPreferenceBackgroundColor);
 }
 
 @media (max-width: 575px) {
@@ -86,7 +108,7 @@
 /* customization */
 .customization--plan-image {
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 8px;
     height: 100%;
 }
@@ -109,7 +131,7 @@
 /* -------------------------------------------- */
 
 .bundle--card {
-    background-color: #191919;
+    background-color: var(--bundleBorderColor);
     padding: 8px 8px;
     border-radius: 8px;
     position: relative;
@@ -123,7 +145,7 @@
     font-weight: bold;
     left: 20px;
     border-radius: 50%;
-    color: black;
+    color: var(--textColor);
     font-size: 11px;
     display: inline-flex;
     align-items: center;
@@ -131,8 +153,8 @@
     height: 40px;
     width: 40px;
     z-index: 1;
-    background-color: whitesmoke;
-    box-shadow: 4px 4px 1px var(--color-theme);
+    background-color: var(--bundlePickColor);
+    box-shadow: 4px 4px 1px var(--bundlePickShadowColor);
     letter-spacing: 0.3px;
 }
 
@@ -147,7 +169,8 @@
 }
 
 .bundle--card.active .bundle--select {
-    box-shadow: 0px 4px 1px var(--bs-warning);
+    background-color: var(--bundlePickActiveColor);
+    box-shadow: 0px 4px 1px var(--bundlePickShadowActiveColor);
 }
 
 .bundle--card img {
@@ -155,7 +178,7 @@
     padding: 0px 12px;
     width: 100%;
     object-fit: contain;
-    background-color: white;
+    background-color: #fff;
 }
 
 @media (max-width: 575px) {
@@ -172,20 +195,20 @@
     position: relative;
     border-radius: 2px;
     padding: 0px 10px;
-    background-color: #323232;
+    background-color: var(--bundleBoxColor);
 }
 
 .bundle--card:hover .bundle--title-wrap,
 .bundle--card:focus .bundle--title-wrap {
-    background-color: #6b6b6b;
+    background-color: var(--bundleBoxColor);
 }
 
 .bundle--title {
     font-size: 14px;
-    color: white;
+    color: var(--textColor);
     margin: 0px;
     text-align: center;
-    font-weight: 600 !important;
+    font-weight: 500 !important;
 }
 
 @media (max-width: 575px) {
@@ -195,7 +218,7 @@
 }
 
 .bundle--title * {
-    color: white;
+    color: var(--textColor);
 }
 
 /* --------------------------------------- */
@@ -208,19 +231,19 @@
     transition: height 0.5s ease-out;
 }
 
-.bundle--card.sm:hover .bundle--image {
+.bundle--card.sm.with--picture:hover .bundle--image {
     height: 160px;
     transition: height 0.5s ease-out;
 }
 
 @media (max-width: 575px) {
-    .bundle--card.sm:hover .bundle--image {
+    .bundle--card.sm.with--picture:hover .bundle--image {
         height: 130px;
     }
 }
 
 .bundle--card.active .bundle--title-wrap {
-    background-color: var(--color-theme);
+    background-color: var(--brandActiveColor);
 }
 
 /* ---------------------------------------- */
@@ -229,9 +252,15 @@
 /* swiper */
 .plans--overview-swiper .swiper-wrapper,
 .plans--overview-swiper .swiper-slide {
-    height: 360px;
+    height: 430px;
 }
 
+@media (max-width: 765px) {
+    .plans--overview-swiper .swiper-wrapper,
+    .plans--overview-swiper .swiper-slide {
+        height: 280px;
+    }
+}
 .plans--overview-swiper .swiper-pagination-bullet {
     width: 4px;
     border-radius: 10px;
@@ -239,7 +268,7 @@
 }
 
 .plans--overview-swiper .swiper-pagination-bullet-active {
-    background: var(--color-theme);
+    background: var(--sliderBulletsColor);
 }
 
 /* ------------------------------------------- */
@@ -278,7 +307,6 @@
 .ranges--wrapper {
     flex-wrap: wrap;
     display: flex;
-    /* border: 2px solid #fff; */
     position: relative;
     padding: 20px 10px;
 }
@@ -287,7 +315,17 @@
     width: 130px;
     max-width: 130px;
     border-radius: 0px;
+    border: 1px solid var(--planRangeBorderColor) !important;
     margin-bottom: 8px;
+}
+
+.ranges--wrapper .ranges--btn.btn--collapse {
+    border: 1px solid var(--planRangeBorderActiveColor) !important;
+    background: var(--planRangeBorderActiveColor) !important;
+}
+
+.ranges--wrapper .ranges--btn:before {
+    background: var(--planRangeBorderColor) !important;
 }
 
 @media (max-width: 767px) {
@@ -310,7 +348,7 @@
 /* days */
 
 .plan--days {
-    border: 1px dashed #323232;
+    border: 1px dashed var(--planDaysBorderColor);
     border-radius: 6px;
     display: inline-flex;
     height: 50px;
@@ -318,7 +356,7 @@
     width: 50px;
     font-weight: 500;
     justify-content: center;
-    color: white;
+    color: var(--textColor);
     margin-right: 12px;
     align-items: center;
     padding: 0px;
@@ -327,8 +365,8 @@
 .plan--days:hover,
 .plan--days:focus,
 .plan--days.active {
-    border: 1px solid var(--color-theme);
-    background-color: var(--color-theme);
+    border: 1px solid var(--planDaysBorderActiveColor);
+    background-color: var(--planDaysBorderActiveColor);
 }
 
 /* ------------------------------------------- */
@@ -337,13 +375,13 @@
 /* invoice */
 
 .invoice--tr {
-    border-bottom: 1px dashed #353535;
+    border-bottom: 1px dashed var(--summaryBorderColor);
     padding-bottom: 10px;
     margin-bottom: 18px;
 }
 
 .invoice--tr.different {
-    border-bottom: 2px solid var(--color-theme);
+    border-bottom: 2px solid var(--summarySpecialBorderColor);
     padding-bottom: 12px;
     margin-bottom: 21px;
 }
@@ -362,7 +400,7 @@
     align-items: center;
     justify-content: center;
     bottom: 0px;
-    background-color: #111111;
+    background-color: var(--preferenceBagBackgroundColor);
     padding: 0px;
     border-radius: 6px;
 }
@@ -373,15 +411,15 @@
 }
 
 .bag--switch input:checked {
-    background-color: var(--bs-warning) !important;
-    border-color: var(--bs-warning) !important;
+    background-color: var(--preferenceInfoColor) !important;
+    border-color: var(--preferenceInfoColor) !important;
 }
 
 .bag--switch label {
     padding: 0px;
     font-size: 16px;
     padding: 0px;
-    color: white;
+    color: var(--textColor);
     font-weight: 600;
 }
 
@@ -402,10 +440,98 @@
     bottom: 0px;
     font-size: 24px;
     left: 0px;
-    color: #ffc107;
+    color: var(--preferenceInfoColor);
     right: 0px;
     margin: auto;
     text-align: center;
+}
+
+/* withoutPicture */
+.bag--wrapper.without--picture {
+    height: 200px;
+}
+
+.bag--wrapper.without--picture .bag--info {
+    transform: rotate(180deg);
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.bag--wrapper.without--picture .bag--switch {
+    height: 100%;
+}
+
+@media (max-width: 767px) {
+    .bag--wrapper.without--picture {
+        height: auto !important;
+    }
+
+    .bag--wrapper.without--picture .bag--switch input {
+        margin: 0px !important;
+        box-shadow: none !important;
+    }
+
+    .bag--wrapper.without--picture .bag--switch input:checked {
+        background-color: var(--preferenceInfoColor) !important;
+        border-color: var(--preferenceInfoColor) !important;
+    }
+
+    .bag--wrapper.without--picture .bag--switch label {
+        padding: 0px;
+        font-size: 16px;
+        padding: 0px;
+        color: var(--textColor);
+        font-weight: 600;
+    }
+
+    .bag--wrapper.without--picture .bag--switch.vertical {
+        writing-mode: horizontal-tb;
+        transform: rotate(0deg);
+    }
+
+    .bag--wrapper.without--picture .bag--switch.vertical input {
+        transform: rotate(0deg);
+        margin-bottom: 0px !important;
+        width: 48px;
+        height: 15px;
+        margin-right: 12px !important;
+    }
+
+    .bag--wrapper.without--picture .bag--wrapper.without--picture {
+        height: 42px;
+        margin-top: 20px;
+    }
+
+    .bag--wrapper.without--picture .bag--info {
+        transform: unset;
+        position: absolute;
+        left: 0px;
+        margin: 0px;
+        width: 40px;
+        top: 0px;
+        bottom: 0px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bag--wrapper.without--picture .bag--switch {
+        height: 42px;
+        position: relative;
+        left: unset;
+        right: unset;
+        top: unset;
+        bottom: unset;
+        width: 305px;
+        margin: auto;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+}
+
+.bag--wrapper.without--picture img {
+    display: none;
 }
 
 /* bagTerms */
@@ -413,7 +539,7 @@
     margin-bottom: 10px;
 }
 .bag--terms span:first-of-type {
-    color: var(--color-theme);
+    color: var(--brandColor);
     width: 28px;
 }
 
@@ -478,7 +604,7 @@
 /* macros */
 
 .plan--macros {
-    background-color: #191919;
+    background-color: var(--planMacroBackgroundColor);
     justify-content: center;
     align-items: center;
     border-radius: 6px;
@@ -501,43 +627,52 @@
 
 .plan--macros .percentage {
     font-size: 20px;
-    color: #fff;
+    color: var(--textColor);
 }
 
 /* carbs */
 .plan--macros.for--carbs {
-    border-top: 2px solid var(--color-carbs);
-    border-bottom: 2px solid var(--color-theme);
-    background-image: linear-gradient(var(--color-carbs), var(--color-theme)),
-        linear-gradient(var(--color-carbs), var(--color-theme));
+    border-top: 2px solid var(--planCarbsBoxColor);
+    border-bottom: 2px solid var(--brandColor);
+    background-image: linear-gradient(
+            var(--planCarbsBoxColor),
+            var(--brandColor)
+        ),
+        linear-gradient(var(--planCarbsBoxColor), var(--brandColor));
 }
 
 .plan--macros.for--carbs .caption {
-    color: var(--color-carbs);
+    color: var(--planCarbsBoxColor);
 }
 
 /* proteins */
 .plan--macros.for--proteins {
-    border-top: 2px solid var(--color-proteins);
-    border-bottom: 2px solid var(--color-theme);
-    background-image: linear-gradient(var(--color-proteins), var(--color-theme)),
-        linear-gradient(var(--color-proteins), var(--color-theme));
+    border-top: 2px solid var(--planProteinsBoxColor);
+    border-bottom: 2px solid var(--brandColor);
+    background-image: linear-gradient(
+            var(--planProteinsBoxColor),
+            var(--brandColor)
+        ),
+        linear-gradient(var(--planProteinsBoxColor), var(--brandColor));
 }
 
 .plan--macros.for--proteins .caption {
-    color: var(--color-proteins);
+    color: var(--planProteinsBoxColor);
 }
 
 /* fats */
 .plan--macros.for--fats {
-    border-top: 2px solid var(--color-fats);
-    border-bottom: 2px solid var(--color-theme);
-    background-image: linear-gradient(var(--color-fats), var(--color-theme)),
-        linear-gradient(var(--color-fats), var(--color-theme));
+    border-top: 2px solid var(--planFatsBoxColor);
+    border-bottom: 2px solid var(--brandColor);
+    background-image: linear-gradient(
+            var(--planFatsBoxColor),
+            var(--brandColor)
+        ),
+        linear-gradient(var(--planFatsBoxColor), var(--brandColor));
 }
 
 .plan--macros.for--fats .caption {
-    color: var(--color-fats);
+    color: var(--planFatsBoxColor);
 }
 
 /* ------------------------------------------- */
@@ -559,7 +694,7 @@
 /* weekdays */
 
 .plan--weekdays {
-    border: 1px dashed #323232;
+    border: 1px dashed var(--planDaysBorderColor);
     border-radius: 6px;
     display: inline-flex;
     height: 42px;
@@ -567,7 +702,7 @@
     width: 110px;
     font-weight: 500;
     justify-content: center;
-    color: white;
+    color: var(--textColor);
     margin-right: 12px;
     align-items: center;
     padding: 0px;
@@ -593,17 +728,15 @@
     }
 }
 
-.plan--weekdays:hover,
-.plan--weekdays:focus,
 .plan--weekdays.active {
-    border: 1px solid var(--color-theme);
-    background-color: var(--color-theme);
+    border: 1px solid var(--brandActiveColor);
+    background-color: var(--brandActiveColor);
     transform: translateY(-5px);
 }
 
 .plan--weekdays-checkbox:checked + .plan--weekdays {
-    border: 1px solid var(--color-theme);
-    background-color: var(--color-theme);
+    border: 1px solid var(--brandActiveColor);
+    background-color: var(--brandActiveColor);
     transform: translateY(-5px);
 }
 
@@ -613,18 +746,18 @@
 /* address overview */
 
 .address--overview {
-    border: 2px solid #323232;
+    border: 2px solid var(--addressBackgroundColor);
     padding: 20px 25px;
     border-radius: 8px;
-    background-color: #323232;
+    background-color: var(--addressBackgroundColor);
 }
 
 .address--overview-days span {
     display: inline-block;
-    border-bottom: 1px solid var(--bs-warning);
+    border-bottom: 1px solid var(--brandActiveColor);
     font-size: 13px;
     margin-right: 5px;
-    color: white;
+    color: var(--textColor);
     margin-bottom: 4px;
 }
 
@@ -633,7 +766,35 @@
 
 /* sidebar invoice */
 .invoice--sidebar {
-    background-color: #1d1d1d;
+    background-color: var(--summaryBackgroundColor);
     padding: 35px 10px;
     border-radius: 8px;
+}
+
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+
+/* map */
+
+#map {
+    height: 100%;
+}
+.custom-map-control-button {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+    height: 40px;
+    cursor: pointer;
+}
+.custom-map-control-button:hover {
+    background: rgb(235, 235, 235);
+}
+
+.plan--name {
+    color: var(--planTitleColor) !important;
 }

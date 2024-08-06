@@ -88,10 +88,10 @@ body {
     margin: 0;
     padding: 0;
     height: auto !important;
-    background: var(--color-body);
+    background: var(--bodyBackgroundColor);
     font-size: 18px;
-    color: var(--color-theme);
-    font-family: var(--font-body), sans-serif;
+    color: var(--textColor);
+    font-family: var(--textFont), sans-serif;
     font-weight: 400;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -135,7 +135,7 @@ img {
 input,
 textarea,
 button {
-    font-family: var(--font-body);
+    font-family: var(--textFont);
 }
 
 label {
@@ -359,7 +359,7 @@ textarea {
     display: block;
     width: 100%;
     height: 56px;
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     font-size: 18px;
     color: #fff;
     resize: none;
@@ -393,7 +393,7 @@ label,
 legend {
     display: block;
     padding-bottom: 10px;
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     font-size: 18px;
 }
 
@@ -409,7 +409,7 @@ input[type="radio"] {
 
 label.error {
     padding-top: 5px;
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     font-size: 14px;
     color: red;
     display: none;
@@ -488,7 +488,7 @@ blockquote,
     margin: 50px 0;
     padding: 0 50px;
     padding-top: 35px;
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     font-size: 20px;
     line-height: 1.3;
     color: #fff;
@@ -562,7 +562,7 @@ blockquote cite,
 .wp-block-quote.is-large cite,
 .wp-block-quote.is-style-large cite,
 .wp-block-pullquote cite {
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     font-size: 16px;
     font-style: normal;
     display: block;
@@ -1042,7 +1042,7 @@ hr {
     top: -20vh;
     width: 120vw;
     height: 120vh;
-    background: #01010b;
+    background: #111;
 }
 
 .preloader .spinner {
@@ -1186,7 +1186,7 @@ hr {
     width: 30px;
     height: 30px;
     opacity: 1;
-    background: var(--color-cursor);
+    background: var(--cursorColor);
     border: 1px solid transparent;
     -o-transition: width 0.3s cubic-bezier(0.3, 0, 0.3, 1),
         height 0.3s cubic-bezier(0.3, 0, 0.3, 1),
@@ -1217,7 +1217,7 @@ hr {
     width: 80px;
     height: 80px;
     background: rgba(255, 255, 255, 0);
-    border-color: var(--color-cursor-hover);
+    border-color: var(--cursorHoverColor);
 }
 
 /* - Swiper */
@@ -1647,7 +1647,7 @@ hr {
     top: -20vh;
     width: 120vw;
     height: 120vh;
-    background: #01010b;
+    background: #111;
     -webkit-animation: close-menu-popup 1s cubic-bezier(0.3, 0, 0.3, 1) forwards;
     animation: close-menu-popup 1s cubic-bezier(0.3, 0, 0.3, 1) forwards;
 }
@@ -1709,7 +1709,7 @@ hr {
     vertical-align: top;
     font-size: 49px;
     line-height: 1;
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     color: #c0c0c7;
     font-weight: 700;
     text-decoration: none;
@@ -1828,7 +1828,7 @@ hr {
     position: relative;
     display: inline-block;
     vertical-align: top;
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     font-size: 22px;
     line-height: 1;
     font-weight: 700;
@@ -2189,7 +2189,7 @@ hr {
     position: relative;
     display: inline-block;
     vertical-align: top;
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     font-size: 152px;
     line-height: 1;
     font-weight: 400;
@@ -2646,7 +2646,7 @@ hr {
 .hero-main-slider .slide-titles .title {
     position: relative;
     display: block;
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     font-size: 108px;
     line-height: 1;
     font-weight: 500;
@@ -2905,7 +2905,7 @@ body .hero-main-slider .swiper-pagination {
     position: relative;
     display: inline-block;
     vertical-align: top;
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     font-size: 112px;
     line-height: 0.9;
     font-weight: 400;
@@ -3069,7 +3069,7 @@ body .hero-main-slider .swiper-pagination {
     position: relative;
     margin-top: 0px;
     margin-bottom: 40px;
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     font-size: 99px;
     line-height: 1;
     color: #fff;
@@ -3225,10 +3225,10 @@ body .hero-main-slider .swiper-pagination {
 }
 
 .section.hero-started .title {
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     font-size: 132px;
     line-height: 1;
-    color: var(--color-theme) !important;
+    color: var(--textColor) !important;
     font-weight: 700;
     margin: 0;
 }
@@ -3362,14 +3362,14 @@ body .hero-main-slider .swiper-pagination {
 .quote-box .name {
     font-size: 152px;
     line-height: 1;
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     color: #fff;
     font-weight: 400;
 }
 
 .quote-box .label {
     font-size: 15px;
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     color: #fff;
     font-weight: 400;
 }
@@ -3440,7 +3440,7 @@ body .hero-main-slider .swiper-pagination {
 
 .experience-carousel .slide-titles .title {
     margin-bottom: 10px;
-    font-family: var(--font-body);
+    font-family: var(--textFont);
     font-size: 112px;
     line-height: 1;
     font-weight: 400;
@@ -4514,7 +4514,7 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 
 .description-list-items .description-list-item .name {
     font-size: 20px;
-    color: var(--color-theme);
+    color: var(--textColor);
 }
 
 .description-list-items .description-list-item .name .number {
@@ -4831,7 +4831,7 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
     margin-top: 0;
     margin-bottom: 10px;
     font-size: 20px;
-    color: var(--color-theme);
+    color: var(--textColor);
     font-weight: 700;
 }
 
@@ -6441,7 +6441,7 @@ a.wp-block-button__link {
     }
     .description-list-items .description-list-item .name {
         font-size: 18px;
-        color: var(--color-theme);
+        color: var(--textColor);
     }
     .section.section-inner h1,
     .section.section-inner h2 {
@@ -7054,7 +7054,7 @@ a.wp-block-button__link {
     .wp-block-quote.is-large cite,
     .wp-block-quote.is-style-large cite,
     .wp-block-pullquote cite {
-        font-family: var(--font-body);
+        font-family: var(--textFont);
         font-size: 14px;
         font-weight: 400;
     }

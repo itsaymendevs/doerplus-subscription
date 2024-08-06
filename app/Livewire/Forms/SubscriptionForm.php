@@ -39,7 +39,7 @@ class SubscriptionForm extends Form
 
 
     // :: STEP 2
-    public $planBundleId, $planBundleRangeId, $planDays, $startDate, $initStartDate;
+    public $planBundleId, $planRangeId, $planBundleRangeId, $planDays, $startDate, $initStartDate;
 
 
     public $planBundleTypes = [];
@@ -86,6 +86,8 @@ class SubscriptionForm extends Form
 
     // :: STEP 4
     public $cityId, $cityDistrictId, $cityDeliveryTimeId, $locationAddress, $apartment, $floor;
+    public $latitude, $longitude;
+
 
 
     public $deliveryDays = [];

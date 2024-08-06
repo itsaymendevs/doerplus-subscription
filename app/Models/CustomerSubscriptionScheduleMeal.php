@@ -151,6 +151,55 @@ class CustomerSubscriptionScheduleMeal extends Model
 
 
 
+    public function customerExcludes()
+    {
+
+
+        // 1: getMealExcludes
+        $combine = $this->meal?->allergiesAndExcludesInArray();
+
+
+
+        // 1: getCustomerExcludes
+        $customerExcludes = $this->customer()?->first()?->excludes?->pluck('excludeId')?->toArray() ?? [];
+
+
+
+
+
+        // TODO: --
+        // to be continue ..
+
+
+
+        return $customerExcludes;
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 
 
     public function mealCheckExcludeCustomers($scheduleMealsByMeal)
@@ -262,11 +311,10 @@ class CustomerSubscriptionScheduleMeal extends Model
 
 
 
-
         // 2.1: loop - excludeCustomers
         foreach ($excludeCustomers ?? [] as $excludeCustomer) {
 
-            $customerExcludes[$excludeCustomer->customerId] = array_merge($customerExcludes[$excludeCustomer->customerId] ?? [], $excludeCustomer?->exclude?->ingredients?->whereIn('id', $combine['excludeIngredients'])?->pluck('id')?->toArray() ?? []);
+            $customerExcludes[$excludeCustomer->customerId] = array_merge($customerExcludes[$excludeCustomer->customerId] ?? [], $excludeCustomer?->exclude?->ingredientsList?->whereIn('ingredientId', $combine['excludeIngredients'])?->pluck('ingredientId')?->toArray() ?? []);
 
 
         } // end loop

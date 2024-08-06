@@ -5,7 +5,7 @@
 
 
         {{-- header --}}
-        <div class="row mb-5">
+        <div class="row mb-4 pb-2 align-items-center">
             <div class="col-10">
                 <h5 class='my-0 fw-bold fs-4'>Personal Information</h5>
             </div>
@@ -263,7 +263,8 @@
 
             {{-- submitButton --}}
             <div class="col-12">
-                <div class="d-flex form--input-wrapper justify-content-center mb-4 mt-1"
+                <div class="d-flex form--input-wrapper justify-content-center mb-4 mt-1
+                @if (!$settings?->showButtonMotion) no--button-motion @endif"
                     wire:loading.class='processing--button-wrap' wire:target='continue'>
 
                     <livewire:website.components.items.button-blob title='Continue' type="submit" />

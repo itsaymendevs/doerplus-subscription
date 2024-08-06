@@ -6,6 +6,60 @@
 
 
 
+    {{-- head --}}
+    @section('head')
+
+
+
+    {{-- title - description - keywords meta --}}
+    <title>{{ $plan->name }} - Checkout</title>
+
+    <meta name="description" content="Checkout - {{ $plan->name }}">
+
+    <meta name="keywords"
+        content="Healthy Meal Plans Provider in Dubai, Best Healthy Meal Plans Provider in Dubai, Healthy Meal Plans Provider">
+
+
+    @endsection
+    {{-- endHead --}}
+
+
+
+
+
+
+
+
+    {{-- ----------------------------------------------------------------- --}}
+    {{-- ----------------------------------------------------------------- --}}
+    {{-- ----------------------------------------------------------------- --}}
+    {{-- ----------------------------------------------------------------- --}}
+
+
+
+
+
+
+
+    {{-- colors --}}
+    <livewire:website.components.colors.colors-plans-customization />
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------------- --}}
+    {{-- -------------------------------------------------------- --}}
+
+
+
+
+
+
+
+
     {{-- blobBG --}}
     <livewire:website.components.items.background-blob />
 
@@ -15,39 +69,15 @@
 
 
 
-    {{-- ----------------------------------------------------------------- --}}
-    {{-- ----------------------------------------------------------------- --}}
-    {{-- ----------------------------------------------------------------- --}}
-    {{-- ----------------------------------------------------------------- --}}
-
-
-
-
-
-
-
-
-
-    {{-- progress --}}
-    @section('progress')
-
-    {{--
-    <livewire:website.plans.plans-customization.components.plans-customization-progress key='progress-bar-1'
-        value='{{ 45 }}' /> --}}
-    @endsection
-
-
-
-
-
-
-
 
 
     {{-- ----------------------------------------------------------------- --}}
     {{-- ----------------------------------------------------------------- --}}
     {{-- ----------------------------------------------------------------- --}}
     {{-- ----------------------------------------------------------------- --}}
+
+
+
 
 
 
@@ -116,6 +146,68 @@
 
 
 
+                        {{-- placeholder --}}
+
+
+                        {{-- collapseContent --}}
+                        @if (empty($instance?->cityId))
+
+
+                        <div class="col-12 col-sm-12">
+                            <div class="collapse show mt-4" id="collapse--location" wire:ignore.self>
+
+
+                                {{-- row --}}
+                                <div class="row">
+                                    <div class="col-12 col-lg-12 col-xl-12">
+                                        <div class="address--overview
+                                            @if ($settings?->showAddressMotion) address--motion @endif p-0">
+
+                                            <a class='d-flex align-items-center justify-content-center text-decoration-none'
+                                                href="javascript:void(0);" data-izimodal-open="#address--modal"
+                                                data-izimodal-transitionin="fadeInDown">
+
+
+                                                <h4 class='fw-500 fs-6 d-flex align-items-center justify-content-center text-uppercase py-2'
+                                                    style="letter-spacing: 0.4px">
+                                                    <i class="bi bi-pencil me-3 fs-4"></i>
+                                                    <span>Add Your Address</span>
+                                                </h4>
+
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- endRow --}}
+
+                            </div>
+                        </div>
+
+
+                        @endif
+                        {{-- end if --}}
+
+
+
+
+
+
+
+
+
+
+                        {{-- ---------------------------------- --}}
+                        {{-- ---------------------------------- --}}
+
+
+
+
+
+
+
+                        {{-- currentAddress --}}
+
 
                         {{-- collapseContent --}}
                         @if ($instance?->cityId)
@@ -129,7 +221,8 @@
                                 <div class="row">
                                     <div class="col-12 col-lg-12 col-xl-12">
 
-                                        <div class="address--overview address--motion">
+                                        <div class="address--overview valid
+                                            @if ($settings?->showAddressMotion) address--motion @endif">
 
                                             {{-- title --}}
                                             <h4 class='mt-0 mb-3 fs-4 fw-bold'>Home</h4>
@@ -145,7 +238,7 @@
                                                 <h6 class='mt-0 mb-1 fw-500 fs-16'>
                                                     <span class='fs-13'>Apartment</span>
                                                     {{ $instance?->apartment }}
-                                                    <i class="bi bi-dash-lg mx-2 text-warning fs-6"></i>
+                                                    <i class="bi bi-dash-lg mx-2 fs-6"></i>
                                                     <span class='fs-13'>Floor</span>
                                                     {{ $instance?->floor }}
                                                 </h6>
@@ -294,6 +387,9 @@
 
 
                         {{-- 2.2: referral --}}
+                        @if ($settings?->showReferral)
+
+
                         <div class="col-12 col-sm-6 mb-3">
 
 
@@ -335,10 +431,16 @@
 
 
 
+                        @endif
+                        {{-- end if --}}
+
+
+
+
+
 
 
                     </div>
-
 
                     @endif
                     {{-- endRow --}}
@@ -374,10 +476,12 @@
                     @if ($instance?->cityId)
 
 
-                    <form wire:submit='continue' class="row justify-content-center justify-content-md-start ">
-                        <div class="col-12 col-sm-12 col-lg-11" wire:ignore>
+                    <form wire:submit='continue'
+                        class="row justify-content-center justify-content-md-start @if ($isProcessing) processing--button-wrap @endif">
+                        <div class="col-12 col-sm-12 col-lg-11 " wire:ignore>
 
-                            <div class="d-flex justify-content-center mb-4 mt-4"
+                            <div class="d-flex justify-content-center mb-4 mt-4
+                            @if (!$settings?->showButtonMotion) no--button-motion @endif"
                                 wire:loading.class='processing--button-wrap' wire:target='continue'>
 
                                 <livewire:website.components.items.button-blob title='Place Order' type="submit" />
@@ -531,7 +635,10 @@
 
 
                                             {{-- imageFile --}}
-                                            <div class="col-6">
+                                            @if ($settings?->showSummaryBundlePicture)
+
+                                            <div
+                                                class="col-12 mb-3 mb-md-0 mb-lg-3 mb-xl-0 col-md-6 col-lg-12 col-xl-6">
                                                 <div class="d-flex overflow-hidden">
                                                     <img src='{{ url("{$storagePath}/menu/plans/bundles/{$pickedPlanBundle?->imageFile}") }}'
                                                         class='of-contain bg-white zoom--target motion--slow rounded-1 w-100'
@@ -540,11 +647,20 @@
                                             </div>
 
 
+                                            @endif
+                                            {{-- end if --}}
+
+
+
+
+
+
 
 
 
                                             {{-- information --}}
-                                            <div class="col-6">
+                                            <div
+                                                class="col-12 @if ($settings?->showSummaryBundlePicture) col-md-6 col-lg-12 col-xl-6 @endif">
 
 
 
@@ -671,7 +787,7 @@
 
                                                     <h6 class="fw-500 my-0 fs-14">Plan Price</h6>
                                                     <h6 class='my-0 fw-500 fs-16'>
-                                                        {{ number_format($instance?->planPrice) }}
+                                                        {{ number_format($instance?->totalPlanBundleRangePrice) }}
                                                     </h6>
 
                                                 </div>
@@ -885,6 +1001,13 @@
 
     {{-- scripts --}}
     @section('scripts')
+
+
+
+
+    {{-- googleMaps --}}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ $mapsKey }}&callback=initMap&v=weekly" defer></script>
+
 
 
 

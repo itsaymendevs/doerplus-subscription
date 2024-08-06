@@ -14,41 +14,53 @@
 
 
             /* fonts */
-            --font-body: <?php echo "$profile->textFont" ?>;
-            --font-heading: <?php echo "$profile->headingFont" ?>;
+            --textFont: <?php echo "$profile->textFont" ?>;
+            --headingFont: <?php echo "$profile->headingFont" ?>;
 
             /* colors */
-            --color-theme: <?php echo "$settings->textColor" ?>;
-            --color-body: <?php echo "$settings->bodyBackgroundColor" ?>;
-            --color-swiper-bullets: <?php echo "$settings->sliderBulletsColor" ?>;
-            --color-swiper-line: <?php echo "$settings->sliderLineColor" ?>;
-            --color-cursor: <?php echo "$settings->cursorColor" ?>;
-            --color-cursor-hover: <?php echo "$settings->cursorHoverColor" ?>;
-            --color-plan-title: <?php echo "$settings->planCardTitleColor" ?>;
-            --color-plan-subtitle: <?php echo "$settings->planCardSubtitleColor" ?>;
-            --color-plan-caption: <?php echo "$settings->planCardCaptionColor" ?>;
-            --color-plan-hr: <?php echo "$settings->planCardHrColor" ?>;
-            --color-plan-button: <?php echo "$settings->planCardButtonColor" ?>;
-            --color-plan-button-hover: <?php echo "$settings->planCardButtonHoverColor" ?>;
+            --textColor: <?php echo "$settings->textColor" ?>;
+            --preloaderLineColor: <?php echo "$settings->preloaderLineColor" ?>;
+
+            --cursorColor: <?php echo "$settings->cursorColor" ?>;
+            --cursorHoverColor: <?php echo "$settings->cursorHoverColor" ?>;
+
+            --planCardTitleColor: <?php echo "$settings->planCardTitleColor" ?>;
+            --planCardSubtitleColor: <?php echo "$settings->planCardSubtitleColor" ?>;
+            --planCardCaptionColor: <?php echo "$settings->planCardCaptionColor" ?>;
+            --planCardHrColor: <?php echo "$settings->planCardHrColor" ?>;
+            --planCardButtonColor: <?php echo "$settings->planCardButtonColor" ?>;
+            --planCardButtonHoverColor: <?php echo "$settings->planCardButtonHoverColor" ?>;
 
 
-            --color-preloader-line: <?php echo "$settings->preloaderLineColor" ?>;
-            --color-navbar-menu: <?php echo "$settings->navbarMenuColor" ?>;
-            --color-navbar-menu-active: <?php echo "$settings->navbarMenuActiveColor" ?>;
-            --color-navbar-menu-links: <?php echo "$settings->navbarLinksColor" ?>;
-            --color-navbar-menu-links-hover: <?php echo "$settings->navbarLinksHoverColor" ?>;
-            --color-navbar-menu-social-links: <?php echo "$settings->navbarSocialLinksColor" ?>;
+            --navbarMenuColor: <?php echo "$settings->navbarMenuColor" ?>;
+            --navbarMenuActiveColor: <?php echo "$settings->navbarMenuActiveColor" ?>;
+            --navbarLinksColor: <?php echo "$settings->navbarLinksColor" ?>;
+            --navbarLinksHoverColor: <?php echo "$settings->navbarLinksHoverColor" ?>;
+            --navbarSocialLinksColor: <?php echo "$settings->navbarSocialLinksColor" ?>;
+
+
+            --sliderLineColor: <?php echo "$settings->sliderLineColor" ?>;
+            --sliderBulletsColor: <?php echo "$settings->sliderBulletsColor" ?>;
+
 
 
 
             /* forPlan */
-            --color-plan-side-title: <?php echo "$settings->planSideTitleColor" ?>;
-            --color-plan-filter-links: <?php echo "$settings->planFilterLinksColor" ?>;
-            --color-plan-filter-links-hover-border: <?php echo "$settings->planFilterLinksHoverBorderColor" ?>;
-            --color-plan-list-numbers: <?php echo "$settings->planListNumbersColor" ?>;
-            --color-plan-meal-diet: <?php echo "$settings->planMealDietColor" ?>;
-            --color-plan-testimonial-title: <?php echo "$settings->planReviewsTitleColor" ?>;
-            --color-plan-meals-border: <?php echo "$settings->planMealsBorderColor" ?>;
+            --planSideTitleColor: <?php echo "$settings->planSideTitleColor" ?>;
+            --planFilterLinksColor: <?php echo "$settings->planFilterLinksColor" ?>;
+            --planFilterLinksHoverBorderColor: <?php echo "$settings->planFilterLinksHoverBorderColor" ?>;
+
+            --planListNumbersColor: <?php echo "$settings->planListNumbersColor" ?>;
+            --planMealDietColor: <?php echo "$settings->planMealDietColor" ?>;
+
+            --planMealsBorderColor: <?php echo "$settings->planMealsBorderColor" ?>;
+            --planMealsHoverBorderColor: <?php echo "$settings->planMealsHoverBorderColor" ?>;
+
+            --planReviewsTitleColor: <?php echo "$settings->planReviewsTitleColor" ?>;
+
+            --planActionButtonColor: <?php echo "$settings->planActionButtonColor" ?> !important;
+            --planActionButtonHoverColor: <?php echo "$settings->planActionButtonHoverColor" ?> !important;
+
 
 
 
@@ -66,11 +78,15 @@
 
 
             /* background */
-            --background-plan-card: <?php echo "$settings->planCardBackgroundColor" ?>;
-            --background-plan-button: <?php echo "$settings->planCardButtonBackgroundColor" ?>;
+            --bodyBackgroundColor: <?php echo "$settings->bodyBackgroundColor" ?>;
+            --navbarBackgroundColor: <?php echo "$settings->navbarBackgroundColor" ?>;
 
-            --background-navbar: <?php echo "$settings->navbarBackgroundColor" ?>;
+            --planCardBackgroundColor: <?php echo "$settings->planCardBackgroundColor" ?>;
+            --planCardButtonBackgroundColor: <?php echo "$settings->planCardButtonBackgroundColor" ?>;
 
+
+            /* forPlan */
+            --planActionButtonBackgroundColor: <?php echo "$settings->planActionButtonBackgroundColor" ?> !important;
 
 
 
@@ -86,7 +102,7 @@
 
 
             /* radius */
-            --radius-plan: <?php echo "$settings->planCardRadius" ?>px;
+            --planCardRadius: <?php echo "$settings->planCardRadius" ?>px;
 
 
 
@@ -95,10 +111,12 @@
             /* -------------------------------------------------- */
             /* -------------------------------------------------- */
             /* -------------------------------------------------- */
+
+
 
 
             /* align */
-            --align-plan-content: <?php echo "$settings->planCardAlignment" ?>;
+            --planCardAlignment: <?php echo "$settings->planCardAlignment" ?>;
 
 
         }

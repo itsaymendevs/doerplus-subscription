@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use App\Livewire\Website\Plans;
 use App\Livewire\Website\Plans\PlansCheckout;
 use App\Livewire\Website\Plans\PlansCustomization;
+use App\Livewire\Website\Plans\PlansInvoice;
 use App\Livewire\Website\Plans\SinglePlan;
 use App\Livewire\Website\PlansEighth;
 use App\Livewire\Website\PlansFifth;
@@ -92,6 +94,8 @@ Route::get('/plans', Plans::class)->name('website.plans');
 
 
 
+
+
 // 1.2: versions
 Route::get('/plans-v1', PlansFirst::class)->name('website.plansV1');
 Route::get('/plans-v2', PlansSecond::class)->name('website.plansV2');
@@ -108,22 +112,6 @@ Route::get('/plans-v7', PlansSeventh::class)->name('website.plansV7');
 
 
 
-
-// ---------------------------------------------------------------------------
-
-
-
-
-
-// 2: singlePlan
-Route::get('/plans/{name}', SinglePlan::class)->name('website.singlePlan');
-
-
-
-
-
-
-
 // ---------------------------------------------------------------------------
 
 
@@ -131,7 +119,78 @@ Route::get('/plans/{name}', SinglePlan::class)->name('website.singlePlan');
 
 
 
-// 3: plans - customization
+
+
+// 2: invoice
+Route::get('/plans/invoice/', PlansInvoice::class)->name('website.plans.invoice');
+
+
+
+
+
+
+
+// ---------------------------------------------------------------------------
+
+
+
+
+
+
+
+// 3: singlePlan
+Route::get('/plans/{name}', SinglePlan::class)->name('website.plans.details');
+
+
+
+
+
+
+
+// ---------------------------------------------------------------------------
+
+
+
+
+
+
+// 4: plans - customization
 Route::get('/plans/{name}/customization', PlansCustomization::class)->name('website.plans.customization');
 
 Route::get('/plans/{name}/checkout', PlansCheckout::class)->name('website.plans.checkout');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// ** ----------------------------- EMAIL -------------------------------- **
+
+
+
+// 1: Email - invoice
+Route::get('mails/invoice/{id}', [MailController::class, 'invoice'])->name('mails.invoice');
+
+
+
+
+

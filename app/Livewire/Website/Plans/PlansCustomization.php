@@ -15,6 +15,7 @@ use App\Models\PlanBundle;
 use App\Models\PlanBundleDay;
 use App\Models\PlanBundleRange;
 use App\Models\PlanBundleRangePrice;
+use App\Models\SubscriptionFormSetting;
 use App\Models\Type;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
@@ -62,12 +63,13 @@ class PlansCustomization extends Component
 
 
         // :: checkSession
-        if (session('customer') && session('customer')->{'isExistingCustomer'}) {
+        if (session('pre-customer') && session('pre-customer')->{'isExistingCustomer'}) {
 
-            $this->instance = session('customer');
+            $this->instance = session('pre-customer');
 
         } else {
 
+            Session::forget('pre-customer');
             Session::forget('customer');
 
         } // end if
@@ -99,11 +101,19 @@ class PlansCustomization extends Component
 
 
         // 1.2: dependencies
-        $this->planBundles = PlanBundle::where('planId', $this->plan->id)->get();
+        $this->planBundles = PlanBundle::where('planId', $this->plan->id)->where('isForWebsite', true)->get();
         $this->allergyLists = Allergy::all();
         $this->excludeLists = Exclude::all();
-        $this->minimumDeliveryDays = CustomerSubscriptionSetting::first()->minimumDeliveryDays;
 
+
+
+
+
+
+
+        // 1.3: initStart
+        $restrictionDays = CustomerSubscriptionSetting::first()?->changeCalendarRestriction ?? 0;
+        $this->instance->initStartDate = date('Y-m-d', strtotime("+{$restrictionDays} days"));
 
 
 
@@ -141,6 +151,9 @@ class PlansCustomization extends Component
             ->whereIn('mealTypeId', $mealTypes)
             ->where('scheduleDate', $this->getCurrentDate())
             ->take(12)->get();
+
+
+
 
 
 
@@ -205,6 +218,7 @@ class PlansCustomization extends Component
         // 2: reset
         $this->instance->planDays = null;
         $this->instance->startDate = null;
+        $this->instance->planRangeId = null;
         $this->instance->planBundleRangeId = null;
         $this->instance->totalPlanBundleRangePrice = 0;
 
@@ -214,6 +228,20 @@ class PlansCustomization extends Component
 
         // 2.1: getRanges
         $this->planBundleRanges = $this->pickedPlanBundle?->ranges;
+
+
+
+
+
+
+        // 2.2: getBundleTypes
+        foreach ($this->pickedPlanBundle->types as $bundleType) {
+
+            $this->instance->planBundleTypes[$bundleType->mealType->id] = $bundleType->quantity;
+
+        } // end loop
+
+
 
 
 
@@ -254,6 +282,11 @@ class PlansCustomization extends Component
         // 1: getBundleRange
         $this->instance->planBundleRangeId = $id;
         $this->pickedPlanBundleRange = PlanBundleRange::find($id);
+
+
+        // 1.1: planRange
+        $this->instance->planRangeId = $this->pickedPlanBundleRange->planRangeId;
+
 
 
 
@@ -487,7 +520,7 @@ class PlansCustomization extends Component
 
 
         // 4: makeSession
-        Session::put('customer', $this->instance);
+        Session::put('pre-customer', $this->instance);
 
 
 
@@ -587,7 +620,7 @@ class PlansCustomization extends Component
 
 
         // 2: makeSession
-        Session::put('customer', $this->instance);
+        Session::put('pre-customer', $this->instance);
 
 
 
@@ -635,7 +668,14 @@ class PlansCustomization extends Component
 
         // 1: dependencies
         $bag = Bag::first();
+        $settings = SubscriptionFormSetting::first();
         $weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+
+
+
+        // 1.2: plans
+        $plans = Plan::where('id', '!=', $this->plan->id)->get();
 
         // $plans = Plan::whereHas('ranges')
         //     ->whereHas('bundles')
@@ -647,14 +687,12 @@ class PlansCustomization extends Component
 
 
 
-        $plans = Plan::where('id', '!=', $this->plan->id)->get();
 
 
 
 
 
-
-        return view('livewire.website.plans.plans-customization', compact('plans', 'bag'));
+        return view('livewire.website.plans.plans-customization', compact('plans', 'bag', 'settings'));
 
 
 

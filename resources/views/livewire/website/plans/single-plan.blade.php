@@ -6,8 +6,38 @@
 
 
 
-    {{-- -------------------------------------------------------- --}}
-    {{-- -------------------------------------------------------- --}}
+
+    {{-- head --}}
+    @section('head')
+
+
+
+    {{-- title - description - keywords meta --}}
+    <title>{{ $plan->name }} - Details</title>
+
+    <meta name="description" content="{{ $plan->name }} Details Page">
+
+    <meta name="keywords"
+        content="Healthy Meal Plans Provider in Dubai, Best Healthy Meal Plans Provider in Dubai, Healthy Meal Plans Provider">
+
+
+    @endsection
+    {{-- endHead --}}
+
+
+
+
+
+
+
+
+
+    {{-- ----------------------------------------------------------------- --}}
+    {{-- ----------------------------------------------------------------- --}}
+    {{-- ----------------------------------------------------------------- --}}
+    {{-- ----------------------------------------------------------------- --}}
+
+
 
 
 
@@ -117,9 +147,8 @@
                     <div class="d-flex mt-4 justify-content-md-start scrolla-element-anim-1 scroll-animate"
                         data-animate="active">
                         <div class="readmore">
-                            <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}" class="btn-link"
-                                style="height: 40px; line-height: 37px;">Start
-                                Your Journey</a>
+                            <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}"
+                                class="btn-link plan--action-button">Start Your Journey</a>
                         </div>
                     </div>
                 </div>

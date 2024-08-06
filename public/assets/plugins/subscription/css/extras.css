@@ -23,7 +23,7 @@
     z-index: 1;
     position: relative;
     text-align: center;
-    color: white !important;
+    color: var(--textColor) !important;
     font-size: 15px;
     font-weight: 500;
     background-color: transparent;
@@ -41,7 +41,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    border-radius: var(--radius-btn);
+    border-radius: var(--planCardButtonRadius);
 }
 .btn--blob:after {
     content: "";
@@ -52,19 +52,19 @@
     width: 100%;
     height: 100%;
     transition: all 0.3s 0.2s;
-    border-radius: var(--radius-btn);
+    border-radius: var(--planCardButtonRadius);
 }
 .btn--blob:hover,
 .btn--blob:focus {
-    color: #ffffff;
-    border-radius: var(--radius-btn);
+    color: var(--textColor);
+    border-radius: var(--planCardButtonRadius);
 }
 .btn--blob:hover:after,
 .btn--blob:focus:after {
     transition: all 0.3s;
     left: 0;
     top: 0;
-    border-radius: var(--radius-btn);
+    border-radius: var(--planCardButtonRadius);
 }
 .btn--blob__inner {
     z-index: -1;
@@ -74,8 +74,8 @@
     top: 0;
     width: 100%;
     height: 100%;
-    border-radius: var(--radius-btn);
-    background: #000;
+    border-radius: var(--planCardButtonRadius);
+    background: var(--buttonBackgroundColor);
 }
 .btn--blob__blobs {
     position: relative;
@@ -88,11 +88,16 @@
     top: 2px;
     width: 25%;
     height: 100%;
-    background: var(--color-theme);
+    background: var(--brandColor);
     border-radius: 100%;
     transform: translate3d(0, 150%, 0) scale(1.7);
     transition: transform 0.45s;
 }
+
+.no--button-motion .btn--blob__blobs {
+    display: none !important;
+}
+
 @supports (filter: url("#goo")) {
     .btn--blob__blob {
         transform: translate3d(0, 150%, 0) scale(1.4);
@@ -217,17 +222,17 @@
     --border-angle: 0turn;
     --main-bg: conic-gradient(
         from var(--border-angle),
-        #191919,
-        #191919 5%,
-        #191919 60%,
-        #191919 95%
+        var(--bundleBorderColor),
+        var(--bundleBorderColor) 5%,
+        var(--bundleBorderColor) 60%,
+        var(--bundleBorderColor) 95%
     );
     border: solid 2px transparent;
     --gradient-border: conic-gradient(
         from var(--border-angle),
-        transparent 25%,
-        #6a6a6a,
-        #282828 99%,
+        transparent 55%,
+        var(--brandColor),
+        var(--bundleMotionColor) 92%,
         transparent
     );
     background: var(--main-bg) padding-box, var(--gradient-border) border-box,
@@ -247,8 +252,8 @@
     }
 }
 .bundle--motion:hover {
-    -webkit-animation-play-state: paused;
-    animation-play-state: paused;
+    /* -webkit-animation-play-state: paused;
+    animation-play-state: paused; */
 }
 
 @property --border-angle {
@@ -267,8 +272,8 @@
 }
 .preference--line .line {
     position: absolute;
-    background-color: var(--color-theme);
-    box-shadow: 0px 0px 12px var(--color-theme);
+    background-color: var(--preferenceLineColor);
+    box-shadow: 0px 0px 12px var(--preferenceLineColor);
     width: 2px;
     height: calc(100% - 20px);
     top: 0px;
@@ -320,17 +325,17 @@
     --border-angle: 0turn;
     --main-bg: conic-gradient(
         from var(--border-angle),
-        #191919,
-        #191919 5%,
-        #191919 60%,
-        #191919 95%
+        var(--addressBackgroundColor),
+        var(--addressBackgroundColor) 5%,
+        var(--addressBackgroundColor) 60%,
+        var(--addressBackgroundColor) 95%
     );
     border: solid 2px transparent;
     --gradient-border: conic-gradient(
         from var(--border-angle),
-        transparent 70%,
-        #61c5b1,
-        rgb(85, 85, 85) 99%,
+        transparent 80%,
+        var(--brandColor),
+        var(--addressMotionColor) 95%,
         transparent
     );
     background: var(--main-bg) padding-box, var(--gradient-border) border-box,
@@ -339,6 +344,18 @@
     -webkit-animation: address--motion 2s linear infinite;
     animation: address--motion 2s linear infinite;
 }
+
+.address--motion.valid {
+    border: solid 2px transparent;
+    --gradient-border: conic-gradient(
+        from var(--border-angle),
+        transparent 70%,
+        #61c5b1,
+        var(--addressActiveMotionColor) 95%,
+        transparent
+    );
+}
+
 @-webkit-keyframes address--motion {
     to {
         --border-angle: 1turn;
@@ -350,8 +367,54 @@
     }
 }
 .address--motion:hover {
-    -webkit-animation-play-state: paused;
-    animation-play-state: paused;
+    /* -webkit-animation-play-state: paused;
+    animation-play-state: paused; */
+}
+
+@property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+/* invoice--motion */
+
+.invoice--final-motion {
+    --border-angle: 0turn;
+    --main-bg: conic-gradient(
+        from var(--border-angle),
+        var(--invoiceBackgroundColor),
+        var(--invoiceBackgroundColor) 5%,
+        var(--invoiceBackgroundColor) 60%,
+        var(--invoiceBackgroundColor) 95%
+    );
+    border: solid 2px transparent;
+    --gradient-border: conic-gradient(
+        from var(--border-angle),
+        transparent 50%,
+        var(--brandColor),
+        var(--invoiceMotionColor) 75%,
+        transparent
+    );
+    background: var(--main-bg) padding-box, var(--gradient-border) border-box,
+        var(--main-bg) border-box;
+    background-position: center center;
+    -webkit-animation: invoice--final-motion 3s ease-in infinite;
+    animation: invoice--final-motion 3s ease-in infinite;
+}
+
+@-webkit-keyframes invoice--final-motion {
+    to {
+        --border-angle: 1turn;
+    }
+}
+@keyframes invoice--final-motion {
+    to {
+        --border-angle: 1turn;
+    }
 }
 
 @property --border-angle {
