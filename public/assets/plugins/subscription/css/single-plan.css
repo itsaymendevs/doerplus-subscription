@@ -132,8 +132,8 @@
 
 .bundle--card {
     background-color: var(--bundleBorderColor);
-    padding: 8px 8px;
-    border-radius: 8px;
+    padding: 1px 2px;
+    border-radius: 4px;
     position: relative;
     display: block;
     text-decoration: none;
@@ -246,6 +246,11 @@
     background-color: var(--brandActiveColor);
 }
 
+.bundle--card.active .bundle--title,
+.bundle--card.active .bundle--title * {
+    color: var(--textActiveColor) !important;
+}
+
 /* ---------------------------------------- */
 /* ---------------------------------------- */
 
@@ -322,6 +327,7 @@
 .ranges--wrapper .ranges--btn.btn--collapse {
     border: 1px solid var(--planRangeBorderActiveColor) !important;
     background: var(--planRangeBorderActiveColor) !important;
+    color: var(--textActiveColor) !important;
 }
 
 .ranges--wrapper .ranges--btn:before {
@@ -357,9 +363,10 @@
     font-weight: 500;
     justify-content: center;
     color: var(--textColor);
-    margin-right: 12px;
+    margin-right: 16px;
     align-items: center;
     padding: 0px;
+    position: relative;
 }
 
 .plan--days:hover,
@@ -367,6 +374,22 @@
 .plan--days.active {
     border: 1px solid var(--planDaysBorderActiveColor);
     background-color: var(--planDaysBorderActiveColor);
+    color: var(--textActiveColor) !important;
+}
+
+.plan--days-discount {
+    position: absolute;
+    bottom: -10px;
+    right: -7px;
+    font-size: 11px;
+    width: 25px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--planDaysDiscountBackgroundColor);
+    color: var(--textActiveColor);
+    border-radius: 3px;
 }
 
 /* ------------------------------------------- */
@@ -732,12 +755,14 @@
     border: 1px solid var(--brandActiveColor);
     background-color: var(--brandActiveColor);
     transform: translateY(-5px);
+    color: var(--textActiveColor);
 }
 
 .plan--weekdays-checkbox:checked + .plan--weekdays {
     border: 1px solid var(--brandActiveColor);
     background-color: var(--brandActiveColor);
     transform: translateY(-5px);
+    color: var(--textActiveColor);
 }
 
 /* ------------------------------------------- */

@@ -21,6 +21,7 @@
     /* 1: colors */
 
     --textColor: #fff;
+    --textActiveColor: #fff;
     --preloaderLineColor: #fff;
 
     --cursorColor: #fff;
@@ -87,7 +88,6 @@
     /* ---------------------------------------------- */
 
     /* 2: backgrounds */
-
     --bodyBackgroundColor: #111;
 
     --bodyBackgroundFirstColor: #131313;
@@ -99,6 +99,8 @@
 
     --planMacroBackgroundColor: #191919;
     --inputBackgroundColor: #111111;
+
+    --planDaysDiscountBackgroundColor: var(--bs-danger);
 
     --preferenceBackgroundColor: #fff;
     --preferenceBagBackgroundColor: #fff;

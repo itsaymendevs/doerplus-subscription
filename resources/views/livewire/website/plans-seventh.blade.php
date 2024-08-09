@@ -62,8 +62,8 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="h-titles">
-                        <div class="h-title splitting-text-anim-2 scroll-animate plan--single-title fw-bold"
-                            data-splitting="chars" data-animate="active">Our Meal Plans</div>
+                        <div class="h-title splitting-text-anim-2 scroll-animate plan--single-title plan--sixth-title fw-bold"
+                            data-splitting="chars" data-animate="active">Our Plans</div>
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
                 {{-- loop - plans --}}
                 @foreach ($plans ?? [] as $plan)
 
-                <div class="works-col col-xs-12 col-sm-6 col-md-6 col-lg-4 sorting-photography"
+                <div class="works-col col-xs-12 col-sm-6 col-md-6 col-lg-4 sorting-photography plan--seventh-col"
                     key='single-plan-{{ $plan->id }}'>
                     <div class="works-item meals--item v2 scrolla-element-anim-1 scroll-animate" data-animate="active">
                         <a href="{{ route('website.plans.details', [$plan->nameURL]) }}">
@@ -118,7 +118,7 @@
                                     data-splitting="words" data-animate="active">{{ $plan->name }}</span>
 
                                 <span class="category splitting-text-anim-4 scroll-animate plan--custom-caption fw-500"
-                                    data-splitting="chars" data-animate="active">{{ $plan->caption }}</span>
+                                    data-splitting="chars" data-animate="active">{{ $plan->desc }}</span>
                             </span>
 
                         </a>

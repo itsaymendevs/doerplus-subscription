@@ -31,6 +31,10 @@
     color: var(--planCardTitleColor) !important;
 }
 
+.plan--custom-title * {
+    color: var(--planCardTitleColor) !important;
+}
+
 .plan--custom-subtitle {
     color: var(--planCardSubtitleColor) !important;
 }
@@ -192,6 +196,8 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 
 .plan--meal-diet {
     color: var(--planMealDietColor) !important;
+    font-weight: 600;
+    font-size: 15px;
 }
 
 /* slider */
@@ -221,23 +227,21 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 /* meals */
 .meals--item.v1 .image .img {
     padding: 20px 15px;
+    background: var(--planMealsBorderColor) !important;
 }
 .meals--item.v1 .image .img::after {
     background: var(--planMealsBorderColor) !important;
-    height: 3px;
     border-radius: 12px;
 }
 
 .meals--item.v1 .image .img::before {
     background: var(--planMealsBorderColor) !important;
-    height: 0px;
     border-radius: 12px;
 }
 
 .meals--item.v1 .image::before,
 .meals--item.v1 .image::after {
     background: var(--planMealsBorderColor) !important;
-    width: 0px;
     border-radius: 12px;
 }
 
@@ -249,23 +253,98 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 /* hover */
 .meals--item.v1:hover .image .img::after {
     background: var(--planMealsHoverBorderColor) !important;
-    height: 4px;
 }
 
 .meals--item.v1:hover .image .img::before {
     background: var(--planMealsHoverBorderColor) !important;
-    height: 0px;
 }
 
 .meals--item.v1:hover .image::before,
 .meals--item.v1:hover .image::after {
     background: var(--planMealsHoverBorderColor) !important;
-    width: 0px;
 }
 
 /* ----------------------------- */
 /* ----------------------------- */
 
+/* sixth */
+.plan--sixth-col .meals--item.v2 .image img {
+    height: 600px;
+    object-fit: contain;
+    background-color: var(--planMealsBorderColor);
+}
+
+.plan--sixth-col:nth-child(even) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+.plan--sixth-col:nth-child(3n) .meals--item.v2 .image img {
+    height: 300px;
+}
+
+.plan--sixth-col:nth-child(4n) .meals--item.v2 .image img {
+    height: 500px;
+}
+
+.plan--sixth-col:nth-child(5n) .meals--item.v2 .image img {
+    height: 600px;
+}
+
+.plan--sixth-col:nth-child(6n) .meals--item.v2 .image img {
+    height: 350px;
+}
+
+.plan--sixth-col:nth-child(7n) .meals--item.v2 .image img {
+    height: 500px;
+}
+
+.plan--sixth-col:nth-child(8n) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+/* ----------------------------- */
+/* ----------------------------- */
+
+/* seventh */
+.plan--seventh-col .meals--item.v2 .image img {
+    height: 400px;
+    object-fit: contain;
+    background-color: var(--planMealsBorderColor);
+}
+
+.plan--seventh-col:nth-child(even) .meals--item.v2 .image img {
+    height: 250px;
+}
+
+.plan--seventh-col:nth-child(3n) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+.plan--seventh-col:nth-child(4n) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+.plan--seventh-col:nth-child(5n) .meals--item.v2 .image img {
+    height: 250px;
+}
+
+.plan--seventh-col:nth-child(6n) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+.plan--seventh-col:nth-child(7n) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+.plan--seventh-col:nth-child(8n) .meals--item.v2 .image img {
+    height: 250px;
+}
+
+.plan--seventh-col:nth-child(9n) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+/* background */
 .meals--item.v2 .image .img::after {
     background: var(--planMealsBorderColor) !important;
 }
@@ -277,6 +356,24 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 .meals--item.v2 .image::before,
 .meals--item.v2 .image::after {
     background: var(--planMealsBorderColor) !important;
+}
+
+/* hover */
+.plan--sixth-col:hover .meals--item.v2 .image img {
+    background-color: var(--planMealsHoverBorderColor) !important;
+}
+
+.meals--item.v2:hover .image .img::after {
+    background: var(--planMealsHoverBorderColor) !important;
+}
+
+.meals--item.v2:hover .image .img::before {
+    background: var(--planMealsHoverBorderColor) !important;
+}
+
+.meals--item.v2:hover .image::before,
+.meals--item.v2:hover .image::after {
+    background: var(--planMealsHoverBorderColor) !important;
 }
 
 /* ----------------------------- */

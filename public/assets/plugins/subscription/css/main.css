@@ -4830,9 +4830,15 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 .services-item .name {
     margin-top: 0;
     margin-bottom: 10px;
-    font-size: 20px;
+    font-size: 18px;
     color: var(--textColor);
     font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: pre-wrap;
 }
 
 /**

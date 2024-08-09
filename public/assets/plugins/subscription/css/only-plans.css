@@ -1,0 +1,13 @@
+/* navbar */
+.menu-full-overlay::before {
+    background: var(--navbarBackgroundColor) !important;
+}
+
+/* preloader */
+.preloader::before {
+    background: var(--bodyBackgroundColor) !important;
+}
+
+.plan--sixth-title {
+    color: var(--textColor) !important;
+}

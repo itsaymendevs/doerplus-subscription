@@ -187,18 +187,6 @@
 
 
 
-                                    {{-- slide --}}
-                                    @if ($plan->thirdImageFile)
-
-                                    <div class="swiper-slide">
-                                        <img src='{{ url("{$storagePath}/menu/plans/{$plan->thirdImageFile}") }}'
-                                            class='customization--plan-image'>
-                                    </div>
-
-                                    @endif
-                                    {{-- end if --}}
-
-
 
 
                                 </div>
@@ -391,7 +379,6 @@
                             </div>
                         </div>
                         {{-- endMainTitle --}}
-
 
 
 
@@ -667,13 +654,21 @@
 
 
 
+
+
                                             <label class='pointer plan--days motion--slow
                                                 @if ($instance->planDays == $bundleDay->days) active @endif'
                                                 key='plan-bundle-days-{{ $bundleDay->id }}'
                                                 wire:loading.class='processing--button'
                                                 wire:target='recalculate, instance.planDays'
                                                 for='bundle--days-radio-{{ $bundleDay->id }}'>{{
-                                                $bundleDay?->days }}</label>
+                                                $bundleDay?->days }}
+                                                @if ($bundleDay?->discount > 0 && $settings->showPlanDaysDiscount)
+                                                <span class='plan--days-discount'>{{ $bundleDay?->discount }}
+                                                    <small style="font-size: 8px">%</small>
+                                                </span>
+                                                @endif
+                                            </label>
 
 
 
@@ -1281,7 +1276,7 @@
                                                         {{-- information --}}
                                                         <span class="desc">
                                                             <span
-                                                                class="category splitting-text-anim-4 scroll-animate fs-14 fw-semibold text-white text-uppercase"
+                                                                class="category splitting-text-anim-4 scroll-animate fs-14 fw-semibold  text-uppercase"
                                                                 data-splitting="chars" data-animate="active">{{
                                                                 $singlePlan->name
                                                                 }}</span>
@@ -1581,7 +1576,9 @@
                                                 <div
                                                     class="d-flex invoice--tr justify-content-between align-items-center">
 
-                                                    <h6 class="fw-500 my-0 fs-14">Cool Bag</h6>
+                                                    <h6 class="fw-500 my-0 fs-14 d-flex align-items-end">Cool Bag<span
+                                                            class='ms-1 span--price fs-9'
+                                                            style="color: var(--textColor)">(Refundable)</span></h6>
                                                     <h6 class='my-0 fw-500 fs-16'>
                                                         {{ ($instance->bag && $instance->planPrice) ?
                                                         number_format($bag?->price) : '' }}

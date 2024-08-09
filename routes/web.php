@@ -87,7 +87,7 @@ if (env('APP_ENV') == 'production') {
 
 
 // 1: plans
-Route::get('/', PlansFirst::class)->name('website.home');
+Route::get('/', Plans::class)->name('website.home');
 Route::get('/plans', Plans::class)->name('website.plans');
 
 

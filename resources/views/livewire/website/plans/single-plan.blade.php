@@ -369,7 +369,8 @@
     <div class="section section-inner m-video-large">
         <div class="video scrolla-element-anim-1 scroll-animate" data-animate="active">
             <div class="img js-parallax"
-                style="background-image: url({{ url('assets/plugins/subscription/images/started-n7.jpg') }});"></div>
+                style='background-image: url({{ url("{$storagePath}/menu/plans/{$plan->fifthImageFile}") }}); filter: blur(6px)'>
+            </div>
             <iframe class="js-video-iframe" data-src="{{ $plan?->videoURL }}?showinfo=0&rel=0&autoplay=1"></iframe>
             <div class="play"></div>
         </div>
@@ -441,11 +442,10 @@
                                     </div>
                                     <div class="desc">
                                         <div class="title">John Smith</div>
-                                        <div class="name">Food Reviewer</div>
-                                        <div class="text">There are many variations of passages of Lorem Ipsum
-                                            available, but the majority have suffered alteration in some form, by
-                                            injected humour, or randomised words which don't look even slightly
-                                            believable.</div>
+                                        <div class="name">Teacher</div>
+                                        <div class="text">Meal Plans have completely transformed my life. I've lost
+                                            20 pounds in three months, and my energy levels are through the roof! The
+                                            meals are delicious and keep me full throughout the day.</div>
                                     </div>
                                 </div>
                             </div>
@@ -455,15 +455,14 @@
                                 <div class="scrolla-element-anim-1 scroll-animate" data-animate="active">
                                     <div class="image">
                                         <img src="{{url('assets/plugins/subscription/images/rev3.png')}}"
-                                            alt="Natasha Singh" />
+                                            alt=" Emily R" />
                                     </div>
                                     <div class="desc">
-                                        <div class="title">Natasha Singh</div>
-                                        <div class="name">Chef Assistant</div>
-                                        <div class="text">There are many variations of passages of Lorem Ipsum
-                                            available, but the majority have suffered alteration in some form, by
-                                            injected humour, or randomised words which don't look even slightly
-                                            believable.</div>
+                                        <div class="title"> Emily R</div>
+                                        <div class="name">Nurse</div>
+                                        <div class="text">As a busy professional, I love the convenience of Our Meal
+                                            Plans. The food is tasty and saves me so much time on meal prep. I've also
+                                            noticed a significant improvement in my digestion and overall health.</div>
                                     </div>
                                 </div>
                             </div>
@@ -473,15 +472,15 @@
                                 <div class="scrolla-element-anim-1 scroll-animate" data-animate="active">
                                     <div class="image">
                                         <img src="{{url('assets/plugins/subscription/images/rev2.png')}}"
-                                            alt="Gray Woodman" />
+                                            alt="Jason K." />
                                     </div>
                                     <div class="desc">
-                                        <div class="title">Gray Woodman</div>
-                                        <div class="name">Chef</div>
-                                        <div class="text">There are many variations of passages of Lorem Ipsum
-                                            available, but the majority have suffered alteration in some form, by
-                                            injected humour, or randomised words which don't look even slightly
-                                            believable.</div>
+                                        <div class="title">Jason K.</div>
+                                        <div class="name">Marketing Manager</div>
+                                        <div class="text">This have been a game-changer for my family. We all enjoy the
+                                            meals, and it's great knowing we're eating healthy. My kids love the
+                                            variety, and I've even seen improvements in their concentration and school
+                                            performance.</div>
                                     </div>
                                 </div>
                             </div>
@@ -495,11 +494,11 @@
                                     </div>
                                     <div class="desc">
                                         <div class="title">Robert Long</div>
-                                        <div class="name">Blogger</div>
-                                        <div class="text">There are many variations of passages of Lorem Ipsum
-                                            available, but the majority have suffered alteration in some form, by
-                                            injected humour, or randomised words which don't look even slightly
-                                            believable.</div>
+                                        <div class="name">Fitness Trainer</div>
+                                        <div class="text">As someone who works out regularly, finding the right
+                                            nutrition plan is crucial. Our Meal Plans have helped me meet my fitness
+                                            goals by providing the perfect balance of macros. I've gained muscle and
+                                            reduced body fat efficiently</div>
                                     </div>
                                 </div>
                             </div>

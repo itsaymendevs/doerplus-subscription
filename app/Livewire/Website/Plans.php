@@ -16,8 +16,19 @@ class Plans extends Component
 
         // 1: dependencies
         $path = 'livewire.website.plans-first';
-        $plans = Plan::all();
         $settings = SubscriptionSetting::first();
+
+
+
+        // 1.2: plans
+        $plans = Plan::all();
+
+        // $plans = Plan::whereHas('ranges')
+        //     ->whereHas('bundles')
+        //     ->whereHas('defaultCalendarRelation')
+        //     ->where('isForWebsite', true)
+        //     ->get();
+
 
 
 
@@ -63,6 +74,7 @@ class Plans extends Component
             $path = 'livewire.website.plans-seventh';
 
         } // end if
+
 
 
 

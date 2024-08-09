@@ -66,6 +66,7 @@
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/main.css')}}" />
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/plans.css')}}" />
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/scrollbar.css')}}" />
+        <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/only-plans.css')}}" />
 
 
 

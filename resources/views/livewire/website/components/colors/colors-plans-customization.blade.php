@@ -19,6 +19,7 @@
 
             /* colors */
             --textColor: <?php echo "$settings->textColor" ?>;
+            --textActiveColor: <?php echo "$settings->textActiveColor" ?>;
             --preloaderLineColor: <?php echo "$settings->preloaderLineColor" ?>;
 
             --cursorColor: <?php echo "$settings->cursorColor" ?>;
@@ -36,6 +37,7 @@
             --brandColor: <?php echo "$settings->brandColor" ?>;
             --brandActiveColor: <?php echo "$settings->brandActiveColor" ?>;
 
+            --inputColor: <?php echo "$settings->textColor" ?>;
             --inputBorderColor: <?php echo "$settings->inputBorderColor" ?>;
             --inputBorderHoverColor: <?php echo "$settings->inputBorderHoverColor" ?>;
 
@@ -105,6 +107,7 @@
             --planMacroBackgroundColor: <?php echo "$settings->planMacroBackgroundColor" ?>;
             --inputBackgroundColor: <?php echo "$settings->inputBackgroundColor" ?>;
 
+            --planDaysDiscountBackgroundColor: <?php echo "$settings->planDaysDiscountBackgroundColor" ?>;
 
             --preferenceBackgroundColor: <?php echo "$settings->preferenceBackgroundColor" ?>;
             --preferenceBagBackgroundColor: <?php echo "$settings->preferenceBagBackgroundColor" ?>;

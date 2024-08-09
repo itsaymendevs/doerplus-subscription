@@ -15,14 +15,10 @@ class PlansEighth extends Component
     {
 
         // 1: dependencies
-        $plans = Plan::whereHas('ranges')
-            ->whereHas('bundles')
-            ->whereHas('defaultCalendarRelation')
-            ->where('isForWebsite', true)
-            ->get();
-
-
+        $plans = Plan::all();
         $settings = SubscriptionSetting::first();
+
+
 
 
         return view('livewire.website.plans-eighth', compact('plans', 'settings'));

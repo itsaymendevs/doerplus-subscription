@@ -255,7 +255,7 @@
 
 
                                             {{-- location --}}
-                                            <p class='mt-3 mb-4 mb-md-2 fs-15 text-white'>{{ $instance->locationAddress
+                                            <p class='mt-3 mb-4 mb-md-2 fs-15'>{{ $instance->locationAddress
                                                 }}
                                             </p>
 
@@ -667,7 +667,7 @@
                                                 {{-- name --}}
                                                 <div class="m-titles mb-1 text-center">
                                                     <div class="m-title plan--single-title fw-semibold fs-6 mb-0"
-                                                        style="color: var(--bs-warning) !important;">
+                                                        style="color: var(--summaryBundleColor) !important;">
                                                         {{ $pickedPlanBundle->name }}
                                                     </div>
                                                 </div>
@@ -800,7 +800,9 @@
                                                 <div
                                                     class="d-flex invoice--tr justify-content-between align-items-center">
 
-                                                    <h6 class="fw-500 my-0 fs-14">Cool Bag</h6>
+                                                    <h6 class="fw-500 my-0 fs-14 d-flex align-items-end">Cool Bag<span
+                                                            class='ms-1 span--price fs-9'
+                                                            style="color: var(--textColor)">(Refundable)</span></h6>
                                                     <h6 class='my-0 fw-500 fs-16'>
                                                         {{ number_format($instance->bagPrice) }}
                                                     </h6>
