@@ -112,11 +112,8 @@
                                         class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
 
 
-                                        {{-- hr --}}
-                                        <hr>
-
                                         {{-- collapseToggler --}}
-                                        <div class="ps-2 splitting-text-anim-1 scroll-animate motion--slow collapse--title w-100"
+                                        <div class="splitting-text-anim-1 scroll-animate motion--slow collapse--title w-100"
                                             data-splitting="chars" data-animate="active">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <span>Delivery Information</span>
@@ -317,6 +314,10 @@
 
 
 
+
+
+
+
                     {{-- 2: promo & referral --}}
 
 
@@ -337,9 +338,8 @@
                             <div class="m-title plan--single-title fs-6 mb-3 fw-semibold  pointer">
                                 <div
                                     class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
-                                    <hr>
 
-                                    <div class="ps-2 splitting-text-anim-1 scroll-animate motion--slow w-100"
+                                    <div class="splitting-text-anim-1 scroll-animate motion--slow w-100"
                                         data-splitting="chars" data-animate="active" data-splitting="chars">
                                         <span>Promo</span>
                                     </div>
@@ -398,9 +398,8 @@
                             <div class="m-title plan--single-title fs-6 mb-3 fw-semibold  pointer">
                                 <div
                                     class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
-                                    <hr>
 
-                                    <div class="ps-2 splitting-text-anim-1 scroll-animate motion--slow w-100"
+                                    <div class="splitting-text-anim-1 scroll-animate motion--slow w-100"
                                         data-splitting="chars" data-animate="active" data-splitting="chars">
                                         <span>Referral</span>
                                     </div>
@@ -431,12 +430,38 @@
 
 
 
+
+
                         @endif
                         {{-- end if --}}
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+                        {{-- policy --}}
+                        <div class="col-12 col-sm-12 mb-3">
+                            <div class="d-flex position-relative">
+                                <label style="background-color: transparent !important;"
+                                    class="form-check form-switch bag--switch bag--switch-checkout w-100 justify-content-start">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="policy--checkbox">
+                                    <label class="form-check-label ms-2 fw-400" for="policy--checkbox">
+                                        Accept<a href="javascript:void(0);" data-izimodal-open="#privacy--modal"
+                                            data-izimodal-transitionin="fadeInDown" class='ms-1 fw-500'>Terms &
+                                            Policy</a>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
 
 
 
@@ -572,11 +597,9 @@
                                                         class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
 
 
-                                                        {{-- hr --}}
-                                                        <hr>
 
                                                         {{-- collapseToggler --}}
-                                                        <div class="ps-2 splitting-text-anim-1 scroll-animate collapse--title motion--slow w-100"
+                                                        <div class="splitting-text-anim-1 scroll-animate collapse--title motion--slow w-100"
                                                             data-splitting="chars" data-animate="active"
                                                             data-bs-toggle="collapse"
                                                             data-bs-target="#collapse--bundle-information"
@@ -859,13 +882,33 @@
 
 
 
-                                                {{-- 7: deliveryCharge --}}
+
+
+
+
+
+
+                                                {{-- 7: deliveryPrice --}}
+                                                @if (!is_null($instance?->deliveryPrice))
+
                                                 <div
                                                     class="d-flex invoice--tr justify-content-between align-items-center">
                                                     <h6 class="fw-500 my-0 fs-14">Delivery</h6>
-                                                    <h6 class='my-0 fw-500 fs-16'></h6>
+                                                    <h6 class='my-0 fw-500 fs-16'>
+
+                                                        {{-- 1: free --}}
+                                                        @if ($instance->deliveryPrice == 0)
+                                                        {{ "FREE" }}
+                                                        @else
+                                                        {{ number_format($instance?->deliveryPrice) }}
+                                                        @endif
+                                                        {{-- end if --}}
+
+                                                    </h6>
                                                 </div>
 
+                                                @endif
+                                                {{-- end if --}}
 
 
 
@@ -1092,6 +1135,13 @@
 
     {{-- information --}}
     <livewire:website.plans.plans-checkout.components.plans-checkout-address />
+
+
+
+    {{-- privacy --}}
+    <livewire:website.plans.plans-checkout.components.plans-checkout-privacy />
+
+
 
 
 

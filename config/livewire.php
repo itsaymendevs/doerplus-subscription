@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'layout' => 'livewire.layouts.plans',
+    'layout' => 'livewire.layouts.website.plans',
 
     /*
     |---------------------------------------------------------------------------

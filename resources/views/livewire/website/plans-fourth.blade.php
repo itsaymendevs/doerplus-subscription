@@ -64,7 +64,8 @@
 
 
     {{-- swiper --}}
-    <div class="section half-slider" data-dispimgpath="{{ url('assets/plugins/subscription/images/clouds.jpg') }}">
+    <div class="section half-slider half--slider"
+        data-dispimgpath="{{ url('assets/plugins/subscription/images/clouds.jpg') }}">
         <div class="swiper-container plans--swiper">
             <div class="swiper-wrapper">
 
@@ -80,7 +81,7 @@
 
                     {{-- imageFile --}}
                     <div class="slide">
-                        <img src='{{ url("{$storagePath}/menu/plans/{$plan->fifthImageFile}") }}'
+                        <img src='{{ url("{$storagePath}/menu/plans/{$plan?->sixthImageFile}") }}'
                             class="half-slide-item__image" alt="" />
                     </div>
 
@@ -118,7 +119,7 @@
 
                             {{-- name --}}
                             <div class="title">
-                                <a href="{{ route('website.plans.details', [$plan->nameURL]) }}">
+                                <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}">
                                     <span class="title-inner splitting-text-anim-2 plan--slide-title"
                                         data-splitting>{{$plan->name}}</span></a>
                             </div>
@@ -144,11 +145,31 @@
                         {{-- viewButton --}}
                         <div
                             class="view-btn @if ($settings->planCardAlignment == 'center') left-0 right-0 mx-auto @endif">
-                            <a href="{{ route('website.plans.details', [$plan->nameURL]) }}" data-splitting
+
+
+
+                            {{-- 1: existing --}}
+                            @if ($renewEmail)
+
+
+                            <a href="javascript:void(0);" data-splitting
+                                class="splitting-text-anim-1 plan--slide-button fw-500"
+                                wire:click="prepExistingCustomer('{{ $plan->nameURL }}')">View Plan</a>
+
+
+                            {{-- 2: regular --}}
+                            @else
+
+                            <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}" data-splitting
                                 class="splitting-text-anim-1 plan--slide-button fw-500">View Plan</a>
+
+
+                            @endif
+                            {{-- end if --}}
+
+
+
                         </div>
-
-
 
                     </div>
                 </div>

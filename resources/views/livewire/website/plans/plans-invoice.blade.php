@@ -378,8 +378,8 @@
 
 
 
-                                                {{-- 3: deliveryCharge --}}
-                                                @if ($settings?->hasDeliveryCharge)
+                                                {{-- 3: deliveryPrice --}}
+                                                @if (!is_null($subscription?->deliveryPrice))
 
                                                 <p class='fw-500'>{{ $globalSNCounter++ }}<span>.</span></p>
 
@@ -449,7 +449,7 @@
                                                 {{-- 2: promo --}}
                                                 @if ($subscription?->promoCodeId)
 
-                                                <p class='fw-500'>Promo </p>
+                                                <p class='fw-500'>Promo</p>
 
                                                 @endif
                                                 {{-- end if --}}
@@ -458,8 +458,8 @@
 
 
 
-                                                {{-- 3: deliveryCharge --}}
-                                                @if ($settings?->hasDeliveryCharge)
+                                                {{-- 3: deliveryPrice --}}
+                                                @if (!is_null($subscription?->deliveryPrice))
 
                                                 <p class='fw-500'>Delivery</p>
 
@@ -533,8 +533,8 @@
 
 
 
-                                                {{-- 3: deliveryCharge --}}
-                                                @if ($settings?->hasDeliveryCharge)
+                                                {{-- 3: deliveryPrice --}}
+                                                @if (!is_null($subscription?->deliveryPrice))
 
                                                 <p class='fw-500'><span class='invisible'>x</span></p>
 
@@ -595,8 +595,23 @@
                                                 <p class='fw-500'>{{ number_format($subscription?->planPrice, 1) }}
                                                 </p>
                                                 <p class='fw-500 tr--multi'>
+
+                                                    {{-- 3.1: free --}}
+                                                    @if ($subscription?->bagPrice == 0)
+
+                                                    {{ "FREE" }}
+
+                                                    @else
                                                     {{ number_format($subscription?->bagPrice, 1) }}
+
+                                                    @endif
+                                                    {{-- end if --}}
+
                                                 </p>
+
+
+
+
 
 
 
@@ -614,13 +629,26 @@
 
 
 
-                                                {{-- 3: deliveryCharge --}}
-                                                @if ($settings?->hasDeliveryCharge)
+                                                {{-- 3: deliveryPrice --}}
+                                                @if (!is_null($subscription?->deliveryPrice))
 
                                                 <p class='fw-500'>
-                                                    {{ number_format($subscription?->deliveryCharge, 1) }}
+
+                                                    {{-- 3.1: free --}}
+                                                    @if ($subscription?->deliveryPrice == 0)
+
+                                                    {{ "FREE" }}
+
+                                                    @else
+                                                    {{ number_format($subscription?->deliveryPrice, 1) }}
+
+                                                    @endif
+                                                    {{-- end if --}}
+
                                                 </p>
+
                                                 @endif
+                                                {{-- end if --}}
 
 
 

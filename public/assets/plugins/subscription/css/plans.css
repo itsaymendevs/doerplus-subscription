@@ -117,6 +117,7 @@
 .menu-btn span:before,
 .menu-btn span:after {
     background: var(--navbarMenuColor);
+    background-color: var(--navbarMenuColor);
 }
 
 .menu-btn.active span:before,
@@ -170,8 +171,13 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 .right-0 {
     right: 0px !important;
 }
+
 .fw-500 {
     font-weight: 500 !important;
+}
+
+.fw-400 {
+    font-weight: 400 !important;
 }
 
 /* --------------------------------------- */
@@ -393,4 +399,12 @@ body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 .plan--action-button::before {
     background: var(--planActionButtonBackgroundColor) !important;
     background: var(--planActionButtonBackgroundColor) !important;
+}
+
+/* ------------------------------------- */
+/* ------------------------------------- */
+
+/* hero */
+.plan--hero-section {
+    background: var(--planHeaderBackgroundColor) !important;
 }

@@ -41,7 +41,7 @@
 
             --sliderLineColor: <?php echo "$settings->sliderLineColor" ?>;
             --sliderBulletsColor: <?php echo "$settings->sliderBulletsColor" ?>;
-
+            --sliderShadowColor: <?php echo "$settings->sliderShadowColor" ?>;
 
 
 
@@ -86,6 +86,7 @@
 
 
             /* forPlan */
+            --planHeaderBackgroundColor: <?php echo "$settings->planHeaderBackgroundColor" ?> !important;
             --planActionButtonBackgroundColor: <?php echo "$settings->planActionButtonBackgroundColor" ?> !important;
 
 

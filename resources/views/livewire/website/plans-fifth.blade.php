@@ -151,9 +151,35 @@
 
                                 {{-- viewButton --}}
                                 <div class="more-bts @if ($settings->planCardAlignment == 'center') text-center @endif">
-                                    <a href="{{ route('website.plans.details', [$plan->nameURL]) }}" data-splitting
+
+
+
+                                    {{-- 1: existing --}}
+                                    @if ($renewEmail)
+
+
+                                    <a href="javascript:void(0);" data-splitting
+                                        class="btn more-btn scrolla-element-anim-1 plan--slide-button fw-500"
+                                        wire:click="prepExistingCustomer('{{ $plan->nameURL }}')">View
+                                        Plan</a>
+
+
+
+                                    {{-- 2: regular --}}
+                                    @else
+
+
+                                    <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}"
+                                        data-splitting
                                         class="btn more-btn scrolla-element-anim-1 plan--slide-button fw-500">View
                                         Plan</a>
+
+
+                                    @endif
+                                    {{-- end if --}}
+
+
+
                                 </div>
 
                             </div>

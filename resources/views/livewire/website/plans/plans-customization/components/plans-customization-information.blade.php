@@ -7,7 +7,7 @@
         {{-- header --}}
         <div class="row mb-4 pb-2 align-items-center">
             <div class="col-10">
-                <h5 class='my-0 fw-bold fs-4'>Personal Information</h5>
+                <h5 class='my-0 fw-bold fs-4 izi--title'>Personal Information</h5>
             </div>
 
             {{-- close --}}
@@ -38,6 +38,65 @@
 
         {{-- content --}}
         <form wire:submit='continue' class="row mb-5 justify-content-center justify-content-md-start">
+
+
+
+
+
+
+
+            {{-- gender --}}
+            <div class="col-12">
+                <div class="d-flex mb-4 flex-wrap plan--days-wrapper justify-content-center">
+
+
+
+                    {{-- loop - genders --}}
+                    @foreach (['Male', 'Female'] ?? [] as $key => $gender)
+
+
+
+
+                    {{-- radioButton --}}
+                    <input type="radio" id="gender--radio-{{ $key }}" class='gender--radio d-none'
+                        wire:model.live='instance.gender' value='{{ $gender }}'>
+
+
+
+
+                    <label class='pointer plan--days gender--option motion--slow' key='information-gender-{{ $key }}'
+                        wire:loading.class='processing--button' wire:target='instance.planDays'
+                        for='gender--radio-{{ $key }}'>{{ $gender }}
+                    </label>
+
+
+
+
+
+
+
+                    @endforeach
+                    {{-- end loop --}}
+
+
+                </div>
+            </div>
+            {{-- endCol --}}
+
+
+
+
+
+
+
+
+
+
+            {{-- --------------------------- --}}
+            {{-- --------------------------- --}}
+
+
+
 
 
 
@@ -257,6 +316,10 @@
 
             {{-- ------------------------------------ --}}
             {{-- ------------------------------------ --}}
+
+
+
+
 
 
 

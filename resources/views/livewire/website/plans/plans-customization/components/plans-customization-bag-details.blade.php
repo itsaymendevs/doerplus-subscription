@@ -7,7 +7,7 @@
         {{-- header --}}
         <div class="row  align-items-center mb-4 pb-2">
             <div class="col-10">
-                <h5 class='my-0 fw-bold fs-4'>Bag Terms</h5>
+                <h5 class='my-0 fw-bold fs-4 izi--title'>Bag Terms</h5>
             </div>
 
             {{-- close --}}

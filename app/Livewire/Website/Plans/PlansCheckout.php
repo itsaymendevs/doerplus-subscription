@@ -5,6 +5,7 @@ namespace App\Livewire\Website\Plans;
 use App\Livewire\Forms\PaymenntForm;
 use App\Livewire\Forms\SubscriptionForm;
 use App\Models\Bag;
+use App\Models\City;
 use App\Models\CityDistrict;
 use App\Models\CustomerSubscriptionSetting;
 use App\Models\Plan;
@@ -20,7 +21,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-#[Layout('livewire.layouts.plans-customization')]
+#[Layout('livewire.layouts.website.plans-customization')]
 class PlansCheckout extends Component
 {
 
@@ -108,6 +109,7 @@ class PlansCheckout extends Component
 
 
 
+
     } // end function
 
 
@@ -155,8 +157,30 @@ class PlansCheckout extends Component
 
 
 
+        // 1.2: getDeliveryCharge
+        $city = City::find($this->instance->cityId);
+
+
+        if (! is_null($city->deliveryCharge)) {
+
+            $this->instance->deliveryPrice = $city->deliveryCharge * intval($this->instance->planDays);
+
+        } else {
+
+            $this->instance->deliveryPrice = null;
+
+        } // end if
+
+
+
+
+
+
+
         // -----------------------------------------------------
         // -----------------------------------------------------
+
+
 
 
 
@@ -169,7 +193,7 @@ class PlansCheckout extends Component
 
 
 
-
+        $this->recalculate();
 
 
 
@@ -289,7 +313,8 @@ class PlansCheckout extends Component
 
         // 1.3: getTotal
         $this->instance->totalPrice = $this->instance->planPrice + $this->instance->bagPrice;
-        $this->instance->totalCheckoutPrice = $this->instance->planPrice + $this->instance->bagPrice;
+
+        $this->instance->totalCheckoutPrice = $this->instance->planPrice + $this->instance->bagPrice + ($this->instance->deliveryPrice ?? 0);
 
 
 
@@ -420,7 +445,6 @@ class PlansCheckout extends Component
 
         // ----------------------------------------
         // ----------------------------------------
-
 
 
 

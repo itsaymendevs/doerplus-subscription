@@ -19,14 +19,14 @@ use Livewire\Component;
 use stdClass;
 
 
-#[Layout('livewire.layouts.plans-customization')]
+#[Layout('livewire.layouts.website.plans-customization')]
 class PlansInvoice extends Component
 {
 
 
-    use HelperTrait;
-    use PaymenntTrait;
-    use MailTrait;
+   use HelperTrait;
+   use PaymenntTrait;
+   use MailTrait;
 
 
 
@@ -34,10 +34,10 @@ class PlansInvoice extends Component
 
 
 
-    // :: variables
-    public SubscriptionForm $instance;
+   // :: variables
+   public SubscriptionForm $instance;
 
-    public $customer, $subscription;
+   public $customer, $subscription;
 
 
 
@@ -45,30 +45,30 @@ class PlansInvoice extends Component
 
 
 
-    public function mount(Request $request)
-    {
+   public function mount(Request $request)
+   {
 
 
 
 
 
-        // 1: checkPayment - removeSessions
-        Session::forget('customer');
-        Session::forget('pre-customer');
+      // 1: checkPayment - removeSessions
+      Session::forget('customer');
+      Session::forget('pre-customer');
 
-        $isPaymentDone = $this->checkCheckoutPaymennt($request?->checkout);
+      $isPaymentDone = $this->checkCheckoutPaymennt($request?->checkout);
 
 
 
 
-        // 1.2: notPaid
-        if (! $isPaymentDone) {
+      // 1.2: notPaid
+      if (! $isPaymentDone) {
 
 
-            return $this->redirect(route('website.plans'));
+         return $this->redirect(route('website.plans'));
 
 
-        } // end if
+      } // end if
 
 
 
@@ -80,8 +80,8 @@ class PlansInvoice extends Component
 
 
 
-        // ------------------------------------------------
-        // ------------------------------------------------
+      // ------------------------------------------------
+      // ------------------------------------------------
 
 
 
@@ -91,42 +91,42 @@ class PlansInvoice extends Component
 
 
 
-        // 2: getLead
-        $lead = Lead::where('paymentReference', $request?->checkout)?->latest()?->first() ?? null;
+      // 2: getLead
+      $lead = Lead::where('paymentReference', $request?->checkout)?->latest()?->first() ?? null;
 
 
 
 
 
-        // 2.1: isFound
-        if ($lead) {
+      // 2.1: isFound
+      if ($lead) {
 
 
 
 
 
-            // 2.2: isPending
-            if (! $lead->isPaymentDone) {
+         // 2.2: isPending
+         if (! $lead->isPaymentDone) {
 
 
 
-                // 2.3: create instance
-                $instance = new stdClass();
-                $instance->id = $lead->id;
+            // 2.3: create instance
+            $instance = new stdClass();
+            $instance->id = $lead->id;
 
 
 
-                // 2.4: updatePayment / restructure
-                $response = $this->makeRequest('subscription/lead/convert', $instance);
-                $lead = $response->lead;
+            // 2.4: updatePayment / restructure
+            $response = $this->makeRequest('subscription/lead/convert', $instance);
+            $lead = $response->lead;
 
 
 
-                if (empty($lead)) {
+            if (empty($lead)) {
 
-                    return $this->redirect(route('website.plans'));
+               return $this->redirect(route('website.plans'));
 
-                } // end if
+            } // end if
 
 
 
@@ -135,8 +135,8 @@ class PlansInvoice extends Component
 
 
 
-                // ------------------------------------------
-                // ------------------------------------------
+            // ------------------------------------------
+            // ------------------------------------------
 
 
 
@@ -145,22 +145,22 @@ class PlansInvoice extends Component
 
 
 
-                // 2.5: regular - existing
-                if (! $lead->isExistingCustomer) {
+            // 2.5: regular - existing
+            if (! $lead->isExistingCustomer) {
 
-                    $response = $this->makeRequest('subscription/customer/store', $lead);
+               $response = $this->makeRequest('subscription/customer/store', $lead);
 
-                } else {
+            } else {
 
 
-                    $lead->deliveryDays = null;
-                    $lead->useWallet = false;
-                    $lead->walletDiscountPrice = null;
+               $lead->deliveryDays = null;
+               $lead->useWallet = false;
+               $lead->walletDiscountPrice = null;
 
-                    $response = $this->makeRequest('subscription/customer/existing/store', $lead);
+               $response = $this->makeRequest('subscription/customer/existing/store', $lead);
 
 
-                } // end if
+            } // end if
 
 
 
@@ -170,8 +170,8 @@ class PlansInvoice extends Component
 
 
 
-                // ------------------------------------------
-                // ------------------------------------------
+            // ------------------------------------------
+            // ------------------------------------------
 
 
 
@@ -181,14 +181,14 @@ class PlansInvoice extends Component
 
 
 
-                // 2.6: sendMail
-                $subscription = CustomerSubscription::where('paymentReference', $lead->paymentReference)->latest()->first();
+            // 2.6: sendMail
+            $subscription = CustomerSubscription::where('paymentReference', $lead->paymentReference)->latest()->first();
 
-                // $this->sendInvoiceMail($subscription->id, $subscription->customer->fullEmail());
+            // $this->sendInvoiceMail($subscription->id, $subscription->customer->fullEmail());
 
 
 
-            } // end if - isPending
+         } // end if - isPending
 
 
 
@@ -198,16 +198,16 @@ class PlansInvoice extends Component
 
 
 
-            // 3: notFound
-        } else {
+         // 3: notFound
+      } else {
 
 
 
-            return $this->redirect(route('website.plans'));
+         return $this->redirect(route('website.plans'));
 
 
 
-        } // end if
+      } // end if
 
 
 
@@ -218,8 +218,8 @@ class PlansInvoice extends Component
 
 
 
-        // ------------------------------------------
-        // ------------------------------------------
+      // ------------------------------------------
+      // ------------------------------------------
 
 
 
@@ -228,16 +228,16 @@ class PlansInvoice extends Component
 
 
 
-        // 3: dependencies
-        $this->subscription = CustomerSubscription::where('paymentReference', $lead->paymentReference)->latest()->first();
-        $this->customer = $this->subscription->customer;
+      // 3: dependencies
+      $this->subscription = CustomerSubscription::where('paymentReference', $lead->paymentReference)->latest()->first();
+      $this->customer = $this->subscription->customer;
 
 
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -248,7 +248,7 @@ class PlansInvoice extends Component
 
 
 
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -260,23 +260,23 @@ class PlansInvoice extends Component
 
 
 
-    public function render()
-    {
+   public function render()
+   {
 
 
-        // 1: dependencies
-        $socials = Social::first();
-        $profile = Profile::first();
-        $settings = CustomerSubscriptionSetting::first();
-        $formSettings = SubscriptionFormSetting::first();
+      // 1: dependencies
+      $socials = Social::first();
+      $profile = Profile::first();
+      $settings = CustomerSubscriptionSetting::first();
+      $formSettings = SubscriptionFormSetting::first();
 
 
 
 
-        return view('livewire.website.plans.plans-invoice', compact('profile', 'socials', 'settings', 'formSettings'));
+      return view('livewire.website.plans.plans-invoice', compact('profile', 'socials', 'settings', 'formSettings'));
 
 
-    } // end function
+   } // end function
 
 
 

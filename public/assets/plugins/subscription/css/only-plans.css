@@ -11,3 +11,44 @@
 .plan--sixth-title {
     color: var(--textColor) !important;
 }
+
+.menu-full-overlay::before {
+    background: var(--navbarBackgroundColor);
+}
+
+.section.half-slider .swiper-pagination .swiper-pagination-bullet {
+    background: var(--textColor);
+}
+
+/* policy */
+
+.policy--point .name {
+    font-size: 16px !important;
+}
+
+.policy--point.description-list-item {
+    padding-bottom: 15px !important;
+}
+
+.section.m-works-carousel .works-slide .slide::before {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        var(--sliderShadowColor) 100%
+    );
+}
+
+.main-slider .canvas::before,
+.full-slider .canvas::before,
+.half-slider .canvas::before {
+    background: linear-gradient(
+        to bottom,
+        rgba(33, 32, 46, 0) 0%,
+        var(--sliderShadowColor) 100%
+    );
+}
+
+.half--slider .canvas::before,
+.full--slider .canvas::before {
+    z-index: 0 !important;
+}

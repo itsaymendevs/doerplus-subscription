@@ -45,12 +45,6 @@
                             <div class="menu-full">
                                 <ul class="menu-full">
 
-                                    {{-- home --}}
-                                    <li class="menu-item mb-2">
-                                        <a class="splitting-text-anim-2" data-splitting="chars"
-                                            href="{{ route('website.plans') }}">Home</a>
-                                    </li>
-
 
 
                                     {{-- plans --}}
@@ -58,6 +52,24 @@
                                         <a class="splitting-text-anim-2" data-splitting="chars"
                                             href="{{ route('website.plans') }}">Plans</a>
                                     </li>
+
+
+
+                                    {{-- blogs --}}
+                                    <li class="menu-item">
+                                        <a class="splitting-text-anim-2" data-splitting="chars"
+                                            href="javascript:void(0);">Blogs</a>
+                                    </li>
+
+
+
+                                    {{-- home --}}
+                                    <li class="menu-item mb-2">
+                                        <a class="splitting-text-anim-2" data-splitting="chars"
+                                            href="{{ route('website.plans') }}">Home</a>
+                                    </li>
+
+
 
 
                                     {{-- contact --}}

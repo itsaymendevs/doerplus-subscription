@@ -102,24 +102,8 @@
                         <div class="col-12 col-lg-5 text-center">
 
 
-
-                            {{-- switch --}}
-                            <div class="btn-group mx-auto" role="group" aria-label="Basic example">
-
-
-                                {{-- regular --}}
-                                <button type="button"
-                                    class="btn btn--regular sm border--bottom btn--collapse fw-500 fs-14"
-                                    data-bs-toggle="collapse" data-bs-target="#collapse--regular-plan"
-                                    aria-expanded="false" aria-controls="collapse--regular-plan">Regular</button>
-
-
-                                {{-- cart --}}
-                                <button type="button"
-                                    class="btn btn--regular sm border--bottom btn--collapse collapsed fw-500 fs-14"
-                                    data-bs-toggle="collapse" data-bs-target="#collapse--cart-plan"
-                                    aria-expanded="false" aria-controls="collapse--cart-plan">Cart To Go</button>
-                            </div>
+                            <livewire:website.plans.plans-customization.components.plans-customization-switch
+                                id='{{ $plan->id }}' type='regular' key='type--switch' />
 
                         </div>
                     </div>
@@ -321,7 +305,8 @@
 
                             {{-- viewButton --}}
                             <div class='d-flex justify-content-end mt-4 px-1 px-sm-0'>
-                                <a href='javascript:void(0);' class='btn--with-hr active'>
+                                <a href="{{ route('website.plans.details', [$plan->nameURL]) }}"
+                                    class='btn--with-hr active'>
                                     <hr>
                                     <span class='ms-2'>See More</span>
                                 </a>
@@ -359,12 +344,8 @@
                                     <div
                                         class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
 
-
-                                        {{-- hr --}}
-                                        <hr>
-
                                         {{-- collapseToggler --}}
-                                        <div class="ps-2 splitting-text-anim-1 scroll-animate collapse--title motion--slow w-100"
+                                        <div class="splitting-text-anim-1 scroll-animate collapse--title motion--slow w-100"
                                             data-splitting="chars" data-animate="active" data-bs-toggle="collapse"
                                             data-bs-target="#collapse--bundles" aria-expanded="false"
                                             aria-controls="collapse--bundles" data-splitting="chars">
@@ -397,7 +378,7 @@
 
 
                                 {{-- 1: bundles --}}
-                                <div class="row justify-content-center justify-content-md-start">
+                                <div class="row justify-content-center justify-content-md-start mx-0">
 
 
 
@@ -410,7 +391,7 @@
 
 
                                     {{-- 1: version --}}
-                                    <div class="col-6 col-sm-6 col-lg-4 mb-4 scrolla-element-anim-1 scroll-animate"
+                                    <div class="col-4 col-sm-4 col-lg-4 col-xl-3 mb-4 scrolla-element-anim-1 scroll-animate px-1"
                                         key='single-bundle-{{ $bundle->id }}' data-animate="active" wire:ignore.self>
 
 
@@ -510,9 +491,7 @@
                                         <div class="m-title plan--single-title fs-6 mb-0 fw-semibold  pointer">
                                             <div
                                                 class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
-                                                <hr>
-
-                                                <div class="ps-2 splitting-text-anim-1 scroll-animate motion--slow w-100"
+                                                <div class="splitting-text-anim-1 scroll-animate motion--slow w-100"
                                                     data-splitting="chars" data-animate="active" data-splitting="chars">
                                                     <span>How many calories per day?</span>
                                                 </div>
@@ -625,9 +604,8 @@
                                         <div class="m-title plan--single-title fs-6 mb-3 fw-semibold  pointer">
                                             <div
                                                 class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
-                                                <hr>
 
-                                                <div class="ps-2 splitting-text-anim-1 scroll-animate motion--slow w-100"
+                                                <div class="splitting-text-anim-1 scroll-animate motion--slow w-100"
                                                     data-splitting="chars" data-animate="active" data-splitting="chars">
                                                     <span>Plan days</span>
                                                 </div>
@@ -722,9 +700,8 @@
                                         <div class="m-title plan--single-title fs-6 mb-3 fw-semibold  pointer">
                                             <div
                                                 class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
-                                                <hr>
 
-                                                <div class="ps-2 splitting-text-anim-1 scroll-animate motion--slow w-100"
+                                                <div class="splitting-text-anim-1 scroll-animate motion--slow w-100"
                                                     data-splitting="chars" data-animate="active" data-splitting="chars">
                                                     <span>Start date</span>
                                                 </div>
@@ -802,7 +779,7 @@
 
 
 
-                    <div class="row mt-5 justify-content-center justify-content-md-start section--colorful animation--floating"
+                    <div class="row  justify-content-center justify-content-md-start section--colorful animation--floating"
                         style="background-color: var(--preferenceBackgroundColor);">
 
 
@@ -814,11 +791,8 @@
                                         class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
 
 
-                                        {{-- hr --}}
-                                        <hr>
-
                                         {{-- collapseToggler --}}
-                                        <div class="ps-2 splitting-text-anim-1 scroll-animate collapse--title motion--slow w-100"
+                                        <div class="splitting-text-anim-1 scroll-animate collapse--title motion--slow w-100"
                                             data-splitting="chars" data-animate="active" data-bs-toggle="collapse"
                                             data-bs-target="#collapse--preferences" aria-expanded="false"
                                             aria-controls="collapse--preferences" data-splitting="chars">
@@ -1076,13 +1050,35 @@
                                     @if ($instance->planDays && $instance->startDate && $instance->planBundleId)
 
                                     <div class="col-12 col-md-7">
-                                        <div class="d-flex form--input-wrapper justify-content-center mt-3
-                                        @if (!$settings?->showButtonMotion) no--button-motion @endif">
+                                        <form class="d-flex form--input-wrapper justify-content-center mt-3
+                                        @if (!$settings?->showButtonMotion) no--button-motion @endif"
+                                            wire:submit='continue'>
+
+
+
+
+
+                                            {{-- 1: existing --}}
+                                            @if ($instance?->isExistingCustomer)
+
+
+                                            <livewire:website.components.items.button-blob title='Proceed'
+                                                type="submit" />
+
+
+                                            {{-- 2: regular --}}
+                                            @else
+
 
                                             <livewire:website.components.items.button-blob title='Proceed'
                                                 modal='#information--modal' />
 
-                                        </div>
+
+                                            @endif
+                                            {{-- end if --}}
+
+
+                                        </form>
                                     </div>
 
                                     @endif
@@ -1190,18 +1186,15 @@
                                                         class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
 
 
-                                                        {{-- hr --}}
-                                                        <hr>
-
                                                         {{-- collapseToggler --}}
-                                                        <div class="ps-2 splitting-text-anim-1 scroll-animate collapse--title motion--slow w-100 plans--other-toggler no-events"
+                                                        <div class="splitting-text-anim-1 scroll-animate collapse--title motion--slow w-100 plans--other-toggler no-events"
                                                             data-splitting="chars" data-animate="active"
                                                             data-bs-toggle="collapse"
                                                             data-bs-target="#collapse--other-plans"
                                                             aria-expanded="false" aria-controls="collapse--other-plans"
                                                             data-splitting="chars">
                                                             <div class="d-flex justify-content-between">
-                                                                <span>Pick Your Preference</span>
+                                                                <span>Plans</span>
                                                                 <i
                                                                     class="bi bi-chevron-compact-down collapse--icon"></i>
                                                             </div>
@@ -1351,11 +1344,9 @@
                                                         class="d-flex align-items-center justify-content-center justify-content-sm-start title--with-hr">
 
 
-                                                        {{-- hr --}}
-                                                        <hr>
 
                                                         {{-- collapseToggler --}}
-                                                        <div class="ps-2 splitting-text-anim-1 scroll-animate collapse--title motion--slow w-100"
+                                                        <div class="splitting-text-anim-1 scroll-animate collapse--title motion--slow w-100"
                                                             data-splitting="chars" data-animate="active"
                                                             data-bs-toggle="collapse"
                                                             data-bs-target="#collapse--bundle-information"

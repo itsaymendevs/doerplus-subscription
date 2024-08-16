@@ -78,7 +78,7 @@
 
 
 
-        <div class="canvas started-items__image" data-top="top: 0px;" data-top-bottom="top: -200px;"></div>
+        <div class="canvas started-items__image" data-top="top: 0px;" data-top-bottom="top: -100px;"></div>
 
 
 
@@ -129,7 +129,8 @@
                     @if ($settings->planSideTitleDisplay == 'inline') col-lg-3 @else col-lg-12 @endif">
                     <div class="m-titles mb-4">
                         <div class="m-title scrolla-element-anim-1 scroll-animate plan--single-title"
-                            data-animate="active">Know More
+                            data-animate="active">
+                            Know More
                         </div>
                     </div>
                 </div>
@@ -270,7 +271,8 @@
                 @if ($settings->planSideTitleDisplay == 'inline') col-lg-3 @else col-lg-12 @endif">
                     <div class="m-titles">
                         <h2 class="m-title scrolla-element-anim-1 scroll-animate plan--single-title"
-                            data-animate="active">{{ $settings?->planCustomSectionTitle }}
+                            data-animate="active">{{
+                            $settings?->planCustomSectionTitle }}
                         </h2>
                     </div>
                 </div>
@@ -366,13 +368,13 @@
 
 
     {{-- videoSection --}}
-    <div class="section section-inner m-video-large">
-        <div class="video scrolla-element-anim-1 scroll-animate" data-animate="active">
-            <div class="img js-parallax"
-                style='background-image: url({{ url("{$storagePath}/menu/plans/{$plan->fifthImageFile}") }}); filter: blur(6px)'>
-            </div>
-            <iframe class="js-video-iframe" data-src="{{ $plan?->videoURL }}?showinfo=0&rel=0&autoplay=1"></iframe>
-            <div class="play"></div>
+    <div class="section section-inner m-video-large  @if (empty($plan?->videoURL)) no-events @endif">
+        <div class="video scrolla-element-anim-1 scroll-animate position-relative" data-animate="active">
+            <video class="js-video-iframe" width="320" height="240" controls>
+                <source src="{{ $plan?->videoURL }}" type="video/mp4">
+            </video>
+
+
         </div>
     </div>
 
@@ -395,6 +397,10 @@
 
 
     {{-- testimonials --}}
+
+    @if ($settings->showPlanReviews)
+
+
     <div class="section section-inner m-testimonials section--spacing">
         <div class="container">
             <div class="row">
@@ -405,7 +411,8 @@
                 @if ($settings->planSideTitleDisplay == 'inline') col-lg-3 @else col-lg-12 @endif">
                     <div class="m-titles">
                         <h2 class="m-title scrolla-element-anim-1 scroll-animate plan--single-title"
-                            data-animate="active">Plan
+                            data-animate="active">
+                            Plan
                             Testimonials
                         </h2>
                     </div>
@@ -437,8 +444,8 @@
                             <div class="testimonials-item swiper-slide">
                                 <div class="scrolla-element-anim-1 scroll-animate" data-animate="active">
                                     <div class="image">
-                                        <img src="{{url('assets/plugins/subscription/images/rev1.png')}}"
-                                            alt="John Smith" />
+                                        <img src="{{url('assets/plugins/subscription/images/comments.avif')}}"
+                                            alt="John Smith" class='of-cover rounded-0' />
                                     </div>
                                     <div class="desc">
                                         <div class="title">John Smith</div>
@@ -454,8 +461,8 @@
                             <div class="testimonials-item swiper-slide">
                                 <div class="scrolla-element-anim-1 scroll-animate" data-animate="active">
                                     <div class="image">
-                                        <img src="{{url('assets/plugins/subscription/images/rev3.png')}}"
-                                            alt=" Emily R" />
+                                        <img src="{{url('assets/plugins/subscription/images/comments.avif')}}"
+                                            alt="John Smith" class='of-cover rounded-0' />
                                     </div>
                                     <div class="desc">
                                         <div class="title"> Emily R</div>
@@ -471,8 +478,8 @@
                             <div class="testimonials-item swiper-slide">
                                 <div class="scrolla-element-anim-1 scroll-animate" data-animate="active">
                                     <div class="image">
-                                        <img src="{{url('assets/plugins/subscription/images/rev2.png')}}"
-                                            alt="Jason K." />
+                                        <img src="{{url('assets/plugins/subscription/images/comments.avif')}}"
+                                            alt="John Smith" class='of-cover rounded-0' />
                                     </div>
                                     <div class="desc">
                                         <div class="title">Jason K.</div>
@@ -489,8 +496,8 @@
                             <div class="testimonials-item swiper-slide">
                                 <div class="scrolla-element-anim-1 scroll-animate" data-animate="active">
                                     <div class="image">
-                                        <img src="{{url('assets/plugins/subscription/images/rev4.png')}}"
-                                            alt="Robert Long" />
+                                        <img src="{{url('assets/plugins/subscription/images/comments.avif')}}"
+                                            alt="John Smith" class='of-cover rounded-0' />
                                     </div>
                                     <div class="desc">
                                         <div class="title">Robert Long</div>
@@ -515,7 +522,8 @@
         </div>
     </div>
 
-
+    @endif
+    {{-- end if --}}
 
 
 
@@ -538,7 +546,7 @@
 
 
     {{-- today's menu --}}
-    <div class="section section-inner m-testimonials ">
+    <div class="section section-inner m-testimonials @if (!$settings->showPlanReviews) mt-0 @endif">
         <div class="container">
             <div class="row">
 
@@ -549,7 +557,8 @@
                 @if ($settings->planSideTitleDisplay == 'inline') col-lg-3 @else col-lg-12 @endif">
                     <div class="m-titles">
                         <h2 class="m-title scrolla-element-anim-1 scroll-animate plan--single-title"
-                            data-animate="active">Today's Menu
+                            data-animate="active">
+                            Today's Menu
                         </h2>
                     </div>
                 </div>

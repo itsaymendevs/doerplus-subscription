@@ -74,7 +74,7 @@
 
                 <div class="swiper-slide plan--slide" key='single-plan-{{ $plan->id }}'>
                     <div class="works-slide">
-                        <a href="{{ route('website.plans.details', [$plan->nameURL]) }}">
+                        <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}">
 
 
                             {{-- imageFile --}}

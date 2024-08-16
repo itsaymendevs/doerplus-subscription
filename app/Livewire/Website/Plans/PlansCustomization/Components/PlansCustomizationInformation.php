@@ -28,9 +28,28 @@ class PlansCustomizationInformation extends Component
 
 
         // 1: init
-        $this->instance->phoneKey = '+971';
-        $this->instance->whatsappKey = '+971';
-        $this->instance->emailProvider = '@gmail.com';
+
+
+        // 1.2: checkSession
+        if (session('pre-customer')) {
+
+
+            foreach (session('pre-customer')?->toArray() as $key => $value)
+                $this->instance->{$key} = $value;
+
+
+        } else {
+
+
+            $this->instance->phoneKey = '+971';
+            $this->instance->whatsappKey = '+971';
+            $this->instance->emailProvider = '@gmail.com';
+
+
+        } // end if
+
+
+
 
 
 
@@ -59,7 +78,8 @@ class PlansCustomizationInformation extends Component
 
 
         // 1: dispatchEvent
-        $this->dispatch('confirmStep', $this->instance);
+        if ($this->instance->gender)
+            $this->dispatch('confirmStep', $this->instance);
 
 
 

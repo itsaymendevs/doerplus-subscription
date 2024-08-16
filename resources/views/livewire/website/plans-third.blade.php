@@ -64,7 +64,8 @@
 
 
     {{-- swiper --}}
-    <div class="section full-slider" data-dispimgpath="{{ url('assets/plugins/subscription/images/clouds.jpg') }}">
+    <div class="section full-slider full--slider"
+        data-dispimgpath="{{ url('assets/plugins/subscription/images/clouds.jpg') }}">
         <div class="swiper-container">
             <div class="swiper-wrapper">
 
@@ -95,11 +96,11 @@
 
 
                             {{-- caption --}}
-                            @if ($plan?->caption)
+                            @if ($plan?->desc)
 
-                            <div class="label splitting-text-anim-1 plan--slide-caption fs-6
+                            <div class="label splitting-text-anim-1 plan--slide-caption fs-6 mb-3
                             @if ($settings->planCardAlignment == 'center') left-0 right-0 mx-auto @endif"
-                                style="max-width: 500px" data-splitting>{{ $plan?->caption }}</div>
+                                style="max-width: 80%" data-splitting>{{ $plan?->desc }}</div>
 
                             @endif
                             {{-- end if --}}
@@ -111,7 +112,7 @@
 
                             {{-- title --}}
                             <div class="title">
-                                <a href="{{ route('website.plans.details', [$plan->nameURL]) }}">
+                                <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}">
                                     <span class="title-inner splitting-text-anim-2 plan--slide-title" data-splitting>{{
                                         $plan->name }}</span>
                                 </a>
@@ -123,7 +124,7 @@
 
                     {{-- viewButton --}}
                     <div class="view-btn @if ($settings->planCardAlignment == 'center') left-0 right-0 mx-auto @endif">
-                        <a href="{{ route('website.plans.details', [$plan->nameURL]) }}" data-splitting
+                        <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}" data-splitting
                             class="fw-500 splitting-text-anim-1 plan--slide-button fw-semibold">View
                             Plan</a>
                     </div>

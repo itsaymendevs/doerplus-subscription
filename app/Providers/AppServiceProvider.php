@@ -56,6 +56,7 @@ class AppServiceProvider extends ServiceProvider
         // 1.4: fonts
         $profile = Profile::first();
 
+        View::share('globalProfile', $profile);
         View::share('fontLinks', $profile?->fontLinks);
 
 

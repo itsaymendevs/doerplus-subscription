@@ -18,26 +18,26 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 trait HelperTrait
 {
 
-    use LivewireAlert;
+   use LivewireAlert;
 
 
 
-    // :: globalVariables
-    public $removeId, $removeType, $temporaryId;
+   // :: globalVariables
+   public $removeId, $removeType, $temporaryId;
 
 
 
 
 
 
-    protected function getGramToKG()
-    {
+   protected function getGramToKG()
+   {
 
 
-        return 1000;
+      return 1000;
 
 
-    } // end function
+   } // end function
 
 
 
@@ -46,20 +46,20 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
 
 
 
-    protected function getNameURL($name = '')
-    {
+   protected function getNameURL($name = '')
+   {
 
-        return str_replace(" ", "-", strtolower($name));
+      return str_replace(" ", "-", strtolower($name));
 
 
-    } // end function
+   } // end function
 
 
 
@@ -69,9 +69,9 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -81,18 +81,18 @@ trait HelperTrait
 
 
 
-    protected function getDefaultPreview()
-    {
+   protected function getDefaultPreview()
+   {
 
 
-        // 1: define defaultPreview Picture
-        $defaultPreview = asset('assets/img/placeholder.png');
+      // 1: define defaultPreview Picture
+      $defaultPreview = url('assets/img/placeholder.png');
 
-        return $defaultPreview;
+      return $defaultPreview;
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -100,9 +100,9 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -113,15 +113,15 @@ trait HelperTrait
 
 
 
-    protected function getCurrentDate()
-    {
+   protected function getCurrentDate()
+   {
 
 
-        // 1: getDate
-        return $currentDate = date('Y-m-d', strtotime('+4 hours'));
+      // 1: getDate
+      return $currentDate = date('Y-m-d', strtotime('+4 hours'));
 
 
-    } // end function
+   } // end function
 
 
 
@@ -131,7 +131,7 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -139,15 +139,15 @@ trait HelperTrait
 
 
 
-    protected function getNextDate()
-    {
+   protected function getNextDate()
+   {
 
 
-        // 1: getDate
-        return $tmwDate = date('Y-m-d', strtotime('+1 day +4 hours'));
+      // 1: getDate
+      return $tmwDate = date('Y-m-d', strtotime('+1 day +4 hours'));
 
 
-    } // end function
+   } // end function
 
 
 
@@ -162,7 +162,7 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -170,15 +170,15 @@ trait HelperTrait
 
 
 
-    protected function getDateByDays($days)
-    {
+   protected function getDateByDays($days)
+   {
 
 
-        // 1: getDate
-        return $date = date('Y-m-d', strtotime("+{$days} day +4 hours"));
+      // 1: getDate
+      return $date = date('Y-m-d', strtotime("+{$days} day +4 hours"));
 
 
-    } // end function
+   } // end function
 
 
 
@@ -193,7 +193,7 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -201,15 +201,15 @@ trait HelperTrait
 
 
 
-    protected function getDateByDate($originalDate, $days)
-    {
+   protected function getDateByDate($originalDate, $days)
+   {
 
 
-        // 1: getDate
-        return $date = date('Y-m-d', strtotime("{$originalDate} +{$days} day +4 hours"));
+      // 1: getDate
+      return $date = date('Y-m-d', strtotime("{$originalDate} +{$days} day +4 hours"));
 
 
-    } // end function
+   } // end function
 
 
 
@@ -220,9 +220,9 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -235,28 +235,28 @@ trait HelperTrait
 
 
 
-    public function refreshSelect($childSelectId, $parentModel, $childModel, $parentValue, $isEmpty = false)
-    {
+   public function refreshSelect($childSelectId, $parentModel, $childModel, $parentValue, $isEmpty = false)
+   {
 
 
 
-        // 1: city - districts
-        if ($parentModel == 'city' && $childModel == 'district') {
+      // 1: city - districts
+      if ($parentModel == 'city' && $childModel == 'district') {
 
-            $cityDistricts = $parentValue ?
-                CityDistrict::where('cityId', $parentValue)
-                    ->get(['id', 'name as text'])->toArray() : [];
+         $cityDistricts = $parentValue ?
+            CityDistrict::where('cityId', $parentValue)
+               ->get(['id', 'name as text'])->toArray() : [];
 
 
 
-            // :: makeEmpty
-            $isEmpty ? array_unshift($cityDistricts, ['id' => '', 'text' => '']) : null;
+         // :: makeEmpty
+         $isEmpty ? array_unshift($cityDistricts, ['id' => '', 'text' => '']) : null;
 
 
-            $this->dispatch('refreshSelect', id: $childSelectId, data: $cityDistricts);
+         $this->dispatch('refreshSelect', id: $childSelectId, data: $cityDistricts);
 
 
-        } // end if
+      } // end if
 
 
 
@@ -264,31 +264,31 @@ trait HelperTrait
 
 
 
-        // 2: city - deliveryTime
-        if ($parentModel == 'city' && $childModel == 'deliveryTime') {
+      // 2: city - deliveryTime
+      if ($parentModel == 'city' && $childModel == 'deliveryTime') {
 
-            $cityDeliveryTimes = $parentValue ?
-                CityDeliveryTime::where('cityId', $parentValue)
-                    ->get(['id', 'title as text'])->toArray() : [];
+         $cityDeliveryTimes = $parentValue ?
+            CityDeliveryTime::where('cityId', $parentValue)
+               ->get(['id', 'title as text'])->toArray() : [];
 
 
 
-            // :: makeEmpty
-            $isEmpty ? array_unshift($cityDeliveryTimes, ['id' => '', 'text' => '']) : null;
+         // :: makeEmpty
+         $isEmpty ? array_unshift($cityDeliveryTimes, ['id' => '', 'text' => '']) : null;
 
 
 
 
-            $this->dispatch('refreshSelect', id: $childSelectId, data: $cityDeliveryTimes);
+         $this->dispatch('refreshSelect', id: $childSelectId, data: $cityDeliveryTimes);
 
 
-        } // end if
+      } // end if
 
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -303,37 +303,37 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
 
 
-    public function levelSelect($levelType, $levelFilterId = null, $value, $levelId = null)
-    {
+   public function levelSelect($levelType, $levelFilterId = null, $value, $levelId = null)
+   {
 
 
 
-        // 1: items
-        if ($levelType == 'items') {
+      // 1: items
+      if ($levelType == 'items') {
 
 
-            // A: containers - labels
-            if ($value == 'Containers') {
+         // A: containers - labels
+         if ($value == 'Containers') {
 
-                $items = Container::get(['id', 'name as text'])?->toArray() ?? [];
+            $items = Container::get(['id', 'name as text'])?->toArray() ?? [];
 
-            } elseif ($value == 'Labels') {
+         } elseif ($value == 'Labels') {
 
-                $items = Label::get(['id', 'name as text'])?->toArray() ?? [];
+            $items = Label::get(['id', 'name as text'])?->toArray() ?? [];
 
-            } elseif ($value == 'Items') {
+         } elseif ($value == 'Items') {
 
-                $items = Item::get(['id', 'name as text'])?->toArray() ?? [];
+            $items = Item::get(['id', 'name as text'])?->toArray() ?? [];
 
-            } // end if
+         } // end if
 
 
 
@@ -342,22 +342,22 @@ trait HelperTrait
 
 
 
-            // B: validateEmpty
-            count($items ?? []) ? array_unshift($items, ['id' => '', 'text' => '']) : null;
+         // B: validateEmpty
+         count($items ?? []) ? array_unshift($items, ['id' => '', 'text' => '']) : null;
 
 
 
 
-            // C: refreshSelect
-            if ($levelId) {
+         // C: refreshSelect
+         if ($levelId) {
 
-                $this->dispatch('refreshSelect', id: ".level--two[data-id='{$levelId}']", data: $items ?? ['id' => '', 'text' => '']);
+            $this->dispatch('refreshSelect', id: ".level--two[data-id='{$levelId}']", data: $items ?? ['id' => '', 'text' => '']);
 
-            } else {
+         } else {
 
-                $this->dispatch('refreshSelect', id: '.level--two', data: $items ?? ['id' => '', 'text' => '']);
+            $this->dispatch('refreshSelect', id: '.level--two', data: $items ?? ['id' => '', 'text' => '']);
 
-            } // end if
+         } // end if
 
 
 
@@ -365,15 +365,15 @@ trait HelperTrait
 
 
 
-        } // end if
+      } // end if
 
 
 
 
 
 
-        // -----------------------------------------------------------------
-        // -----------------------------------------------------------------
+      // -----------------------------------------------------------------
+      // -----------------------------------------------------------------
 
 
 
@@ -381,43 +381,43 @@ trait HelperTrait
 
 
 
-        // 2: vendorItems
-        if ($levelType == 'vendorItems') {
+      // 2: vendorItems
+      if ($levelType == 'vendorItems') {
 
 
 
-            // A: containers - labels - items
-            if ($value == 'Containers') {
+         // A: containers - labels - items
+         if ($value == 'Containers') {
 
 
-                $items = VendorContainer::where('vendorId', $levelFilterId)
-                        ?->get()?->pluck('containerId')?->toArray() ?? [];
+            $items = VendorContainer::where('vendorId', $levelFilterId)
+                  ?->get()?->pluck('containerId')?->toArray() ?? [];
 
-                $items = Container::whereIn('id', $items)?->get(['id', 'name as text'])?->toArray() ?? [];
+            $items = Container::whereIn('id', $items)?->get(['id', 'name as text'])?->toArray() ?? [];
 
 
 
-            } elseif ($value == 'Labels') {
+         } elseif ($value == 'Labels') {
 
 
-                $items = VendorLabel::where('vendorId', $levelFilterId)
-                        ?->get()?->pluck('labelId')?->toArray() ?? [];
+            $items = VendorLabel::where('vendorId', $levelFilterId)
+                  ?->get()?->pluck('labelId')?->toArray() ?? [];
 
-                $items = Label::whereIn('id', $items)?->get(['id', 'name as text'])?->toArray() ?? [];
+            $items = Label::whereIn('id', $items)?->get(['id', 'name as text'])?->toArray() ?? [];
 
 
 
-            } elseif ($value == 'Items') {
+         } elseif ($value == 'Items') {
 
 
-                $items = VendorItem::where('vendorId', $levelFilterId)
-                        ?->get()?->pluck('itemId')?->toArray() ?? [];
+            $items = VendorItem::where('vendorId', $levelFilterId)
+                  ?->get()?->pluck('itemId')?->toArray() ?? [];
 
 
-                $items = Item::whereIn('id', $items)?->get(['id', 'name as text'])?->toArray() ?? [];
+            $items = Item::whereIn('id', $items)?->get(['id', 'name as text'])?->toArray() ?? [];
 
 
-            } // end if
+         } // end if
 
 
 
@@ -425,28 +425,28 @@ trait HelperTrait
 
 
 
-            // B: validateEmpty
-            count($items ?? []) ? array_unshift($items, ['id' => '', 'text' => '']) : null;
+         // B: validateEmpty
+         count($items ?? []) ? array_unshift($items, ['id' => '', 'text' => '']) : null;
 
 
 
 
 
-            // C: refreshSelect
-            if ($levelId) {
+         // C: refreshSelect
+         if ($levelId) {
 
-                $this->dispatch('refreshSelect', id: ".level--two[data-id='{$levelId}']", data: $items ?? ['id' => '', 'text' => '']);
+            $this->dispatch('refreshSelect', id: ".level--two[data-id='{$levelId}']", data: $items ?? ['id' => '', 'text' => '']);
 
-            } else {
+         } else {
 
-                $this->dispatch('refreshSelect', id: '.level--two', data: $items ?? ['id' => '', 'text' => '']);
+            $this->dispatch('refreshSelect', id: '.level--two', data: $items ?? ['id' => '', 'text' => '']);
 
-            } // end if
+         } // end if
 
 
 
 
-        } // end if
+      } // end if
 
 
 
@@ -458,11 +458,11 @@ trait HelperTrait
 
 
 
-        // -----------------------------------------------------------------
-        // -----------------------------------------------------------------
-        // -----------------------------------------------------------------
-        // -----------------------------------------------------------------
-        // -----------------------------------------------------------------
+      // -----------------------------------------------------------------
+      // -----------------------------------------------------------------
+      // -----------------------------------------------------------------
+      // -----------------------------------------------------------------
+      // -----------------------------------------------------------------
 
 
 
@@ -470,50 +470,50 @@ trait HelperTrait
 
 
 
-        // 32: city
-        if ($levelType == 'city') {
+      // 32: city
+      if ($levelType == 'city') {
 
 
-            if ($value) {
+         if ($value) {
 
-                $districts = CityDistrict::where('cityId', $value)?->get(['id', 'name as text'])?->toArray() ?? [];
+            $districts = CityDistrict::where('cityId', $value)?->get(['id', 'name as text'])?->toArray() ?? [];
 
-                $deliveryTimes = CityDeliveryTime::where('isActive', true)?->where('cityId', $value)
-                        ?->get(['id', 'title as text'])?->toArray() ?? [];
+            $deliveryTimes = CityDeliveryTime::where('isActive', true)?->where('cityId', $value)
+                  ?->get(['id', 'title as text'])?->toArray() ?? [];
 
-            } // end if
+         } // end if
 
 
 
 
 
 
-            // B: validateEmpty
-            count($districts ?? []) ? array_unshift($districts, ['id' => '', 'text' => '']) : null;
-            count($deliveryTimes ?? []) ? array_unshift($deliveryTimes, ['id' => '', 'text' => '']) : null;
+         // B: validateEmpty
+         count($districts ?? []) ? array_unshift($districts, ['id' => '', 'text' => '']) : null;
+         count($deliveryTimes ?? []) ? array_unshift($deliveryTimes, ['id' => '', 'text' => '']) : null;
 
 
 
 
-            // C: refreshSelect
-            if ($levelId) {
+         // C: refreshSelect
+         if ($levelId) {
 
-                $this->dispatch('refreshSelect', id: ".level--two[data-id='{$levelId}']", data: $districts ?? ['id' => '', 'text' => '']);
+            $this->dispatch('refreshSelect', id: ".level--two[data-id='{$levelId}']", data: $districts ?? ['id' => '', 'text' => '']);
 
-                $this->dispatch('refreshSelect', id: ".level--two-second[data-id='{$levelId}']", data: $deliveryTimes ?? ['id' => '', 'text' => '']);
+            $this->dispatch('refreshSelect', id: ".level--two-second[data-id='{$levelId}']", data: $deliveryTimes ?? ['id' => '', 'text' => '']);
 
 
-            } else {
+         } else {
 
-                $this->dispatch('refreshSelect', id: '.level--two', data: $districts ?? ['id' => '', 'text' => '']);
-                $this->dispatch('refreshSelect', id: '.level--two-second', data: $deliveryTimes ?? ['id' => '', 'text' => '']);
+            $this->dispatch('refreshSelect', id: '.level--two', data: $districts ?? ['id' => '', 'text' => '']);
+            $this->dispatch('refreshSelect', id: '.level--two-second', data: $deliveryTimes ?? ['id' => '', 'text' => '']);
 
-            } // end if
+         } // end if
 
 
 
 
-        } // end if
+      } // end if
 
 
 
@@ -524,7 +524,7 @@ trait HelperTrait
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -536,9 +536,9 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -548,34 +548,34 @@ trait HelperTrait
 
 
 
-    protected function makeRequest($requestURL, $instance)
-    {
+   protected function makeRequest($requestURL, $instance)
+   {
 
 
 
 
-        // 1: URL - token
-        $requestURL = env('APP_API') . $requestURL;
-        // $token = session('token');
+      // 1: URL - token
+      $requestURL = env('APP_API') . $requestURL;
+      // $token = session('token');
 
 
 
-        // 2: sendRequest
-        $response = Http::post($requestURL, [
-            'instance' => $instance,
-        ])->json();
+      // 2: sendRequest
+      $response = Http::post($requestURL, [
+         'instance' => $instance,
+      ])->json();
 
 
 
 
 
-        // 3: convertToObject
-        $response = json_decode(json_encode($response));
+      // 3: convertToObject
+      $response = json_decode(json_encode($response));
 
-        return $response;
+      return $response;
 
 
-    } // end function
+   } // end function
 
 
 
@@ -585,9 +585,9 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -599,70 +599,70 @@ trait HelperTrait
 
 
 
-    protected function makeAlert($type, $message = '', $confirmMethod = '')
-    {
+   protected function makeAlert($type, $message = '', $confirmMethod = '')
+   {
 
 
 
-        // 1: removeType (custom)
-        if ($type == 'remove') {
+      // 1: removeType (custom)
+      if ($type == 'remove') {
 
 
-            $this->alert('question', 'This item and related items will be permanently removed', [
-                'position' => 'top',
-                'timer' => '',
-                'toast' => true,
-                'width' => '400',
-                'showConfirmButton' => true,
-                'showCancelButton' => true,
-                'confirmButtonText' => 'Remove',
-                'cancelButtonText' => 'Cancel',
-                'confirmButtonColor' => '#dc3545',
-                'cancelButtonColor' => '#d3d3d3',
-                'onConfirmed' => $confirmMethod,
-            ]);
+         $this->alert('question', 'This item and related items will be permanently removed', [
+            'position' => 'top',
+            'timer' => '',
+            'toast' => true,
+            'width' => '400',
+            'showConfirmButton' => true,
+            'showCancelButton' => true,
+            'confirmButtonText' => 'Remove',
+            'cancelButtonText' => 'Cancel',
+            'confirmButtonColor' => '#dc3545',
+            'cancelButtonColor' => '#d3d3d3',
+            'onConfirmed' => $confirmMethod,
+         ]);
 
 
 
-            // 2: questionType
-        } elseif ($type == 'question') {
+         // 2: questionType
+      } elseif ($type == 'question') {
 
 
-            $this->alert('question', $message, [
-                'position' => 'top',
-                'timer' => '',
-                'toast' => true,
-                'width' => '400',
-                'showConfirmButton' => true,
-                'showCancelButton' => true,
-                'confirmButtonText' => 'Confirm',
-                'cancelButtonText' => 'Cancel',
-                'confirmButtonColor' => '#87b2a9',
-                'cancelButtonColor' => '#d3d3d3',
-                'onConfirmed' => $confirmMethod,
-            ]);
+         $this->alert('question', $message, [
+            'position' => 'top',
+            'timer' => '',
+            'toast' => true,
+            'width' => '400',
+            'showConfirmButton' => true,
+            'showCancelButton' => true,
+            'confirmButtonText' => 'Confirm',
+            'cancelButtonText' => 'Cancel',
+            'confirmButtonColor' => '#87b2a9',
+            'cancelButtonColor' => '#d3d3d3',
+            'onConfirmed' => $confirmMethod,
+         ]);
 
 
 
 
-            // 3: success - info
-        } else {
+         // 3: success - info
+      } else {
 
-            $this->alert($type, $message, [
-                'position' => 'top',
-                'timer' => 3000,
-                'toast' => true,
-                'width' => '400',
-                'timerProgressBar' => true,
-            ]);
+         $this->alert($type, $message, [
+            'position' => 'top',
+            'timer' => 3000,
+            'toast' => true,
+            'width' => '400',
+            'timerProgressBar' => true,
+         ]);
 
-        } // end if
+      } // end if
 
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -673,9 +673,9 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -686,21 +686,21 @@ trait HelperTrait
 
 
 
-    protected function uploadFile($instanceFile, $path, $key = 'ITM')
-    {
+   protected function uploadFile($instanceFile, $path, $key = 'ITM')
+   {
 
 
-        // 1: uploadFile - makeFileName
-        $fileName = $key . '-' . date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
-        $instanceFile->storeAs($path, $fileName, 'public');
+      // 1: uploadFile - makeFileName
+      $fileName = $key . '-' . date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
+      $instanceFile->storeAs($path, $fileName, 'public');
 
 
-        // 1.2: return fileName
-        return $fileName;
+      // 1.2: return fileName
+      return $fileName;
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -711,9 +711,9 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -724,33 +724,33 @@ trait HelperTrait
 
 
 
-    protected function replaceFile($instanceFile, $path, $fileName, $key = 'ITM')
-    {
+   protected function replaceFile($instanceFile, $path, $fileName, $key = 'ITM')
+   {
 
 
-        // 1: removeFile
-        if (! empty($fileName)) {
-            Storage::disk('public')->delete($path . '/' . $fileName);
-        } // end if
+      // 1: removeFile
+      if (! empty($fileName)) {
+         Storage::disk('public')->delete($path . '/' . $fileName);
+      } // end if
 
 
 
 
 
-        // 2: uploadFile - makeFileName
-        $fileName = $key . '-' . date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
-        $instanceFile->storeAs($path, $fileName, 'public');
+      // 2: uploadFile - makeFileName
+      $fileName = $key . '-' . date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
+      $instanceFile->storeAs($path, $fileName, 'public');
 
 
 
 
 
-        // 1.2: return fileName
-        return $fileName;
+      // 1.2: return fileName
+      return $fileName;
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -762,9 +762,9 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -774,20 +774,20 @@ trait HelperTrait
 
 
 
-    protected function removeFile($fileName, $path)
-    {
+   protected function removeFile($fileName, $path)
+   {
 
 
-        // 1: removeFile
-        if (! empty($fileName))
-            Storage::disk('public')->delete($path . '/' . $fileName);
+      // 1: removeFile
+      if (! empty($fileName))
+         Storage::disk('public')->delete($path . '/' . $fileName);
 
 
 
-        return true;
+      return true;
 
 
-    } // end function
+   } // end function
 
 
 
@@ -806,9 +806,9 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -817,38 +817,38 @@ trait HelperTrait
 
 
 
-    protected function makeSerial($characters, $currentCount)
-    {
+   protected function makeSerial($characters, $currentCount)
+   {
 
 
-        // 1: convert
-        $currentCount = intval($currentCount);
+      // 1: convert
+      $currentCount = intval($currentCount);
 
 
 
-        // 1.2: defineAndConcat
-        if ($currentCount < 10) {
+      // 1.2: defineAndConcat
+      if ($currentCount < 10) {
 
-            return $characters . '-000' . ($currentCount + 1);
+         return $characters . '-000' . ($currentCount + 1);
 
-        } elseif ($currentCount < 100) {
+      } elseif ($currentCount < 100) {
 
-            return $characters . '-00' . ($currentCount + 1);
+         return $characters . '-00' . ($currentCount + 1);
 
-        } elseif ($currentCount < 1000) {
+      } elseif ($currentCount < 1000) {
 
-            return $characters . '-0' . ($currentCount + 1);
+         return $characters . '-0' . ($currentCount + 1);
 
-        } elseif ($currentCount < 10000) {
+      } elseif ($currentCount < 10000) {
 
-            return $characters . '-' . ($currentCount + 1);
+         return $characters . '-' . ($currentCount + 1);
 
-        } // end if
+      } // end if
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -858,9 +858,9 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -870,41 +870,41 @@ trait HelperTrait
 
 
 
-    function formatBytes($bytes, $precision = 1)
-    {
+   function formatBytes($bytes, $precision = 1)
+   {
 
 
-        // ::rootOfFormat
-        $kilobyte = 1024;
-        $megabyte = $kilobyte * 1024;
-        $gigabyte = $megabyte * 1024;
+      // ::rootOfFormat
+      $kilobyte = 1024;
+      $megabyte = $kilobyte * 1024;
+      $gigabyte = $megabyte * 1024;
 
 
 
-        // 1: bytes
-        if ($bytes < $kilobyte) {
-            return $bytes . ' B';
+      // 1: bytes
+      if ($bytes < $kilobyte) {
+         return $bytes . ' B';
 
 
-            // 2: kiloBytes
-        } elseif ($bytes < $megabyte) {
-            return round($bytes / $kilobyte, $precision) . ' KB';
+         // 2: kiloBytes
+      } elseif ($bytes < $megabyte) {
+         return round($bytes / $kilobyte, $precision) . ' KB';
 
 
-            // 3: megaBytes
-        } elseif ($bytes < $gigabyte) {
-            return round($bytes / $megabyte, $precision) . ' MB';
+         // 3: megaBytes
+      } elseif ($bytes < $gigabyte) {
+         return round($bytes / $megabyte, $precision) . ' MB';
 
 
-            // 4: gigaBytes
-        } else {
+         // 4: gigaBytes
+      } else {
 
-            return round($bytes / $gigabyte, $precision) . ' GB';
+         return round($bytes / $gigabyte, $precision) . ' GB';
 
-        } // end if
+      } // end if
 
 
-    } // end function
+   } // end function
 
 
 
@@ -914,7 +914,7 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -922,28 +922,28 @@ trait HelperTrait
 
 
 
-    function differentInDays($fromDate, $untilDate)
-    {
+   function differentInDays($fromDate, $untilDate)
+   {
 
 
 
-        // 1: convertToMilliseconds
-        $fromDate = strtotime($fromDate);
-        $untilDate = strtotime($untilDate);
+      // 1: convertToMilliseconds
+      $fromDate = strtotime($fromDate);
+      $untilDate = strtotime($untilDate);
 
 
 
 
-        // 1.2: sub - round
-        $difference = $untilDate - $fromDate;
+      // 1.2: sub - round
+      $difference = $untilDate - $fromDate;
 
-        return round($difference / (60 * 60 * 24));
+      return round($difference / (60 * 60 * 24));
 
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -957,7 +957,7 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -965,18 +965,18 @@ trait HelperTrait
 
 
 
-    function makeGroupToken()
-    {
+   function makeGroupToken()
+   {
 
 
 
-        // :: returnToken
-        return date('dmYhisA');
+      // :: returnToken
+      return date('dmYhisA');
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -986,7 +986,7 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
+   // --------------------------------------------------------------
 
 
 
@@ -994,18 +994,18 @@ trait HelperTrait
 
 
 
-    function makeRegularToken()
-    {
+   function makeRegularToken()
+   {
 
 
 
-        // :: returnToken
-        return date('dmYhis');
+      // :: returnToken
+      return date('dmYhis');
 
 
 
 
-    } // end function
+   } // end function
 
 
 

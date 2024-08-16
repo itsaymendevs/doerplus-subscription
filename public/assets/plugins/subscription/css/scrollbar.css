@@ -1,9 +1,11 @@
-html {
+html,
+* {
     scroll-behavior: smooth;
     scrollbar-width: thin;
 }
 
-body {
+body,
+* {
     scrollbar-width: thin !important;
 }
 

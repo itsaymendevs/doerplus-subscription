@@ -159,7 +159,7 @@ h6 {
     width: 100% !important;
     color: var(--textColor) !important;
     border: var(--inputBorder) !important;
-    /* background-color: var(--inputBackgroundColor) !important; */
+    background-color: var(--inputBackgroundColor) !important;
 }
 
 .form--input:focus,
@@ -245,12 +245,15 @@ h6 {
 }
 
 /* collapseButton */
-.btn--collapse {
+.btn--collapse,
+.btn--collapse.collapsed:hover {
     background: var(--brandActiveColor) !important;
+    color: var(--textActiveColor);
 }
 
 .btn--collapse.collapsed {
     background: unset !important;
+    color: var(--textColor);
 }
 
 /* objectFit */
@@ -281,6 +284,12 @@ h6 {
     }
 }
 
+@media (max-width: 575px) {
+    .izi--title {
+        font-size: 17px !important;
+    }
+}
+
 .iziModal {
     box-shadow: 0 0 8px rgb(24 24 24 / 30%) !important;
 }
@@ -300,6 +309,16 @@ h6 {
     padding: 0px;
     border: none;
     border-bottom: 2px solid var(--bs-danger);
+}
+
+/* policy */
+
+.policy--point .name {
+    font-size: 16px !important;
+}
+
+.policy--point.description-list-item {
+    padding-bottom: 15px !important;
 }
 
 /* preloader */

@@ -9,7 +9,7 @@
         {{-- header --}}
         <div class="row align-items-center mt-2 mb-4 pb-2">
             <div class="col-10">
-                <h5 class='my-0 fw-bold fs-4'>Address Information</h5>
+                <h5 class='my-0 fw-bold fs-4 izi--title'>Address Information</h5>
             </div>
 
             {{-- close --}}
