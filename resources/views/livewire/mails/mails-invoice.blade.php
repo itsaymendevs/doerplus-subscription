@@ -177,7 +177,7 @@
                     {{-- imageFile --}}
                     <div
                         style="display: flex;align-items: center;justify-content: space-between;justify-content: center;">
-                        <img src='{{ url("{$storagePath}/profile/{$profile->imageFileDark}") }}'
+                        <img src='{{ url("{$storagePath}/profile/{$profile->imageFile}") }}'
                             style="width: 120px;max-width: 120px; height: 80px">
                     </div>
 

@@ -6,7 +6,7 @@
         {{-- logo --}}
         <div class="logo-image">
             <a href="javascript:void(0);" class='logo--wrap'>
-                <img src='{{ url("{$storagePath}/profile/{$profile->imageFileDark}") }}' alt="logo" />
+                <img src='{{ url("{$storagePath}/profile/{$profile->imageFile}") }}' alt="logo" />
             </a>
         </div>
 
@@ -35,10 +35,10 @@
 
 
             {{-- container --}}
-            <div class="menu-full-container">
-                <div class="container">
+            <div class="menu-full-container position-relative">
+                <div class="container ">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 offset-1">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 offset-1 ">
 
 
                             {{-- fullMenu --}}
@@ -78,8 +78,25 @@
                                             href="{{ route('website.plans') }}">Contact</a>
                                     </li>
 
+
+
+
+
+                                    {{-- login --}}
+                                    <li class="menu-item login--item">
+                                        <a class="splitting-text-anim-2" data-splitting="chars"
+                                            href="{{ $globalProfile->applicationURL }}">Login</a>
+                                    </li>
+
+
+
+
                                 </ul>
                             </div>
+
+
+
+
 
                         </div>
                     </div>

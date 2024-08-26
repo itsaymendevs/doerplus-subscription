@@ -142,6 +142,29 @@
     color: var(--navbarSocialLinksColor);
 }
 
+.login--item {
+    position: fixed;
+    bottom: 43px;
+    left: 0px;
+    right: 0px;
+    font-size: 28px;
+}
+
+.login--item * {
+    font-size: 28px;
+}
+
+@media (max-width: 1100px) {
+    .login--item {
+        font-size: 24px;
+        bottom: 80px;
+    }
+
+    .login--item * {
+        font-size: 24px;
+    }
+}
+
 /* --------------------------------- */
 /* --------------------------------- */
 

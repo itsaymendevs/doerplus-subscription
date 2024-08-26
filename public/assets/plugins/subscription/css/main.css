@@ -1548,6 +1548,8 @@ hr {
 
 .logo-image img {
     max-width: 150px;
+    max-height: 100px;
+    object-fit: contain;
 }
 
 .no-scroll.dark-first .header .header__builder .logo-image img {

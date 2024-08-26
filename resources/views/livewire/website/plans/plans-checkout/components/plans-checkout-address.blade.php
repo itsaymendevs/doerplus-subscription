@@ -223,6 +223,9 @@
 
             {{-- weekdays --}}
             <div class="col-12 col-md-12">
+
+                <h6 class='fw-semibold mb-3 fs-16'>Select Delivery Days</h6>
+
                 <div class="d-flex align-items-center weekdays--wrapper flex-wrap mb-4">
 
 

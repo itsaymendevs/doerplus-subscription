@@ -868,6 +868,9 @@
 
 
                                                 {{-- 6: Referral --}}
+                                                @if ($settings?->showReferral)
+
+
                                                 <div
                                                     class="d-flex invoice--tr justify-content-between align-items-center">
 
@@ -878,7 +881,8 @@
 
 
 
-
+                                                @endif
+                                                {{-- end if --}}
 
 
 

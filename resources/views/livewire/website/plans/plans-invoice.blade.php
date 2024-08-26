@@ -135,7 +135,7 @@
 
                                 {{-- logo --}}
                                 <div class="col-12 text-center text-sm-start col-sm-6">
-                                    <img src='{{ url("{$storagePath}/profile/{$profile->imageFileDark}") }}'
+                                    <img src='{{ url("{$storagePath}/profile/{$profile->imageFile}") }}'
                                         class='invoice--final-logo of-contain' />
                                 </div>
 
@@ -189,7 +189,7 @@
 
                         {{-- 2: mid --}}
                         <div class="invoice--final-spacer"
-                            style="background-color: var(--invoiceMidSectionBackgroundColor); padding-top: 35px; padding-bottom: 35px">
+                            style="background-color: var(--invoiceMidSectionBackgroundColor); padding-top: 25px; padding-bottom: 25px">
                             <div class="row align-items-start">
 
 
@@ -198,7 +198,7 @@
 
 
                                 {{-- leftCol --}}
-                                <div class="col-12 col-md-6 col-lg-6 invoice--top-wrapper mb-4 mb-lg-0 scrolla-element-anim-1 scroll-animate"
+                                <div class="col-6 col-md-6 col-lg-6 invoice--top-wrapper mb-0 scrolla-element-anim-1 scroll-animate"
                                     data-animate="active" wire:ignore>
 
                                     <div class="d-block">
@@ -247,7 +247,7 @@
 
 
                                 {{-- rightCol --}}
-                                <div class="col-12 col-md-6 col-lg-6 invoice--bottom-wrapper mb-4 mb-lg-0 scrolla-element-anim-1 scroll-animate"
+                                <div class="col-6 col-md-6 col-lg-6 invoice--bottom-wrapper mb-0 scrolla-element-anim-1 scroll-animate"
                                     data-animate="active" wire:ignore>
 
                                     <div class="d-block text-center text-md-end text-lg-end">
@@ -322,7 +322,7 @@
 
                         {{-- 3: bottom --}}
                         <div class="invoice--final-spacer scrolla-element-anim-1 scroll-animate" data-animate="active"
-                            style="padding-top: 50px; padding-bottom: 50px">
+                            style="padding-top: 30px; padding-bottom: 50px">
                             <div class="row align-items-center">
 
 

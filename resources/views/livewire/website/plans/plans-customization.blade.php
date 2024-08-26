@@ -895,7 +895,7 @@
 
                                             <label class='w-100 d-flex align-items-center md' data-splitting="chars"
                                                 data-animate="active">
-                                                <span>Excludes</span>
+                                                <span>Dislikes</span>
                                             </label>
 
                                             {{-- select --}}
@@ -968,7 +968,7 @@
                                             {{-- switch --}}
                                             <div class="form-check form-switch bag--switch vertical">
                                                 <input class="form-check-input" type="checkbox" role="switch"
-                                                    id="coolbag--checkbox" wire:model.live='instance.bag'>
+                                                    id="coolbag--checkbox" wire:model.live='instance.bag' required>
                                                 <label class="form-check-label" for="coolbag--checkbox">{{
                                                     $bag->name }}</label>
                                             </div>
@@ -1017,7 +1017,7 @@
 
 
                                                 <input class="form-check-input" type="checkbox" role="switch"
-                                                    id="coolbag--checkbox" wire:model.live='instance.bag'>
+                                                    id="coolbag--checkbox" wire:model.live='instance.bag' required>
                                                 <label class="form-check-label" for="coolbag--checkbox">{{
                                                     $bag->name }}</label>
                                             </div>
@@ -1047,7 +1047,8 @@
 
 
                                     {{-- continueButton --}}
-                                    @if ($instance->planDays && $instance->startDate && $instance->planBundleId)
+                                    @if ($instance->planDays && $instance->startDate && $instance->planBundleId &&
+                                    $instance->bag)
 
                                     <div class="col-12 col-md-7">
                                         <form class="d-flex form--input-wrapper justify-content-center mt-3
