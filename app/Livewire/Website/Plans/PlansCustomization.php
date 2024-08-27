@@ -56,7 +56,6 @@ class PlansCustomization extends Component
 
 
 
-
     public function mount($name)
     {
 

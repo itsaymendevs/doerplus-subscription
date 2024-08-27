@@ -48,6 +48,10 @@
     span {
     color: var(--brandColor) !important;
     font-size: 13px;
+    height: 100%;
+    position: absolute;
+    top: -7.5px;
+    right: 0px;
 }
 
 .form-select:disabled {

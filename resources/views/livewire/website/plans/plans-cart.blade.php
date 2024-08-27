@@ -385,7 +385,131 @@
 
 
                                 {{-- meals --}}
-                                <div class="row justify-content-center justify-content-md-start mt-5">
+                                <div class="row justify-content-start justify-content-md-start mt-4">
+
+
+
+
+
+                                    {{-- filters --}}
+
+
+
+
+                                    {{-- 1: types --}}
+                                    <div class="col-4">
+                                        <div class="d-flex form--input-wrapper flex-column mb-4">
+
+                                            <label class='w-100 d-flex align-items-center md fs-12'
+                                                data-splitting="chars" data-animate="active">
+                                                <span>Type</span>
+                                            </label>
+
+
+                                            {{-- select --}}
+                                            <div class="form--select-wrapper" wire:ignore>
+                                                <select class='init--select form--select' data-clear='true'
+                                                    data-instance='searchType'>
+
+                                                    <option value=""></option>
+
+                                                    @foreach ($types ?? [] as $type)
+                                                    <option value="{{ $type->id }}">
+                                                        {{ $type->name == 'Recipe' ? 'Meal' : $type->name }}
+                                                    </option>
+                                                    @endforeach
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+                                    {{-- 2: cuisine --}}
+                                    <div class="col-4">
+                                        <div class="d-flex form--input-wrapper flex-column mb-4">
+
+                                            <label class='w-100 d-flex align-items-center md fs-12'
+                                                data-splitting="chars" data-animate="active">
+                                                <span>Cuisine</span>
+                                            </label>
+
+
+                                            {{-- select --}}
+                                            <div class="form--select-wrapper" wire:ignore>
+                                                <select class='init--select form--select' data-clear='true'
+                                                    data-instance='searchCuisine'>
+
+                                                    <option value=""></option>
+
+                                                    @foreach ($cuisines ?? [] as $cuisine)
+                                                    <option value="{{ $cuisine->id }}">
+                                                        {{ $cuisine->name }}
+                                                    </option>
+                                                    @endforeach
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+                                    {{-- 3: diet --}}
+                                    <div class="col-4">
+                                        <div class="d-flex form--input-wrapper flex-column mb-4">
+
+                                            <label class='w-100 d-flex align-items-center md fs-12'
+                                                data-splitting="chars" data-animate="active">
+                                                <span>Diet</span>
+                                            </label>
+
+
+                                            {{-- select --}}
+                                            <div class="form--select-wrapper" wire:ignore>
+                                                <select class='init--select form--select' data-clear='true'
+                                                    data-instance='searchDiet'>
+
+                                                    <option value=""></option>
+
+                                                    @foreach ($diets ?? [] as $diet)
+                                                    <option value="{{ $diet->id }}">
+                                                        {{ $diet->name }}
+                                                    </option>
+                                                    @endforeach
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    {{-- ----------------------------------- --}}
+                                    {{-- ----------------------------------- --}}
+                                    {{-- ----------------------------------- --}}
+                                    {{-- ----------------------------------- --}}
+
+
+
+                                    {{-- empty --}}
+                                    <div class="col-12"></div>
+
+
 
 
 
@@ -393,16 +517,34 @@
                                     {{-- pick --}}
                                     @foreach ($meals ?? [] as $meal)
 
-                                    <div class="col-4 mb-4 mb-lg-5">
+                                    <div class="col-6 col-sm-4 col-xl-3 mb-4 mb-lg-4" key='single-meal-{{ $meal->id }}'>
                                         <div class="pick--card">
 
 
                                             {{-- 1: imageFile & name --}}
-                                            <div class="d-block">
+                                            <div class="d-block position-relative">
                                                 <img src='{{ url("{$storagePath}/menu/meals/{$meal->imageFile}") }}'>
+
+
+
+
+                                                {{-- pickCounter --}}
+                                                <div class="pick--counter">
+                                                    <a href="javascript:void(0);" class="pick--minus">
+                                                        <i class="bi bi-dash"></i></a>
+
+                                                    <span>1</span>
+
+                                                    <a href="javascript:void(0);" class="pick--plus">
+                                                        <i class="bi bi-plus-lg"></i></a>
+                                                </div>
                                             </div>
 
-                                            <h4 class='text-center'>{{ $meal->name }}</h4>
+
+
+
+                                            {{-- name --}}
+                                            <h4 class='text-center mt-2 mb-3 truncate-text-2l'>{{ $meal->name }}</h4>
 
 
 
@@ -443,11 +585,11 @@
 
 
                                             {{-- 2: sizes --}}
-                                            <div class="row align-items-end">
+                                            <div class="row align-items-end justify-content-between">
 
 
                                                 {{-- swich --}}
-                                                <div class="col-5 pick--sizes-wrapper">
+                                                <div class="col-5 col-sm-4 col-lg-4 col-xl-4 pick--sizes-wrapper">
 
 
                                                     {{-- groupButtons --}}
@@ -463,7 +605,7 @@
                                                         <button type="button" wire:loading.class='processing--button'
                                                             wire:target='changePlanBundleRange'
                                                             key='single-bundle-range-{{ $mealSize->id }}'
-                                                            class="btn btn--regular sm fw-500 fs-14 ranges--btn @if ($key == 0) btn--collapse @endif">
+                                                            class="btn btn--regular sm fw-500 ranges--btn @if ($key == 0) btn--collapse @endif">
                                                             {{ $mealSize?->size?->shortName }}
                                                         </button>
 
@@ -483,7 +625,7 @@
 
 
                                                 {{-- macros --}}
-                                                <div class="col-7">
+                                                <div class="col-7 col-sm-8 col-lg-8 col-xl-8">
 
 
                                                     {{-- 1: calories --}}
@@ -497,8 +639,7 @@
 
                                                     {{-- 2: proteins --}}
                                                     <div class="size--macros">
-                                                        <span>{{ number_format($mealSize->afterCookProteins)
-                                                            }}</span>
+                                                        <span>{{ number_format($mealSize->afterCookProteins) }}</span>
                                                         <small>Protein</small>
                                                     </div>
 
@@ -528,23 +669,9 @@
 
 
 
-
-
-
-
-
-
-                                            {{-- counter --}}
-                                            <span class='fw-semibold pick--counter text-center'>
-                                                <small>x</small>2
-                                            </span>
-
-
                                         </div>
                                     </div>
                                     {{-- endCol --}}
-
-
 
                                     @endforeach
                                     {{-- end loop --}}
@@ -738,8 +865,7 @@
                                                 key='single-other-plan-{{ $key }}'>
                                                 <div class="works-item other--item @if (($key + 1) % 2 == 0) active @endif scrolla-element-anim-1 scroll-animate"
                                                     data-animate="active">
-                                                    <a
-                                                        href="{{ route('website.plans.customization', [$singlePlan->nameURL]) }}">
+                                                    <a href="{{ route('website.plans.cart', [$singlePlan->nameURL]) }}">
 
                                                         {{-- imageFile --}}
                                                         <span class="image">
