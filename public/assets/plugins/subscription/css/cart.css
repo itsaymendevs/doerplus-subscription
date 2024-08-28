@@ -20,12 +20,32 @@
 }
 
 .pick--card .size--macros {
-    border-bottom: 1px dashed var(--planRangeBorderColor);
+    border: 1px solid var(--planRangeBorderColor);
     display: flex;
     align-items: center;
     justify-content: center;
     height: 28px;
     margin-bottom: 5px;
+}
+
+.pick--card .size--macros:last-of-type {
+    margin-bottom: 0px;
+}
+
+.pick--card .size--macros.calories {
+    border-color: var(--brandColor);
+}
+
+.pick--card .size--macros.proteins {
+    border-color: var(--planProteinsBoxColor);
+}
+
+.pick--card .size--macros.carbs {
+    border-color: var(--planCarbsBoxColor);
+}
+
+.pick--card .size--macros.fats {
+    border-color: var(--planFatsBoxColor);
 }
 
 .pick--card .size--macros span {
@@ -46,19 +66,17 @@
 }
 
 .pick--card .pick--counter {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+    position: relative;
     display: flex;
     align-items: center;
+    margin-top: -10px;
     justify-content: center;
 }
 
 .pick--card .pick--counter a {
     border-radius: 50%;
-    width: 19px;
-    height: 19px;
+    width: 17px;
+    height: 17px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,13 +85,11 @@
 }
 
 .pick--card .pick--counter span {
-    font-size: 14px;
+    font-size: 24px;
     padding: 0px 12px;
     margin: 0px 6px;
     font-weight: 700;
-    background-color: #fffffff5;
     border-radius: 4px;
-    border: 1px dashed var(--brandColor);
 }
 
 .pick--minus {
@@ -92,6 +108,10 @@
     height: 24px;
     font-size: 11px;
     margin-bottom: 4px;
+}
+
+.sizes--btn:last-of-type {
+    margin-bottom: 0px;
 }
 
 @media (max-width: 575px) {

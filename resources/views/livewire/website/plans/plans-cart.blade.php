@@ -530,12 +530,14 @@
 
                                                 {{-- pickCounter --}}
                                                 <div class="pick--counter">
-                                                    <a href="javascript:void(0);" class="pick--minus">
+                                                    <a href="javascript:void(0);" class="pick--action pick--minus"
+                                                        data-i='{{ $meal->id }}'>
                                                         <i class="bi bi-dash"></i></a>
 
-                                                    <span>1</span>
+                                                    <span class='pick--value' data-i='{{ $meal->id }}'>0</span>
 
-                                                    <a href="javascript:void(0);" class="pick--plus">
+                                                    <a href="javascript:void(0);" class="pick--action pick--plus"
+                                                        data-i='{{ $meal->id }}'>
                                                         <i class="bi bi-plus-lg"></i></a>
                                                 </div>
                                             </div>
@@ -544,7 +546,7 @@
 
 
                                             {{-- name --}}
-                                            <h4 class='text-center mt-2 mb-3 truncate-text-2l'>{{ $meal->name }}</h4>
+                                            <h4 class='text-center mt-0 mb-3 truncate-text-2l'>{{ $meal->name }}</h4>
 
 
 
@@ -603,9 +605,11 @@
                                                         @foreach ($meal?->sizes ?? [] as $key => $mealSize)
 
                                                         <button type="button" wire:loading.class='processing--button'
-                                                            wire:target='changePlanBundleRange'
+                                                            wire:target="changeSize"
                                                             key='single-bundle-range-{{ $mealSize->id }}'
-                                                            class="btn btn--regular sm fw-500 ranges--btn @if ($key == 0) btn--collapse @endif">
+                                                            data-meal='meal-{{ $meal->id }}'
+                                                            data-i='{{ $mealSize->id }}'
+                                                            class="btn btn--regular sm fw-500 ranges--btn sizes--btn @if ($key == 0) btn--collapse @endif">
                                                             {{ $mealSize?->size?->shortName }}
                                                         </button>
 
@@ -625,11 +629,19 @@
 
 
                                                 {{-- macros --}}
-                                                <div class="col-7 col-sm-8 col-lg-8 col-xl-8">
+
+
+                                                {{-- loop - sizes --}}
+                                                @foreach ($meal?->sizes ?? [] as $key => $mealSize)
+
+
+                                                <div class="col-7 col-sm-8 col-lg-8 col-xl-8 sizes--macro
+                                    @if ($key != 0) d-none @endif" data-meal='meal-{{ $meal->id }}'
+                                                    data-i='{{ $mealSize->id }}'>
 
 
                                                     {{-- 1: calories --}}
-                                                    <div class="size--macros">
+                                                    <div class="size--macros calories">
                                                         <span>{{ number_format($mealSize->afterCookCalories)
                                                             }}</span>
                                                         <small>Calorie</small>
@@ -638,7 +650,7 @@
 
 
                                                     {{-- 2: proteins --}}
-                                                    <div class="size--macros">
+                                                    <div class="size--macros proteins">
                                                         <span>{{ number_format($mealSize->afterCookProteins) }}</span>
                                                         <small>Protein</small>
                                                     </div>
@@ -646,7 +658,7 @@
 
 
                                                     {{-- 3: carbs --}}
-                                                    <div class="size--macros">
+                                                    <div class="size--macros carbs">
                                                         <span>{{ number_format($mealSize->afterCookCarbs) }}</span>
                                                         <small>Carbs</small>
                                                     </div>
@@ -655,12 +667,15 @@
 
 
                                                     {{-- 4: fats --}}
-                                                    <div class="size--macros">
+                                                    <div class="size--macros fats">
                                                         <span>{{ number_format($mealSize->afterCookFats) }}</span>
                                                         <small>Fats</small>
                                                     </div>
 
                                                 </div>
+
+                                                @endforeach
+
 
 
                                             </div>
@@ -1138,6 +1153,73 @@
 
 
 
+
+
+    {{-- ----------------------------------------------- --}}
+    {{-- ----------------------------------------------- --}}
+
+
+
+
+
+    {{-- sizes --}}
+    <script>
+        $(document).on('click', '.sizes--btn', function() {
+         i = $(this).attr('data-i');
+         common = $(this).attr('data-meal');
+
+
+
+         // 1: removeActive
+         $(`.sizes--btn[data-meal=${common}]`).removeClass('btn--collapse');
+         $(`.sizes--btn[data-meal=${common}][data-i=${i}]`).addClass('btn--collapse');
+
+
+         $(`.sizes--macro[data-meal=${common}]`).addClass('d-none');
+         $(`.sizes--macro[data-meal=${common}][data-i=${i}]`).removeClass('d-none');
+
+      });
+    </script>
+
+
+
+
+
+
+
+    {{-- ----------------------------------------------- --}}
+    {{-- ----------------------------------------------- --}}
+
+
+
+
+
+    {{-- pickCounter --}}
+    <script>
+        $(document).on('click', '.pick--action', function() {
+         i = $(this).attr('data-i');
+         value = $(`.pick--value[data-i=${i}]`).text();
+
+
+         // 1: plus
+         if ($(this).hasClass('pick--plus')) {
+
+               value = parseInt(value) + 1;
+               $(`.pick--value[data-i=${i}]`).text(value);
+
+         } else {
+
+               if (value > 0) {
+
+                  value = parseInt(value) - 1;
+                  $(`.pick--value[data-i=${i}]`).text(value);
+
+               } // end if
+
+
+         } // end if
+      });
+    </script>
 
 
 
