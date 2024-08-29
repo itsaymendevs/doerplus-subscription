@@ -98,7 +98,7 @@
 
 
                {{-- topRow --}}
-               <div class="row justify-content-center mb-5 u--slideUp" wire:ignore>
+               <div class="row justify-content-center u--slideUp" wire:ignore>
                   <div class="col-12 col-lg-5 text-center">
 
 

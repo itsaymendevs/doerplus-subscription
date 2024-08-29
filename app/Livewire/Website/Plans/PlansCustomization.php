@@ -60,6 +60,24 @@ class PlansCustomization extends Component
     {
 
 
+        // :: checkCartOrCustomization
+        $setting = CustomerSubscriptionSetting::first();
+
+
+        if (! $setting->hasPlanCustomization) {
+
+            return $this->redirect(route('website.plans.cart', [$name]), navigate: false);
+
+        } // end if
+
+
+
+
+
+
+
+
+
         // :: checkSession
         if (session('pre-customer') && session('pre-customer')->{'isExistingCustomer'}) {
 
@@ -71,8 +89,6 @@ class PlansCustomization extends Component
             Session::forget('customer');
 
         } // end if
-
-
 
 
 

@@ -6,6 +6,7 @@ use App\Livewire\Forms\SubscriptionForm;
 use App\Models\Allergy;
 use App\Models\Bag;
 use App\Models\Cuisine;
+use App\Models\CustomerSubscriptionSetting;
 use App\Models\Diet;
 use App\Models\Exclude;
 use App\Models\Meal;
@@ -52,6 +53,22 @@ class PlansCart extends Component
 
     public function mount($name)
     {
+
+
+
+        // :: checkCartOrCustomization
+        $setting = CustomerSubscriptionSetting::first();
+
+
+        if (! $setting->hasPlanCart) {
+
+            return $this->redirect(route('website.plans.customization', [$name]), navigate: false);
+
+        } // end if
+
+
+
+
 
 
 

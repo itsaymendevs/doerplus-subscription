@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Website\Plans\PlansCustomization\Components;
 
+use App\Models\CustomerSubscriptionSetting;
 use App\Models\Plan;
 use Livewire\Component;
 
@@ -43,7 +44,13 @@ class PlansCustomizationSwitch extends Component
     public function render()
     {
 
-        return view('livewire.website.plans.plans-customization.components.plans-customization-switch');
+
+        // 1: dependencies
+        $settings = CustomerSubscriptionSetting::first();
+
+
+
+        return view('livewire.website.plans.plans-customization.components.plans-customization-switch', compact('settings'));
 
     } // end function
 
