@@ -112,7 +112,7 @@ h6 {
 /* price */
 .span--price {
     font-size: 10px;
-    color: var(--brandColor);
+    color: var(--preferenceInfoColor);
 }
 
 /* navbar */

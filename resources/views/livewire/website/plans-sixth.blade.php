@@ -101,7 +101,9 @@
                 <div class="works-col col-xs-12 col-sm-6 col-md-6 col-lg-6 sorting-photography plan--sixth-col"
                     key='single-plan-{{ $plan->id }}'>
                     <div class="works-item meals--item v2 scrolla-element-anim-1 scroll-animate" data-animate="active">
-                        <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}">
+                        <a @if ($renewEmail) href='javascript:void(0);'
+                            wire:click="prepExistingCustomer('{{ $plan->id }}')" @else
+                            href="{{ route('website.plans.customization', [$plan->nameURL]) }}" @endif>
 
 
                             {{-- imageFile --}}

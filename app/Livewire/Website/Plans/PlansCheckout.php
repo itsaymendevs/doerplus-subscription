@@ -15,6 +15,7 @@ use App\Models\PromoCode;
 use App\Models\PromoCodePlan;
 use App\Models\SubscriptionFormSetting;
 use App\Traits\HelperTrait;
+use App\Traits\PaymenntLocalTrait;
 use App\Traits\PaymenntTrait;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
@@ -28,7 +29,7 @@ class PlansCheckout extends Component
 
     use HelperTrait;
     use PaymenntTrait;
-
+    use PaymenntLocalTrait;
 
 
 
@@ -37,7 +38,7 @@ class PlansCheckout extends Component
     public PaymenntForm $payment;
     public $plan, $district, $paymentMethod;
     public $pickedPlanBundle, $pickedPlanBundleRange;
-    public $isProcessing = false;
+    public $isProcessing = false, $policy = false;
 
 
 
@@ -61,10 +62,12 @@ class PlansCheckout extends Component
         // 1.2: handleSession
         if (session('pre-customer')) {
 
+            Session::forget('customer');
             $this->instance = Session::get('pre-customer');
 
         } else {
 
+            Session::forget('customer');
             $this->redirect(route('website.plans.customization', [$this->plan->nameURL]));
 
         } // end if
@@ -106,6 +109,51 @@ class PlansCheckout extends Component
 
 
 
+
+
+        // 2.7: getDeliveryCharge
+        if (session('pre-customer') && session('pre-customer')->{'isExistingCustomer'}) {
+
+
+            $city = City::find($this->instance->cityId);
+
+            if (! is_null($city->deliveryCharge)) {
+
+                $this->instance->deliveryPrice = $city->deliveryCharge * intval($this->instance->planDays);
+
+            } else {
+
+                $this->instance->deliveryPrice = null;
+
+            } // end if
+
+
+
+
+
+
+
+            // -----------------------------------------------------
+            // -----------------------------------------------------
+
+
+
+
+
+
+
+            // 2: getDistrict
+            $this->district = CityDistrict::find($this->instance?->cityDistrictId);
+
+
+
+
+            $this->recalculate();
+
+
+
+
+        } // end if
 
 
 
@@ -151,7 +199,6 @@ class PlansCheckout extends Component
         $this->instance->apartment = $addressDetails->apartment;
         $this->instance->floor = $addressDetails->floor;
         $this->instance->deliveryDays = (array) $addressDetails->deliveryDays ?? [];
-
 
 
 
@@ -372,7 +419,17 @@ class PlansCheckout extends Component
             // 1.3: Paymennt
             if ($this->paymentMethod->name == 'Paymennt') {
 
-                $this->makeCheckoutPaymennt($this->instance, $this->payment, $this->paymentMethod);
+
+                if (env('APP_PAYMENT') && env('APP_PAYMENT') == 'local') {
+
+                    $this->makeLocalCheckoutPaymennt($this->instance, $this->payment, $this->paymentMethod);
+
+                } else {
+
+                    $this->makeCheckoutPaymennt($this->instance, $this->payment, $this->paymentMethod);
+
+                } // end if
+
 
             } // end if
 

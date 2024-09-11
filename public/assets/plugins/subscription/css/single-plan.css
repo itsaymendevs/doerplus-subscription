@@ -133,7 +133,7 @@
 
 .bundle--card {
     background-color: var(--bundleBorderColor);
-    padding: 1px 2px;
+    padding: 0px 0px;
     border-radius: 4px;
     position: relative;
     display: block;
@@ -147,7 +147,7 @@
     left: 20px;
     border-radius: 50%;
     color: var(--textColor);
-    font-size: 11px;
+    font-size: 9px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -155,7 +155,7 @@
     width: 40px;
     z-index: 1;
     background-color: var(--bundlePickColor);
-    box-shadow: 4px 4px 1px var(--bundlePickShadowColor);
+    box-shadow: 4px 4px 0px var(--bundlePickShadowColor);
     letter-spacing: 0.3px;
 }
 
@@ -171,7 +171,7 @@
 
 .bundle--card.active .bundle--select {
     background-color: var(--bundlePickActiveColor);
-    box-shadow: 0px 4px 1px var(--bundlePickShadowActiveColor);
+    box-shadow: 0px 4px 0px var(--bundlePickShadowActiveColor);
 }
 
 .bundle--card img {
@@ -205,7 +205,7 @@
 }
 
 .bundle--title {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--textColor);
     margin: 0px;
     text-align: center;
@@ -258,7 +258,7 @@
 /* swiper */
 .plans--overview-swiper .swiper-wrapper,
 .plans--overview-swiper .swiper-slide {
-    height: 430px;
+    height: 300px;
 }
 
 @media (max-width: 765px) {
@@ -673,7 +673,7 @@
     max-width: 90px;
     width: 90px;
     margin: auto;
-    background-size: 2px 100%;
+    background-size: 1px 100%;
     background-position: 0 0, 100% 0;
     background-repeat: no-repeat;
 }
@@ -687,7 +687,7 @@
 }
 
 .plan--macros .percentage {
-    font-size: 20px;
+    font-size: 17px;
     color: var(--textColor);
 }
 
@@ -704,8 +704,8 @@
 
 /* carbs */
 .plan--macros.for--carbs {
-    border-top: 2px solid var(--planCarbsBoxColor);
-    border-bottom: 2px solid var(--brandColor);
+    border-top: 1px solid var(--planCarbsBoxColor);
+    border-bottom: 1px solid var(--brandColor);
     background-image: linear-gradient(
             var(--planCarbsBoxColor),
             var(--brandColor)
@@ -719,8 +719,8 @@
 
 /* proteins */
 .plan--macros.for--proteins {
-    border-top: 2px solid var(--planProteinsBoxColor);
-    border-bottom: 2px solid var(--brandColor);
+    border-top: 1px solid var(--planProteinsBoxColor);
+    border-bottom: 1px solid var(--brandColor);
     background-image: linear-gradient(
             var(--planProteinsBoxColor),
             var(--brandColor)
@@ -734,8 +734,8 @@
 
 /* fats */
 .plan--macros.for--fats {
-    border-top: 2px solid var(--planFatsBoxColor);
-    border-bottom: 2px solid var(--brandColor);
+    border-top: 1px solid var(--planFatsBoxColor);
+    border-bottom: 1px solid var(--brandColor);
     background-image: linear-gradient(
             var(--planFatsBoxColor),
             var(--brandColor)

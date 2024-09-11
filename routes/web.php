@@ -170,7 +170,7 @@ Route::get('/plans-v7', PlansSeventh::class)->name('website.plansV7');
 
 // 2: renew - invoice
 Route::get('/plans/invoice', PlansInvoice::class)->name('website.plans.invoice');
-Route::get('/plans/{token}', Plans::class)->name('website.plansWithToken');
+Route::get('/plans/{reToken}', Plans::class)->name('website.plansWithToken');
 
 
 
@@ -297,7 +297,7 @@ Route::get('blogs', [Plans::class, 'blogs'])->name('website.blogs');
 
 
 // 1: blogs
-Route::get('/policy', PrivacyPolicy::class)->name('website.policy');
+Route::get('/privacy-policy', PrivacyPolicy::class)->name('website.policy');
 
 
 

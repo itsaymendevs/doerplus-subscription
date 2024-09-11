@@ -228,11 +228,12 @@
 
 
                                             {{-- general --}}
-                                            <div class="d-flex flex-column flex-md-row justify-content-between">
-                                                <h6 class='mt-0 mb-1 fw-500 fs-16'>{{
+                                            <div
+                                                class="d-flex flex-column flex-xxl-row justify-content-between align-items-xxl-end">
+                                                <h6 class='mt-0 mb-2 fw-500 fs-16'>{{
                                                     $district?->city?->name }} - {{ $district?->name }}
                                                 </h6>
-                                                <h6 class='mt-0 mb-1 fw-500 fs-16'>
+                                                <h6 class='mt-0 mb-2 fw-500 fs-16'>
                                                     <span class='fs-13'>Apartment</span>
                                                     {{ $instance?->apartment }}
                                                     <i class="bi bi-dash-lg mx-2 fs-6"></i>
@@ -453,7 +454,8 @@
                             <div class="d-flex position-relative">
                                 <label style="background-color: transparent !important;"
                                     class="form-check form-switch bag--switch bag--switch-checkout w-100 justify-content-start">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="policy--checkbox">
+                                    <input class="form-check-input" type="checkbox" wire:model.live='policy'
+                                        role="switch" id="policy--checkbox" wire:loading.attr='disabled'>
                                     <label class="form-check-label ms-2 fw-400" for="policy--checkbox">
                                         Accept<a href="javascript:void(0);" data-izimodal-open="#privacy--modal"
                                             data-izimodal-transitionin="fadeInDown" class='ms-1 fw-500'>Terms &
@@ -502,7 +504,7 @@
 
 
                     <form wire:submit='continue'
-                        class="row justify-content-center justify-content-md-start @if ($isProcessing) processing--button-wrap @endif">
+                        class="row justify-content-center justify-content-md-start @if ($isProcessing) blob--inactive @endif @if (!$policy) blob--inactive @endif">
                         <div class="col-12 col-sm-12 col-lg-11 " wire:ignore>
 
                             <div class="d-flex justify-content-center mb-4 mt-4

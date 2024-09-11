@@ -78,8 +78,11 @@ class PlansCustomizationInformation extends Component
 
 
         // 1: dispatchEvent
-        if ($this->instance->gender)
+        if ($this->instance->gender) {
+
             $this->dispatch('confirmStep', $this->instance);
+
+        } // end if
 
 
 
@@ -107,7 +110,7 @@ class PlansCustomizationInformation extends Component
     {
 
         // 1: dependencies
-        $providers = ['@gmail.com', '@outlook.com', '@hotmail.com', '@yahoo.com'];
+        $providers = ['@gmail.com', '@outlook.com', '@hotmail.com', '@yahoo.com', '@icloud.com'];
         $settings = SubscriptionFormSetting::first();
         $countryCodes = CountryCode::all();
 

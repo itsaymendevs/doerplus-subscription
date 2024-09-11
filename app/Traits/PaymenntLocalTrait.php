@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 use stdClass;
 
 
-trait PaymenntTrait
+trait PaymenntLocalTrait
 {
 
 
@@ -20,7 +20,7 @@ trait PaymenntTrait
 
 
 
-    protected function makeCheckoutPaymennt($instance, $payment, $paymentMethod)
+    protected function makeLocalCheckoutPaymennt($instance, $payment, $paymentMethod)
     {
 
 
@@ -39,7 +39,7 @@ trait PaymenntTrait
 
 
         // 1: URL
-        $requestURL = $paymentMethod?->isLive ? "https://api.paymennt.com/mer/v2.0/checkout/web" : "https://api.test.paymennt.com/mer/v2.0/checkout/web";
+        $requestURL = "https://api.test.paymennt.com/mer/v2.0/checkout/web";
 
 
 
@@ -155,8 +155,8 @@ trait PaymenntTrait
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
             'Connection' => 'keep-alive',
-            'X-Paymennt-Api-Key' => ($paymentMethod?->isLive ? $paymentMethod->envThirdKey : $paymentMethod->envTestThirdKey),
-            'X-Paymennt-Api-Secret' => ($paymentMethod?->isLive ? $paymentMethod->envSecondKey : $paymentMethod->envTestSecondKey),
+            'X-Paymennt-Api-Key' => $paymentMethod->envTestThirdKey,
+            'X-Paymennt-Api-Secret' => $paymentMethod->envTestSecondKey,
         ])->post($requestURL . "", [
                     "requestId" => $requestBody->requestId,
                     "orderId" => $requestBody->orderId,
@@ -239,11 +239,7 @@ trait PaymenntTrait
 
 
 
-
-
-
             return $this->redirect($lead->paymentURL);
-
 
 
 
@@ -293,7 +289,7 @@ trait PaymenntTrait
 
 
 
-    protected function checkCheckoutPaymennt($checkoutId)
+    protected function checkLocalCheckoutPaymennt($checkoutId)
     {
 
 
@@ -308,7 +304,7 @@ trait PaymenntTrait
 
 
         // 1.2: URL
-        $requestURL = $paymentMethod?->isLive ? "https://api.paymennt.com/mer/v2.0/checkout/{$checkoutId}" : "https://api.test.paymennt.com/mer/v2.0/checkout/{$checkoutId}";
+        $requestURL = "https://api.test.paymennt.com/mer/v2.0/checkout/{$checkoutId}";
 
 
 
@@ -320,8 +316,8 @@ trait PaymenntTrait
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
             'Connection' => 'keep-alive',
-            'X-Paymennt-Api-Key' => ($paymentMethod?->isLive ? $paymentMethod->envThirdKey : $paymentMethod->envTestThirdKey),
-            'X-Paymennt-Api-Secret' => ($paymentMethod?->isLive ? $paymentMethod->envSecondKey : $paymentMethod->envTestSecondKey),
+            'X-Paymennt-Api-Key' => $paymentMethod->envTestThirdKey,
+            'X-Paymennt-Api-Secret' => $paymentMethod->envTestSecondKey,
         ])->get($requestURL)->json();
 
 

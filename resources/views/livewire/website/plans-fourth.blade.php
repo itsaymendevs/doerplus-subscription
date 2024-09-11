@@ -119,7 +119,9 @@
 
                             {{-- name --}}
                             <div class="title">
-                                <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}">
+                                <a @if ($renewEmail) href='javascript:void(0);'
+                                    wire:click="prepExistingCustomer('{{ $plan->id }}')" @else
+                                    href="{{ route('website.plans.customization', [$plan->nameURL]) }}" @endif>
                                     <span class="title-inner splitting-text-anim-2 plan--slide-title"
                                         data-splitting>{{$plan->name}}</span></a>
                             </div>
@@ -148,24 +150,11 @@
 
 
 
-                            {{-- 1: existing --}}
-                            @if ($renewEmail)
 
-
-                            <a href="javascript:void(0);" data-splitting
-                                class="splitting-text-anim-1 plan--slide-button fw-500"
-                                wire:click="prepExistingCustomer('{{ $plan->nameURL }}')">View Plan</a>
-
-
-                            {{-- 2: regular --}}
-                            @else
-
-                            <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}" data-splitting
-                                class="splitting-text-anim-1 plan--slide-button fw-500">View Plan</a>
-
-
-                            @endif
-                            {{-- end if --}}
+                            <a @if ($renewEmail) href='javascript:void(0);'
+                                wire:click="prepExistingCustomer('{{ $plan->id }}')" @else
+                                href="{{ route('website.plans.customization', [$plan->nameURL]) }}" @endif
+                                data-splitting class="splitting-text-anim-1 plan--slide-button fw-500">View Plan</a>
 
 
 

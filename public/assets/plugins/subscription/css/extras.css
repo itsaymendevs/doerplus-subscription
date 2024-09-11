@@ -32,6 +32,12 @@
     transition: color 0.5s;
     cursor: pointer;
 }
+
+.blob--inactive {
+    pointer-events: none;
+    opacity: 0.5 !important;
+}
+
 .btn--blob:before {
     content: "";
     z-index: 1;
@@ -227,7 +233,7 @@
         var(--bundleBorderColor) 60%,
         var(--bundleBorderColor) 95%
     );
-    border: solid 2px transparent;
+    border: 1px solid transparent;
     --gradient-border: conic-gradient(
         from var(--border-angle),
         transparent 55%,
@@ -335,7 +341,7 @@
     --gradient-border: conic-gradient(
         from var(--border-angle),
         transparent 80%,
-        var(--brandColor),
+        transparent,
         var(--addressMotionColor) 95%,
         transparent
     );
@@ -351,7 +357,7 @@
     --gradient-border: conic-gradient(
         from var(--border-angle),
         transparent 70%,
-        #61c5b1,
+        transparent,
         var(--addressActiveMotionColor) 95%,
         transparent
     );

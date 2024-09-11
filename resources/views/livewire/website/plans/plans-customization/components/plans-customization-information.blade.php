@@ -164,7 +164,8 @@
 
 
                         {{-- select --}}
-                        <div class="form--select-wrapper side--left text-center" style="width: 30% !important">
+                        <div class="form--select-wrapper side--left text-center no-events"
+                            style="width: 30% !important">
                             <select class='form--select init--select' data-instance='instance.phoneKey' value='+971'
                                 required>
 
@@ -238,7 +239,7 @@
 
                         {{-- input --}}
                         <input type="text" pattern="[0-9]+" class='form--input side--right text-center'
-                            style="width: 70% !important" wire:model='instance.whatsapp' minlength="9" maxlength="9"
+                            style="width: 70% !important" wire:model='instance.whatsapp' minlength="5" maxlength="9"
                             required>
 
 

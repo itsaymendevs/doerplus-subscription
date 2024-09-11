@@ -60,7 +60,7 @@ class PlansCustomization extends Component
     {
 
 
-        // :: checkCartOrCustomization
+        // 1: checkCartOrCustomization
         $setting = CustomerSubscriptionSetting::first();
 
 
@@ -81,12 +81,13 @@ class PlansCustomization extends Component
         // :: checkSession
         if (session('pre-customer') && session('pre-customer')->{'isExistingCustomer'}) {
 
+            Session::forget('customer');
             $this->instance = session('pre-customer');
 
         } else {
 
-            Session::forget('pre-customer');
             Session::forget('customer');
+            Session::forget('pre-customer');
 
         } // end if
 
@@ -127,9 +128,21 @@ class PlansCustomization extends Component
 
 
         // 1.3: initStart
-        $restrictionDays = CustomerSubscriptionSetting::first()?->changeCalendarRestriction ?? 0;
-        $this->instance->initStartDate = date('Y-m-d', strtotime("+{$restrictionDays} days"));
+        if (! $this->instance->isExistingCustomer) {
 
+            if (env('APP_PAYMENT') && env('APP_PAYMENT') == 'local') {
+
+                $this->instance->initStartDate = date('Y-m-d', strtotime("-60 days"));
+
+            } else {
+
+
+                $restrictionDays = CustomerSubscriptionSetting::first()?->changeCalendarRestriction ?? 0;
+                $this->instance->initStartDate = date('Y-m-d', strtotime("+{$restrictionDays} days"));
+
+            } // end if
+
+        } // end if
 
 
 
@@ -530,7 +543,6 @@ class PlansCustomization extends Component
 
 
 
-
         // :: continue
 
 
@@ -540,117 +552,14 @@ class PlansCustomization extends Component
 
 
 
-
-
-
-
         // 2.1: nextStep
         return $this->redirect(route('website.plans.checkout', [$this->plan->nameURL]));
 
 
 
-
-
     } // end function
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // --------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-    public function continueExisting()
-    {
-
-
-
-
-        // 1: appendMissingInformation
-
-
-
-
-
-        // 1.2: bag
-        $bag = Bag::whereIn('name', ['Cool Bag', 'Cooler Bag'])->first();
-
-
-        $this->instance->bag = $bag->name;
-        $this->instance->bagImageFile = $bag->imageFile;
-        $this->instance->bagPrice = $bag->price;
-
-
-
-
-
-
-
-
-
-        // 1.3: calculateTotalPrice
-        $this->instance->totalPrice = $this->instance->totalBundleRangePrice + $this->instance->bagPrice;
-        $this->instance->totalCheckoutPrice = $this->instance->totalBundleRangePrice + $this->instance->bagPrice;
-
-
-
-
-
-
-
-
-        // ----------------------------------
-        // ----------------------------------
-
-
-
-
-
-
-
-        // :: continue
-
-
-
-
-        // 2: makeSession
-        Session::put('pre-customer', $this->instance);
-
-
-
-
-
-
-
-        // :: redirectStepTwo
-        return $this->redirect(route('website.plans.stepTwo', [$this->instance->planId]), navigate: false);
-
-
-
-
-
-    } // end function
 
 
 
@@ -690,16 +599,12 @@ class PlansCustomization extends Component
 
 
         // 1.2: plans
-        $plans = Plan::where('id', '!=', $this->plan->id)->get();
-
-        // $plans = Plan::whereHas('ranges')
-        //     ->whereHas('bundles')
-        //     ->whereHas('defaultCalendarRelation')
-        //     ->where('isForWebsite', true)
-        //     ->where('id', '!=', $this->plan->id)
-        //     ->get();
-
-
+        $plans = Plan::whereHas('ranges')
+            ->whereHas('bundles')
+            ->whereHas('defaultCalendarRelation')
+            ->where('isForWebsite', true)
+            ->where('id', '!=', $this->plan->id)
+            ->get();
 
 
 

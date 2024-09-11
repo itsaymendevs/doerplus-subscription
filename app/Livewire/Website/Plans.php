@@ -4,8 +4,10 @@ namespace App\Livewire\Website;
 
 use App\Livewire\Forms\SubscriptionForm;
 use App\Models\Customer;
+use App\Models\CustomerSubscriptionSetting;
 use App\Models\Plan;
 use App\Models\SubscriptionSetting;
+use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -15,24 +17,28 @@ class Plans extends Component
 {
 
 
+    use HelperTrait;
+
 
     // variables
     public SubscriptionForm $instance;
-    public $renewEmail;
+    public $renewEmail, $renewEmailProvider;
 
 
 
 
 
-    public function mount($token = null)
+    public function mount($reToken = null)
     {
 
 
 
-        // 1: checkReToken
-        if ($token) {
 
-            $this->renewEmail = Customer::where('reToken', $token)?->first()?->email ?? null;
+        // 1: checkReToken
+        if ($reToken) {
+
+            $this->renewEmail = Customer::where('reToken', $reToken)?->first()?->email ?? null;
+            $this->renewEmailProvider = Customer::where('reToken', $reToken)?->first()?->emailProvider ?? null;
 
 
             if (empty($this->renewEmail)) {
@@ -52,8 +58,8 @@ class Plans extends Component
 
 
 
-        // ---------------------------------------------
-        // ---------------------------------------------
+        // --------------------------------
+        // --------------------------------
 
 
 
@@ -61,12 +67,10 @@ class Plans extends Component
 
 
 
-
-
-
-        // 2: forgetCustomer
+        // 2: forgetSession
         Session::forget('customer');
         Session::forget('pre-customer');
+
 
 
 
@@ -84,7 +88,7 @@ class Plans extends Component
 
 
 
-    // --------------------------------------------------------------------
+    // --------------------------------------------------------------
 
 
 
@@ -94,18 +98,20 @@ class Plans extends Component
 
 
 
-
-
-    public function prepExistingCustomer($nameURL)
+    public function prepExistingCustomer($id)
     {
 
 
-
-        // 1: getDependencies
-        $plan = Plan::where('nameURL', $nameURL)->first();
+        // :: prepExistingCustomer
+        $plan = Plan::find($id);
         $this->instance->planId = $plan->id;
 
-        $customer = Customer::where('email', $this->renewEmail)->first();
+
+
+
+        // 1: checkCustomer
+        $customer = Customer::where('email', $this->renewEmail)?->where('emailProvider', $this->renewEmailProvider)->first();
+
 
 
 
@@ -117,12 +123,13 @@ class Plans extends Component
 
 
 
+
             // 1.3: flag - getBasicInformation
             $this->instance->isExistingCustomer = true;
 
-
             $this->instance->firstName = $customer->firstName;
             $this->instance->lastName = $customer->lastName;
+            $this->instance->gender = $customer->gender;
 
             $this->instance->email = $customer->email;
             $this->instance->emailProvider = $customer->emailProvider;
@@ -136,19 +143,15 @@ class Plans extends Component
 
 
 
-
-
             // 1.3.2: location
             $latestAddress = $customer?->latestAddress();
-            $this->instance->cityId = $latestAddress?->cityId;
-            $this->instance->cityDistrictId = $latestAddress?->cityDistrictId;
-            $this->instance->cityDeliveryTimeId = $latestAddress?->deliveryTimeId;
+            $this->instance->cityId = $latestAddress->cityId;
+            $this->instance->cityDistrictId = $latestAddress->cityDistrictId;
+            $this->instance->cityDeliveryTimeId = $latestAddress->deliveryTimeId;
 
-            $this->instance->floor = $latestAddress?->floor;
-            $this->instance->apartment = $latestAddress?->apartment;
-            $this->instance->locationAddress = $latestAddress?->locationAddress;
-
-
+            $this->instance->locationAddress = $latestAddress->locationAddress;
+            $this->instance->apartment = $latestAddress->apartment;
+            $this->instance->floor = $latestAddress->floor;
 
 
 
@@ -156,8 +159,29 @@ class Plans extends Component
 
 
             // 1.4: get initStartDate
-            $this->instance->initStartDate = $customer?->latestSubscription()?->untilDate ?
-                date('Y-m-d', strtotime($customer?->latestSubscription()?->untilDate . ' +48 hours')) : null;
+            $restrictionDays = CustomerSubscriptionSetting::first()?->changeCalendarRestriction ?? 0;
+
+
+            if ($customer?->latestSubscription()?->untilDate && $customer?->latestSubscription()?->untilDate > $this->getCurrentDate()) {
+
+
+                $this->instance->initStartDate = date('Y-m-d', strtotime($customer?->latestSubscription()?->untilDate . "+1 day"));
+
+
+            } else {
+
+
+                $this->instance->initStartDate = date('Y-m-d', strtotime("+4 hours"));
+
+
+            } // end if
+
+
+
+
+
+
+
 
 
 
@@ -165,26 +189,27 @@ class Plans extends Component
 
 
             // 1.5: resetVars
-            $this->instance->deliveryDays = $customer?->deliveryWeekDays() ?? [];
+            $this->instance->deliveryDays = $latestAddress->deliveryDaysInArray();
 
 
 
-
-
-
-            // 1.6: makeSession
+            // 1.6: makeSession - redirectStepTwo
             Session::put('pre-customer', $this->instance);
+
 
             return $this->redirect(route('website.plans.customization', [$plan->nameURL]), navigate: false);
 
 
 
 
+            // 2: incorrect
         } else {
 
 
+
             $this->makeAlert('info', 'Invalid Email');
-            return $this->redirect(route('website.plans'), navigate: false);
+
+            return $this->redirect(route('website.plans'));
 
 
         } // end if
@@ -195,9 +220,7 @@ class Plans extends Component
 
 
 
-
     } // end function
-
 
 
 
@@ -232,13 +255,11 @@ class Plans extends Component
 
 
         // 1.2: plans
-        $plans = Plan::all();
-
-        // $plans = Plan::whereHas('ranges')
-        //     ->whereHas('bundles')
-        //     ->whereHas('defaultCalendarRelation')
-        //     ->where('isForWebsite', true)
-        //     ->get();
+        $plans = Plan::whereHas('ranges')
+            ->whereHas('bundles')
+            ->whereHas('defaultCalendarRelation')
+            ->where('isForWebsite', true)
+            ->get();
 
 
 
@@ -285,8 +306,6 @@ class Plans extends Component
             $path = 'livewire.website.plans-seventh';
 
         } // end if
-
-
 
 
 

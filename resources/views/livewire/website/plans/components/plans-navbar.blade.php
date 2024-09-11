@@ -82,6 +82,8 @@
 
 
 
+
+
                                     {{-- login --}}
                                     <li class="menu-item login--item">
                                         <a class="splitting-text-anim-2" data-splitting="chars"
@@ -93,8 +95,7 @@
 
                                 </ul>
                             </div>
-
-
+                            {{-- endMenu --}}
 
 
 
@@ -118,6 +119,8 @@
 
             {{-- socials --}}
             <div class="menu-social-links">
+
+
 
 
                 {{-- 1: instagram --}}
@@ -192,7 +195,14 @@
 
 
 
+
+                {{-- 7: privacy --}}
+                <a href="{{ route('website.policy') }}" class="scrolla-element-anim-1">Privacy Policy</a>
+
+
+
             </div>
+            {{-- endSocials --}}
 
 
 

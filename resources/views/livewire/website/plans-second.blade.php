@@ -75,7 +75,9 @@
 
                 <div class="swiper-slide plan--slide" key='single-plan-{{ $plan->id }}'>
                     <div class="works-slide">
-                        <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}">
+                        <a @if ($renewEmail) href='javascript:void(0);'
+                            wire:click="prepExistingCustomer('{{ $plan->id }}')" @else
+                            href="{{ route('website.plans.customization', [$plan->nameURL]) }}" @endif>
 
 
                             {{-- imageFile --}}

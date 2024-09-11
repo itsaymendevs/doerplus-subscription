@@ -4,7 +4,7 @@
 
             {{-- logo --}}
             <div class="spinner-logo">
-                <img src='{{ url("{$storagePath}/profile/{$profile->imageFile}") }}' alt="" />
+                <img src='{{ url("{$storagePath}/profile/{$profile->preloaderImageFile}") }}' alt="" />
                 <div class="spinner-dot"></div>
                 <div class="spinner spinner-line"></div>
             </div>

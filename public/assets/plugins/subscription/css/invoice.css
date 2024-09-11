@@ -114,7 +114,7 @@
 
 .invoice--final-table-quantity p span {
     margin-right: 5px;
-    color: var(--brandColor);
+    color: var(--preferenceInfoColor);
 }
 
 .invoice--final-table-numbers span {

@@ -17,6 +17,17 @@
 
 
 
+    <style>
+        @media only screen and (max-width: 767px) {
+            .hero-main-slider .slide-titles {
+                padding: 15px;
+                padding-bottom: 100px;
+                align-items: end;
+            }
+        }
+    </style>
+
+
     @endsection
     {{-- endHead --}}
 
@@ -169,11 +180,12 @@
                                     @else
 
 
-                                    <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}"
+                                    <a @if ($renewEmail) href='javascript:void(0);'
+                                        wire:click="prepExistingCustomer('{{ $plan->id }}')" @else
+                                        href="{{ route('website.plans.customization', [$plan->nameURL]) }}" @endif
                                         data-splitting
                                         class="btn more-btn scrolla-element-anim-1 plan--slide-button fw-500">View
                                         Plan</a>
-
 
                                     @endif
                                     {{-- end if --}}

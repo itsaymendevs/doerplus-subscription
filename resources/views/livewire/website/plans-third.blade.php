@@ -112,7 +112,9 @@
 
                             {{-- title --}}
                             <div class="title">
-                                <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}">
+                                <a @if ($renewEmail) href='javascript:void(0);'
+                                    wire:click="prepExistingCustomer('{{ $plan->id }}')" @else
+                                    href="{{ route('website.plans.customization', [$plan->nameURL]) }}" @endif>
                                     <span class="title-inner splitting-text-anim-2 plan--slide-title" data-splitting>{{
                                         $plan->name }}</span>
                                 </a>
@@ -124,7 +126,9 @@
 
                     {{-- viewButton --}}
                     <div class="view-btn @if ($settings->planCardAlignment == 'center') left-0 right-0 mx-auto @endif">
-                        <a href="{{ route('website.plans.customization', [$plan->nameURL]) }}" data-splitting
+                        <a @if ($renewEmail) href='javascript:void(0);'
+                            wire:click="prepExistingCustomer('{{ $plan->id }}')" @else
+                            href="{{ route('website.plans.customization', [$plan->nameURL]) }}" @endif data-splitting
                             class="fw-500 splitting-text-anim-1 plan--slide-button fw-semibold">View
                             Plan</a>
                     </div>

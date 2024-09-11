@@ -66,6 +66,8 @@
 
             --preferenceLineColor: <?php echo "$settings->preferenceLineColor" ?>;
             --preferenceInfoColor: <?php echo "$settings->preferenceInfoColor" ?>;
+            --planListNumbersColor: <?php echo "$settings->preferenceInfoColor" ?>;
+
 
             --pickPreferenceTextColor: <?php echo "$settings->pickPreferenceTextColor" ?>;
 
