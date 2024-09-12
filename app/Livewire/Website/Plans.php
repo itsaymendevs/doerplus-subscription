@@ -255,11 +255,13 @@ class Plans extends Component
 
 
         // 1.2: plans
-        $plans = Plan::whereHas('ranges')
-            ->whereHas('bundles')
-            ->whereHas('defaultCalendarRelation')
-            ->where('isForWebsite', true)
-            ->get();
+        $plans = Plan::all();
+
+        // $plans = Plan::whereHas('ranges')
+        //     ->whereHas('bundles')
+        //     ->whereHas('defaultCalendarRelation')
+        //     ->where('isForWebsite', true)
+        //     ->get();
 
 
 

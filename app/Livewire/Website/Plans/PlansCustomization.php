@@ -599,12 +599,14 @@ class PlansCustomization extends Component
 
 
         // 1.2: plans
-        $plans = Plan::whereHas('ranges')
-            ->whereHas('bundles')
-            ->whereHas('defaultCalendarRelation')
-            ->where('isForWebsite', true)
-            ->where('id', '!=', $this->plan->id)
-            ->get();
+        $plans = Plan::where('id', '!=', $this->plan->id)->get();
+
+        // $plans = Plan::whereHas('ranges')
+        //     ->whereHas('bundles')
+        //     ->whereHas('defaultCalendarRelation')
+        //     ->where('isForWebsite', true)
+        //     ->where('id', '!=', $this->plan->id)
+        //     ->get();
 
 
 

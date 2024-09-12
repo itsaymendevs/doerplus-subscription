@@ -297,7 +297,7 @@ Route::get('blogs', [Plans::class, 'blogs'])->name('website.blogs');
 
 
 // 1: blogs
-Route::get('/privacy-policy', PrivacyPolicy::class)->name('website.policy');
+Route::get('/privacy-policy', PrivacyPolicy::class)->name('website.privacy');
 
 
 

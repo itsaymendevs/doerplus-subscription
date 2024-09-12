@@ -80,9 +80,21 @@ class PlansCustomizationInformation extends Component
         // 1: dispatchEvent
         if ($this->instance->gender) {
 
+
+
+            // 1.2: getEmail
+            $fullEmail = explode('@', $this->instance->email);
+
+            $this->instance->email = $fullEmail[0];
+            $this->instance->emailProvider = "@{$fullEmail[1]}";
+
+
+
+
             $this->dispatch('confirmStep', $this->instance);
 
         } // end if
+
 
 
 

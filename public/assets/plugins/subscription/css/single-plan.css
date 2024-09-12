@@ -832,14 +832,12 @@
 .gender--option.active {
     border: 1px solid var(--brandActiveColor);
     background-color: var(--brandActiveColor);
-    transform: translateY(-5px);
     color: var(--textActiveColor);
 }
 
 .gender--radio:checked + .gender--option {
     border: 1px solid var(--brandActiveColor);
     background-color: var(--brandActiveColor);
-    transform: translateY(-5px);
     color: var(--textActiveColor);
 }
 

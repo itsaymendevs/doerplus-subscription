@@ -197,7 +197,7 @@
 
 
                 {{-- 7: privacy --}}
-                <a href="{{ route('website.policy') }}" class="scrolla-element-anim-1">Privacy Policy</a>
+                <a href="{{ route('website.privacy') }}" class="scrolla-element-anim-1">Privacy Policy</a>
 
 
 

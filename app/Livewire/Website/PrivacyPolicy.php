@@ -2,9 +2,12 @@
 
 namespace App\Livewire\Website;
 
+use App\Models\Profile;
 use App\Models\SubscriptionSetting;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
+#[Layout('livewire.layouts.website.plans-customization')]
 class PrivacyPolicy extends Component
 {
     public function render()
@@ -13,7 +16,7 @@ class PrivacyPolicy extends Component
 
         // 1: dependencies
         $settings = SubscriptionSetting::first();
-
+        $client = Profile::first()->name;
 
 
 
@@ -311,7 +314,7 @@ class PrivacyPolicy extends Component
 
 
             // 1: main
-            $header = ['Privacy Policy', "Website is owned and managed by Aleens, a dedicated meal planners who simplify your life by crafting personalized based in United Arab Emirates is our country of domicile"];
+            $header = ['Privacy Policy', "Website is owned and managed by " . $client . ", a dedicated meal planners who simplify your life by crafting personalized based in United Arab Emirates is our country of domicile"];
 
 
 
@@ -320,7 +323,8 @@ class PrivacyPolicy extends Component
 
 
             // 1.5: titles
-            $titles = ['General Points', 'What Sort of Personal Information We Hold', 'Our Legal Basis for Processing Your Personal Information', 'How Do We Use Your Personal Information', 'Cookies and Similar Technologies', 'Who Might We Share Your Personal Information With', 'Keeping You Informed About Our Products and Services', 'Keeping You Informed About Our Products and Services', 'Your Rights', 'Refunds', 'Automated Decision Making and Profiling', 'How Long Will We Keep Your Personal Information For', 'Security', 'Delivery', 'Policy Change'];
+            $titles = ['General Points', 'What Sort of Personal Information We Hold', 'Our Legal Basis for Processing Your Personal Information', 'How Do We Use Your Personal Information', 'Cookies and Similar Technologies', 'Who Might We Share Your Personal Information With', 'Keeping You Informed About Our Products and Services', 'Your Rights', 'Refunds', 'Automated Decision Making and Profiling', 'How Long Will We Keep Your Personal Information For', 'Security', 'Delivery', 'Policy Change'];
+
 
 
 
@@ -340,7 +344,7 @@ class PrivacyPolicy extends Component
 
             // 1: first
             $content[$counter++] = [
-                "This website is owned and managed by Aleens",
+                "This website is owned and managed by " . $client,
                 "Minors under the age of 18 shall are prohibited to register as a User of this website",
 
                 "We understand that your privacy and the security of your personal information is extremely important. This notice sets out what we do with your personal information, what we do to keep it secure, from where and how we collect it, as well as your rights in relation to the personal information we hold about you",
@@ -422,7 +426,7 @@ class PrivacyPolicy extends Component
 
                 "To provide our products and services - we need to use your personal information to make our products and services available to you. If you then decide to order any of our products or services then we’re delighted, thank you. After that, we need to provide them to you and process your payment. And we need to use your details to do all this",
 
-                "To personalise your shopping experience - we try to understand our customers so we can provide you with a great shopping experience, relevant marketing, personalized offers, shopping ideas and online advertising. Understanding how you use our App, how you interact with Aleens Kitchen, where you dine, the products and services you buy and how you use and browse our website helps us to do this",
+                "To personalise your shopping experience - we try to understand our customers so we can provide you with a great shopping experience, relevant marketing, personalized offers, shopping ideas and online advertising. Understanding how you use our App, how you interact with " . $client . " Kitchen, where you dine, the products and services you buy and how you use and browse our website helps us to do this",
 
                 "For safety and security - we use your personal information to help provide safe and secure environments for our colleagues to work in, our customers to shop in and for our businesses to be conducted. To enable this we monitor online behavior and carry out checks to help us ensure that our customers are genuine to prevent fraud and to help customers use our services appropriately",
 
@@ -464,7 +468,7 @@ class PrivacyPolicy extends Component
             // 6: sixth
             $content[$counter++] = [
 
-                "We will share your personal information in certain circumstances with the other companies within the Aleens Group so that we can provide you with a high quality, personalized and tailored service",
+                "We will share your personal information in certain circumstances with the other companies within the " . $client . " Group so that we can provide you with a high quality, personalized and tailored service",
 
 
                 "Our service providers - we work with partners, suppliers, aggregators and agencies so that they can help us provide the products and services you require from us. These third parties process your personal information on our behalf and are required to meet our high standards of security before doing so. We only share information that allows them to provide their services to us or to facilitate them providing their services to you. These third parties include",
@@ -486,9 +490,9 @@ class PrivacyPolicy extends Component
             // 7: seventh
             $content[$counter++] = [
 
-                "We would like to tell you about the great offers, ideas, products and services of the Aleens Kitchen from time to time that we think you might be interested in. Where we have your consent or it is in our legitimate interests to do so, we may do this through the post, by email, text message or by any other electronic means",
+                "We would like to tell you about the great offers, ideas, products and services of the " . $client . " Kitchen from time to time that we think you might be interested in. Where we have your consent or it is in our legitimate interests to do so, we may do this through the post, by email, text message or by any other electronic means",
 
-                "We won’t send you marketing messages if you tell us not to, but if you receive a service from us we will still need to send you occasional service-related messages. If you wish to amend your marketing preferences, you can do so by logging into Aleens account of one of our brands and following the directions. You can also give us a call",
+                "We won’t send you marketing messages if you tell us not to, but if you receive a service from us we will still need to send you occasional service-related messages. If you wish to amend your marketing preferences, you can do so by logging into " . $client . " account of one of our brands and following the directions. You can also give us a call",
 
 
                 "Please note that it can take up a little while for all marketing to stop once you either withdraw your consent or tell us you’d like to opt out of marketing. This is because some marketing may already be in transit",
@@ -537,7 +541,7 @@ class PrivacyPolicy extends Component
             // 10: tenth
             $content[$counter++] = [
 
-                "We use automated decision making, including profiling, in certain circumstances, such as when it is in our legitimate interests to do so, or where we have a right to do so because it is necessary for us to enter into, and perform, a contract with you. We use profiling to enable us to give you the best service across the Aleens Kitchen, including specific marketing which we believe you will be interested in",
+                "We use automated decision making, including profiling, in certain circumstances, such as when it is in our legitimate interests to do so, or where we have a right to do so because it is necessary for us to enter into, and perform, a contract with you. We use profiling to enable us to give you the best service across the " . $client . " Kitchen, including specific marketing which we believe you will be interested in",
 
 
                 "You have the right not to be subject to a decision based solely on automated processing, including profiling, which has legal effects for you or affects you in any other significant way",
@@ -588,7 +592,7 @@ class PrivacyPolicy extends Component
             // 13: thirteenth
             $content[$counter++] = [
 
-                "Aleens will NOT deal or provide any services or products to any of OFAC (Office of Foreign Assets Control) sanctions countries in accordance with the law of UAE. Multiple transactions may result in multiple postings to the cardholder’s monthly statement",
+                $client . " will NOT deal or provide any services or products to any of OFAC (Office of Foreign Assets Control) sanctions countries in accordance with the law of UAE. Multiple transactions may result in multiple postings to the cardholder’s monthly statement",
 
             ];
 

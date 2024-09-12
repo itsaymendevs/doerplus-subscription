@@ -37,7 +37,50 @@
 
 
         {{-- content --}}
-        <form wire:submit='continue' class="row mb-5 justify-content-center justify-content-md-start">
+        <form wire:submit='continue' class="row mb-5 align-items-end justify-content-center justify-content-md-start">
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {{-- --------------------------- --}}
+            {{-- --------------------------- --}}
+
+
+
+
+
+            {{-- email --}}
+            <div class="col-12 col-lg-6 order-2 order-lg-1">
+                <div class="d-flex form--input-wrapper flex-column mb-4">
+
+                    <label class='w-100 d-flex align-items-center sm'>
+                        <span>Email Address</span>
+                    </label>
+
+                    <input type="email" class='form--input' wire:model='instance.email' required>
+                </div>
+            </div>
+            {{-- endCol --}}
+
+
+
+
+
+
+
+            {{-- --------------------------- --}}
+            {{-- --------------------------- --}}
+
+
 
 
 
@@ -46,8 +89,8 @@
 
 
             {{-- gender --}}
-            <div class="col-12">
-                <div class="d-flex mb-4 flex-wrap plan--days-wrapper justify-content-center">
+            <div class="col-12 col-lg-6 order-1 order-lg-2 ">
+                <div class="d-flex mb-4 pb-1 flex-wrap plan--days-wrapper justify-content-center">
 
 
 
@@ -91,9 +134,9 @@
 
 
 
+            {{-- --------------------------- --}}
+            {{-- --------------------------- --}}
 
-            {{-- --------------------------- --}}
-            {{-- --------------------------- --}}
 
 
 
@@ -101,14 +144,14 @@
 
 
             {{-- firstName --}}
-            <div class="col-6 col-sm-6">
+            <div class="col-6 col-sm-6 order-3">
                 <div class="d-flex form--input-wrapper flex-column mb-4">
 
                     <label class='w-100 d-flex align-items-center sm '>
                         <span>First Name</span>
                     </label>
 
-                    <input type="text" class='form--input text-center' wire:model='instance.firstName' required>
+                    <input type="text" class='form--input' wire:model='instance.firstName' required>
                 </div>
             </div>
 
@@ -118,14 +161,14 @@
 
 
             {{-- lastName --}}
-            <div class="col-6 col-sm-6">
+            <div class="col-6 col-sm-6 order-4">
                 <div class="d-flex form--input-wrapper flex-column mb-4">
 
                     <label class='w-100 d-flex align-items-center sm'>
                         <span>Last Name</span>
                     </label>
 
-                    <input type="text" class='form--input text-center' wire:model='instance.lastName' required>
+                    <input type="text" class='form--input' wire:model='instance.lastName' required>
                 </div>
             </div>
 
@@ -148,7 +191,7 @@
 
 
             {{-- phone --}}
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 order-5">
                 <div class="d-flex form--input-wrapper flex-column mb-4">
 
                     <label class='w-100 d-flex align-items-center sm'>
@@ -208,7 +251,7 @@
 
 
             {{-- whatsapp --}}
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 order-5">
                 <div class="d-flex form--input-wrapper flex-column mb-4">
 
                     <label class='w-100 d-flex align-items-center sm'>
@@ -239,7 +282,7 @@
 
                         {{-- input --}}
                         <input type="text" pattern="[0-9]+" class='form--input side--right text-center'
-                            style="width: 70% !important" wire:model='instance.whatsapp' minlength="5" maxlength="9"
+                            style="width: 70% !important" wire:model='instance.whatsapp' minlength="4" maxlength="10"
                             required>
 
 
@@ -252,59 +295,6 @@
             </div>
             {{-- endCol --}}
 
-
-
-
-
-
-
-
-
-            {{-- ------------------------------------ --}}
-            {{-- ------------------------------------ --}}
-
-
-
-
-
-
-            {{-- email --}}
-            <div class="col-12 col-md-12">
-                <div class="d-flex form--input-wrapper flex-column mb-4">
-
-                    <label class='w-100 d-flex align-items-center sm'>
-                        <span>Email Address</span>
-                    </label>
-
-
-
-                    {{-- inputWithSelect --}}
-                    <div class="form--input-with-select">
-
-                        {{-- input --}}
-                        <input type="text" class='form--input side--left text-center' style="width: 60% !important"
-                            wire:model='instance.email' required>
-
-
-                        {{-- select --}}
-                        <div class="form--select-wrapper side--right text-center" style="width: 40% !important">
-                            <select class='init--select form--select' value="@gmail.com"
-                                data-instance='instance.emailProvider' required>
-
-                                @foreach ($providers as $provier)
-                                <option value="{{ $provier }}">
-                                    {{ $provier }}
-                                </option>
-                                @endforeach
-
-                            </select>
-                        </div>
-                    </div>
-                    {{-- endWithSelect --}}
-
-                </div>
-            </div>
-            {{-- endCol --}}
 
 
 
@@ -326,7 +316,7 @@
 
 
             {{-- submitButton --}}
-            <div class="col-12">
+            <div class="col-12 order-5">
                 <div class="d-flex form--input-wrapper justify-content-center mb-4 mt-1
                 @if (!$settings?->showButtonMotion) no--button-motion @endif"
                     wire:loading.class='processing--button-wrap' wire:target='continue'>
