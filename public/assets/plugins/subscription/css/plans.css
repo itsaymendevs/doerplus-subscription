@@ -113,6 +113,10 @@
 /* --------------------------------- */
 /* --------------------------------- */
 
+.air-datepicker-body--day-name {
+    color: var(--brandColor) !important;
+}
+
 /* navbar */
 .menu-btn span:before,
 .menu-btn span:after {
@@ -122,7 +126,8 @@
 
 .menu-btn.active span:before,
 .menu-btn.active span:after {
-    background: var(--navbarMenuActiveColor);
+    background: var(--navbarMenuActiveColor) !important;
+    background-color: var(--navbarMenuActiveColor) !important;
 }
 
 .menu-full-overlay:before {
@@ -157,7 +162,7 @@
 @media (max-width: 1100px) {
     .login--item {
         font-size: 24px;
-        bottom: 80px;
+        bottom: 100px;
     }
 
     .login--item * {

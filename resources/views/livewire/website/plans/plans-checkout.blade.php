@@ -20,6 +20,18 @@
         content="Healthy Meal Plans Provider in Dubai, Best Healthy Meal Plans Provider in Dubai, Healthy Meal Plans Provider">
 
 
+
+    {{-- beMoreHealthy --}}
+    @if (env('APP_CLIENT') == 'BeMoreHealthy')
+
+    <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/customization/bemorehealthy.css')}}" />
+
+    @endif
+    {{-- end if --}}
+
+
+
+
     @endsection
     {{-- endHead --}}
 
@@ -57,6 +69,10 @@
 
 
 
+    {{-- forColorOnly --}}
+    <div class='d-none plan--{{ $plan->id }}'></div>
+
+
 
 
 
@@ -87,7 +103,7 @@
 
 
     {{-- section --}}
-    <div class="section section-inner m-description plan--section">
+    <div class="section section-inner m-description plan--section plan--{{ $plan->id }}">
         <div class="container">
             <div class="row">
 
@@ -119,8 +135,7 @@
                                                 <span>Delivery Information</span>
                                                 <a href="#"
                                                     class='pointer animation--plus @if ($instance?->cityId) d-none @endif'
-                                                    data-izimodal-open="#address--modal"
-                                                    data-izimodal-transitionin="fadeInDown">
+                                                    data-bs-toggle="modal" data-bs-target='#address--modal'>
                                                     <i class="bi bi-plus fs-1 color--theme"></i>
                                                 </a>
                                             </div>
@@ -161,8 +176,8 @@
                                             @if ($settings?->showAddressMotion) address--motion @endif p-0">
 
                                             <a class='d-flex align-items-center justify-content-center text-decoration-none'
-                                                href="javascript:void(0);" data-izimodal-open="#address--modal"
-                                                data-izimodal-transitionin="fadeInDown">
+                                                href="javascript:void(0);" data-bs-toggle="modal"
+                                                data-bs-target='#address--modal'>
 
 
                                                 <h4 class='fw-500 fs-6 d-flex align-items-center justify-content-center text-uppercase py-2'
@@ -170,7 +185,6 @@
                                                     <i class="bi bi-pencil me-3 fs-4"></i>
                                                     <span>Add Your Address</span>
                                                 </h4>
-
                                             </a>
 
                                         </div>
@@ -691,8 +705,9 @@
 
                                                 {{-- name --}}
                                                 <div class="m-titles mb-1 text-center">
-                                                    <div class="m-title plan--single-title fw-semibold fs-6 mb-0"
-                                                        style="color: var(--summaryBundleColor) !important;">
+                                                    <div class="m-title plan--single-title plan--single-overview-title fw-semibold fs-6 mb-0"
+                                                        @if(env('APP_CLIENT') !="BeMoreHealthy" )
+                                                        style="color: var(--summaryBundleColor) !important;" @endif>
                                                         {{ $pickedPlanBundle->name }}
                                                     </div>
                                                 </div>

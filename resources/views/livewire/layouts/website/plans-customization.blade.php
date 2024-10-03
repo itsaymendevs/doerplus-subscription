@@ -79,6 +79,7 @@
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/invoice.css')}}" />
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/custom-swal.css')}}" />
         <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/cart.css')}}" />
+        <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/common-footer.css')}}" />
 
 
 
@@ -153,6 +154,7 @@
 
     {{-- body --}}
     <body class="home page section--bg">
+
         <div class="container-page">
 
 
@@ -206,6 +208,27 @@
 
 
 
+
+
+
+
+
+        {{-- ---------------------------------------------------------- --}}
+        {{-- ---------------------------------------------------------- --}}
+
+
+
+
+
+        {{-- footer --}}
+        <livewire:website.plans.components.plans-footer />
+
+
+
+
+
+        {{-- ---------------------------------------------------------- --}}
+        {{-- ---------------------------------------------------------- --}}
 
 
 

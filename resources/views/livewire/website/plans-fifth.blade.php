@@ -17,6 +17,25 @@
 
 
 
+    {{-- beMoreHealthy --}}
+    @if (env('APP_CLIENT') == 'BeMoreHealthy')
+
+    <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/customization/bemorehealthy.css')}}" />
+
+    @endif
+    {{-- end if --}}
+
+
+
+
+
+
+    {{-- ------------------------------- --}}
+    {{-- ------------------------------- --}}
+
+
+
+
     <style>
         @media only screen and (max-width: 767px) {
             .hero-main-slider .slide-titles {
@@ -85,13 +104,18 @@
                 @foreach ($plans ?? [] as $plan)
 
 
-                <div class="swiper-slide plan--slide" key='single-plan-{{ $plan->id }}'>
+                <div class="swiper-slide plan--slide plan--slide-{{ $plan->id }}" key='single-plan-{{ $plan->id }}'>
 
 
 
                     {{-- imageFile --}}
-                    <div class="slide"
+                    <div class="slide d-none d-lg-block"
                         style='background-image: url({{ url("{$storagePath}/menu/plans/{$plan->fifthImageFile}") }});'>
+                    </div>
+
+
+                    <div class="slide d-lg-none"
+                        style='background-image: url({{ url("{$storagePath}/menu/plans/{$plan->imageFile}") }});'>
                     </div>
 
 

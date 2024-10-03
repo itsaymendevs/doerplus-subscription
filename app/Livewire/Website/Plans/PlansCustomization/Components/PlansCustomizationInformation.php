@@ -83,7 +83,7 @@ class PlansCustomizationInformation extends Component
 
 
             // 1.2: getEmail
-            $fullEmail = explode('@', $this->instance->email);
+            $fullEmail = explode('@', $this->instance->fullEmail);
 
             $this->instance->email = $fullEmail[0];
             $this->instance->emailProvider = "@{$fullEmail[1]}";

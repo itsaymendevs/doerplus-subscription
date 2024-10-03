@@ -963,7 +963,7 @@ hr {
 .container-page {
     position: relative;
     overflow: hidden;
-    min-height: 50vh;
+    min-height: 93vh;
 }
 
 .wrapper {
@@ -1886,7 +1886,7 @@ hr {
 }
 
 .menu-social-links a {
-    margin-top: 15px;
+    margin-top: 8px;
     margin-left: 30px;
     position: relative;
     display: inline-block;
@@ -1895,7 +1895,7 @@ hr {
     letter-spacing: 0.025em;
     line-height: 2;
     color: #bab3e2;
-    font-weight: 400;
+    font-weight: 500;
     text-decoration: none;
     text-transform: uppercase;
 }
@@ -2641,7 +2641,7 @@ hr {
 .hero-main-slider .slide-titles .subtitle {
     display: block;
     margin: 0 0 35px 0;
-    max-width: 480px;
+    max-width: 590px;
     opacity: 0.8;
 }
 
@@ -2775,7 +2775,7 @@ hr {
     left: 0;
     top: 0;
     width: 12px;
-    height: 20px;
+    height: 15px;
     background: url(../images/arrow.svg) no-repeat;
     background-size: contain;
     border: none;

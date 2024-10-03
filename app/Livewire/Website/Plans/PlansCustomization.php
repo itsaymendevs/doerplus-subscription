@@ -433,8 +433,12 @@ class PlansCustomization extends Component
     {
 
 
+
+
         // 1: handleParams
         if ($personalDetails) {
+
+
 
             $personalDetails = json_decode(json_encode($personalDetails));
 

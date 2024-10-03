@@ -19,6 +19,16 @@
         content="Healthy Meal Plans Provider in Dubai, Best Healthy Meal Plans Provider in Dubai, Healthy Meal Plans Provider">
 
 
+    {{-- beMoreHealthy --}}
+    @if (env('APP_CLIENT') == 'BeMoreHealthy')
+
+    <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/customization/bemorehealthy.css')}}" />
+
+    @endif
+    {{-- end if --}}
+
+
+
     @endsection
     {{-- endHead --}}
 
@@ -56,6 +66,10 @@
 
 
 
+    {{-- forColorOnly --}}
+    <div class='d-none plan--{{ $subscription->plan->id }}'></div>
+
+
 
 
 
@@ -82,7 +96,7 @@
 
 
     {{-- section --}}
-    <div class="section section-inner m-description plan--section">
+    <div class="section section-inner m-description plan--section plan--{{ $subscription->plan->id }}">
         <div class="container">
             <div class="row justify-content-center">
 

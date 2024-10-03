@@ -29,6 +29,7 @@ trait PaymenntTrait
         $random = date('dmhis');
 
 
+
         $city = City::find($instance->cityId);
         $plan = Plan::find($instance->planId);
         $lead = Lead::where('email', $instance->email)->latest()->first();

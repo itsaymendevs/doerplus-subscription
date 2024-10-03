@@ -21,6 +21,32 @@
         content="Healthy Meal Plans Provider in Dubai, Best Healthy Meal Plans Provider in Dubai, Healthy Meal Plans Provider">
 
 
+
+    {{-- beMoreHealthy --}}
+    @if (env('APP_CLIENT') == 'BeMoreHealthy')
+
+    <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/customization/bemorehealthy.css')}}" />
+
+    @endif
+    {{-- end if --}}
+
+
+
+
+    <style>
+        @media (max-width: 767px) {
+            .mt-sm-only-0 {
+                margin-top: 0px !important;
+            }
+        }
+
+
+        .section.section-inner {
+            margin-bottom: 50px !important
+        }
+    </style>
+
+
     @endsection
     {{-- endHead --}}
 
@@ -67,30 +93,54 @@
 
     {{-- 1: hero --}}
     <div class="section hero-started  bottom mb-5 plan--hero-section" style="max-height: 500px !important"
-        data-dispimgpath='{{ url("{$storagePath}/menu/plans/{$plan->thirdImageFile}") }}'>
+        data-dispimgpath='{{ url("{$storagePath}/menu/plans/{$plan->fifthImageFile}") }}'>
 
 
 
         {{-- background --}}
-        <div class="slide">
+        <div class="slide d-none d-md-block">
             <img src='{{ url("{$storagePath}/menu/plans/{$plan->fifthImageFile}") }}' class="started-item__image" />
         </div>
 
 
 
-        <div class="canvas started-items__image" data-top="top: 0px;" data-top-bottom="top: -100px;"></div>
+        <div class="canvas started-items__image d-none d-md-flex" data-top="top: 0px;" data-top-bottom="top: -100px;">
+        </div>
+
+
+
+        {{-- content --}}
+        <div class="container flex-column justify-content-end align-items-start d-none d-md-flex">
+            <div class="titles">
+                <div class="title splitting-text-anim-1 scroll-animate  pb-4 plan--single-title" data-splitting="chars"
+                    data-animate="active">{{ $plan->name }}</div>
+            </div>
+        </div>
+
+
+
+
+        {{-- --------------------------------------------- --}}
+        {{-- --------------------------------------------- --}}
+        {{-- --------------------------------------------- --}}
 
 
 
 
         {{-- content --}}
-        <div class="container flex-column justify-content-end align-items-start">
+        <div class="container flex-column justify-content-end align-items-start d-md-none bg-white">
+
+            <img src='{{ url("{$storagePath}/menu/plans/{$plan->imageFile}") }}' class="started-item__image"
+                style="position: absolute; top: 0px; left:0px; width: 100%; height: 100%; object-fit: contain" />
+
+
             <div class="titles">
                 <div class="title splitting-text-anim-1 scroll-animate  pb-4 plan--single-title" data-splitting="chars"
                     data-animate="active">{{ $plan->name }}</div>
             </div>
-
         </div>
+
+
     </div>
     {{-- endSection --}}
 
@@ -115,7 +165,7 @@
 
 
     {{-- section --}}
-    <div class="section section-inner m-description section--spacing">
+    <div class="section section-inner m-description section--spacing mt-sm-only-0">
         <div class="container">
 
 
@@ -173,11 +223,11 @@
 
 
     {{-- customSection --}}
-    @if ($plan->sectionTitle)
+    @if ($plan->sectionTitle && count($plan?->points ?? []) > 0)
 
 
-    <div class="section section-inner m-description section--spacing">
-        <div class="container">
+    <div class="section section-inner m-description section--spacing ">
+        <div class="container">ء
             <div class="row">
 
 
@@ -546,6 +596,8 @@
 
 
     {{-- today's menu --}}
+    @if (env('APP_CLIENT') != 'BeMoreHealthy')
+
     <div class="section section-inner m-testimonials @if (!$settings->showPlanReviews) mt-0 @endif">
         <div class="container">
             <div class="row">
@@ -717,6 +769,9 @@
 
         </div>
     </div>
+
+
+    @endif
     {{-- endSection --}}
 
 

@@ -24,7 +24,7 @@ class SubscriptionForm extends Form
 
 
     // :: STEP 1
-    public $phone, $email, $name, $firstName, $lastName, $whatsapp, $gender, $planId, $password;
+    public $phone, $email, $fullEmail, $name, $firstName, $lastName, $whatsapp, $gender, $planId, $password;
     public $phoneKey, $emailProvider, $whatsappKey;
 
     public $id;

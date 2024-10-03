@@ -668,7 +668,7 @@
     background-color: var(--planMacroBackgroundColor);
     justify-content: center;
     align-items: center;
-    border-radius: 6px;
+    border-radius: 50%;
     height: 90px;
     max-width: 90px;
     width: 90px;
@@ -689,6 +689,7 @@
 .plan--macros .percentage {
     font-size: 17px;
     color: var(--textColor);
+    font-weight: 500 !important;
 }
 
 @media (max-width: 575px) {

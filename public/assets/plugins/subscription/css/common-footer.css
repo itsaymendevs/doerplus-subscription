@@ -1,0 +1,127 @@
+.global--footer {
+    position: relative;
+    background-color: transparent;
+    display: flex;
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 5px;
+}
+
+.global--footer.floating {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    z-index: 11;
+}
+
+.global--footer .global--footer-copyrights {
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0px;
+    display: flex;
+    align-items: end;
+}
+
+.global--footer .global--footer-copyrights i {
+    font-size: 12px;
+    margin-right: 3px;
+}
+
+/* provider */
+
+.global--footer .global--footer-provider {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: var(--textColor);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    margin-left: 5px;
+}
+
+.global--footer .global--footer-provider img {
+    width: 65px;
+    height: 30px;
+    object-fit: contain;
+    object-position: center;
+}
+
+.global--footer .global--footer-provider img.caption {
+    width: 70px;
+    height: 41px;
+    object-fit: contain;
+    object-position: center;
+    position: absolute;
+    top: -14px;
+    left: -10px;
+    z-index: 5;
+}
+
+/* links */
+.global--footer .global--footer-links {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.global--footer .global--footer-links a {
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--textColor);
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+@media (max-width: 575px) {
+    .global--footer .global--footer-links a {
+        font-size: 12px;
+    }
+}
+
+.global--footer .global--footer-links a:last-of-type {
+    margin-right: 0px;
+}
+
+/* ------------------------------------------------ */
+/* ------------------------------------------------ */
+
+/* menu - poweredBy */
+
+.menu--powered-by {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: var(--textColor);
+    text-decoration: none;
+    font-weight: 500;
+    position: absolute;
+    left: 35px;
+    bottom: 39px;
+}
+
+.menu--powered-by img {
+    width: 70px;
+    height: 35px;
+    object-fit: contain;
+    object-position: center;
+}
+
+.menu--powered-by img.caption {
+    width: 75px;
+    height: 45px;
+    object-fit: contain;
+    object-position: center;
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    z-index: 5;
+}
+
+@media (max-width: 1199px) {
+    .menu--powered-by {
+        display: none;
+    }
+}

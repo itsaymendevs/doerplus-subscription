@@ -1,0 +1,130 @@
+/* plan - 5th */
+
+/* viewButton */
+.plan--slide-1 .plan--slide-button::before,
+.plan--slide-5 .plan--slide-button::before,
+.plan--slide-6 .plan--slide-button::before {
+    background: #ffb8d2 !important;
+}
+
+.plan--macros {
+    border-radius: 60px 0px 60px 60px !important;
+}
+
+.plan--slide-1 .plan--slide-caption,
+.plan--slide-5 .plan--slide-caption,
+.plan--slide-6 .plan--slide-caption {
+    color: #e9abc2 !important;
+}
+
+.plan--slide-1 .slide-titles .title::after,
+.plan--slide-5 .slide-titles .title::after,
+.plan--slide-6 .slide-titles .title::after {
+    background: #e9abc2 !important;
+}
+
+/* --------------------------------------- */
+/* --------------------------------------- */
+
+.plan--1 + .bg--blob path:first-of-type,
+.plan--5 + .bg--blob path:first-of-type,
+.plan--6 + .bg--blob path:first-of-type {
+    fill: #ffb8d2 !important;
+}
+
+.plan--1 + .bg--blob path:last-of-type,
+.plan--5 + .bg--blob path:last-of-type,
+.plan--6 + .bg--blob path:last-of-type {
+    fill: #fff7fa !important;
+}
+
+.plan--1 .plan--name,
+.plan--5 .plan--name,
+.plan--6 .plan--name {
+    color: #842f4e !important;
+}
+
+/* carbs */
+.plan--1 .plan--macros.for--carbs,
+.plan--5 .plan--macros.for--carbs,
+.plan--6 .plan--macros.for--carbs {
+    border-top: 1px solid #842f4e;
+    border-bottom: 1px solid var(--brandColor);
+    background-image: linear-gradient(#842f4e, var(--brandColor)),
+        linear-gradient(#842f4e, var(--brandColor));
+}
+
+.plan--1 .plan--macros.for--carbs .caption,
+.plan--5 .plan--macros.for--carbs .caption,
+.plan--6 .plan--macros.for--carbs .caption {
+    color: #842f4e;
+}
+
+/* proteins */
+.plan--1 .plan--macros.for--proteins,
+.plan--5 .plan--macros.for--proteins,
+.plan--6 .plan--macros.for--proteins {
+    border-top: 1px solid #842f4e;
+    border-bottom: 1px solid var(--brandColor);
+    background-image: linear-gradient(#842f4e, var(--brandColor)),
+        linear-gradient(#842f4e, var(--brandColor));
+}
+
+.plan--1 .plan--macros.for--proteins .caption,
+.plan--5 .plan--macros.for--proteins .caption,
+.plan--6 .plan--macros.for--proteins .caption {
+    color: #842f4e;
+}
+
+/* fats */
+.plan--1 .plan--macros.for--fats,
+.plan--5 .plan--macros.for--fats,
+.plan--6 .plan--macros.for--fats {
+    border-top: 1px solid #842f4e;
+    border-bottom: 1px solid var(--brandColor);
+    background-image: linear-gradient(#842f4e, var(--brandColor)),
+        linear-gradient(#842f4e, var(--brandColor));
+}
+
+.plan--1 .plan--macros.for--fats .caption,
+.plan--5 .plan--macros.for--fats .caption,
+.plan--6 .plan--macros.for--fats .caption {
+    color: #842f4e;
+}
+
+.plan--1 .btn--with-hr hr,
+.plan--5 .btn--with-hr hr,
+.plan--6 .btn--with-hr hr {
+    border-color: #e9abc2;
+}
+
+.plan--1 .bag--switch input:checked,
+.plan--5 .bag--switch input:checked,
+.plan--6 .bag--switch input:checked {
+    background-color: #e9abc2 !important;
+    border-color: #e9abc2 !important;
+}
+
+.plan--1 .bag--wrapper .bag--info,
+.plan--5 .bag--wrapper .bag--info,
+.plan--6 .bag--wrapper .bag--info {
+    color: #842f4e;
+}
+
+.plan--1 .span--price,
+.plan--5 .span--price,
+.plan--6 .span--price {
+    color: #842f4e;
+}
+
+.plan--1 .plan--single-overview-title,
+.plan--5 .plan--single-overview-title,
+.plan--6 .plan--single-overview-title {
+    color: #842f4e !important;
+}
+
+.plan--1 .invoice--final-table-quantity p span,
+.plan--5 .invoice--final-table-quantity p span,
+.plan--6 .invoice--final-table-quantity p span {
+    color: #842f4e;
+}

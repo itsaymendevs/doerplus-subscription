@@ -256,6 +256,23 @@ h6 {
     color: var(--textColor);
 }
 
+.btn--close {
+    padding: 0px;
+    line-height: unset;
+    align-items: center;
+    border-radius: var(--buttonRadius);
+    position: absolute;
+    display: flex;
+    margin: auto;
+    color: var(--bs-danger);
+    height: 25px;
+    font-size: 25px;
+    border: none;
+    border-bottom: 2px solid var(--bs-danger);
+    border-radius: 0px;
+    right: 0px;
+    top: -1px;
+}
 /* objectFit */
 .of-contain {
     object-fit: contain;

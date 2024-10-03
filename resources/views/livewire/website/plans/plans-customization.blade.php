@@ -21,6 +21,22 @@
         content="Healthy Meal Plans Provider in Dubai, Best Healthy Meal Plans Provider in Dubai, Healthy Meal Plans Provider">
 
 
+
+
+
+    {{-- beMoreHealthy --}}
+    @if (env('APP_CLIENT') == 'BeMoreHealthy')
+
+    <link rel="stylesheet" href="{{url('assets/plugins/subscription/css/customization/bemorehealthy.css')}}" />
+
+    @endif
+    {{-- end if --}}
+
+
+
+
+
+
     @endsection
     {{-- endHead --}}
 
@@ -57,6 +73,9 @@
 
 
 
+    {{-- forColorOnly --}}
+    <div class='d-none plan--{{ $plan->id }}'></div>
+
 
 
 
@@ -83,7 +102,8 @@
 
 
     {{-- section --}}
-    <div class="section section-inner m-description plan--section section--bg mb-0 pb-5" id='customization--section'>
+    <div class="section section-inner m-description plan--section section--bg mb-0 pb-5 plan--{{ $plan->id }}"
+        id='customization--section'>
         <div class="container">
             <div class="row">
 
@@ -1436,11 +1456,14 @@
 
                                                 {{-- name --}}
                                                 <div class="m-titles mb-1 text-center">
-                                                    <div class="m-title plan--single-title fw-semibold fs-6 mb-0"
-                                                        style="color: var(--summaryBundleColor) !important;">
+                                                    <div class="m-title plan--single-title plan--single-overview-title fw-semibold fs-6 mb-0"
+                                                        @if(env('APP_CLIENT') !="BeMoreHealthy" )
+                                                        style="color: var(--summaryBundleColor) !important;" @endif>
                                                         {{ $pickedPlanBundle->name }}
                                                     </div>
                                                 </div>
+
+
 
 
 

@@ -37,7 +37,8 @@
 
 
         {{-- content --}}
-        <form wire:submit='continue' class="row mb-5 align-items-end justify-content-center justify-content-md-start">
+        <form wire:submit='continue' class="row mb-5 align-items-end justify-content-center justify-content-md-start"
+            wire:loading.class='no-events-loading'>
 
 
 
@@ -66,7 +67,7 @@
                         <span>Email Address</span>
                     </label>
 
-                    <input type="email" class='form--input' wire:model='instance.email' required>
+                    <input type="email" class='form--input' wire:model='instance.fullEmail' required>
                 </div>
             </div>
             {{-- endCol --}}

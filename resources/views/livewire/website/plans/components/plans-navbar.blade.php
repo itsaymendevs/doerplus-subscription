@@ -36,6 +36,26 @@
 
             {{-- container --}}
             <div class="menu-full-container position-relative">
+
+
+
+                {{-- poweredBy - shortcut --}}
+                <li class='menu--powered-by d-none'>
+                    <a href="https://doer.ae" target='_blank' class='global--footer-provider'>
+                        <img src="{{ url('assets/plugins/subscription/images/doer-dark.png') }}" alt="">
+                        <img class='caption' src="{{ url('assets/plugins/subscription/images/powered-by-extra.png') }}"
+                            alt="">
+                    </a>
+                </li>
+
+
+
+                {{-- --------------------------------------- --}}
+                {{-- --------------------------------------- --}}
+
+
+
+
                 <div class="container ">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 offset-1 ">
@@ -44,6 +64,15 @@
                             {{-- fullMenu --}}
                             <div class="menu-full">
                                 <ul class="menu-full">
+
+
+
+                                    {{-- home --}}
+                                    <li class="menu-item mb-2">
+                                        <a class="splitting-text-anim-2" data-splitting="chars"
+                                            href="{{ $globalProfile->websiteURL }}">Home</a>
+                                    </li>
+
 
 
 
@@ -56,18 +85,12 @@
 
 
                                     {{-- blogs --}}
-                                    <li class="menu-item">
+                                    <li class="menu-item d-none">
                                         <a class="splitting-text-anim-2" data-splitting="chars"
                                             href="javascript:void(0);">Blogs</a>
                                     </li>
 
 
-
-                                    {{-- home --}}
-                                    <li class="menu-item mb-2">
-                                        <a class="splitting-text-anim-2" data-splitting="chars"
-                                            href="{{ route('website.plans') }}">Home</a>
-                                    </li>
 
 
 
@@ -89,6 +112,7 @@
                                         <a class="splitting-text-anim-2" data-splitting="chars"
                                             href="{{ $globalProfile->applicationURL }}">Login</a>
                                     </li>
+
 
 
 
@@ -119,6 +143,11 @@
 
             {{-- socials --}}
             <div class="menu-social-links">
+
+
+
+
+
 
 
 
