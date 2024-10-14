@@ -44,7 +44,7 @@ class PlansCustomization extends Component
 
 
     // :: dependencies
-    public $allergyLists, $excludeLists, $sampleMeals, $minimumDeliveryDays;
+    public $allergyLists, $excludeLists, $sampleMeals, $minimumDeliveryDays, $hasOptionalBag;
 
 
 
@@ -144,6 +144,15 @@ class PlansCustomization extends Component
 
         } // end if
 
+
+
+
+
+
+
+
+        // 1.4: optionalBag
+        $this->hasOptionalBag = $setting->hasOptionalBag;
 
 
 
@@ -603,14 +612,14 @@ class PlansCustomization extends Component
 
 
         // 1.2: plans
-        $plans = Plan::where('id', '!=', $this->plan->id)->get();
+        // $plans = Plan::where('id', '!=', $this->plan->id)->get();
 
-        // $plans = Plan::whereHas('ranges')
-        //     ->whereHas('bundles')
-        //     ->whereHas('defaultCalendarRelation')
-        //     ->where('isForWebsite', true)
-        //     ->where('id', '!=', $this->plan->id)
-        //     ->get();
+        $plans = Plan::whereHas('ranges')
+            ->whereHas('bundles')
+            ->whereHas('defaultCalendarRelation')
+            ->where('isForWebsite', true)
+            ->where('id', '!=', $this->plan->id)
+            ->get();
 
 
 

@@ -994,18 +994,24 @@
                                             {{-- switch --}}
                                             <div class="form-check form-switch bag--switch vertical">
                                                 <input class="form-check-input" type="checkbox" role="switch"
-                                                    id="coolbag--checkbox" wire:model.live='instance.bag' required>
+                                                    id="coolbag--checkbox" wire:model.live='instance.bag'
+                                                    @if(!$hasOptionalBag) required @endif>
                                                 <label class="form-check-label" for="coolbag--checkbox">{{
                                                     $bag->name }}</label>
                                             </div>
                                         </div>
-
-
                                     </div>
 
 
 
 
+
+
+
+
+
+                                    {{-- --------------------------------- --}}
+                                    {{-- --------------------------------- --}}
 
 
 
@@ -1037,7 +1043,8 @@
 
 
                                                 <input class="form-check-input" type="checkbox" role="switch"
-                                                    id="coolbag--checkbox" wire:model.live='instance.bag' required>
+                                                    id="coolbag--checkbox" wire:model.live='instance.bag'
+                                                    @if(!$hasOptionalBag) required @endif>
                                                 <label class="form-check-label" for="coolbag--checkbox">{{
                                                     $bag->name }}</label>
                                             </div>
