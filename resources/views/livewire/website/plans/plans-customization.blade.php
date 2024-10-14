@@ -994,8 +994,8 @@
                                             {{-- switch --}}
                                             <div class="form-check form-switch bag--switch vertical">
                                                 <input class="form-check-input" type="checkbox" role="switch"
-                                                    id="coolbag--checkbox" wire:model.live='instance.bag'
-                                                    @if(!$hasOptionalBag) required @endif>
+                                                    id="coolbag--checkbox" wire:model='instance.bag'
+                                                    wire:change='recalculate' @if(!$hasOptionalBag) required @endif>
                                                 <label class="form-check-label" for="coolbag--checkbox">{{
                                                     $bag->name }}</label>
                                             </div>
@@ -1075,7 +1075,7 @@
 
                                     {{-- continueButton --}}
                                     @if ($instance->planDays && $instance->startDate && $instance->planBundleId &&
-                                    $instance->bag)
+                                    ($instance->bag || $hasOptionalBag))
 
                                     <div
                                         class="@if ($instance->isExistingCustomer) col-12 @else col-12 col-md-7 @endif">
