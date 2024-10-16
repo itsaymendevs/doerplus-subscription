@@ -138,6 +138,11 @@
     position: relative;
     display: block;
     text-decoration: none;
+    border: 1px solid var(--bundleBorderColor);
+}
+
+.bundle--card.active {
+    border-color: var(--brandActiveColor);
 }
 
 .bundle--select {

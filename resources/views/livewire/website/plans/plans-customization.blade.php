@@ -1602,10 +1602,25 @@
                                                     <h6 class="fw-500 my-0 fs-14 d-flex align-items-end">Cool Bag<span
                                                             class='ms-1 span--price fs-9'
                                                             style="color: var(--textColor)">(Refundable)</span></h6>
+
+
+                                                    {{-- :: beMoreHealthyException --}}
+                                                    @if (env('APP_PAYMENT') && env('APP_PAYMENT') == 'local' &&
+                                                    env('APP_CLIENT') == 'BeMoreHealthy')
+
+                                                    <h6 class='my-0 fw-500 fs-16'></h6>
+
+                                                    {{-- regular --}}
+                                                    @else
+
                                                     <h6 class='my-0 fw-500 fs-16'>
                                                         {{ ($instance->bag && $instance->planPrice) ?
                                                         number_format($bag?->price) : '' }}
                                                     </h6>
+
+                                                    @endif
+                                                    {{-- end if --}}
+
 
                                                 </div>
 
@@ -1640,7 +1655,27 @@
 
                                                     <h6 class="fw-500 my-0 fs-14">Total Payout</h6>
 
+
+
+                                                    {{-- exists --}}
                                                     @if ($instance->planPrice)
+
+
+                                                    {{-- :: beMoreHealthyException --}}
+                                                    @if (env('APP_PAYMENT') && env('APP_PAYMENT') == 'local' &&
+                                                    env('APP_CLIENT') == 'BeMoreHealthy')
+
+
+                                                    <h6 class='my-0 fw-500 fs-16'>
+                                                        {{ number_format(($instance?->planPrice ?? 0) + 0) }}<span
+                                                            class='span--price ms-1'>(AED)</span>
+                                                    </h6>
+
+
+
+                                                    {{-- regular --}}
+                                                    @else
+
 
                                                     <h6 class='my-0 fw-500 fs-16'>
                                                         {{
@@ -1649,13 +1684,16 @@
                                                     </h6>
 
                                                     @endif
+                                                    {{-- end if - beMoreHealthy --}}
+
+
+
+                                                    @endif
                                                     {{-- end if --}}
 
+
+
                                                 </div>
-
-
-
-
                                             </div>
                                         </div>
                                         {{-- endRow --}}

@@ -65,7 +65,7 @@ class PlansInvoice extends Component
 
         if (env('APP_PAYMENT') && env('APP_PAYMENT') == 'local') {
 
-            $isPaymentDone = $this->checkLocalCheckoutPaymennt($request?->checkout);
+            $isPaymentDone = $this->checkLocalCheckoutPaymennt();
 
         } else {
 
@@ -114,7 +114,17 @@ class PlansInvoice extends Component
 
 
         // 2: getLead
-        $lead = Lead::where('paymentReference', $request?->checkout)?->latest()?->first() ?? null;
+        if (env('APP_PAYMENT') && env('APP_PAYMENT') == 'local') {
+
+            $lead = Lead::where('paymentReference', 'local')?->latest()?->first() ?? null;
+
+        } else {
+
+            $lead = Lead::where('paymentReference', $request?->checkout)?->latest()?->first() ?? null;
+
+        } // end if
+
+
 
 
 

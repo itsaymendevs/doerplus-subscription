@@ -534,6 +534,25 @@ class PlansCustomization extends Component
 
 
 
+        // 3.1.5: localBag is zero [BeMoreHealthy]
+        if (env('APP_PAYMENT') && env('APP_PAYMENT') == 'local' && env('APP_CLIENT') == 'BeMoreHealthy') {
+
+            $this->instance->bagPrice = 0;
+
+        } // end if
+
+
+
+
+
+
+
+        // ----------------------------------------------------
+        // ----------------------------------------------------
+        // ----------------------------------------------------
+
+
+
 
 
 
