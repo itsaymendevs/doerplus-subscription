@@ -195,7 +195,7 @@
 
                                     <a href="javascript:void(0);" data-splitting
                                         class="btn more-btn scrolla-element-anim-1 plan--slide-button fw-500"
-                                        wire:click="prepExistingCustomer('{{ $plan->nameURL }}')">View
+                                        wire:click="prepExistingCustomer('{{ $plan->id }}')">View
                                         Plan</a>
 
 

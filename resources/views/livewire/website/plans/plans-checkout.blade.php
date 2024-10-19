@@ -801,9 +801,7 @@
 
                                                     <h6 class="fw-500 my-0 fs-14">Start Date</h6>
                                                     <h6 class='my-0 fw-500 fs-13' style="letter-spacing: 1.5px">
-                                                        {{
-                                                        $instance?->startDate }}</h6>
-
+                                                        {{ $instance?->startDate }}</h6>
                                                 </div>
 
 

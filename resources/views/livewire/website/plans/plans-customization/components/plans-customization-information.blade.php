@@ -33,21 +33,54 @@
 
 
 
+        {{-- switch --}}
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="btn-group mx-auto mb-4" role="group" aria-label="Customer's Type">
+
+
+                    {{-- NewCustomer --}}
+                    <button class="btn btn--regular sm border--bottom btn--collapse  fw-500 fs-14 " type='button'
+                        data-type='0'>New Customer</button>
+
+
+
+
+                    {{-- existingCustomer --}}
+                    <button class="btn btn--regular sm border--bottom btn--collapse collapsed fw-500 fs-14"
+                        data-type='1' type='button'>Existing Customer</button>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        {{-- ------------------------------------------------- --}}
+        {{-- ------------------------------------------------- --}}
+        {{-- ------------------------------------------------- --}}
+        {{-- ------------------------------------------------- --}}
+        {{-- ------------------------------------------------- --}}
+
+
 
 
 
         {{-- content --}}
-        <form wire:submit='continue' class="row mb-5 align-items-end justify-content-center justify-content-md-start"
+
+        {{-- A: newCustomer --}}
+        <form id='form--new-customer' wire:submit='continue'
+            class="row mb-5 align-items-end justify-content-center justify-content-md-start"
             wire:loading.class='no-events-loading'>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -331,6 +364,92 @@
 
 
         </form>
+
+
+
+
+
+
+        {{-- ------------------------------------------------- --}}
+        {{-- ------------------------------------------------- --}}
+
+
+
+
+        {{-- B: existingCustomer --}}
+        <form id='form--existing-customer' wire:submit='continueExisting'
+            class="row mb-5 align-items-end justify-content-center justify-content-md-start d-none"
+            wire:loading.class='no-events-loading'>
+
+
+
+
+            {{-- --------------------------- --}}
+            {{-- --------------------------- --}}
+
+
+
+
+
+            {{-- email --}}
+            <div class="col-12 col-lg-6">
+                <div class="d-flex form--input-wrapper flex-column mb-4">
+
+                    <label class='w-100 d-flex align-items-center sm'>
+                        <span>Email Address</span>
+                    </label>
+
+                    <input type="email" class='form--input' wire:model='instance.existingFullEmail' required>
+                </div>
+            </div>
+            {{-- endCol --}}
+
+
+
+
+
+
+            {{-- email --}}
+            <div class="col-12 col-lg-6">
+                <div class="d-flex form--input-wrapper flex-column mb-4">
+
+                    <label class='w-100 d-flex align-items-center sm'>
+                        <span>Password</span>
+                    </label>
+
+                    <input type="password" class='form--input' wire:model='instance.existingPassword' required>
+                </div>
+            </div>
+            {{-- endCol --}}
+
+
+
+
+
+
+
+            {{-- ------------------------------------ --}}
+            {{-- ------------------------------------ --}}
+
+
+
+
+
+
+            {{-- submitButton --}}
+            <div class="col-12">
+                <div class="d-flex form--input-wrapper justify-content-center mb-4 mt-1
+                @if (!$settings?->showButtonMotion) no--button-motion @endif"
+                    wire:loading.class='processing--button-wrap' wire:target='continueExisting'>
+
+                    <livewire:website.components.items.button-blob title='Continue' type="submit" />
+
+                </div>
+            </div>
+
+
+
+        </form>
     </div>
     {{-- endWrapper --}}
 
@@ -375,6 +494,53 @@
 
 
       }); //end function
+
+
+
+
+
+
+
+    //   -----------------------------------------------
+    //   -----------------------------------------------
+
+
+
+
+      $(document).on('click', "#information--modal .btn--collapse", function(event) {
+
+
+
+        // 2.1: getValue
+        isManualExistingCustomer = $(this).attr('data-type');
+
+        if (isManualExistingCustomer == 1) {
+
+            $('#form--new-customer').addClass('d-none');
+            $('#form--existing-customer').removeClass('d-none');
+
+        } else {
+
+            $('#form--new-customer').removeClass('d-none');
+            $('#form--existing-customer').addClass('d-none');
+
+        } // end if
+
+
+
+
+        // 2.2: toggleActive
+        $("#information--modal .btn--collapse").addClass('collapsed');
+        $(this).removeClass('collapsed');
+
+
+
+    }); //end function
+
+
+
+
+
     </script>
 
 

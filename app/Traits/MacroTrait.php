@@ -19,7 +19,7 @@ trait MacroTrait
 
 
         // 1: check part-ingredients
-        foreach ($part->ingredients ?? [] as $partIngredient) {
+        foreach ($part?->ingredients?->whereNotNull('ingredientId') ?? [] as $partIngredient) {
 
 
 
@@ -129,7 +129,7 @@ trait MacroTrait
 
 
         // 1: check part-ingredients
-        foreach ($part->ingredients ?? [] as $partIngredient) {
+        foreach ($part?->ingredients?->whereNotNull('ingredientId') ?? [] as $partIngredient) {
 
 
 
@@ -159,7 +159,7 @@ trait MacroTrait
 
 
         // 1.2: check part-otherParts => send original-part
-        foreach ($part->parts ?? [] as $mealPart) {
+        foreach ($part?->parts?->whereNotNull('partId') ?? [] as $mealPart) {
 
 
 

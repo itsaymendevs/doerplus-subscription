@@ -111,7 +111,7 @@ class PlansCheckout extends Component
 
 
         // 2.7: getDeliveryCharge
-        if (session('pre-customer') && session('pre-customer')->{'isExistingCustomer'}) {
+        if (session('pre-customer') && (session('pre-customer')->{'isExistingCustomer'} || session('pre-customer')->{'isManualExistingCustomer'})) {
 
 
             $city = City::find($this->instance->cityId);
@@ -401,7 +401,7 @@ class PlansCheckout extends Component
 
             // 1: changeProcessing - determineCustomer
             $this->isProcessing = true;
-            $this->instance->isExistingCustomer ? $type = 'customer' : $type = 'lead';
+            ($this->instance->isExistingCustomer || $this->instance->isManualExistingCustomer) ? $type = 'customer' : $type = 'lead';
 
 
 

@@ -181,23 +181,14 @@
 
 
 
-
-
             {{-- content --}}
             {{ $slot }}
 
 
 
 
-
-
-
-
             {{-- cursor --}}
             <livewire:website.plans.components.plans-cursor />
-
-
-
 
 
 
