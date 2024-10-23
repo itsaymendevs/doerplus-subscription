@@ -250,12 +250,23 @@ class PlansCustomizationInformation extends Component
 
 
             // 1.3: checkEmailUnique
-            $isDuplicated = Customer::where('email', operator: $this->instance->email)?->where('emailProvider', $this->instance->emailProvider)?->count() ?? 0;
+            $isEmailDuplicated = Customer::where('email', operator: $this->instance->email)?->where('emailProvider', $this->instance->emailProvider)?->count() ?? 0;
+
+            $isPhoneDuplicated = Customer::where('phone', operator: $this->instance->phone)?->count() ?? 0;
 
 
-            if ($isDuplicated) {
+            if ($isEmailDuplicated) {
 
-                $this->makeAlert('info', 'Email is already used, please try again');
+                $this->makeAlert('info', 'Email is already in use, please try another one');
+                return false;
+
+            } // end if
+
+
+
+            if ($isPhoneDuplicated) {
+
+                $this->makeAlert('info', 'Phone Number is already in use, please try another one');
                 return false;
 
             } // end if

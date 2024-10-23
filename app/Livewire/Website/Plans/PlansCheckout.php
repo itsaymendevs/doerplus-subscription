@@ -409,6 +409,7 @@ class PlansCheckout extends Component
 
 
 
+
             // 1.2: store
             $this->storeCustomer($type);
 
