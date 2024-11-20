@@ -9,10 +9,10 @@ class ButtonBlob extends Component
 
 
     // :: variables
-    public $title, $modal, $url, $type;
+    public $title, $modal, $url, $type, $currency;
 
 
-    public function mount($title, $url = '#', $modal = null, $type = 'button')
+    public function mount($title, $url = '#', $modal = null, $type = 'button', $currency = 'AED')
     {
 
 
@@ -21,6 +21,7 @@ class ButtonBlob extends Component
         $this->type = $type;
         $this->title = $title;
         $this->modal = $modal;
+        $this->currency = $currency;
 
 
     } // end function

@@ -68,7 +68,7 @@ class PlansCheckout extends Component
         } else {
 
             Session::forget('customer');
-            $this->redirect(route('website.plans.customization', [$this->plan->nameURL]));
+            return $this->redirect(route('website.plans.customization', [$this->plan->nameURL]));
 
         } // end if
 
@@ -431,7 +431,33 @@ class PlansCheckout extends Component
                 } // end if
 
 
+
+
+
+
+                // 1.3: Stripe
+            } elseif ($this->paymentMethod->name == 'Stripe') {
+
+
+
+                if (env('APP_PAYMENT') && env('APP_PAYMENT') == 'local') {
+
+                    $this->makeLocalCheckoutPaymennt($this->instance, $this->payment, $this->paymentMethod);
+
+                } else {
+
+                    return redirect()->route('website.plans.payment', [$this->plan->nameURL]);
+
+
+                } // end if
+
+
+
+
             } // end if
+
+
+
 
 
 

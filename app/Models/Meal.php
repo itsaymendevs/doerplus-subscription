@@ -322,7 +322,6 @@ class Meal extends Model
 
 
 
-        // 1: getTotalPartGrams
         $totalGrams += $this?->ingredients?->where('isDefault', 1)?->sum('amount') ?? 0;
         $totalGrams += $this?->parts?->where('isDefault', 1)?->sum('amount') ?? 0;
 
@@ -340,6 +339,67 @@ class Meal extends Model
 
 
 
+
+
+
+
+
+
+    // ------------------------------------------
+    // ------------------------------------------
+
+
+
+
+
+
+
+
+    public function totalAfterCookGrams()
+    {
+
+
+        // :: root
+        $totalGrams = 0;
+        $ingredients = $this->ingredients()?->get();
+
+
+
+
+
+        // 1: ingredients - withConversion
+        foreach ($ingredients?->where('isDefault', 1) ?? [] as $mealIngredient) {
+
+
+            $conversionValue = ConversionIngredient::where('ingredientId', $mealIngredient?->ingredientId)
+                ->where('cookingTypeId', $mealIngredient?->cookingTypeId)?->first()?->conversionValue ?? 1;
+
+
+            $totalGrams += ($mealIngredient?->amount ?? 0) * $conversionValue;
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
+        // 2: parts
+        $totalGrams += $this?->parts?->where('isDefault', 1)?->sum('amount') ?? 0;
+
+
+
+
+
+
+        return $totalGrams;
+
+
+    } // end function
 
 
 

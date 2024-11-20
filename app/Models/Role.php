@@ -83,7 +83,7 @@ class Role extends Model
 
 
         // 1: getUsers - convert
-        $usersInArray = $this?->users()?->where('email', '!=', 'tech@doer.ae')?->get()
+        $usersInArray = $this?->users()?->whereNotIn('email', ['tech@doer.ae', 'setup@doer.ae'])?->get()
                 ?->pluck('name')?->toArray() ?? ['No Users Available'];
 
 

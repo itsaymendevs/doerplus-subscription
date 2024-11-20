@@ -83,7 +83,23 @@
 
 
 
-        {{-- animation --}}
+
+        {{-- :: customization --}}
+        @if (env('APP_CLIENT') != 'Doer')
+
+        <link
+            href="{{ url('assets/plugins/subscription/css/customization/' . strtolower(env('APP_CLIENT')) . '.css') }}"
+            rel="stylesheet">
+
+        @endif
+        {{-- end if --}}
+
+
+
+
+
+
+
 
 
 
@@ -109,6 +125,14 @@
         {{-- scripts --}}
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
 
 
 

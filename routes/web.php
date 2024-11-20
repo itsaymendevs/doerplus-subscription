@@ -8,6 +8,7 @@ use App\Livewire\Website\Plans\PlansCart;
 use App\Livewire\Website\Plans\PlansCheckout;
 use App\Livewire\Website\Plans\PlansCustomization;
 use App\Livewire\Website\Plans\PlansInvoice;
+use App\Livewire\Website\Plans\PlansPayment;
 use App\Livewire\Website\Plans\SinglePlan;
 use App\Livewire\Website\PlansEighth;
 use App\Livewire\Website\PlansFifth;
@@ -217,6 +218,9 @@ Route::get('/plans/{name}/checkout', PlansCheckout::class)->name('website.plans.
 
 
 
+
+// 4.6: plans - payment
+Route::get('/plans/{name}/payment', PlansPayment::class)->name('website.plans.payment');
 
 
 

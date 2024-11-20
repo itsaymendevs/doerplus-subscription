@@ -104,6 +104,50 @@
     {{-- section --}}
     <div class="section section-inner m-description plan--section section--bg mb-0 pb-5 plan--{{ $plan->id }}"
         id='customization--section'>
+
+
+
+
+        {{-- floatingPrice --}}
+        @if (env('APP_CLIENT') == 'Aleens')
+
+        @if ($instance->planPrice)
+
+        <div class="floating--price-wrapper d-lg-none" style="background-color: #18ae61">
+
+            {{-- totalPayout --}}
+            <div class="d-flex justify-content-between align-items-center">
+                <h6 class="fw-500 my-0"
+                    style="border-bottom: 2px solid #ffbb6f; padding-bottom: 2px; color: white; font-size: 18px;">Total
+                    Payout</h6>
+                <h6 class="my-0" style='font-size: 22px; font-weight: 600; color: white;'>{{
+                    number_format(($instance?->planPrice ?? 0) + ($instance->bag ?
+                    $bag?->price : 0)) }}<span class="span--price ms-1 text-white">(AED)</span>
+                </h6>
+            </div>
+
+        </div>
+
+        @endif
+
+        @endif
+        {{-- endWrapper --}}
+
+
+
+
+        {{-- ---------------------------------------------- --}}
+        {{-- ---------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
         <div class="container">
             <div class="row">
 
@@ -548,7 +592,7 @@
                                             <button type="button" wire:loading.class='processing--button'
                                                 wire:target='changePlanBundleRange'
                                                 key='single-bundle-range-{{ $bundleRange->id }}'
-                                                class="btn btn--regular sm fw-500 fs-14 ranges--btn @if ($instance?->planBundleRangeId == $bundleRange->id) btn--collapse @endif"
+                                                class="btn btn--regular sm fw-500 fs-14 ranges--btn {{ $plan->nameURL }} @if ($instance?->planBundleRangeId == $bundleRange->id) btn--collapse @endif"
                                                 wire:click="changePlanBundleRange('{{ $bundleRange?->id }}')"
                                                 data-bs-toggle="collapse" data-bs-target="#collapse--regular-plan"
                                                 aria-expanded="false" aria-controls="collapse--regular-plan">

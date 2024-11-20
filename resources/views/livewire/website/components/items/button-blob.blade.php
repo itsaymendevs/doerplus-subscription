@@ -22,6 +22,24 @@
 
 
 
+    @elseif ($type == 'submitPayment')
+
+
+    <button class="btn--blob reset--button">
+        {{ $title }}
+        <small class='ms-1 aed fs-12'>{{ $currency }}</small>
+        <span class="btn--blob__inner">
+            <span class="btn--blob__blobs">
+                <span class="btn--blob__blob"></span>
+                <span class="btn--blob__blob"></span>
+                <span class="btn--blob__blob"></span>
+                <span class="btn--blob__blob"></span>
+            </span>
+        </span>
+    </button>
+
+
+
 
     {{-- 2: sregular --}}
     @else

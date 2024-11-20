@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
 
 
         // 1.2: todayDate - nextDate
-        View::share('globalTodayDate', $this->getCurrentDate());
+        View::share('globalCurrentDate', $this->getCurrentDate());
         View::share('globalNextDate', $this->getNextDate());
 
 
@@ -66,7 +66,7 @@ class AppServiceProvider extends ServiceProvider
 
 
         // 1.5: storagePath
-        View::share('storagePath', env('APP_STORAGE'));
+        View::share('storagePath', env('APP_STORAGE') . '/' . $profile->nameURL);
 
 
     } // end function

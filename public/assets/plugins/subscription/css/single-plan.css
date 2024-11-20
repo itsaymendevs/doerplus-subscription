@@ -878,6 +878,19 @@
     border-radius: 8px;
 }
 
+/* ------------------------------------------ */
+
+.floating--price-wrapper {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background-color: var(--summaryBackgroundColor);
+    z-index: 1000000;
+    padding: 20px 20px;
+    box-shadow: 0px 0px 1px 0px lightgray;
+}
+
 /* ------------------------------------------- */
 /* ------------------------------------------- */
 

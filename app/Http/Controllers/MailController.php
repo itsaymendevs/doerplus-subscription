@@ -20,7 +20,7 @@ class MailController extends Controller
 
 
         // 1: setConfiguration
-        // $this->setMailConfiguration();
+        $this->setMailConfiguration();
 
 
 

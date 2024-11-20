@@ -35,6 +35,18 @@ class CustomerSubscriptionScheduleMeal extends Model
 
 
 
+
+    public function macro()
+    {
+        return $this->hasOne(CustomerSubscriptionScheduleMealMacro::class, 'subscriptionScheduleMealId');
+
+    } // end function
+
+
+
+
+
+
     public function plan()
     {
 

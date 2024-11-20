@@ -87,6 +87,27 @@ class Plan extends Model
 
 
 
+
+    public function tagsInArray()
+    {
+
+        // 1: getTags
+        $tagsInArray = $this->tags ? explode('_', $this->tags) : [];
+
+        return $tagsInArray ?? [];
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
     public function subscriptions()
     {
 

@@ -120,6 +120,9 @@ class SubscriptionForm extends Form
     public $paymentMethodId, $isPaymentDone = false;
 
 
+    // :: FOR STRIPE
+    public $stripeSecret;
+
 
 
 
