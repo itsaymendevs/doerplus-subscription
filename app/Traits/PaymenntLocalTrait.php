@@ -31,7 +31,7 @@ trait PaymenntLocalTrait
 
         $city = City::find($instance->cityId);
         $plan = Plan::find($instance->planId);
-        $lead = Lead::where('email', $instance->email)->latest()->first();
+        $lead = Lead::where('email', $instance->email)->latest('id')->first();
 
 
 
@@ -43,6 +43,7 @@ trait PaymenntLocalTrait
         $lead->paymentURL = 'local';
 
         $lead->save();
+
 
 
 

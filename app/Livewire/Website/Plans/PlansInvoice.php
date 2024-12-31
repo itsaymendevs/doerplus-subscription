@@ -155,11 +155,11 @@ class PlansInvoice extends Component
 
          if (env('APP_PAYMENT') && env('APP_PAYMENT') == 'local') {
 
-            $lead = Lead::where('paymentReference', 'local')?->latest()?->first() ?? null;
+            $lead = Lead::where('paymentReference', 'local')?->latest('id')?->first() ?? null;
 
          } else {
 
-            $lead = Lead::where('paymentReference', $request?->checkout)?->latest()?->first() ?? null;
+            $lead = Lead::where('paymentReference', $request?->checkout)?->latest('id')?->first() ?? null;
 
          } // end if
 
@@ -172,11 +172,11 @@ class PlansInvoice extends Component
 
          if (env('APP_PAYMENT') && env('APP_PAYMENT') == 'local') {
 
-            $lead = Lead::where('paymentReference', 'local')?->latest()?->first() ?? null;
+            $lead = Lead::where('paymentReference', 'local')?->latest('id')?->first() ?? null;
 
          } else {
 
-            $lead = Lead::where('paymentReference', $request?->payment_intent_client_secret)?->latest()?->first() ?? null;
+            $lead = Lead::where('paymentReference', $request?->payment_intent_client_secret)?->latest('id')?->first() ?? null;
 
          } // end if
 
@@ -262,6 +262,7 @@ class PlansInvoice extends Component
                $lead->useWallet = false;
                $lead->walletDiscountPrice = null;
 
+
                $response = $this->makeRequest('subscription/customer/existing/store', $lead);
 
 
@@ -287,7 +288,7 @@ class PlansInvoice extends Component
 
 
             // 2.6: sendMail
-            $subscription = CustomerSubscription::where('paymentReference', $lead->paymentReference)->latest()->first();
+            $subscription = CustomerSubscription::where('paymentReference', $lead->paymentReference)->latest('id')->first();
 
             // $this->sendInvoiceMail($subscription->id, $subscription->customer->fullEmail());
 
@@ -332,7 +333,7 @@ class PlansInvoice extends Component
 
 
       // 3: dependencies
-      $this->subscription = CustomerSubscription::where('paymentReference', $lead->paymentReference)->latest()->first();
+      $this->subscription = CustomerSubscription::where('paymentReference', $lead->paymentReference)->latest('id')->first();
       $this->customer = $this->subscription->customer;
 
 

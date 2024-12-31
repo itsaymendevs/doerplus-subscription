@@ -267,9 +267,7 @@
 
 
                                             {{-- location --}}
-                                            <p class='mt-3 mb-4 mb-md-2 fs-15'>{{ $instance->locationAddress
-                                                }}
-                                            </p>
+                                            <p class='mt-3 mb-4 mb-md-2 fs-15'>{{ $instance->locationAddress}}</p>
 
 
 
@@ -874,7 +872,8 @@
 
                                                     <h6 class="fw-500 my-0 fs-14">Promo</h6>
                                                     <h6 class='my-0 fw-500 fs-16'>{{
-                                                        number_format($instance?->promoCodeDiscountPrice) }}</h6>
+                                                        $instance?->promoCodeDiscountPrice ?
+                                                        number_format($instance?->promoCodeDiscountPrice) : "" }}</h6>
                                                 </div>
 
 

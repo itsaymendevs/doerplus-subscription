@@ -171,7 +171,7 @@ class CustomerSubscription extends Model
         // 1: latestCollected - Delivery
         $latestCollectedDelivery = $this->deliveries()?->where('isBagCollected', 1)
                 ?->where('deliveryDate', '<=', $this->getCurrentDate())
-                ?->latest()?->first();
+                ?->latest('id')?->first();
 
 
 

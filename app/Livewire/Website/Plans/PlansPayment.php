@@ -121,7 +121,7 @@ class PlansPayment extends Component
 
         // 3.3: storeSecret
         $lead = Lead::where('email', $this->instance->email)
-            ->where('emailProvider', $this->instance->emailProvider)->latest()->first();
+            ->where('emailProvider', $this->instance->emailProvider)->latest('id')->first();
 
         $lead->paymentReference = $paymentIntent->client_secret;
         $lead->save();

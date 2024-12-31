@@ -165,7 +165,7 @@ class PlansCustomizationInformation extends Component
                 if ($customer?->latestSubscription()?->untilDate && $customer?->latestSubscription()?->untilDate > $this->getCurrentDate()) {
 
 
-                    $this->instance->initStartDate = date('Y-m-d', strtotime($customer?->latestSubscription()?->untilDate . "+1 day"));
+                    $this->instance->initStartDate = date('Y-m-d', strtotime($customer?->latestSubscription()?->untilDate." +1 day"));
 
 
                 } else {

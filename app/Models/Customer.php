@@ -81,7 +81,7 @@ class Customer extends Authenticatable
     public function latestSubscription()
     {
 
-        return $this->subscriptions()->latest()->first();
+        return $this->subscriptions()->latest('id')->first();
 
     } // end function
 
@@ -190,7 +190,7 @@ class Customer extends Authenticatable
     public function latestAddress()
     {
 
-        return $this->addresses()?->latest()?->first();
+        return $this->addresses()?->latest('id')?->first();
 
 
     } // end function
@@ -272,7 +272,7 @@ class Customer extends Authenticatable
     public function fullName()
     {
 
-        return $this->firstName . ' ' . $this->lastName;
+        return $this->firstName.' '.$this->lastName;
 
     } // end function
 
@@ -285,7 +285,7 @@ class Customer extends Authenticatable
     public function fullEmail()
     {
 
-        return $this->email . $this->emailProvider;
+        return $this->email.$this->emailProvider;
 
     } // end function
 
@@ -298,7 +298,7 @@ class Customer extends Authenticatable
     public function fullPhone()
     {
 
-        return $this->phoneKey . ' ' . $this->phone;
+        return $this->phoneKey.' '.$this->phone;
 
     } // end function
 
@@ -310,7 +310,7 @@ class Customer extends Authenticatable
     public function fullWhatsapp()
     {
 
-        return $this->whatsappKey . ' ' . $this->whatsapp;
+        return $this->whatsappKey.' '.$this->whatsapp;
 
     } // end function
 

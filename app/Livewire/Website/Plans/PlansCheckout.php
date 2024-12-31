@@ -58,7 +58,6 @@ class PlansCheckout extends Component
 
 
 
-
         // 1.2: handleSession
         if (session('pre-customer')) {
 
@@ -541,7 +540,6 @@ class PlansCheckout extends Component
 
 
 
-
         // 2.1: determine
         if ($type == 'customer') {
 
@@ -552,7 +550,6 @@ class PlansCheckout extends Component
             $response = $this->makeRequest('subscription/lead/store', $this->instance);
 
         } // end if
-
 
 
 

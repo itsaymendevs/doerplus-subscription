@@ -32,7 +32,7 @@ trait PaymenntTrait
 
         $city = City::find($instance->cityId);
         $plan = Plan::find($instance->planId);
-        $lead = Lead::where('email', $instance->email)->latest()->first();
+        $lead = Lead::where('email', $instance->email)->latest('id')->first();
 
 
 
@@ -62,8 +62,8 @@ trait PaymenntTrait
 
 
         // 2.1: general
-        $requestBody->requestId = "CUS-" . $random . "-" . $lead->id;
-        $requestBody->orderId = "ORD-" . $lead->id;
+        $requestBody->requestId = "CUS-".$random."-".$lead->id;
+        $requestBody->orderId = "ORD-".$lead->id;
         $requestBody->currency = 'AED';
         $requestBody->amount = doubleval($instance->totalCheckoutPrice); // $instance->totalCheckoutPrice
 
@@ -97,8 +97,8 @@ trait PaymenntTrait
         $requestBody->customer->id = $lead->id;
         $requestBody->customer->firstName = $instance->firstName;
         $requestBody->customer->lastName = $instance->lastName;
-        $requestBody->customer->email = $instance->email . $instance->emailProvider;
-        $requestBody->customer->phone = $instance->phoneKey . $instance->phone;
+        $requestBody->customer->email = $instance->email.$instance->emailProvider;
+        $requestBody->customer->phone = $instance->phoneKey.$instance->phone;
 
 
 
@@ -111,7 +111,7 @@ trait PaymenntTrait
         $requestBody->billingAddress = new stdClass();
 
 
-        $requestBody->billingAddress->name = $instance->firstName . ' ' . $instance->lastName;
+        $requestBody->billingAddress->name = $instance->firstName.' '.$instance->lastName;
         $requestBody->billingAddress->address1 = $instance->locationAddress;
         $requestBody->billingAddress->city = $city->name;
         $requestBody->billingAddress->country = "AE";
@@ -158,7 +158,7 @@ trait PaymenntTrait
             'Connection' => 'keep-alive',
             'X-Paymennt-Api-Key' => ($paymentMethod?->isLive ? $paymentMethod->envThirdKey : $paymentMethod->envTestThirdKey),
             'X-Paymennt-Api-Secret' => ($paymentMethod?->isLive ? $paymentMethod->envSecondKey : $paymentMethod->envTestSecondKey),
-        ])->post($requestURL . "", [
+        ])->post($requestURL."", [
                     "requestId" => $requestBody->requestId,
                     "orderId" => $requestBody->orderId,
                     "currency" => $requestBody->currency,

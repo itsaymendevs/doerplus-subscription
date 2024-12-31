@@ -137,7 +137,7 @@ class PlansCustomization extends Component
             } else {
 
 
-                $restrictionDays = CustomerSubscriptionSetting::first()?->changeCalendarRestriction ?? 0;
+                $restrictionDays = CustomerSubscriptionSetting::first()?->changeCalendarRestriction ?? 1;
                 $this->instance->initStartDate = date('Y-m-d', strtotime("+{$restrictionDays} days"));
 
             } // end if
@@ -523,7 +523,7 @@ class PlansCustomization extends Component
 
 
 
-            $this->instance->startDate = $this->instance->startDate < $this->instance->initStartDate ? date('d/m/Y', strtotime($this->instance->initStartDate)) : $this->instance->startDate;
+            $this->instance->startDate = (date('Y-m-d', strtotime($this->instance->startDate)) < $this->instance->initStartDate) ? date('d/m/Y', strtotime($this->instance->initStartDate)) : $this->instance->startDate;
 
 
 
