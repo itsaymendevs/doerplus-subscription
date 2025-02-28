@@ -823,7 +823,8 @@
 
                                                     <h6 class="fw-500 my-0 fs-14">Plan Price</h6>
                                                     <h6 class='my-0 fw-500 fs-16'>
-                                                        {{ number_format($instance?->totalPlanBundleRangePrice) }}
+                                                        {{ number_format($instance?->totalPlanBundleRangePrice -
+                                                        ($instance?->planBundleRangeAdjustmentPrice ?? 0)) }}
                                                     </h6>
 
                                                 </div>

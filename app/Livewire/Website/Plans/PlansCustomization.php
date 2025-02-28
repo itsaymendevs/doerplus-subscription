@@ -397,15 +397,21 @@ class PlansCustomization extends Component
         $bundleDiscount = PlanBundleDay::where('planBundleId', $this->instance->planBundleId)
             ->where('days', $this->instance?->planDays ?? 0)?->first()?->discount ?? 0;
 
-        $this->instance->planBundleRangeDiscountPrice = $this->instance->totalPlanBundleRangePrice * ($bundleDiscount / 100);
+        $bundleAdjustmentDiscount = PlanBundleDay::where('planBundleId', $this->instance->planBundleId)
+            ->where('days', $this->instance?->planDays ?? 0)?->first()?->adjustor ?? 0;
 
+
+
+
+        $this->instance->planBundleRangeDiscountPrice = $this->instance->totalPlanBundleRangePrice * ($bundleDiscount / 100);
+        $this->instance->planBundleRangeAdjustmentPrice = $this->instance->totalPlanBundleRangePrice * ($bundleAdjustmentDiscount / 100);
 
 
 
 
 
         // 1.3: planPrice - totalPrice
-        $this->instance->planPrice = $this->instance->totalPlanBundleRangePrice - $this->instance->planBundleRangeDiscountPrice;
+        $this->instance->planPrice = $this->instance->totalPlanBundleRangePrice - ($this->instance->planBundleRangeDiscountPrice + $this->instance->planBundleRangeAdjustmentPrice);
 
 
 

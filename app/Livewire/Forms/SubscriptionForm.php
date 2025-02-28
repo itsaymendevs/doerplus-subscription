@@ -48,7 +48,7 @@ class SubscriptionForm extends Form
 
 
     // :: helpers
-    public $planBundleRangePricePerDay, $totalPlanBundleRangePrice, $planBundleRangeDiscountPrice, $planPrice;
+    public $planBundleRangePricePerDay, $totalPlanBundleRangePrice, $planBundleRangeDiscountPrice, $planBundleRangeAdjustmentPrice, $planPrice;
 
     public $planBundleTypesInArray;
 

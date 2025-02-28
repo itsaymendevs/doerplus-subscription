@@ -344,7 +344,7 @@ class PlansCheckout extends Component
 
 
         // 1 getPlanPrice
-        $this->instance->planPrice = $this->instance->totalPlanBundleRangePrice - $this->instance->planBundleRangeDiscountPrice;
+        $this->instance->planPrice = $this->instance->totalPlanBundleRangePrice - ($this->instance->planBundleRangeDiscountPrice + $this->instance->planBundleRangeAdjustmentPrice);
 
 
 

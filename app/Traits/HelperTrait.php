@@ -555,7 +555,7 @@ trait HelperTrait
 
 
         // 1: URL - token
-        $requestURL = env('APP_API') . $requestURL;
+        $requestURL = env('APP_API').$requestURL;
         $requestDB = env('APP_DB');
         // $token = session('token');
 
@@ -695,7 +695,7 @@ trait HelperTrait
 
 
         // 1: uploadFile - makeFileName
-        $fileName = $key . '-' . date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
+        $fileName = $key.'-'.date('h.iA').rand(10, 10000).rand(10, 10000).rand(10, 10000).'.'.$instanceFile->getClientOriginalExtension();
         $instanceFile->storeAs($path, $fileName, 'public');
 
 
@@ -734,7 +734,7 @@ trait HelperTrait
 
         // 1: removeFile
         if (! empty($fileName)) {
-            Storage::disk('public')->delete($path . '/' . $fileName);
+            Storage::disk('public')->delete($path.'/'.$fileName);
         } // end if
 
 
@@ -742,7 +742,7 @@ trait HelperTrait
 
 
         // 2: uploadFile - makeFileName
-        $fileName = $key . '-' . date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
+        $fileName = $key.'-'.date('h.iA').rand(10, 10000).rand(10, 10000).rand(10, 10000).'.'.$instanceFile->getClientOriginalExtension();
         $instanceFile->storeAs($path, $fileName, 'public');
 
 
@@ -784,7 +784,7 @@ trait HelperTrait
 
         // 1: removeFile
         if (! empty($fileName))
-            Storage::disk('public')->delete($path . '/' . $fileName);
+            Storage::disk('public')->delete($path.'/'.$fileName);
 
 
 
@@ -830,24 +830,30 @@ trait HelperTrait
 
 
 
+
         // 1.2: defineAndConcat
         if ($currentCount < 10) {
 
-            return $characters . '-000' . ($currentCount + 1);
+            return $characters.'-0000'.($currentCount + 1);
 
         } elseif ($currentCount < 100) {
 
-            return $characters . '-00' . ($currentCount + 1);
+            return $characters.'-000'.($currentCount + 1);
 
         } elseif ($currentCount < 1000) {
 
-            return $characters . '-0' . ($currentCount + 1);
+            return $characters.'-00'.($currentCount + 1);
 
         } elseif ($currentCount < 10000) {
 
-            return $characters . '-' . ($currentCount + 1);
+            return $characters.'-0'.($currentCount + 1);
+
+        } elseif ($currentCount < 100000) {
+
+            return $characters.'-'.($currentCount + 1);
 
         } // end if
+
 
 
 
@@ -887,23 +893,23 @@ trait HelperTrait
 
         // 1: bytes
         if ($bytes < $kilobyte) {
-            return $bytes . ' B';
+            return $bytes.' B';
 
 
             // 2: kiloBytes
         } elseif ($bytes < $megabyte) {
-            return round($bytes / $kilobyte, $precision) . ' KB';
+            return round($bytes / $kilobyte, $precision).' KB';
 
 
             // 3: megaBytes
         } elseif ($bytes < $gigabyte) {
-            return round($bytes / $megabyte, $precision) . ' MB';
+            return round($bytes / $megabyte, $precision).' MB';
 
 
             // 4: gigaBytes
         } else {
 
-            return round($bytes / $gigabyte, $precision) . ' GB';
+            return round($bytes / $gigabyte, $precision).' GB';
 
         } // end if
 

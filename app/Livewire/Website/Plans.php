@@ -165,7 +165,7 @@ class Plans extends Component
             if ($customer?->latestSubscription()?->untilDate && $customer?->latestSubscription()?->untilDate > $this->getCurrentDate()) {
 
 
-                $this->instance->initStartDate = date('Y-m-d', strtotime($customer?->latestSubscription()?->untilDate . "+{$restrictionDays} days"));
+                $this->instance->initStartDate = date('Y-m-d', strtotime($customer?->latestSubscription()?->untilDate."+1 days +4 hours"));
 
 
             } else {
@@ -255,13 +255,11 @@ class Plans extends Component
 
 
         // 1.2: plans
-        $plans = Plan::all();
-
-        // $plans = Plan::whereHas('ranges')
-        //     ->whereHas('bundles')
-        //     ->whereHas('defaultCalendarRelation')
-        //     ->where('isForWebsite', true)
-        //     ->get();
+        $plans = Plan::whereHas('ranges')
+            ->whereHas('bundles')
+            ->whereHas('defaultCalendarRelation')
+            ->where('isForWebsite', true)
+            ->get();
 
 
 
